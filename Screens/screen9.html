@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Draft of Screen 9</title>
+	<script type="text/javascript" src="randomizeTrain.js"></script>
+</head>
+<body>
+	<h1>Round 2: Put your ideas in motion!</h1>
+	<p>Take pictures of the requested object, like you did before. Again, click on "Get Object" to get the requested object, then click "Upload" after taking each photo. The counter at the bottom will help you keep track of how many images you've already taken. Click on "Get Object" after each 30 images to know what to capture next! You'll know you're finished when the "Upload" button disappears.</p>
+
+	<div>
+		<button type="button" id="objButton" onclick="randomize()">Get Object</button>
+	</div>
+
+	<p id="obj1" hidden="true">Object 1</p>
+	<p id="obj2" hidden="true">Object 2</p>
+	<p id="obj3" hidden="true">Object 3</p>
+
+	<p></p>
+	<input type="file" style="display: none;" accept="image/*" capture="camera" name="fileToUpload" id="fileToUpload">
+	<button type="button" onclick="takePic()">Take a Picture</button>
+	<span>
+		<button type="button" id="uploadButton" onclick="countPics()">Upload</button>
+	</span>
+
+	<p id="wholeCounter"><span id="counter">0</span>/30 images taken!</p>
+
+	<button type="button" onclick="window.location.href='http://ec2-18-221-159-134.us-east-2.compute.amazonaws.com/Screens/imagesscreen9.html'">Next page</button>
+
+	<!-- <script type="text/javascript">
+		var arr = ["obj1", "obj2", "obj3"];
+		var randObj = arr[Math.floor(Math.random() * arr.length)];
+		document.getElementById(randObj).style.display = "block";
+	</script> -->
+
+</body>
+</html>

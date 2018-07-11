@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Draft of Screen 3</title>
+	<script type="text/javascript" src="randomizeTest.js"></script>
+</head>
+<body>
+	<h1>Let's test our system!</h1>
+	<p>Your instructions are simple: Take a picture of the requested object! Click "Get Object" each time to see which object to use, then click "Upload" to send in your picture. The "Get Object" will disappear once you've taken 5 images total for each object.</p>
+	<p>(Here's a hint: don't be scared if the object doesn't change! It's randomized, so if you've clicked the button and it doesn't change, take another picture and send it in.)</p>
+	
+	<button type="button" id="objButton" onclick="randomize()">Get Object</button>
+
+	<!-- <p id="object"></p> -->
+	<p id="obj1" hidden="true">Object 1</p>
+	<p id="obj2" hidden="true">Object 2</p>
+	<p id="obj3" hidden="true">Object 3</p>
+
+	<p></p>
+	<input type="file" style="display: none;" accept="image/*" capture="camera" name="fileToUpload" id="fileToUpload">
+	<button type="button" onclick="takePic()">Take a Picture</button>
+
+	<button type="button">Upload</button>
+
+	<p>[Feedback from object recognizer will go here]</p>
+
+	<button type="button" onclick="window.location.href='http://ec2-18-221-159-134.us-east-2.compute.amazonaws.com/Screens/screen4.html'">Next page</button>
+
+</body>
+</html>
