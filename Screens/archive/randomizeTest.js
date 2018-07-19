@@ -1,9 +1,9 @@
-// var obj1 = {"id":"obj1","count":"0"};
-// var obj2 = {"id":"obj2","count":"0"};
-// var obj3 = {"id":"obj3","count":"0"};
-var obj1 = {"id":"object1","count":"0"};
-var obj2 = {"id":"object2","count":"0"};
-var obj3 = {"id":"object3","count":"0"};
+var obj1 = {"id":"obj1","count":"0"};
+var obj2 = {"id":"obj2","count":"0"};
+var obj3 = {"id":"obj3","count":"0"};
+// var obj1 = {"id":"object1","count":"0"};
+// var obj2 = {"id":"object2","count":"0"};
+// var obj3 = {"id":"object3","count":"0"};
 var button = {"id":"objButton","count":"0"};
 var arr = [obj1, obj2, obj3];
 
