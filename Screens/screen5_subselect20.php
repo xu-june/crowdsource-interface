@@ -1,5 +1,5 @@
 <!-- CSS and jQuery adapted from http://www.prepbootstrap.com/bootstrap-template/image-checkbox -->
-<!-- Takes images from train1 folder and puts them into subset1/select20 -->
+<!-- Takes images from train1 folder and saves selected filenames into $scr5_subselect20 -->
 
 <!DOCTYPE html>
 <html>
@@ -10,6 +10,9 @@
 	<link type="text/css" rel="stylesheet" href="screenformatting.css">
 
 	<script type="text/javascript">
+		function uploadImg() {
+        	document.getElementById("uploadbtn").click();
+        }
 
 		jQuery(function ($) {
 			$(".image-checkbox").on("click", function (e) {
@@ -26,7 +29,28 @@
 				e.preventDefault();
 			});
 		});
+
 	</script>
+
+	<!-- <script>
+
+        // Refreshes bottom portion of the page for subset selection
+        $(document).ready(function () {
+        	$('#myform').on('submit', function (e) {
+        		e.preventDefault();
+
+        		var dataArr = $("#myform").serializeArray();
+        		$.ajax({
+        			method: 'POST',
+        			url: 'screen5_sub20.php',
+        			data: dataArr,
+        			success: function () {
+        				$("#after-selection").load("screen5_sub20.php");              
+        			}
+        		});
+        	});
+        });
+	</script> -->
 </head>
 <body>
 	<div class="grid-container">
@@ -39,21 +63,29 @@
 
 	<h1>Select the 20 best images out of the 30 you took!</h1>
 
-	<div id = "subselection">
-		<?php
-		// Displays the images
-		$files = glob("train1/*.jpg");
-		for ($i=0; $i<count($files); $i++)
-		{
-			$num = $files[$i];
-			echo '<label class="image-checkbox">';
-				echo '<img src="'.$num.'" style="width:150px; height:150px;" class="imgselect"/>'."&nbsp;&nbsp;";
-				echo '<input type="checkbox" name="team[]" />';
-			echo '</label>';
-			
-		}
-		?>
-	</div>
+	<form id="myform" action="" method="post">
+		<p>A green border will appear around the images you select:</p>
+		<div id = "subselection">
+			<?php
+			// Displays the images
+			$files = glob("train1/*.jpg");
+			for ($i=0; $i<count($files); $i++)
+			{
+				$num = $files[$i];
+				$filename = basename($num);
+				// echo "filename: " . $filename;
+				echo '<label class="image-checkbox">';
+					echo '<img src="'.$num.'" style="width:150px; height:150px;" class="imgselect"/>'."&nbsp;&nbsp;";
+					echo '<input type="checkbox" name="selections[]" value="' . $filename . '" />';
+				echo '</label>'; 
+			}
+			?>
+		</div>
+		<input type="submit" id="uploadbtn" value="Upload Image" name="submit" style="display: none;">
+        <p><button type="button" onclick="uploadImg()">Done!</button></p>
+	</form>
+
+	<div id="after-selection"></div>
 
 	<p>
 		<button type="button" onclick="window.location.href='http://ec2-18-221-159-134.us-east-2.compute.amazonaws.com/Screens/screen5_subselect5.php'">Next</button>
@@ -61,3 +93,7 @@
 
 </body>
 </html>
+
+<?php 
+include("screen5_sub20.php");
+?>

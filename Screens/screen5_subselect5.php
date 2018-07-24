@@ -1,5 +1,5 @@
 <!-- CSS and jQuery adapted from http://www.prepbootstrap.com/bootstrap-template/image-checkbox -->
-<!-- Takes images from subset1/select20 folder and puts them into subset1/select5 -->
+<!-- Takes images from train1 folder and saves selected filenames into $scr5_subselect5 -->
 
 <!DOCTYPE html>
 <html>
@@ -39,20 +39,30 @@
 
 	<h1>Select the 5 best images out of the 20 you just chose!</h1>
 
-	<div id="subselection">
-		<?php 
- 		// Displays the images
-		$files = glob("subset1/select20/*.jpg");
-		for ($i=0; $i<count($files); $i++)
-		{
-			$num = $files[$i];
-			echo '<label class="image-checkbox">';
-				echo '<img src="'.$num.'" style="width:150px; height:150px;" class="imgselect"/>'."&nbsp;&nbsp;";
-				echo '<input type="checkbox" name="team[]" />';
-			echo '</label>'; 
-		}
-		?>
-	</div>
+	<form action="screen5_sub5.php" method="post">
+		<p>A green border will appear around the images you select:</p>
+		<div id = "subselection">
+			<?php
+			include("screen5_sub20.php");
+			// Displays the images
+			$files = glob("train1/*.jpg");
+			for ($i=0; $i<count($files); $i++)
+			{
+				$num = $files[$i];
+				$filename = basename($num);
+				// if $filename is contained in $scr5_subselect20, then display the picture
+				if (in_array($filename, $scr5_subselect20)) {
+					echo '<label class="image-checkbox">';
+						echo '<img src="'.$num.'" style="width:150px; height:150px;" class="imgselect"/>'."&nbsp;&nbsp;";
+						echo '<input type="checkbox" name="selections[]" value="' . $filename . '" />';
+					echo '</label>'; 
+				}
+			}
+			?>
+		</div>
+		<input type="submit" id="uploadbtn" value="Upload Image" name="submit" style="display: none;">
+        <p><button type="button" onclick="uploadImg()">Done!</button></p>
+	</form>
 
 	<p>
 		<button type="button" onclick="window.location.href='http://ec2-18-221-159-134.us-east-2.compute.amazonaws.com/Screens/screen5_subselect1.php'">Next</button>
