@@ -20,7 +20,7 @@
         }
         function add_image() {
             console.log('haha');
-            document.getElementById("set_view").innerHTML += "<div class='ml-1 mr-1' style='float: left'><div style=\"width:100px;height:100px;background-image:url(\'image/dummy.jpg\');background-size:cover;\"></div>haha</div>";
+            document.getElementById("set_view").innerHTML += "<div class='ml-1 mr-1' style='float: left'><div style=\"width:100px;height:100px;background-image:url(\'images/dummy.jpg\');background-size:cover;\"></div>haha</div>";
         }
     </script>
     <div class="mt-3 mb-3 mr-3 ml-3">
