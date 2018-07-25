@@ -10,6 +10,9 @@
 	<link type="text/css" rel="stylesheet" href="screenformatting.css">
 
 	<script type="text/javascript">
+		function uploadImg() {
+        	document.getElementById("uploadbtn").click();
+        }
 
 		jQuery(function ($) {
 			$(".image-checkbox").on("click", function (e) {
@@ -39,11 +42,13 @@
 
 	<h1>Select the 5 best images out of the 20 you just chose!</h1>
 
-	<form action="screen5_sub5.php" method="post">
+	<form action="" method="post">
 		<p>A green border will appear around the images you select:</p>
 		<div id = "subselection">
 			<?php
-			include("screen5_sub20.php");
+			session_start();
+
+			$scr5_subselect20 = $_SESSION['scr5_20'];	// Retrieve file names selected previously
 			// Displays the images
 			$files = glob("train1/*.jpg");
 			for ($i=0; $i<count($files); $i++)
@@ -70,3 +75,39 @@
 
 </body>
 </html>
+
+<?php 
+
+// Configuring errors
+// ini_set('display_errors',1);
+// error_reporting(E_ALL);
+// var_dump($_POST); 
+
+session_start();
+
+$scr5_subselect5 = array();
+
+// Code from https://www.formget.com/php-checkbox/
+if(isset($_POST['selections']) && is_array($_POST['selections']))
+{ //to run PHP script on submit
+	if(!empty($_POST['selections']))
+	{
+		// Copy each file name into $scr5_subselect20
+		foreach($_POST['selections'] as $selected)
+		{
+			$scr5_subselect5[] = $selected;
+		}
+		// Display name of each file selected
+		// foreach($scr5_subselect5 as $image)
+		// {
+		// 	echo $image."</br>";
+		// }
+	}
+
+	$_SESSION['scr5_5'] = $scr5_subselect5;
+	// if (empty($scr5_subselect20)) 
+	// {
+	// 	echo "array is empty";
+	// }
+}
+?>

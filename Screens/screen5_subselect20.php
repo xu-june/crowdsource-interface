@@ -31,26 +31,6 @@
 		});
 
 	</script>
-
-	<!-- <script>
-
-        // Refreshes bottom portion of the page for subset selection
-        $(document).ready(function () {
-        	$('#myform').on('submit', function (e) {
-        		e.preventDefault();
-
-        		var dataArr = $("#myform").serializeArray();
-        		$.ajax({
-        			method: 'POST',
-        			url: 'screen5_sub20.php',
-        			data: dataArr,
-        			success: function () {
-        				$("#after-selection").load("screen5_sub20.php");              
-        			}
-        		});
-        	});
-        });
-	</script> -->
 </head>
 <body>
 	<div class="grid-container">
@@ -63,7 +43,7 @@
 
 	<h1>Select the 20 best images out of the 30 you took!</h1>
 
-	<form id="myform" action="" method="post">
+	<form action="" method="post">
 		<p>A green border will appear around the images you select:</p>
 		<div id = "subselection">
 			<?php
@@ -94,6 +74,40 @@
 </body>
 </html>
 
+
 <?php 
-include("screen5_sub20.php");
+// include("screen5_sub20.php");
+
+// Configuring errors
+// ini_set('display_errors',1);
+// error_reporting(E_ALL);
+// var_dump($_POST); 
+
+session_start();
+
+$scr5_subselect20 = array();
+
+// Code from https://www.formget.com/php-checkbox/
+if(isset($_POST['selections']) && is_array($_POST['selections']))
+{ //to run PHP script on submit
+	if(!empty($_POST['selections']))
+	{
+		// Copy each file name into $scr5_subselect20
+		foreach($_POST['selections'] as $selected)
+		{
+			$scr5_subselect20[] = $selected;
+		}
+		// Display name of each file selected
+		// foreach($scr5_subselect20 as $image)
+		// {
+		// 	echo $image."</br>";
+		// }
+	}
+
+	$_SESSION['scr5_20'] = $scr5_subselect20;
+	// if (empty($scr5_subselect20)) 
+	// {
+	// 	echo "array is empty";
+	// }
+}
 ?>
