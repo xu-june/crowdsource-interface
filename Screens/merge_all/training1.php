@@ -20,7 +20,7 @@
         }
         function add_image() {
             console.log('haha');
-            document.getElementById("set_view").innerHTML += "<div class='ml-1 mr-1' style='float: left'><div style=\"width:100px;height:100px;background-image:url(\'images/dummy.jpg\');background-size:cover;\"></div>haha</div>";
+            document.getElementById("set_view").innerHTML += "<div class='ml-1 mr-1' style='display:inline-block;'><div style=\"width:100px;height:100px;background-image:url(\'images/dummy.jpg\');background-size:cover;\"></div>haha</div>";
         }
     </script>
     <div class="mt-3 mb-3 mr-3 ml-3">
@@ -46,10 +46,18 @@
         </div>
         <br>
         
-        <div id='set_view' class="pl-1 pr-1" style="height:130px;max-width:none;overflow-x:scroll;">
+        <div id='set_view' class="pl-1 pr-1" style="height:130px;max-width:none;overflow-x:scroll;" align="center">
         </div>
         
-        <center><button type="button" class="btn btn-default" onclick="window.location.href='test2.php'">Next</button> </center>
+        <center>
+        <button type="button" class="btn btn-default" onclick="window.location.href='subset1.php'">Next</button> 
+        </center>
     </div> 
+    
+    <script>
+        for (var i=0; i<5; i++) {
+            add_image();
+        }
+    </script>
   </body>
 </html>
