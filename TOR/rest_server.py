@@ -306,6 +306,11 @@ def download():
 
   # print(uuid)
   target_dir = os.path.join(UPLOAD_DIR, uuid)
+  # check the destination path is existed
+  # if not, created all necessary dirs
+  if not os.path.exists(target_dir):
+    os.makedirs(target_dir)
+    
   if file and is_zip(file.filename):
     target_file = os.path.join(target_dir, file.filename)
     file.save(target_file)
