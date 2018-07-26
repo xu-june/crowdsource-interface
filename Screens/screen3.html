@@ -1,5 +1,5 @@
 <!-- Uploads images to "initialtest" folder in server -->
-<!-- PHP code adapted from http://php.net/manual/en/features.file-upload.php and https://gist.github.com/projectxcappe/1220777/9ec6a7e62fb9d7c9a93bd834fb434d7ae25ed6f5 -->
+<!-- PHP code adapted from http://php.net/manual/en/features.file-upload.php and https://gist.github.com/projectxcappe/1220777/9ec6a7e62fb9d7c9a93bd834fb434d7ae25ed6if5 -->
 
 <!DOCTYPE html>
 <html>
@@ -22,7 +22,8 @@
                 processData: false,
                 contentType: false,
                 success: function () {
-                    $("#images").load("screen3_showimages.php");              
+                    $("#images").load("screen3_showimages.php");
+                    $("#test").load("screen3_upload.php");              
               }
           });
           });
@@ -68,6 +69,19 @@
 
         // For "Upload Image" button
         function uploadImg() {
+        	var obj = document.getElementById("objects").innerHTML;
+        	$.post('screen3.upload.php', {obj: obj});
+
+   //      	$.ajax({
+			//   type: "POST",
+			//   url: "screen3_upload.php",
+			//   data: {name: "obj", value: obj}
+			// }).done(function() {
+			//   alert( "Data Saved!" );
+			// });
+
+        	document.getElementById("test").innerHTML = obj;
+        	// Get whichever object is showing on the screen and send it to upload and show images files? then in those files do if statement
         	document.getElementById("uploadbtn").click();
         }
     </script>
@@ -88,17 +102,19 @@
     
     <p><button type="button" id="objButton" onclick="randomize()">Get Object</button></p>
 
-    <div class="objects">
+    <div id="objects" class="objects">
     	<p id="obj1" hidden="true">Object 1</p>
 	    <p id="obj2" hidden="true">Object 2</p>
 	    <p id="obj3" hidden="true">Object 3</p>
     </div>
 
+    <div id="test"></div>
+
     <form action="screen3_upload.php" method="post" enctype="multipart/form-data">
         <span class="test-text">Test</span> the object recognizer with your images:
         <input type="file" style="display: none;" accept="image/*" capture="camera" name="fileToUpload" id="fileToUpload" required="true">
         <p><button type="button" onclick="takePic()">Take a Picture</button></p>
-        <input type="submit" id="uploadbtn" value="Upload Image" name="submit" style="display: none;">
+        <input type="submit" id="uploadbtn" value="Upload Image" name="submit" required="true" style="display: none;">
         <p><button type="button" onclick="uploadImg()">Upload Image</button></p>
     </form>
 
@@ -106,7 +122,7 @@
 
     <p>[Feedback from object recognizer will go here]</p>
 
-    <button type="button" onclick="window.location.href='http://ec2-18-221-159-134.us-east-2.compute.amazonaws.com/Screens/screen4.html'">Next</button>
+    <button type="button" onclick="window.location.href='screen4.html'">Next</button>
 
 </body>
 </html>

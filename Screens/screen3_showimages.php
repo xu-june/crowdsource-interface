@@ -3,6 +3,8 @@
 <?php 
 	
  // Displays the images
+
+// EDIT so that it is: for each image in initialtest/object
 $files = glob("initialtest/*.jpg");
 for ($i=0; $i<count($files); $i++)
 {

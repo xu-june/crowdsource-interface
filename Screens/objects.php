@@ -11,17 +11,6 @@
             document.getElementById("submitbtn").click();
         }
 
-        $('.submitbtn').click(function() {
-
-           $.ajax({
-              type: "get",
-              url: "objects.php",
-              data: { name: "John" }
-          }).done(function( msg ) {
-              alert( "Data Saved: " + msg );
-          });    
-
-      });
     </script>
 </head>
 <body>
@@ -38,22 +27,45 @@
             <?php 
 
             // Configuring errors
-            ini_set('display_errors',1);
-            error_reporting(E_ALL);
+            // ini_set('display_errors',1);
+            // error_reporting(E_ALL);
             // var_dump($_FILES); 
 
-            $obj1 = $_GET["obj1"];
-            $obj2 = $_GET["obj2"];
-            $obj3 = $_GET["obj3"];
-            // /home/ubuntu/userinterface
-            $url1 = "/var/www/html/Screens/image-folders" . $obj1;
-            $url2 = "/var/www/html/Screens/image-folders" . $obj2;
-            $url3 = "/var/www/html/Screens/image-folders" . $obj3;
-            // echo $folderurl;\
+            $urlts = "/var/www/html/Screens/train1/";
+            $urltr1 = "/var/www/html/Screens/train1/";
+            $urltr2 = "/var/www/html/Screens/train2/";
+            $urlts1 = "/var/www/html/Screens/test1/";
+            $urlts2 = "/var/www/html/Screens/test2/";
 
-            if (!mkdir($url1) && !mkdir($url2) && !mkdir($url3))
+            $url1_ts = $urlts . $_GET["obj1"];
+            $url2_ts = $urlts . $_GET["obj2"];
+            $url3_ts = $urlts . $_GET["obj3"];
+
+            $url1_tr1 = $urltr1 . $_GET["obj1"];
+            $url2_tr1 = $urltr1 . $_GET["obj2"];
+            $url3_tr1 = $urltr1 . $_GET["obj3"];
+
+            $url1_tr2 = $urltr2 . $_GET["obj1"];
+            $url2_tr2 = $urltr2 . $_GET["obj2"];
+            $url3_tr2 = $urltr2 . $_GET["obj3"];
+
+            $url1_ts1 = $urlts1 . $_GET["obj1"];
+            $url2_ts1 = $urlts1 . $_GET["obj2"];
+            $url3_ts1 = $urlts1 . $_GET["obj3"];
+
+            $url1_ts2 = $urlts2 . $_GET["obj1"];
+            $url2_ts2 = $urlts2 . $_GET["obj2"];
+            $url3_ts2 = $urlts2 . $_GET["obj3"];
+
+            // echo $url1;
+            // echo "<p></p>";
+            // echo $url2;
+            // echo "<p></p>";
+            // echo $url3;
+
+            if (mkdir($url1_tr1) && mkdir($url2_tr1) && mkdir($url3_tr1) && mkdir($url1_tr2) && mkdir($url2_tr2) && mkdir($url3_tr2) && mkdir($url1_ts1) && mkdir($url2_ts1) && mkdir($url3_ts1) && mkdir($url1_ts2) && mkdir($url2_ts2) && mkdir($url3_ts2) && mkdir($url1_ts) && mkdir($url2_ts) && mkdir($url3_ts))
             {
-                echo("Folders not created");
+                echo("Folders created");
             }
 
             ?>
@@ -61,7 +73,7 @@
     </form>
 
     <p>
-        <button type="button" onclick="window.location.href='http://ec2-18-221-159-134.us-east-2.compute.amazonaws.com/Screens/screen2.html'">Next</button>
+        <button type="button" onclick="window.location.href='screen2.html'">Next</button>
     </p>
 
 </body>

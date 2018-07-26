@@ -6,10 +6,13 @@
 // Configuring errors
 // ini_set('display_errors',1);
 // error_reporting(E_ALL);
-// var_dump($_FILES); 
+var_dump($_POST); 
 // if (isset($_FILES['fileToUpload']['error']) && $_FILES['fileToUpload']['error']!=UPLOAD_ERR_NO_FILE) {
 
     try {
+
+        $folder = $_POST['obj'];
+        echo $folder . "is the folder";
         
         // Undefined | Multiple Files | $_FILES Corruption Attack
         // If this request falls under any of them, treat it invalid.

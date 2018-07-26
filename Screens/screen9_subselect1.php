@@ -69,7 +69,7 @@
 	</form>
 
 	<p>
-		<button type="button" onclick="window.location.href='http://ec2-18-221-159-134.us-east-2.compute.amazonaws.com/Screens/screen10.html'">Next</button>
+		<button type="button" onclick="window.location.href='screen10.html'">Next</button>
 	</p>
 
 </body>
