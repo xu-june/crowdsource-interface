@@ -335,7 +335,7 @@ def unzip_file(uuid, phase, zip_file):
   if zip_file and is_zip(zip_file.filename):
     zip_file_path = os.path.join(zip_dir, zip_file.filename)
     zip_file.save(zip_file_path)
-    with zipfile.ZipFile(target_file, "r") as zip_f:
+    with zipfile.ZipFile(zip_file_path, "r") as zip_f:
       print("unzipping %s into %s" % (zip_file.filename, target_dir))
       zip_f.extractall(target_dir)
     return True
