@@ -329,10 +329,12 @@ unzip a given zip file
 """
 def unzip_file(uuid, phase, zip_file):
   # set target directory
-  target_dir = os.path.join(UPLOAD_DIR, uuid, phase)
+  zip_dir = os.path.join(UPLOAD_DIR, uuid)
+  target_dir = os.path.join(zip_dir, phase)
+
   if zip_file and is_zip(zip_file.filename):
-    target_file = os.path.join(target_dir, zip_file.filename)
-    zip_file.save(target_file)
+    zip_file_path = os.path.join(zip_dir, zip_file.filename)
+    zip_file.save(zip_file_path)
     with zipfile.ZipFile(target_file, "r") as zip_f:
       print("unzipping %s into %s" % (zip_file.filename, target_dir))
       zip_f.extractall(target_dir)
