@@ -310,7 +310,7 @@ def download():
   # if not, created all necessary dirs
   if not os.path.exists(target_dir):
     os.makedirs(target_dir)
-    
+
   if file and is_zip(file.filename):
     target_file = os.path.join(target_dir, file.filename)
     file.save(target_file)
@@ -327,9 +327,9 @@ unzip a given zip file
 @input  : zip_file (FileStorage)
 @output : True/False (boolean)
 """
-def unzip_file(uuid, zip_file):
+def unzip_file(uuid, phase, zip_file):
   # set target directory
-  target_dir = os.path.join(UPLOAD_DIR, uuid)
+  target_dir = os.path.join(UPLOAD_DIR, uuid, phase)
   if zip_file and is_zip(zip_file.filename):
     target_file = os.path.join(target_dir, zip_file.filename)
     zip_file.save(target_file)
@@ -441,7 +441,7 @@ def test():
                   probs = "N/A")
 
   # now unzip the received zip file
-  if not unzip_file(uuid, file):
+  if not unzip_file(uuid, phase, file):
     print("Error: failed to unzip %s" % (file.filename))
     return jsonify(uuid = "N/A",
                   labels = "N/A",
@@ -463,7 +463,7 @@ train classifiers with images received from a client
           }
 """
 # route http posts to this method
-# TO TEST: curl -v -X POST -F "uuid=1234" -F "phase=train1" -F "file=@train1.zip" http://0.0.0.0:5000/upload
+# TO TEST: curl -v -X POST -F "uuid=1234" -F "phase=train1" -F "file=@train1.zip" http://0.0.0.0:5000/train
 @receiver.route('/train', methods = ['POST'])
 def retrain_classifier():
 
@@ -489,7 +489,7 @@ def retrain_classifier():
                   classifier_label = "N/A")
 
   # now unzip the received zip file
-  if not unzip_file(uuid, file):
+  if not unzip_file(uuid, phase, file):
     print("Error: failed to unzip %s" % (file.filename))
     return jsonify(uuid = "N/A",
                   classifier_model = "N/A",
