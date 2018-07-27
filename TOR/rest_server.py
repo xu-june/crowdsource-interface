@@ -21,6 +21,8 @@ import os
 import json
 import zipfile
 
+from multiprocessing import Pool
+
 
 # configuration for Flask upload
 UPLOAD_DIR = "images"
@@ -38,6 +40,7 @@ classifier_label = os.path.join(classifier_model_dir, "classifier_labels.txt")
 TORs = {}
 models = {}
 labels = {}
+proc_pool = Pool(8) # 8 is the number of GPUs
 
 """
 initialize recognizer
@@ -181,6 +184,25 @@ def save_image_with_label(image, label):
   # increment num_imgs and return
   return num_imgs + 1
 
+
+"""
+"""
+def retrain_classifier(uuid, phase):
+  global TORs
+  # stop the recognizer if alive
+  stop_recognizer(uuid)
+  # trigger the retrain
+  new_model, new_label = TORs[uuid].retrain(uuid, phase)
+  if new_model != "" and new_label != "":
+    global models, labels
+    models[uuid] = new_model
+    labels[uuid] = new_label
+  else:
+    global classifier_model, classifier_label
+    models[uuid] = classifier_model
+    labels[uuid] = classifier_label
+
+  return
 
 """
 receive an image from a client to save
@@ -467,16 +489,14 @@ train classifiers with images received from a client
 # route http posts to this method
 # TO TEST: curl -v -X POST -F "uuid=1234" -F "phase=train1" -F "file=@train1.zip" http://0.0.0.0:5000/train
 @receiver.route('/train', methods = ['POST'])
-def retrain_classifier():
-
+def train():
   r = request
   print("request:", r)
   # request must contain "file"
   if "file" not in r.files:
     print("Error: invalid request")
     return jsonify(uuid = "N/A",
-                  classifier_model = "N/A",
-                  classifier_label = "N/A")
+                  result = "False")
   
   # retrieve the file
   file = r.files['file']
@@ -487,34 +507,20 @@ def retrain_classifier():
       not phase or phase == '':
     print("Error: invalid request")
     return jsonify(uuid = "N/A",
-                  classifier_model = "N/A",
-                  classifier_label = "N/A")
+                  result = "False")
 
   # now unzip the received zip file
   if not unzip_file(uuid, phase, file):
     print("Error: failed to unzip %s" % (file.filename))
-    return jsonify(uuid = "N/A",
-                  classifier_model = "N/A",
-                  classifier_label = "N/A")
+    return jsonify(uuid = uuid,
+                  result = "False")
 
-  global TORs
-  # stop the recognizer if alive
-  stop_recognizer(uuid)
-  # trigger the retrain
-  new_model, new_label = TORs[uuid].retrain(uuid, phase)
-  if new_model != "" and new_label != "":
-    global models, labels
-    models[uuid] = new_model
-    labels[uuid] = new_label
-  else:
-    global classifier_model, classifier_label
-    models[uuid] = classifier_model
-    labels[uuid] = classifier_label
+  # spawn a new process for training its classifier
+  proc_pool.map(retrain_classifier, (uuid, phase))
 
   # build JSON response containing the output label and probability
   return jsonify(uuid = uuid,
-                classifier_model = models[uuid],
-                classifier_label = labels[uuid])
+                result = "True")
 
 """
 test images received from a client
