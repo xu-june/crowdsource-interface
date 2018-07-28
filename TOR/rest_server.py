@@ -21,7 +21,8 @@ import os
 import json
 import zipfile
 
-from multiprocessing import Pool
+# from multiprocessing import Pool
+from concurrent.futures import ThreadPoolExecutor
 
 
 # configuration for Flask upload
@@ -175,23 +176,27 @@ def save_image_with_label(image, label):
 
 
 """
+retrain a classifier that is associated with uuid and phase
+@input  : uuid (string), phase (string)
+@output : boolean (True/False)
 """
 def retrain_classifier(uuid, phase):
-  global TORs
   # stop the recognizer if alive
   stop_recognizer(uuid)
+
   # trigger the retrain
   new_model, new_label = TORs[uuid].retrain(uuid, phase)
   if new_model != "" and new_label != "":
     global models, labels
     models[uuid] = new_model
     labels[uuid] = new_label
+    return True
   else:
     global classifier_model, classifier_label
     models[uuid] = classifier_model
     labels[uuid] = classifier_label
+    return False
 
-  return
 
 """
 receive an image from a client to save
@@ -265,7 +270,7 @@ initialize a recognzer for a user
 # TO TEST: curl -d '{"uuid": "1234"}' -H "Content-Type: application/json" -X POST http://0.0.0.0:5000/init
 @receiver.route('/init', methods = ['POST'])
 def init():
-  global input_label, classifier_model, classifier_label, debug
+  global TORs, input_label, classifier_model, classifier_label, debug
 
   r = request
   print("request:", r)
@@ -280,7 +285,16 @@ def init():
     print("Error: no uuid")
     return jsonify(result = "False")
 
-  TORs[uuid] = init_recognizer(classifier_model, classifier_label, debug)
+  # run this initialization in a thread
+  # so that the initialization may not block the FLASK server processing
+  future = thread_pool.submit(init_recognizer,
+                              classifier_model,
+                              classifier_label,
+                              debug)
+
+  # retrieve the result of the initialization
+  TORs[uuid] = future.result()
+  # TORs[uuid] = init_recognizer(classifier_model, classifier_label, debug)
   
   # build JSON response containing the result
   return jsonify(result = "True")
@@ -397,6 +411,8 @@ test images in a directory
 @output : output (dictionary - {label : prob} for each object)
 """
 def test_images(uuid, phase):
+  global TORs
+
   check_recognizer(uuid)
 
   img_dir = os.path.join(UPLOAD_DIR, uuid, phase)
@@ -460,10 +476,12 @@ def test():
                   labels = "N/A",
                   probs = "N/A")
   
-  # recognize image
-  output = test_images(uuid, phase)
+  # recognize image in a thread
+  # so that the recognition may not block the FLASK server processing
+  future = thread_pool.submit(test_images, uuid, phase)
+  # output = test_images(uuid, phase)
   # build JSON response containing the output label and probability
-  return jsonify(output)
+  return jsonify(future.result())
 
 
 """
@@ -479,6 +497,8 @@ train classifiers with images received from a client
 # TO TEST: curl -v -X POST -F "uuid=1234" -F "phase=train1" -F "file=@train1.zip" http://0.0.0.0:5000/train
 @receiver.route('/train', methods = ['POST'])
 def train():
+  global TORs
+
   r = request
   print("request:", r)
   # request must contain "file"
@@ -507,9 +527,11 @@ def train():
   # spawn a new process for training its classifier
   # sarmap = a variant of map, to take multiple arguments
   # FYI, https://stackoverflow.com/questions/5442910/python-multiprocessing-pool-map-for-multiple-arguments
-  proc_pool.starmap(retrain_classifier, (uuid, phase))
+  # proc_pool.starmap(retrain_classifier, [(uuid, phase)])
+  thread_pool.submit(retrain_classifier, uuid, phase)
+  # result = "True" if future.result() else "False"
 
-  # build JSON response containing the output label and probability
+  # return "True" if we "trigger" the retraining
   return jsonify(uuid = uuid,
                 result = "True")
 
@@ -619,7 +641,8 @@ classifier_label = os.path.join(classifier_model_dir, "classifier_labels.txt")
 TORs = {}
 models = {}
 labels = {}
-proc_pool = Pool(8) # 8 is the number of GPUs
+# proc_pool = Pool(8) # 8 is the number of GPUs
+thread_pool = ThreadPoolExecutor(8)
 
 
 # run the RESTful server
