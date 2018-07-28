@@ -1020,7 +1020,7 @@ def retrain_model(uuid, phase):
   try:
     FLAGS = FlagClass()
     FLAGS.bottleneck_dir = "/tmp/bottlenecks/"
-    FLAGS.how_many_training_steps = 400
+    FLAGS.how_many_training_steps = 200
     FLAGS.summaries_dir = "/tmp/summaires/"
     FLAGS.output_graph = os.path.join(model_dir, output_graph)
     FLAGS.output_labels = os.path.join(model_dir, output_labels)
