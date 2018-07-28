@@ -505,7 +505,9 @@ def train():
                   result = "False")
 
   # spawn a new process for training its classifier
-  proc_pool.map(retrain_classifier, (uuid, phase))
+  # sarmap = a variant of map, to take multiple arguments
+  # FYI, https://stackoverflow.com/questions/5442910/python-multiprocessing-pool-map-for-multiple-arguments
+  proc_pool.starmap(retrain_classifier, (uuid, phase))
 
   # build JSON response containing the output label and probability
   return jsonify(uuid = uuid,
