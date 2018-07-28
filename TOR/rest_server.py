@@ -31,17 +31,6 @@ ZIP_EXTENSIONS = set(['zip'])
 # initializer the Flask application
 receiver = Flask(__name__)
 
-# global variables
-input_label = None
-debug = True
-classifier_model_dir = "models/"
-classifier_model = os.path.join(classifier_model_dir, "classifier_graph.pb")
-classifier_label = os.path.join(classifier_model_dir, "classifier_labels.txt")
-TORs = {}
-models = {}
-labels = {}
-proc_pool = Pool(8) # 8 is the number of GPUs
-
 """
 initialize recognizer
 @input  : classifier model name (string),
@@ -617,6 +606,18 @@ def retrain_classifier():
                 classifier_model = models[uuid],
                 classifier_label = labels[uuid])
 """
+
+
+# global variables
+input_label = None
+debug = True
+classifier_model_dir = "models/"
+classifier_model = os.path.join(classifier_model_dir, "classifier_graph.pb")
+classifier_label = os.path.join(classifier_model_dir, "classifier_labels.txt")
+TORs = {}
+models = {}
+labels = {}
+proc_pool = Pool(8) # 8 is the number of GPUs
 
 
 # run the RESTful server
