@@ -174,6 +174,37 @@ def save_image_with_label(image, label):
   # increment num_imgs and return
   return num_imgs + 1
 
+"""
+check if a given directory is existed
+if not, create all necessary folders
+@input  : dir_path (string)
+@output : N/A
+"""
+def check_dir(dir_path):
+  if not os.path.exists(dir_path):
+    # os.makedirs does not return any value
+    os.makedirs(dir_path)
+
+
+"""
+check and save an image file
+@input  : uuid (string), phase (string), img_file (file object)
+@output : image (numpy array)
+"""
+def check_and_save_image(uuid, phase, img_file):
+  image = None
+  img_dir = os.path.join(UPLOAD_DIR, uuid, phase)
+  if img_file and is_image(img_file.filename):
+    # check whether the image directory is existed
+    check_dir(img_dir)
+    # first save the image
+    img_path = os.path.join(img_dir, img_file.filename)
+    img_file.save(img_path)
+    # then read it as numpy array
+    image = cv2.imread(img_path)
+
+  return image
+
 
 """
 retrain a classifier that is associated with uuid and phase
@@ -378,20 +409,26 @@ check recognizer
 def check_recognizer(uuid):
   # get the global recognizer variable
   global TORs, classifier_model, classifier_label
-  # if turned off, turn it on
-  if not TORs[uuid]:
+  try:
+    recognizer = TORs[uuid]
+    # if turned off, turn it on
+    if not recognizer:
+      TORs[uuid] = init_recognizer(classifier_model, classifier_label, debug)
+    # check whether recognizer is available
+    elif not recognizer.is_alive():
+      """
+      # get the latest classifier model and label
+      new_c_model, new_c_label = get_latest_classifier(classifier_model_dir)
+      if new_c_model > classifier_model and new_c_label > classifier_label:
+        classifier_model = new_c_model
+        classifier_label = new_c_label
+      """
+      # now resuming it
+      resume_recognizer(uuid, classifier_model, classifier_label)
+
+  except KeyError:
+    # initialize it if not
     TORs[uuid] = init_recognizer(classifier_model, classifier_label, debug)
-  # check whether recognizer is available
-  elif not TORs[uuid].is_alive():
-    """
-    # get the latest classifier model and label
-    new_c_model, new_c_label = get_latest_classifier(classifier_model_dir)
-    if new_c_model > classifier_model and new_c_label > classifier_label:
-      classifier_model = new_c_model
-      classifier_label = new_c_label
-    """
-    # now resuming it
-    resume_recognizer(uuid, classifier_model, classifier_label)
 
 
 """
@@ -408,6 +445,28 @@ test images in a directory
 @input  : uuid (string - user's unique id),
           phase (string - the phase in the study),
           image (numpy array)
+@output : output (dictionary - {label : prob} for each object)
+"""
+def test_image(uuid, phase, image):
+  global TORs
+
+  output = {"uuid": uuid}
+  if image is not None:
+    # check if there is a recognizer for the given UUID
+    check_recognizer(uuid)
+    # recognize the input image
+    label, prob = TORs[uuid].do(image)
+    # prepare the output
+    output["label"] = label
+    output["prob"] = str(prob)
+  
+  return output
+
+
+"""
+test an image
+@input  : uuid (string - user's unique id),
+          phase (string - the phase in the study)
 @output : output (dictionary - {label : prob} for each object)
 """
 def test_images(uuid, phase):
@@ -445,7 +504,7 @@ test images received from a client
           }
 """
 # route http posts to this method
-# TO TEST: curl -v -X POST -F "uuid=1234" -F "phase=test1" -F "file=@test1.zip" http://0.0.0.0:5000/upload
+# TO TEST: curl -v -X POST -F "uuid=1234" -F "phase=test1" -F "file=@test.jpg" http://0.0.0.0:5000/test
 @receiver.route('/test', methods = ['POST'])
 def test():
   r = request
@@ -468,17 +527,25 @@ def test():
     return jsonify(uuid = "N/A",
                   labels = "N/A",
                   probs = "N/A")
-
+  """
   # now unzip the received zip file
   if not unzip_file(uuid, phase, file):
     print("Error: failed to unzip %s" % (file.filename))
     return jsonify(uuid = "N/A",
                   labels = "N/A",
                   probs = "N/A")
+  """
+  # now check and save the image
+  image = check_and_save_image(uuid, phase, file)
+  if image is None:
+    print("Error: something is wrong with the given image")
+    return jsonify(uuid = uuid,
+                  labels = "N/A",
+                  probs = "N/A")
   
   # recognize image in a thread
   # so that the recognition may not block the FLASK server processing
-  future = thread_pool.submit(test_images, uuid, phase)
+  future = thread_pool.submit(test_image, uuid, phase, image)
   # output = test_images(uuid, phase)
   # build JSON response containing the output label and probability
   return jsonify(future.result())
@@ -543,10 +610,10 @@ test images received from a client
             probs: a set of probabilities
           }
 """
+"""
 # route http posts to this method
 # TO TEST:
 # curl -d '{"uuid":"1234", "phase": "test1"}' -H "Content-Type: application/json" -X POST http://0.0.0.0:5000/test
-"""
 @receiver.route('/test', methods = ['POST'])
 def test():
   # TODO: revamp this function to recognize images
@@ -566,7 +633,7 @@ def test():
     return jsonify(labels = "N/A", probs = "N/A")
   
   # recognize image
-  output = test_images(uuid, phase)
+  output = test_image(uuid, phase)
   # build JSON response containing the output label and probability
   return jsonify(output)
 """
