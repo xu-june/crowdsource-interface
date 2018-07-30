@@ -46,8 +46,13 @@ class Classifier:
     # set to allocate memory on GPU as needed
     # For more details, look at
     # https://stackoverflow.com/questions/36927607/how-can-i-solve-ran-out-of-gpu-memory-in-tensorflow
-    config = tf.ConfigProto()
-    config.gpu_options.allow_growth = True
+    # NOTE: use CPUs only for testing
+    #       this config prevent from errors due to other process using GPUs
+    # https://stackoverflow.com/questions/37660312/how-to-run-tensorflow-on-cpu
+    config = tf.ConfigProto(
+              device_count = {'GPU': 0}
+            )
+    # config.gpu_options.allow_growth = True
 
     # session for recognizer
     self.sess = tf.Session(graph=obj_recog_graph, config = config)
