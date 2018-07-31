@@ -14,10 +14,14 @@ $zip_dir = realpath("zips");
 // a base dir for image files
 $imgs_dir = realpath("images");
 // debug boolean
-$debug = true;
+$debug = false;
 
 
-// initialize a recognizer
+/*
+  initialize a recognizer
+    @input  : uuid (string)
+    @output : N/A
+ */
 function init_recognizer($uuid) {
   global $rest_server, $debug;
   // the target url
@@ -46,8 +50,12 @@ function init_recognizer($uuid) {
   curl_close($request);
 }
 
-// check if a given dir is existed
-// if not existed, craete it
+
+/*
+  check if a given dir is existed; if not existed, craete it
+    @input  : dir (string)
+    @output : true/false (boolean)
+ */
 function check_dir($dir) {
   // first check whether existed
   if (!file_exists($dir)) {
@@ -61,8 +69,15 @@ function check_dir($dir) {
   }
 }
 
-// create a zip file with all images received during the given phase
-// For more information, https://stackoverflow.com/questions/4914750/how-to-zip-a-whole-folder-using-php
+
+/*
+  create a zip file with all images received during the given phase
+  for more information, https://stackoverflow.com/questions/4914750/how-to-zip-a-whole-folder-using-php
+    @input  : uuid (string),
+              phase (string)
+    @output : zipfile path (on success)
+              "N/A" (on failure)
+ */
 function compress_images($uuid, $phase) {
   global $zip_dir, $imgs_dir, $debug;
 
@@ -105,7 +120,13 @@ function compress_images($uuid, $phase) {
   }
 }
 
-// upload a zip file
+
+/*
+  upload a zip file
+    @input  : uuid (string),
+              zipfile path (string)
+    @output : N/A
+ */
 function upload_zip($uuid, $zip_file) {
   global $rest_server, $debug;
   // the target url
@@ -141,7 +162,14 @@ function upload_zip($uuid, $zip_file) {
   curl_close($request);
 }
 
-// upload a zip file and then trigger the training
+
+/*
+  upload a zip file and then trigger the training
+    @input  : uuid (string),
+              phase (string),
+              zipfile path (string)
+    @output : N/A
+ */
 function upload_and_train($uuid, $phase, $zip_file) {
   global $rest_server, $debug;
   // the target url
@@ -186,7 +214,14 @@ function upload_and_train($uuid, $phase, $zip_file) {
   curl_close($request);
 }
 
-// upload an image file and then trigger the testing
+
+/*
+  upload an image file and then trigger the testing
+    @input  : uuid (string),
+              phase (string),
+              image file path (string)
+    @output : label (string)
+ */
 function upload_and_test($uuid, $phase, $img_file) {
   global $rest_server, $debug;
   // the target url
@@ -230,10 +265,20 @@ function upload_and_test($uuid, $phase, $img_file) {
   // close the session
   curl_close($request);
 
-  return $response;
+  // process JSON response
+  $json = json_decode($response, true);
+  $label = $json['label'];
+
+  return $label;
 }
 
-// prepare a upload request
+
+/*
+  prepare a upload request
+    @input  : uuid (string),
+              phase (string)
+    @output : N/A
+ */
 function prepare_upload($uuid, $phase) {
   global $imgs_dir, $zip_dir, $debug;
 
@@ -244,7 +289,7 @@ function prepare_upload($uuid, $phase) {
 
   // first compress the images
   $zip_file = compress_images($uuid, $phase);
-  upload_and_do($uuid, $phase, $zip_file);
+  upload_and_train($uuid, $phase, $zip_file);
 }
 
 
