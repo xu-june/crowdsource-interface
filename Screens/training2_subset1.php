@@ -65,7 +65,7 @@
 		</form>
 
 		<p>
-			<button type="button" class="btn btn-default" onclick="window.location.href='test3.php'">Next</button>
+			<button type="button" class="btn btn-default" onclick="window.location.href='test2.php'">Next</button>
 		</p>
 	</div>
 </body>

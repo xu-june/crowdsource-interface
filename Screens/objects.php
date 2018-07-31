@@ -143,7 +143,7 @@
 		</form>
 
 		<p>
-			<button type="button"  class="btn btn-default" onclick="window.location.href='before_test1.php'">Next</button>
+			<button type="button"  class="btn btn-default" onclick="window.location.href='before_test0.php'">Next</button>
 		</p>
         
 	</div>
