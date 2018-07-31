@@ -141,16 +141,16 @@ function upload_zip($uuid, $zip_file) {
   curl_close($request);
 }
 
-// upload a zip file and then trigger either training or testing
-function upload_and_do($uuid, $phase, $zip_file) {
+// upload a zip file and then trigger the training
+function upload_and_train($uuid, $phase, $zip_file) {
   global $rest_server, $debug;
   // the target url
   $target_url = $rest_server;
   // https://stackoverflow.com/questions/4366730/how-do-i-check-if-a-string-contains-a-specific-word
   if (strpos($phase, "train") !== false) {
     $target_url = $rest_server . "train";
-  } elseif (strpos($phase, "test") !== false) {
-    $target_url = $rest_server . "test";
+  } else {
+    echo "\nERROR: wrong phase!!";
   }
   
   if ($debug) {
@@ -184,6 +184,53 @@ function upload_and_do($uuid, $phase, $zip_file) {
 
   // close the session
   curl_close($request);
+}
+
+// upload an image file and then trigger the testing
+function upload_and_test($uuid, $phase, $img_file) {
+  global $rest_server, $debug;
+  // the target url
+  $target_url = $rest_server;
+  // https://stackoverflow.com/questions/4366730/how-do-i-check-if-a-string-contains-a-specific-word
+  if (strpos($phase, "test") !== false) {
+    $target_url = $rest_server . "test";
+  } else {
+    echo "\nERROR: wrong phase!!";
+  }
+  
+  if ($debug) {
+    echo "\nrequest to " . $target_url;  
+  }
+  
+  // create the request
+  $request = curl_init($target_url);
+  // echo ("created cURL request", 3, "/var/www/php.log");
+  
+  curl_setopt($request, CURLOPT_POST, true);
+  curl_setopt(
+    $request,
+    CURLOPT_POSTFIELDS,
+    array(
+      'file' => new \CurlFile($img_file, 'application/octet-stream', basename($img_file)),
+      'uuid' => $uuid,
+      'phase' => $phase
+      )
+  );
+  curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+
+  // send the request and print its output
+  // error_log("sending the request", 3, "/var/www/php.log");
+  $response = curl_exec($request);
+  if ($debug) {
+    echo "\nresponse: " . $response;
+  }
+  // error_log($output, 3, "/var/www/php.log");
+  // error_log("sent the request", 3, "/var/www/php.log");
+
+  // close the session
+  curl_close($request);
+
+  return $response;
 }
 
 // prepare a upload request
