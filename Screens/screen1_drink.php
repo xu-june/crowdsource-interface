@@ -31,3 +31,11 @@
 		</div>
 	</body>
 </html>
+
+<?php
+  // initialize an object recognizer for a user
+  $uuid = "12345"; // NOTE: for testing
+  require(dirname(__FILE__).'/../TOR/rest_client.php');
+  // trigger the recognizer initialization
+  init_recognizer($uuid);
+?>

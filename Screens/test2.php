@@ -60,8 +60,9 @@
                 data: new FormData(this),
                 processData: false,
                 contentType: false,
-                success: function () {
-                    $("#done").load("test2_upload.php");            
+                success: function (output) {
+                    var result = "Looks like \"" + output + "\"!";
+                    $("#done").html(result);
               }
           });
           });
@@ -110,8 +111,6 @@
 
 		<!-- For AJAX part; to prevent user from going to upload file -->
         <div id="done"></div>
-
-		<p>[Feedback from object recognizer will go here]</p>
 
 		<button type="button" class="btn btn-default" onclick="window.location.href='feedbackscreen2.php'">Next</button>
 	</div>

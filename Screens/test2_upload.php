@@ -13,7 +13,7 @@ session_start();
     try {
 
         // echo "<p></p>";
-        $folder = $_SESSION['currObj'];
+        $obj = $_SESSION['currObj'];
         // echo $folder . " is the folder";
         // echo "<p></p>";
         
@@ -68,15 +68,23 @@ session_start();
         // DO NOT USE $_FILES['upfile']['name'] WITHOUT ANY VALIDATION !!
         // On this example, obtain safe unique name from its binary data.
         $filename = sha1_file($_FILES['fileToUpload']['tmp_name']);
+        // NOTE: for testing
+        $uuid = "12345"; 
+        $phase = "test2";
+        $dest_path = dirname(__FILE__) . '/images/' . $uuid . '/' . $phase . '/' . $obj . '/';
+        $img_path = $dest_path . $filename . '.' . $ext;
         if (!move_uploaded_file(
-            $_FILES['fileToUpload']['tmp_name'],
-            sprintf('./images/12345/test2/'.$_SESSION['currObj'].'/%s.%s', $filename, $ext)
-        )) {
+            $_FILES['fileToUpload']['tmp_name'], $img_path)) {
             // 'Failed to move uploaded file.'
             throw new RuntimeException('Failed to move uploaded file.');
         }
 
-        echo "File was uploaded successfully.";
+        // echo "File was uploaded successfully.";
+        require(dirname(__FILE__).'/../TOR/rest_client.php');
+        // send an image to the server for testing
+        $label = upload_and_test($uuid, $phase, $img_path);
+        // return the testing result, label
+        echo $label;
 
     } catch (RuntimeException $e) {
 
