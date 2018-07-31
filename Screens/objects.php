@@ -56,11 +56,14 @@
 				session_start();
 
 				// echo dirname(__FILE__) . "/images/";
-				$urlts = dirname(__FILE__) . "/images/12345/test0/";
-				$urltr1 = dirname(__FILE__) . "/images/12345/train1/";
-				$urltr2 = dirname(__FILE__) . "/images/12345/train2/";
-				$urlts1 = dirname(__FILE__) . "/images/12345/test1/";
-				$urlts2 = dirname(__FILE__) . "/images/12345/test2/";
+                $img_base_dir = "images";
+                $uuid = "12345"; // NOTE: for testing
+
+				$urlts = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/test0/";
+				$urltr1 = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/train1/";
+				$urltr2 = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/train2/";
+				$urlts1 = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/test1/";
+				$urlts2 = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/test2/";
 
 				$objects0 = array(
 					$_GET["obj1"] => 0, 
@@ -133,7 +136,15 @@
 				// echo "<p></p>";
 				// echo $url3;
 
-				if (mkdir($url1_tr1) && mkdir($url2_tr1) && mkdir($url3_tr1) && mkdir($url1_tr2) && mkdir($url2_tr2) && mkdir($url3_tr2) && mkdir($url1_ts1) && mkdir($url2_ts1) && mkdir($url3_ts1) && mkdir($url1_ts2) && mkdir($url2_ts2) && mkdir($url3_ts2) && mkdir($url1_ts) && mkdir($url2_ts) && mkdir($url3_ts))
+                // to make all necessary directories
+				if (mkdir($url1_tr1, 0774, true) && mkdir($url2_tr1, 0774, true) &&
+                    mkdir($url3_tr1, 0774, true) && mkdir($url1_tr2, 0774, true) &&
+                    mkdir($url2_tr2, 0774, true) && mkdir($url3_tr2, 0774, true) &&
+                    mkdir($url1_ts1, 0774, true) && mkdir($url2_ts1, 0774, true) &&
+                    mkdir($url3_ts1, 0774, true) && mkdir($url1_ts2, 0774, true) &&
+                    mkdir($url2_ts2, 0774, true) && mkdir($url3_ts2, 0774, true) &&
+                    mkdir($url1_ts, 0774, true) && mkdir($url2_ts, 0774, true) &&
+                    mkdir($url3_ts, 0774, true))
 				{
 				    echo("Folders created");
 				}
