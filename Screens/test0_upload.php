@@ -1,11 +1,11 @@
-<!-- Uploads images to "test1" folder in server -->
+<!-- Uploads images to "test0" folder in server -->
 <!-- PHP code adapted from http://php.net/manual/en/features.file-upload.php and https://gist.github.com/projectxcappe/1220777/9ec6a7e62fb9d7c9a93bd834fb434d7ae25ed6f5 -->
 
 <?php 
 
 // Configuring errors
 ini_set('display_errors',1);
-error_reporting(E_ALL);
+// error_reporting(E_ALL);
 session_start();
 // var_dump($_FILES); 
 // if (isset($_FILES['fileToUpload']['error']) && $_FILES['fileToUpload']['error']!=UPLOAD_ERR_NO_FILE) {
@@ -70,7 +70,7 @@ session_start();
         $filename = sha1_file($_FILES['fileToUpload']['tmp_name']);
         if (!move_uploaded_file(
             $_FILES['fileToUpload']['tmp_name'],
-            sprintf('./images/12345/test1/'.$_SESSION['currObj'].'/%s.%s', $filename, $ext)
+            sprintf('./images/12345/test0/'.$_SESSION['currObj'].'/%s.%s', $filename, $ext)
         )) {
             // 'Failed to move uploaded file.'
             throw new RuntimeException('Failed to move uploaded file.');

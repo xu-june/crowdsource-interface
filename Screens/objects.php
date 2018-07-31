@@ -49,8 +49,8 @@
 				<?php 
 
 				// Configuring errors
-				ini_set('display_errors',1);
-				error_reporting(E_ALL);
+				// ini_set('display_errors',1);
+				// error_reporting(E_ALL);
 				// var_dump($_FILES); 
 
 				session_start();
@@ -133,10 +133,10 @@
 				// echo "<p></p>";
 				// echo $url3;
 
-				// if (mkdir($url1_tr1) && mkdir($url2_tr1) && mkdir($url3_tr1) && mkdir($url1_tr2) && mkdir($url2_tr2) && mkdir($url3_tr2) && mkdir($url1_ts1) && mkdir($url2_ts1) && mkdir($url3_ts1) && mkdir($url1_ts2) && mkdir($url2_ts2) && mkdir($url3_ts2) && mkdir($url1_ts) && mkdir($url2_ts) && mkdir($url3_ts))
-				// {
-				//     echo("Folders created");
-				// }
+				if (mkdir($url1_tr1) && mkdir($url2_tr1) && mkdir($url3_tr1) && mkdir($url1_tr2) && mkdir($url2_tr2) && mkdir($url3_tr2) && mkdir($url1_ts1) && mkdir($url2_ts1) && mkdir($url3_ts1) && mkdir($url1_ts2) && mkdir($url2_ts2) && mkdir($url3_ts2) && mkdir($url1_ts) && mkdir($url2_ts) && mkdir($url3_ts))
+				{
+				    echo("Folders created");
+				}
 
 				?>
 			</div>
