@@ -112,7 +112,7 @@
 			<input type="file" style="display: none;" accept="image/*" capture="camera" name="fileToUpload" id="fileToUpload" required="true">
 			<p><button type="button" class="btn btn-primary" onclick="takePic()">Take a Picture</button></p>
 			<input type="submit" id="uploadbtn" value="Upload Image" name="submit" required="true" style="display: none;">
-			<p><button type="button" class="btn btn-primary" onclick="uploadImg()">Upload Image</button></p>
+			<p><button type="button" class="btn btn-primary" onclick="uploadImg()">Test Image</button></p>
 		</form>
 
         <!-- For AJAX part; to prevent user from going to upload file -->
