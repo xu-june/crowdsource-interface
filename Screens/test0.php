@@ -1,13 +1,15 @@
 <?php 
+    session_start();
+    include 'connectDB.php';
     include 'header.php';
+    savePageLog($_SESSION['pid'], "test0");
 
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
-    session_start();
+        
     // Gets array of objects and counts
     $objects = $_SESSION['objects_ts0'];
 
-    // Gets object labels for later
     $obj1 = key($objects);
     $_SESSION['obj1'] = $obj1;
     next($objects);
@@ -16,7 +18,7 @@
     next($objects);
     $obj3 = key($objects);
     $_SESSION['obj3'] = $obj3;
-    reset($objects);
+    reset($objects); 
 
     $randObj = "";
 
@@ -28,7 +30,6 @@
     // echo "count 3: " . $_SESSION['objects_ts0'][$obj3];
     // echo "<p></p>";
 
-    // Randomizes object labels
     function randomize() {
         global $objects, $randObj, $obj1, $obj2, $obj3;
         // Ensures that this executes until all objects have been shown 5 times
@@ -68,9 +69,8 @@
                 data: new FormData(this),
                 processData: false,
                 contentType: false,
-                success: function (output) {
-                    var result = "Is this \"" + output + "\"?"; 
-                    $("#done").html(result);
+                success: function () {
+                    $("#done").load("test0_upload.php");            
               }
           });
           });
@@ -78,6 +78,7 @@
     </script>
 
     <script type="text/javascript">
+
         // For "Get Object" button
         function reload() {
             window.location.reload();
@@ -90,37 +91,99 @@
 
         // For "Upload Image" button
         function uploadImg() {
-        	document.getElementById("uploadbtn").click();
+            document.getElementById("uploadbtn").click();
+        }
+        
+        function captureImage() {
+            var video = document.getElementById("videoElement")
+            var canvas = document.createElement("canvas");
+            var scale = 1.0
+            
+            canvas.width = video.videoWidth * scale;
+            canvas.height = video.videoHeight * scale;
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+ 
+            var img = document.createElement("img");
+            img.height = video.videoHeight/4;
+            img.width = video.videoWidth/4;
+            img.src = canvas.toDataURL();
+
+            $output = $("#output");
+            $output.empty();
+            $output.prepend(img);
+            
+            $.ajax({
+              type: "POST",
+              url: "test0_upload.php",
+              data: { 
+                 imgBase64: img.src,
+                 filename: '<?php echo $_SESSION['pid']."_tmpObj_test0"?>'
+              },
+              success: function (data) {
+                console.log('success'+data);
+                $rec_result = $("#rec_result");
+                $rec_result.append(data);
+              },
+              error: function () { console.log('fail'); }
+            }).done(function(o) {
+              console.log('done'); 
+            });
         }
     </script>
 
 </head>
 <body>
-	<div class="mt-3 mb-3 mr-3 ml-3">
-		<?php printProgressBar(3); ?>
+    <div class="mt-3 mb-3 mr-3 ml-3">
+        <?php printProgressBar(3); ?>
 
-		<h3>Let's test our system!</h3>
-		<p>Click <mark>Get Object</mark>  to see which object to photograph, then click <mark>Upload</mark>  to send in your picture. <mark>Get Object</mark>  will disappear once you've taken 5 images total for each object.</p>
-		<p class="text-info">(Here's a hint: don't be scared if the object doesn't change! It's randomized, so if you've clicked the button and it doesn't change, take another picture and send it in.)</p>
-	
-		<p><button type="button" class="btn btn-primary" id="objButton" onclick="reload()">Get Object</button></p>
+        <h3>Let's test our system!</h3>
+        <p>Click <mark>Get Object</mark>  to see which object to photograph, then click <mark>Take a picture</mark>  to send in your picture. 
+        <mark>Get Object</mark>  will disappear once you've taken 5 images total for each object.</p>
+        
+        <p class="text-info">(Here's a hint: don't be scared if the object doesn't change! It's randomized, 
+        so if you've clicked the button and it doesn't change, take another picture and send it in.)</p>
+        
+        <div align="center">
+            <p><button type="button" class="btn btn-primary" id="objButton" onclick="reload()">Get Object</button></p>
+        </div>
 
-		<div id="objects" class="objects">
-			<?php echo randomize(); ?>
-		</div>
+        <div id="objects" class="objects">
+            <?php echo randomize(); ?>
+        </div>
+        
+        <div align='center' style='display:inline-block;'>
+            <video autoplay="true" id="videoElement" width="45%"></video><br>
+            <button type="button" class="btn btn-primary" onclick="captureImage()">Take a Picture</button>
 
-		<form action="test0_upload.php" method="post" enctype="multipart/form-data">
-			<span class="test-text">Test</span> the object recognizer with your images:
-			<input type="file" style="display: none;" accept="image/*" capture="camera" name="fileToUpload" id="fileToUpload" required="true">
-			<p><button type="button" class="btn btn-primary" onclick="takePic()">Take a Picture</button></p>
-			<input type="submit" id="uploadbtn" value="Upload Image" name="submit" required="true" style="display: none;">
-			<p><button type="button" class="btn btn-primary" onclick="uploadImg()">Test Image</button></p>
-		</form>
-
-        <!-- For AJAX part; to prevent user from going to upload file -->
-		<div id="done"></div>
-
-		<button type="button" class="btn btn-default" onclick="window.location.href='before_training1.php'">Next</button>
-	</div>
-</body>
-</html>
+            <div class="card border-success mb-3">
+              <div class="card-header">Result</div>
+              <div class="card-body text-success">
+                <div id="output" style='display:inline-block;'></div>
+                <div id='rec_result' class="card-text" style='display:inline-block;'></div>
+              </div>
+            </div>
+        </div>
+        
+        <br>
+        
+        <button type="button" class="btn btn-default" onclick="window.location.href='before_training1.php'">Next</button>
+        
+        <script>
+             var video = document.querySelector("#videoElement");
+            const constraints = {
+                advanced: [{
+                    facingMode: "environment"
+                }]
+            };
+            navigator.mediaDevices.getUserMedia({
+                video: constraints
+            }).then((stream) => {
+                video.srcObject = stream;
+            }).catch(function(err0r) {
+                console.log("Something went wrong!");
+              });
+        </script>
+        
+<?php
+    include 'footer.php';
+?>

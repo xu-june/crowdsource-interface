@@ -1,5 +1,8 @@
 <?php
+	session_start();
+	include 'connectDB.php';
 	include 'header.php';
+	savePageLog($_SESSION['pid'], "objects");
 ?>
 
 <!doctype html>
@@ -18,6 +21,9 @@
 			function submit() {
 				document.getElementById("submitbtn").click();
 			}
+			function submit_objects() {
+				document.getElementById("submitbtn").click();
+			} 
 		</script>
 		<h3>Number your objects!</h3>
 		<p>Assign your objects to Object 1, Object 2, and Object 3.</p>
@@ -84,9 +90,23 @@
 					$_GET["obj3"] => 0,
 				);
 
+				$objects_tr1 = array(
+					$_GET["obj1"] => 0, 
+					$_GET["obj2"] => 0, 
+					$_GET["obj3"] => 0,
+				);
+
+				$objects_tr2 = array(
+					$_GET["obj1"] => 0, 
+					$_GET["obj2"] => 0, 
+					$_GET["obj3"] => 0,
+				);
+
 				$_SESSION['objects_ts0'] = $objects0;
 				$_SESSION['objects_ts1'] = $objects1;
 				$_SESSION['objects_ts2'] = $objects2;
+				$_SESSION['objects_tr1'] = $objects_tr1;
+				$_SESSION['objects_tr2'] = $objects_tr2;
 
 				// to make directories
 				$url1_ts = $urlts . $_GET["obj1"];
@@ -130,6 +150,6 @@
 			<button type="button"  class="btn btn-default" onclick="window.location.href='before_test0.php'">Next</button>
 		</p>
         
-	</div>
-</body>
-</html>
+<?php
+	include 'footer.php';
+?>
