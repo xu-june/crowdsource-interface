@@ -31,7 +31,7 @@
 
 	$hasNext = true;
 	if (count($_SESSION['subselectObj']) == 0 || !isset($_SESSION['subselectObj'])) {
-		echo "hello?";
+		// echo "hello?";
 		$hasNext = false;
 		// unset($_SESSION['subselectObj']);
 	}
@@ -78,9 +78,6 @@
 			document.getElementById("test").innerHTML = hasNext;
 			if (hasNext) {
 				document.getElementById("selection").action = "training1_subset20.php";
-			}
-			else if (!hasNext) {
-				document.getElementById("selection").action = "test1.php";
 			}
 		}
 
@@ -137,7 +134,7 @@
 
 		<h3>Select the best image out of the 5 you just chose!</h3>
 
-		<form id="selection" action="" onsubmit="next()" method="post">
+		<form id="selection" action="test1.php" onsubmit="next()" method="post">
 			<p>A green border will appear around the images you select:</p>
 			<!-- <div id = "subselection"> -->
 				<?php

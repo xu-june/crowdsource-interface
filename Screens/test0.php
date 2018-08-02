@@ -78,6 +78,7 @@
     </script>
 
     <script type="text/javascript">
+
         // For "Get Object" button
         function reload() {
             window.location.reload();
