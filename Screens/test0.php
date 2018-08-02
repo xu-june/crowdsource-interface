@@ -7,6 +7,7 @@
     // Gets array of objects and counts
     $objects = $_SESSION['objects_ts0'];
 
+    // Gets object labels for later
     $obj1 = key($objects);
     $_SESSION['obj1'] = $obj1;
     next($objects);
@@ -27,6 +28,7 @@
     // echo "count 3: " . $_SESSION['objects_ts0'][$obj3];
     // echo "<p></p>";
 
+    // Randomizes object labels
     function randomize() {
         global $objects, $randObj, $obj1, $obj2, $obj3;
         // Ensures that this executes until all objects have been shown 5 times

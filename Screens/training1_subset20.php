@@ -2,6 +2,17 @@
 <!-- Takes images from train1 folder and saves selected filenames into $scr5_subselect20 -->
 <?php
 	include 'header.php';
+	if (!isset($_SESSION)) { 
+		session_start(); 
+	}
+
+	ini_set('display_errors',1);
+	error_reporting(E_ALL);
+	var_dump($_SESSION['subselectObj']);
+
+	$currObj = $_SESSION['subselectObj'][key($_SESSION['subselectObj'])];
+	echo $currObj;
+	$_SESSION['curr'] = $currObj;
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +43,32 @@
 		});
 
 	</script>
+
+	<style type="text/css">
+		/*For subset selection*/
+		.image-checkbox
+		{
+			cursor: pointer;
+		    box-sizing: border-box;
+		    -moz-box-sizing: border-box;
+		    -webkit-box-sizing: border-box;
+		    outline: 0;
+		}
+
+		.image-checkbox input[type="checkbox"]
+		{
+			display: none;
+		}
+
+		.image-checkbox-checked
+		{
+			outline: 4px solid #33cc33;
+		}
+
+		.imgselect {
+			padding: 5px;
+		}
+	</style>
 </head>
 <body>
 	<div class="mt-3 mb-3 mr-3 ml-3">
@@ -39,12 +76,13 @@
 
 		<h3>Select the 20 best images out of the 30 you took!</h3>
 
-		<form action="" method="post">
+		<!-- Form redirects to subset selection - 5 -->
+		<form id="selection" action="training1_subset5.php" method="post">
 			<p>A green border will appear around the images you select:</p>
-			<div id = "subselection">
+			<!-- <div id = "subselection"> -->
 				<?php
 				// Displays the images
-				$files = glob("train1/*.jpg");
+				$files = glob("images/12345/train1/".$currObj."/*.jpg");
 				for ($i=0; $i<count($files); $i++)
 				{
 					$num = $files[$i];
@@ -55,57 +93,30 @@
 						echo '<input type="checkbox" name="selections[]" value="' . $filename . '" />';
 					echo '</label>'; 
 				}
+
 				?>
-			</div>
-			<input type="submit" id="uploadbtn" value="Upload Image" name="submit" style="display: none;">
-			<p><button type="button" onclick="uploadImg()">Done!</button></p>
+			<!-- </div> -->
+			<!-- <input type="submit" id="uploadbtn" value="Done!" name="submit" style="display: none;"> -->
+			<!-- <p><button type="button" onclick="uploadImg()">Done!</button></p> -->
+			<p><button type="submit" class="btn btn-default">Next</button></p>
 		</form>
 
-		<div id="after-selection"></div>
+		<!-- <div id="after-selection"></div>
 
 		<p>
 			<button type="button" class="btn btn-default" onclick="window.location.href='training1_subset5.php'">Next</button>
-		</p>
+		</p> -->
 	</div>
 </body>
 </html>
 
 
 <?php 
-// include("screen5_sub20.php");
 
 // Configuring errors
 // ini_set('display_errors',1);
 // error_reporting(E_ALL);
 // var_dump($_POST); 
-
-session_start();
-
-$scr5_subselect20 = array();
-
-// Code from https://www.formget.com/php-checkbox/
-if(isset($_POST['selections']) && is_array($_POST['selections']))
-{ //to run PHP script on submit
-	if(!empty($_POST['selections']))
-	{
-		// Copy each file name into $scr5_subselect20
-		foreach($_POST['selections'] as $selected)
-		{
-			$scr5_subselect20[] = $selected;
-		}
-		// Display name of each file selected
-		// foreach($scr5_subselect20 as $image)
-		// {
-		// 	echo $image."</br>";
-		// }
-	}
-
-	$_SESSION['scr5_20'] = $scr5_subselect20;
-	// if (empty($scr5_subselect20)) 
-	// {
-	// 	echo "array is empty";
-	// }
-}
 
 // trigger the training for now
 require(dirname(__FILE__).'/../TOR/rest_client.php');

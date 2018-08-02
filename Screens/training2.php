@@ -1,9 +1,49 @@
 <?php
 	include 'header.php';
+
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+    session_start();
+    // Gets array of objects and counts
+    $objects = $_SESSION['objects_tr2'];
+
+    $obj1 = $_SESSION['obj1'];
+    $obj2 = $_SESSION['obj2'];
+    $obj3 = $_SESSION['obj3'];
+
+    $randObj = "";
+
+    // echo "<p></p>";
+    // echo "count 1: " . $_SESSION['objects_ts0'][$obj1];
+    // echo "<p></p>";
+    // echo "count 2: " . $_SESSION['objects_ts0'][$obj2];
+    // echo "<p></p>";
+    // echo "count 3: " . $_SESSION['objects_ts0'][$obj3];
+    // echo "<p></p>";
+
+    // Randomizes object labels
+    function randomize() {
+        global $objects, $randObj, $obj1, $obj2, $obj3;
+        // Ensures that this executes until all objects have been shown 5 times
+        if ($_SESSION['objects_tr2'][$obj1] < 1 || $_SESSION['objects_tr2'][$obj2] < 1 || $_SESSION['objects_tr2'][$obj3] < 1) {
+            $randObj = array_rand($objects, 1);
+            // Ensures each object is called 5 times
+            while ($objects[$randObj] >= 1) {
+                $randObj = array_rand($objects, 1);
+            }
+            // Increases the count for the object
+            $_SESSION['objects_tr2'][$randObj]++;
+            // Sends object to upload file
+            $_SESSION['currObj'] = $randObj;
+            return $randObj;
+        }
+    }
 ?>
 
+<!-- Uploads images to "train2" folder in server -->
+<!-- PHP code adapted from http://php.net/manual/en/features.file-upload.php and https://gist.github.com/projectxcappe/1220777/9ec6a7e62fb9d7c9a93bd834fb434d7ae25ed6if5 -->
+		
 <!DOCTYPE html>
-
 <html>
 <head>
 	<title>Training 2</title>
@@ -17,12 +57,12 @@
 
             $.ajax({
                 type: 'post',
-                url: 'screen9_upload.php',
+                url: 'training2_upload.php',
                 data: new FormData(this),
                 processData: false,
                 contentType: false,
                 success: function () {
-                    $("#images").load("screen9_showimages.php");              
+                    $("#images").load("training2_showimages.php");              
               }
           });
           });
@@ -30,46 +70,19 @@
     </script>
 
     <script type="text/javascript">
-		var obj1 = {"id":"obj1","count":"0"};
-		var obj2 = {"id":"obj2","count":"0"};
-		var obj3 = {"id":"obj3","count":"0"};
 		var button = {"id":"uploadButton","count":"0"};
-		var arr = [obj1, obj2, obj3];
 
-		// For "Get Object" button; selects a random object for user to train
-		function randomize() {
-
-			// Hides the previous object
-			for (var i = 0; i < arr.length; i++) {
-				document.getElementById(arr[i].id).style.display = "none";
-			}
-			var randObj = arr[Math.floor(Math.random() * arr.length)];
-			// Ensures that each object is only called once
-			while (randObj.count > 0) {
-				randObj = arr[Math.floor(Math.random() * arr.length)];
-			}
-			randObj.count++;
-
-			document.getElementById(randObj.id).style.display = "block";
-
-			// Hides the button after new object is shown
-			document.getElementById("objButton").style.display = "none";
-
-		}
+		// For "Get Object" button
+        function reload() {
+            window.location.reload();
+        }
 
 		// For "Upload" button; counts number of images trained for each object and uploads images to server (eventually)
 		function countPics() {
 
 			button.count++;
 
-			if (button.count < 90) {
-				// Allows user to train new object after 30 images
-				if (button.count % 30 === 0) {
-					document.getElementById("objButton").style.display = "block";
-				}
-			}
-			// Ensures user only trains 90 images total
-			else {
+			if (button.count >= 90) {
 				document.getElementById(button.id).style.display = "none";
 				document.getElementById("wholeCounter").innerHTML = "You're done! Please move on to the next page."
 			}
@@ -100,18 +113,16 @@
 		Click on <mark>Get Object</mark> after each 30 images to know what to capture next! You'll know you're finished when <mark>Upload</mark> disappears.</p>
 
 		<p>
-			<button type="button" class="btn btn-primary" id="objButton" onclick="randomize()">Get Object</button>
+			<button type="button" class="btn btn-primary" id="objButton" onclick="reload()">Get Object</button>
 		</p>
 
-		<div class="objects">
-			<p id="obj1" hidden="true">Object 1</p>
-			<p id="obj2" hidden="true">Object 2</p>
-			<p id="obj3" hidden="true">Object 3</p>
+		<div id="objects" class="objects">
+			<?php echo randomize(); ?>
 		</div>
 
 		<p></p>
 		<!-- is screen9_upload different from screen5_upload? I made it use the same php file for uploading file -->
-		<form action="training1_upload.php" method="post" enctype="multipart/form-data">
+		<form action="training2_upload.php" method="post" enctype="multipart/form-data">
 			<span class="train-text">Train</span> the object recognizer with your images:
 			<input type="file" style="display: none;" accept="image/*" capture="camera" name="fileToUpload" id="fileToUpload">
 			<p><button type="button" class="btn btn-primary" onclick="takePic()">Take a Picture</button></p>

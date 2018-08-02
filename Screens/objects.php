@@ -65,6 +65,7 @@
 				$urlts1 = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/test1/";
 				$urlts2 = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/test2/";
 
+				// for randomization function in test phases
 				$objects0 = array(
 					$_GET["obj1"] => 0, 
 					$_GET["obj2"] => 0, 
@@ -82,14 +83,12 @@
 					$_GET["obj2"] => 0, 
 					$_GET["obj3"] => 0,
 				);
+
 				$_SESSION['objects_ts0'] = $objects0;
 				$_SESSION['objects_ts1'] = $objects1;
 				$_SESSION['objects_ts2'] = $objects2;
-			
-				// foreach ($objects as $obj) {
-				//     echo $obj . " ";
-				// }
 
+				// to make directories
 				$url1_ts = $urlts . $_GET["obj1"];
 				$url2_ts = $urlts . $_GET["obj2"];
 				$url3_ts = $urlts . $_GET["obj3"];
@@ -109,32 +108,6 @@
 				$url1_ts2 = $urlts2 . $_GET["obj1"];
 				$url2_ts2 = $urlts2 . $_GET["obj2"];
 				$url3_ts2 = $urlts2 . $_GET["obj3"];
-
-				// $url1_ts = $urlts . "obj1";
-				// $url2_ts = $urlts . "obj2";
-				// $url3_ts = $urlts . "obj3";
-
-				// $url1_tr1 = $urltr1 . "obj1";
-				// $url2_tr1 = $urltr1 . "obj2";
-				// $url3_tr1 = $urltr1 . "obj3";
-
-				// $url1_tr2 = $urltr2 . "obj1";
-				// $url2_tr2 = $urltr2 . "obj2";
-				// $url3_tr2 = $urltr2 . "obj3";
-
-				// $url1_ts1 = $urlts1 . "obj1";
-				// $url2_ts1 = $urlts1 . "obj2";
-				// $url3_ts1 = $urlts1 . "obj3";
-
-				// $url1_ts2 = $urlts2 . "obj1";
-				// $url2_ts2 = $urlts2 . "obj2";
-				// $url3_ts2 = $urlts2 . "obj3";
-
-				// echo $url1_ts;
-				// echo "<p></p>";
-				// echo $url2;
-				// echo "<p></p>";
-				// echo $url3;
 
                 // to make all necessary directories
 				if (mkdir($url1_tr1, 0774, true) && mkdir($url2_tr1, 0774, true) &&

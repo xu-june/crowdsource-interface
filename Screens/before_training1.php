@@ -5,7 +5,11 @@
 <!doctype html>
 <html lang="en">
   <head>
-  <?php printMetaInfo(); ?>
+  <?php 
+  	printMetaInfo(); 
+  	// Initializing array for training objects
+  	$_SESSION['subselectObj'] = array();
+  ?>
   <title>
     	Training 1
     </title>
