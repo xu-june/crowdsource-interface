@@ -21,6 +21,7 @@
     // echo "count 3: " . $_SESSION['objects_ts0'][$obj3];
     // echo "<p></p>";
 
+    // Randomizes object labels
     function randomize() {
         global $objects, $randObj, $obj1, $obj2, $obj3;
         // Ensures that this executes until all objects have been shown 5 times
@@ -45,10 +46,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Test 1</title>
-	<?php printMetaInfo(); ?>
+    <title>Test 1</title>
+    <?php printMetaInfo(); ?>
 
-	<script>
+    <script>
         // Refreshes bottom portion of the page to upload images
         $(document).ready(function () {
             $('form').on('submit', function (e) {
@@ -88,31 +89,31 @@
 </head>
 <body>
     <div class="mt-3 mb-3 mr-3 ml-3">
-		<?php printProgressBar(6); ?>
+        <?php printProgressBar(6); ?>
     
-	<h3>Let's see how well you did!</h3>	
-	<p>Take a picture of the requested object to see how well you did. Again, click <i class="buttonname">Get Object</i> to know which one to take a picture of, then <i class="buttonname">Upload</i> to upload it. You'll be done when <i class="buttonname">Get Object</i> disappears.</p>
+    <h3>Let's see how well you did!</h3>    
+    <p>Take a picture of the requested object to see how well you did. Again, click <i class="buttonname">Get Object</i> to know which one to take a picture of, then <i class="buttonname">Upload</i> to upload it. You'll be done when <i class="buttonname">Get Object</i> disappears.</p>
 
-	<p><button type="button" class="btn btn-primary" id="objButton" onclick="reload()">Get Object</button></p>
+    <p><button type="button" class="btn btn-primary" id="objButton" onclick="reload()">Get Object</button></p>
 
-	<div id="objects" class="objects">
+    <div id="objects" class="objects">
         <?php echo randomize(); ?>
     </div>
 
-	<p></p>
+    <p></p>
 
-	<form action="test1_upload.php" method="post" enctype="multipart/form-data">
-		<span class="test-text">Test</span> the object recognizer with your images:
-		<input type="file" style="display: none;" accept="image/*" capture="camera" name="fileToUpload" id="fileToUpload" required="true">
-		<p><button type="button" class="btn btn-primary" onclick="takePic()">Take a Picture</button></p>
-		<input type="submit" id="uploadbtn" value="Upload Image" name="submit" style="display: none;">
+    <form action="test1_upload.php" method="post" enctype="multipart/form-data">
+        <span class="test-text">Test</span> the object recognizer with your images:
+        <input type="file" style="display: none;" accept="image/*" capture="camera" name="fileToUpload" id="fileToUpload" required="true">
+        <p><button type="button" class="btn btn-primary" onclick="takePic()">Take a Picture</button></p>
+        <input type="submit" id="uploadbtn" value="Upload Image" name="submit" style="display: none;">
         <p><button type="button" class="btn btn-primary" onclick="uploadImg()">Test Image</button></p>
-	</form>
+    </form>
 
      <!-- For AJAX part; to prevent user from going to upload file -->
-	<div id="done"></div>
+    <div id="done"></div>
 
-	<button type="button" class="btn btn-default" onclick="window.location.href='feedbackscreen1.php'">Next</button>
+    <button type="button" class="btn btn-default" onclick="window.location.href='feedbackscreen1.php'">Next</button>
 
 </body>
 </html>

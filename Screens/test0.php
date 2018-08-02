@@ -7,6 +7,7 @@
     // Gets array of objects and counts
     $objects = $_SESSION['objects_ts0'];
 
+    // Gets object labels for later
     $obj1 = key($objects);
     $_SESSION['obj1'] = $obj1;
     next($objects);
@@ -27,6 +28,7 @@
     // echo "count 3: " . $_SESSION['objects_ts0'][$obj3];
     // echo "<p></p>";
 
+    // Randomizes object labels
     function randomize() {
         global $objects, $randObj, $obj1, $obj2, $obj3;
         // Ensures that this executes until all objects have been shown 5 times
@@ -88,37 +90,37 @@
 
         // For "Upload Image" button
         function uploadImg() {
-        	document.getElementById("uploadbtn").click();
+            document.getElementById("uploadbtn").click();
         }
     </script>
 
 </head>
 <body>
-	<div class="mt-3 mb-3 mr-3 ml-3">
-		<?php printProgressBar(3); ?>
+    <div class="mt-3 mb-3 mr-3 ml-3">
+        <?php printProgressBar(3); ?>
 
-		<h3>Let's test our system!</h3>
-		<p>Click <mark>Get Object</mark>  to see which object to photograph, then click <mark>Upload</mark>  to send in your picture. <mark>Get Object</mark>  will disappear once you've taken 5 images total for each object.</p>
-		<p class="text-info">(Here's a hint: don't be scared if the object doesn't change! It's randomized, so if you've clicked the button and it doesn't change, take another picture and send it in.)</p>
-	
-		<p><button type="button" class="btn btn-primary" id="objButton" onclick="reload()">Get Object</button></p>
+        <h3>Let's test our system!</h3>
+        <p>Click <mark>Get Object</mark>  to see which object to photograph, then click <mark>Upload</mark>  to send in your picture. <mark>Get Object</mark>  will disappear once you've taken 5 images total for each object.</p>
+        <p class="text-info">(Here's a hint: don't be scared if the object doesn't change! It's randomized, so if you've clicked the button and it doesn't change, take another picture and send it in.)</p>
+    
+        <p><button type="button" class="btn btn-primary" id="objButton" onclick="reload()">Get Object</button></p>
 
-		<div id="objects" class="objects">
-			<?php echo randomize(); ?>
-		</div>
+        <div id="objects" class="objects">
+            <?php echo randomize(); ?>
+        </div>
 
-		<form action="test0_upload.php" method="post" enctype="multipart/form-data">
-			<span class="test-text">Test</span> the object recognizer with your images:
-			<input type="file" style="display: none;" accept="image/*" capture="camera" name="fileToUpload" id="fileToUpload" required="true">
-			<p><button type="button" class="btn btn-primary" onclick="takePic()">Take a Picture</button></p>
-			<input type="submit" id="uploadbtn" value="Upload Image" name="submit" required="true" style="display: none;">
-			<p><button type="button" class="btn btn-primary" onclick="uploadImg()">Test Image</button></p>
-		</form>
+        <form action="test0_upload.php" method="post" enctype="multipart/form-data">
+            <span class="test-text">Test</span> the object recognizer with your images:
+            <input type="file" style="display: none;" accept="image/*" capture="camera" name="fileToUpload" id="fileToUpload" required="true">
+            <p><button type="button" class="btn btn-primary" onclick="takePic()">Take a Picture</button></p>
+            <input type="submit" id="uploadbtn" value="Upload Image" name="submit" required="true" style="display: none;">
+            <p><button type="button" class="btn btn-primary" onclick="uploadImg()">Test Image</button></p>
+        </form>
 
         <!-- For AJAX part; to prevent user from going to upload file -->
-		<div id="done"></div>
+        <div id="done"></div>
 
-		<button type="button" class="btn btn-default" onclick="window.location.href='before_training1.php'">Next</button>
-	</div>
+        <button type="button" class="btn btn-default" onclick="window.location.href='before_training1.php'">Next</button>
+    </div>
 </body>
 </html>

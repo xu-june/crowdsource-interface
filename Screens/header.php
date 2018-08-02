@@ -23,6 +23,20 @@ function printMetaInfo() {
     <script src="./js/jquery-3.3.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/js-functions.js"></script>
+    
+    <script>
+		var refreshTime = 600000; // every 10 minutes in milliseconds
+		window.setInterval( function() {
+			$.ajax({
+				cache: false,
+				type: "GET",
+				url: "refreshSession.php",
+				success: function(data) {
+				}
+			});
+		}, refreshTime );
+	</script>
 <?php
 }
 ?>
+
