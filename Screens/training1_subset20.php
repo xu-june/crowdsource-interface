@@ -106,4 +106,14 @@ if(isset($_POST['selections']) && is_array($_POST['selections']))
 	// 	echo "array is empty";
 	// }
 }
+
+// trigger the training for now
+require(dirname(__FILE__).'/../TOR/rest_client.php');
+// send the training images to the server
+// init_recognizer("12345");
+$uuid = "12345";
+$phase = "train1";
+// TODO: we need to trigger a training only once
+prepare_upload($uuid, $phase);
+
 ?>
