@@ -49,8 +49,8 @@
 				</div>
 			</div>
 		
-			<input type="submit" value="Submit" name="submit" id="submitbtn" style="display: none;">
-			<p><button type="button" class="btn btn-primary" onclick="submit_objects()">Submit</button></p>
+			<input type="submit" value="Submit" name="submit" id="submitbtn" >
+			<!-- <p><button type="button" class="btn btn-primary" onclick="submit_objects()">Submit</button></p> -->
 			<div>
 				<?php 
 
@@ -130,19 +130,20 @@
 				$url3_ts2 = $urlts2 . $_GET["obj3"];
 
                 // to make all necessary directories
-				if (mkdir($url1_tr1, 0774, true) && mkdir($url2_tr1, 0774, true) &&
-                    mkdir($url3_tr1, 0774, true) && mkdir($url1_tr2, 0774, true) &&
-                    mkdir($url2_tr2, 0774, true) && mkdir($url3_tr2, 0774, true) &&
-                    mkdir($url1_ts1, 0774, true) && mkdir($url2_ts1, 0774, true) &&
-                    mkdir($url3_ts1, 0774, true) && mkdir($url1_ts2, 0774, true) &&
-                    mkdir($url2_ts2, 0774, true) && mkdir($url3_ts2, 0774, true) &&
-                    mkdir($url1_ts, 0774, true) && mkdir($url2_ts, 0774, true) &&
-                    mkdir($url3_ts, 0774, true))
-				{
-				    echo("Folders created");
-				}
+				// if (mkdir($url1_tr1, 0774, true) && mkdir($url2_tr1, 0774, true) &&
+    //                 mkdir($url3_tr1, 0774, true) && mkdir($url1_tr2, 0774, true) &&
+    //                 mkdir($url2_tr2, 0774, true) && mkdir($url3_tr2, 0774, true) &&
+    //                 mkdir($url1_ts1, 0774, true) && mkdir($url2_ts1, 0774, true) &&
+    //                 mkdir($url3_ts1, 0774, true) && mkdir($url1_ts2, 0774, true) &&
+    //                 mkdir($url2_ts2, 0774, true) && mkdir($url3_ts2, 0774, true) &&
+    //                 mkdir($url1_ts, 0774, true) && mkdir($url2_ts, 0774, true) &&
+    //                 mkdir($url3_ts, 0774, true))
+				// {
+				//     echo("Folders created");
+				// }
 
 				?>
+				
 			</div>
 		</form>
 

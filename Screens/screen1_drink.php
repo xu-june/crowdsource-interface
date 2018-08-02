@@ -1,6 +1,40 @@
 <?php
+	session_start();
+	include 'connectDB.php';
 	include 'header.php';
+
+	// get participant id	
+	if (!isset($_SESSION['pid'])) {
+		$query = "SELECT participant_id, participant_code FROM participant_status where status='INCOMPLETE' order by participant_id";
+		$result = getSelect($query);
+		$pid = $result['participant_id'];
+		$pcode = $result['participant_code'];
+		$date = date("Y-m-d H:i:s");
+		$time = round(microtime(true) * 1000);
+
+		// enter participant info	
+		$age = $_POST["age"];
+		$gender = $_POST["gender"];
+		$q1 = $_POST["q1"];
+		$q2 = $_POST["q2"];
+		$q3 = $_POST["q3"];
+		$q4 = $_POST["q4"];
+		$sql = "INSERT INTO participant_info (`participant_id`, `age`, `gender`, `q1`, `q2`, `q3`, `q4`, `time`, `date`) VALUES ("
+			.$pid.",".$age.", '".$gender."', '".$q1."', '".$q2."', '".$q3."', '".$q4."','".$time."','".$date."');";
+		execSQL($sql);
+	
+		// update participant status
+		$sql = "UPDATE participant_status set `status`='IN PROGRESS', `last_update_time`='"
+			.$time."', `last_update_date`='".$date."'WHERE `participant_id`=".$pid.";";
+		execSQL($sql);
+	
+		// save page log and session variables
+		savePageLog($pid, "screen1_drink");
+		$_SESSION['pid'] = $pid;
+		$_SESSION['pcode'] = $pcode;
+	} 
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -28,14 +62,6 @@
 			<button class="btn btn-default" onclick="window.location.href='objects.php'">Next</button>
 		
         
-		</div>
-	</body>
-</html>
-
 <?php
-  // initialize an object recognizer for a user
-  $uuid = "12345"; // NOTE: for testing
-  require(dirname(__FILE__).'/../TOR/rest_client.php');
-  // trigger the recognizer initialization
-  init_recognizer($uuid);
+	include 'footer.php';
 ?>

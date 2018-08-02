@@ -6,12 +6,12 @@
 		session_start(); 
 	}
 
-	ini_set('display_errors',1);
-	error_reporting(E_ALL);
-	var_dump($_SESSION['subselectObj']);
+	// ini_set('display_errors',1);
+	// error_reporting(E_ALL);
+	// var_dump($_SESSION['subselectObj']);
 
 	$currObj = $_SESSION['subselectObj'][key($_SESSION['subselectObj'])];
-	echo $currObj;
+	// echo $currObj;
 	$_SESSION['curr'] = $currObj;
 ?>
 
@@ -79,7 +79,6 @@
 		<!-- Form redirects to subset selection - 5 -->
 		<form id="selection" action="training1_subset5.php" method="post">
 			<p>A green border will appear around the images you select:</p>
-			<!-- <div id = "subselection"> -->
 				<?php
 				// Displays the images
 				$files = glob("images/12345/train1/".$currObj."/*.jpg");
@@ -95,17 +94,8 @@
 				}
 
 				?>
-			<!-- </div> -->
-			<!-- <input type="submit" id="uploadbtn" value="Done!" name="submit" style="display: none;"> -->
-			<!-- <p><button type="button" onclick="uploadImg()">Done!</button></p> -->
 			<p><button type="submit" class="btn btn-default">Next</button></p>
 		</form>
-
-		<!-- <div id="after-selection"></div>
-
-		<p>
-			<button type="button" class="btn btn-default" onclick="window.location.href='training1_subset5.php'">Next</button>
-		</p> -->
 	</div>
 </body>
 </html>

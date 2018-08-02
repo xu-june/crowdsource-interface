@@ -6,8 +6,8 @@
 		session_start(); 
 	}
 
-	var_dump($_SESSION['curr']);
-	var_dump($_POST['selections']);
+	// var_dump($_SESSION['curr']);
+	// var_dump($_POST['selections']);
 
 	$currObj = $_SESSION['curr'];
 
@@ -22,18 +22,7 @@
 			{
 				$tr1_subselect20[] = $selected;
 			}
-			// Display name of each file selected
-			// foreach($scr5_subselect20 as $image)
-			// {
-			// 	echo $image."</br>";
-			// }
 		}
-
-		// $_SESSION['tr1_20'] = $tr1_subselect20;
-		// if (empty($scr5_subselect20)) 
-		// {
-		// 	echo "array is empty";
-		// }
 	}
 ?>
 
@@ -44,11 +33,6 @@
 	<?php printMetaInfo(); ?>
 
 	<script type="text/javascript">
-		// function next() {
-		// 	document.getElementById("selection").submit();
-		// 	window.location.href='training1_subset1.php';
-		// }
-
 		function uploadImg() {
         	document.getElementById("uploadbtn").click();
         }
@@ -105,11 +89,7 @@
 	<!-- Form redirects to subset selection - 1 -->
 	<form id="selection" action="training1_subset1.php" method="post">
 		<p>A green border will appear around the images you select:</p>
-		<!-- <div id = "subselection"> -->
 			<?php
-			// session_start();
-
-			// $tr1_subselect20 = $_SESSION['tr1_20'];	// Retrieve file names selected previously
 			// Displays the images
 			$files = glob("images/12345/train1/".$currObj."/*.jpg");
 			for ($i=0; $i<count($files); $i++)
@@ -125,9 +105,6 @@
 				}
 			}
 			?>
-		<!-- </div> -->
-		<!-- <input type="submit" id="uploadbtn" value="Upload Image" name="submit" style="display: none;"> -->
-        <!-- <p><button type="button" onclick="uploadImg()">Done!</button></p> -->
         <p><button type="submit" class="btn btn-default">Next</button></p>
 	</form>
 

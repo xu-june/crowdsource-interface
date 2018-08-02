@@ -1,4 +1,3 @@
-
 <?php 
 //<!- - Uploads images to "test0" folder in server -->
 // <!-- PHP code adapted from http://php.net/manual/en/features.file-upload.php and https://gist.github.com/projectxcappe/1220777/9ec6a7e62fb9d7c9a93bd834fb434d7ae25ed6f5 -->

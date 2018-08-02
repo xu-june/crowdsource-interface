@@ -6,22 +6,18 @@
 		session_start(); 
 	}
 
-	if (empty($_SESSION['subselectObj'])) {
-		header("Location: /test1.php"); 
-	}
-	else {
-		header("Location: /training1_subset20.php");
-	}
-
 	var_dump($_SESSION['curr']);
-	var_dump($_SESSION['subselectObj']);
 
 	$currObj = $_SESSION['curr'];
-	array_shift($_SESSION['subselectObj']);		// Shifts first element out of array
-	$hasNext = true;
-	if (empty($_SESSION['subselectObj'])) {
-		$hasNext = false;
-		unset($_SESSION['subselectObj']);
+	array_shift($_SESSION['subselectObj']);
+
+	var_dump($_SESSION['subselectObj']);
+
+	$hasNext = "true";
+	if (count($_SESSION['subselectObj']) == 0 || !isset($_SESSION['subselectObj'])) {
+		// echo "hello?";
+		$hasNext = "false";
+		// unset($_SESSION['subselectObj']);
 	}
 
 	$tr1_subselect5 = array();
@@ -36,18 +32,7 @@
 			{
 				$tr1_subselect5[] = $selected;
 			}
-			// Display name of each file selected
-			// foreach($scr5_subselect5 as $image)
-			// {
-			// 	echo $image."</br>";
-			// }
 		}
-
-		// $_SESSION['tr1_5'] = $tr1_subselect5;
-		// if (empty($scr5_subselect20)) 
-		// {
-		// 	echo "array is empty";
-		// }
 	}
 
 ?>
@@ -59,16 +44,18 @@
 	<?php printMetaInfo(); ?>
 
 	<script type="text/javascript">
+
 		// If there are no more elements in the array of objects, page redirects to test1 phase; else goes back to subset selection
-		// function next() {
-		// 	var hasNext = <?= $hasNext ?>;
-		// 	if (!hasNext) {
-		// 		window.location.href='test1.php';
-		// 	}
-		// 	else {
-		// 		window.location.href='training1_subset20.php';
-		// 	}
-		// }
+		function next() {
+			var hasNext = "<?php echo $hasNext ?>";
+			// document.getElementById("test").innerHTML = hasNext;
+			if (hasNext == "true") {
+				document.getElementById("selection").action = "training1_subset20.php";
+			}
+			else {
+				document.getElementById("selection").action = "test1.php";
+			}
+		}
 
 		function uploadImg() {
         	document.getElementById("uploadbtn").click();
@@ -123,13 +110,9 @@
 
 		<h3>Select the best image out of the 5 you just chose!</h3>
 
-		<form id="selection" action="" method="post">
+		<form id="selection" action="" onsubmit="next()" method="post">
 			<p>A green border will appear around the images you select:</p>
-			<!-- <div id = "subselection"> -->
 				<?php
-				// session_start();
-				// $tr1_subselect5 = $_SESSION['tr1_5'];
-				// Displays the images
 				$files = glob("images/12345/train1/".$currObj."/*.jpg");
 				for ($i=0; $i<count($files); $i++)
 				{
@@ -144,11 +127,7 @@
 					}
 				}
 
-
 				?>
-			<!-- </div> -->
-			<!-- <input type="submit" id="uploadbtn" value="Done!" name="submit""> -->
-			<!-- <p><button type="button" onclick="uploadImg()">Done!</button></p> -->
 			<p><button type="submit" class="btn btn-default">Next</button></p>
 		</form>
 
@@ -156,7 +135,7 @@
 </body>
 </html>
 
-<!-- <?php 
+<!-- <?php
 
 // Configuring errors
 // ini_set('display_errors',1);
@@ -188,4 +167,4 @@
 // 	// 	echo "array is empty";
 // 	// }
 // }
-?>  -->
+?>  
