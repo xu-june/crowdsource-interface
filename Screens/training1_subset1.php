@@ -15,7 +15,6 @@
 
 	$hasNext = "true";
 	if (count($_SESSION['subselectObj']) == 0 || !isset($_SESSION['subselectObj'])) {
-		// echo "hello?";
 		$hasNext = "false";
 		// unset($_SESSION['subselectObj']);
 	}
@@ -110,7 +109,7 @@
 
 		<h3>Select the best image out of the 5 you just chose!</h3>
 
-		<form id="selection" action="" onsubmit="next()" method="post">
+		<form id="selection" action="test1.php" onsubmit="next()" method="post">
 			<p>A green border will appear around the images you select:</p>
 				<?php
 				$files = glob("images/12345/train1/".$currObj."/*.jpg");
