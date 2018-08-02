@@ -9,7 +9,7 @@ function printProgressBar($step){
 ?>
 
 
-
+ 
 
 <?php
 function printMetaInfo() {
