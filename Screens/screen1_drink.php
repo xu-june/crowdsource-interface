@@ -2,6 +2,7 @@
 	session_start();
 	include 'connectDB.php';
 	include 'header.php';
+	savePageLog($_SESSION['pid'], "screen1_drink");
 
 	// get participant id	
 	if (!isset($_SESSION['pid'])) {
@@ -24,7 +25,7 @@
 		execSQL($sql);
 	
 		// update participant status
-		$sql = "UPDATE participant_status set `status`='IN PROGRESS', `last_update_time`='"
+		$sql = "UPDATE participant_status set `status`='IN PROGRESS', `trial`=1, `last_update_time`='"
 			.$time."', `last_update_date`='".$date."'WHERE `participant_id`=".$pid.";";
 		execSQL($sql);
 	
@@ -32,6 +33,7 @@
 		savePageLog($pid, "screen1_drink");
 		$_SESSION['pid'] = $pid;
 		$_SESSION['pcode'] = $pcode;
+		$_SESSION['trial'] = 1;
 	} 
 ?>
 

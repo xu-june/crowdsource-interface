@@ -114,10 +114,12 @@
             
             $.ajax({
               type: "POST",
-              url: "test0_upload.php",
+              url: "test_upload.php",
               data: { 
                  imgBase64: img.src,
-                 filename: '<?php echo $_SESSION['pid']."_tmpObj_test0"?>'
+                 filename: '<?php echo $_SESSION['pid']."_tmpObj_test0"?>',
+                 phase: 'test0',
+                 object_name: $("objects").text()
               },
               success: function (data) {
                 console.log('success'+data);
@@ -147,7 +149,7 @@
             <p><button type="button" class="btn btn-primary" id="objButton" onclick="reload()">Get Object</button></p>
         </div>
 
-        <div id="objects" class="objects">
+        <div id="objects" class="objects" align='center'>
             <?php echo randomize(); ?>
         </div>
         
@@ -158,8 +160,15 @@
             <div class="card border-success mb-3">
               <div class="card-header">Result</div>
               <div class="card-body text-success">
-                <div id="output" style='display:inline-block;'></div>
-                <div id='rec_result' class="card-text" style='display:inline-block;'></div>
+              	<table style="table-layout:fixed;width:100%">
+              		<tr>
+              			<td>
+			                <div id="output" style='display:inline-block;'></div>
+			            </td>
+			            <td>
+			                <div id='rec_result' class="card-text" align='center'></div>
+			            </td>
+                </table>
               </div>
             </div>
         </div>

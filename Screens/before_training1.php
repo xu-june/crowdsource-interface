@@ -1,5 +1,8 @@
 <?php
-	include 'header.php';
+    session_start();
+    include 'connectDB.php';
+    include 'header.php';
+    savePageLog($_SESSION['pid'], "before_training1");
 ?>
 
 <!doctype html>
