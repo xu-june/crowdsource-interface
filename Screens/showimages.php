@@ -11,7 +11,7 @@ $object = $_SESSION['currObj'];
 // echo "<p></p>";
 
  // Displays the images
-$files = glob("images/12345/".$phase."/".$object."/*.jpg");
+$files = glob("images/12345/".$phase."/".$object."/*.png");
 $numFiles = count($files);
 
 echo $numFiles ." images taken";
