@@ -1,3 +1,4 @@
+
 <?php 
     session_start();
     include 'connectDB.php';
@@ -7,45 +8,6 @@
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
         
-    // Gets array of objects and counts
-    $objects = $_SESSION['objects_ts0'];
-
-    $obj1 = key($objects);
-    $_SESSION['obj1'] = $obj1;
-    next($objects);
-    $obj2 = key($objects);
-    $_SESSION['obj2'] = $obj2;
-    next($objects);
-    $obj3 = key($objects);
-    $_SESSION['obj3'] = $obj3;
-    reset($objects); 
-
-    $randObj = "";
-
-    // echo "<p></p>";
-    // echo "count 1: " . $_SESSION['objects_ts0'][$obj1];
-    // echo "<p></p>";
-    // echo "count 2: " . $_SESSION['objects_ts0'][$obj2];
-    // echo "<p></p>";
-    // echo "count 3: " . $_SESSION['objects_ts0'][$obj3];
-    // echo "<p></p>";
-
-    function randomize() {
-        global $objects, $randObj, $obj1, $obj2, $obj3;
-        // Ensures that this executes until all objects have been shown 5 times
-        if ($_SESSION['objects_ts0'][$obj1] < 5 || $_SESSION['objects_ts0'][$obj2] < 5 || $_SESSION['objects_ts0'][$obj3] < 5) {
-            $randObj = array_rand($objects, 1);
-            // Ensures each object is called 5 times
-            while ($objects[$randObj] >= 5) {
-                $randObj = array_rand($objects, 1);
-            }
-            // Increases the count for the object
-            $_SESSION['objects_ts0'][$randObj]++;
-            // Sends object to upload file
-            $_SESSION['currObj'] = $randObj;
-            return $randObj;
-        }
-    }
 ?>
 
 <!-- Uploads images to "test0" folder in server -->
@@ -54,28 +16,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+  	<?php printMetaInfo(); ?>
     <title>Test 0</title>
-    <?php printMetaInfo(); ?>
 
-    <script>
-        // Refreshes bottom portion of the page to upload images
-        $(document).ready(function () {
-            $('form').on('submit', function (e) {
-              e.preventDefault();
-
-            $.ajax({
-                type: 'post',
-                url: 'test0_upload.php',
-                data: new FormData(this),
-                processData: false,
-                contentType: false,
-                success: function () {
-                    $("#done").load("test0_upload.php");            
-              }
-          });
-          });
-        });
-    </script>
 
     <script type="text/javascript">
 
@@ -92,6 +35,26 @@
         // For "Upload Image" button
         function uploadImg() {
             document.getElementById("uploadbtn").click();
+        }
+        
+        function goNext() {
+        	
+        }
+        
+        function get_random_object() {
+            $.ajax({
+              type: "POST",
+              url: "get_random_object.php",
+              data: { 
+                 phase: 'test0'
+              },
+              success: function (data) {
+                console.log('random object: '+data);
+              },
+              error: function () { console.log('fail'); }
+            }).done(function(o) {
+              console.log('done'); 
+            });
         }
         
         function captureImage() {
@@ -117,7 +80,6 @@
               url: "test_upload.php",
               data: { 
                  imgBase64: img.src,
-                 filename: '<?php echo $_SESSION['pid']."_tmpObj_test0"?>',
                  phase: 'test0',
                  object_name: $("objects").text()
               },
@@ -131,6 +93,11 @@
               console.log('done'); 
             });
         }
+        
+        // Refreshes bottom portion of the page to upload images
+        $(document).ready(function () {
+	        get_random_object();
+        });
     </script>
 
 </head>
@@ -150,7 +117,6 @@
         </div>
 
         <div id="objects" class="objects" align='center'>
-            <?php echo randomize(); ?>
         </div>
         
         <div align='center' style='display:inline-block;'>
@@ -194,5 +160,5 @@
         </script>
         
 <?php
-    include 'footer.php';
+	include 'footer.php';
 ?>

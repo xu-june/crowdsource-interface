@@ -23,7 +23,7 @@
 	$uuid = $_SESSION['pid']; // NOTE: for testing
 
 	// clear the previous data which may be incomplete
-	recursive_rmdir(dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/" . $_SESSION['trial']);
+	recursive_rmdir(dirname(__FILE__) . '/' . $img_base_dir . '/p' . $uuid . "/t" . $_SESSION['trial']);
 	
 	$urlts = dirname(__FILE__) . '/' . $img_base_dir . '/p' . $uuid . "/t" . $_SESSION['trial'] . "/test0/";
 	$urltr1 = dirname(__FILE__) . '/' . $img_base_dir . '/p' . $uuid . "/t" . $_SESSION['trial'] . "/train1/";
@@ -123,7 +123,7 @@
 
 			<button type="button" class="btn btn-default" onclick="window.location.href='test0.php'">Next</button>
 		
-		
-		</div>
-	</body>
-</html>
+
+<?php
+	include 'footer.php';
+?>

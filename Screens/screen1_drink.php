@@ -2,7 +2,6 @@
 	session_start();
 	include 'connectDB.php';
 	include 'header.php';
-	savePageLog($_SESSION['pid'], "screen1_drink");
 
 	// get participant id	
 	if (!isset($_SESSION['pid'])) {
@@ -34,7 +33,8 @@
 		$_SESSION['pid'] = $pid;
 		$_SESSION['pcode'] = $pcode;
 		$_SESSION['trial'] = 1;
-	} 
+	}
+	savePageLog($_SESSION['pid'], "screen1_drink");
 ?>
 
 

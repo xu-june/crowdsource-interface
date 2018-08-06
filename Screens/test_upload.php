@@ -14,14 +14,13 @@ $fileData = base64_decode($img);
 //saving
 $filename = $_POST['filename'];
 
-
 $obj = $_POST['object_name'];  // temporary object name
 $ext = 'png';
 
 
 $uuid = $_SESSION['pid']; 
 $phase = $_POST['phase'];
-$dest_path = dirname(__FILE__) . '/images/p' . $uuid . '/t' .$_SESSION['trial'] .'/'. $phase . '/' . $obj . '/';
+$dest_path = dirname(__FILE__) . '/images/p' . $uuid . '/t' .$_SESSION['trial'] .'/'. $phase . '/' . $_SESSION['currObj'] . '/';
 $img_path = $dest_path . $filename . '.' . $ext;
 
 //save image file
@@ -31,7 +30,28 @@ file_put_contents($img_path, $fileData);
 require(dirname(__FILE__).'/../TOR/rest_client.php');
 // send an image to the server for testing
 $label = upload_and_test($uuid, $phase, $img_path);
+
+
+// increment the count
+// Gets array of objects and counts
+$objects_key = '';
+if ($phase == 'test0') {
+	$objects_key = 'objects_ts0';
+} else if ($phase == 'test1') {
+	$objects_key = 'objects_ts1';
+} else if ($phase == 'test2') {
+	$objects_key = 'objects_ts2';
+} else if ($phase == 'training1') {
+	$objects_key = 'objects_tr1';
+} else if ($phase == 'training2') {
+	$objects_key = 'objects_tr2';
+}
+$objects = $_SESSION[$objects_key];
+
+# increment 
+$_SESSION[$objects_key][$_SESSION['currObj']]++;
+
 // return the testing result, label
-echo $label; 
+echo $label.json_encode($_SESSION[$objects_key]); 
 
 ?>
