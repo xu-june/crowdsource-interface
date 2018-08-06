@@ -8,6 +8,49 @@
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
         
+<<<<<<< HEAD
+=======
+    $_SESSION['phase'] = 'test0';
+    // Gets array of objects and counts
+    $objects = $_SESSION['objects_ts0'];
+
+    $obj1 = key($objects);
+    $_SESSION['obj1'] = $obj1;
+    next($objects);
+    $obj2 = key($objects);
+    $_SESSION['obj2'] = $obj2;
+    next($objects);
+    $obj3 = key($objects);
+    $_SESSION['obj3'] = $obj3;
+    reset($objects); 
+
+    $randObj = "";
+
+    // echo "<p></p>";
+    // echo "count 1: " . $_SESSION['objects_ts0'][$obj1];
+    // echo "<p></p>";
+    // echo "count 2: " . $_SESSION['objects_ts0'][$obj2];
+    // echo "<p></p>";
+    // echo "count 3: " . $_SESSION['objects_ts0'][$obj3];
+    // echo "<p></p>";
+
+    function randomize() {
+        global $objects, $randObj, $obj1, $obj2, $obj3;
+        // Ensures that this executes until all objects have been shown 5 times
+        if ($_SESSION['objects_ts0'][$obj1] < 5 || $_SESSION['objects_ts0'][$obj2] < 5 || $_SESSION['objects_ts0'][$obj3] < 5) {
+            $randObj = array_rand($objects, 1);
+            // Ensures each object is called 5 times
+            while ($objects[$randObj] >= 5) {
+                $randObj = array_rand($objects, 1);
+            }
+            // Increases the count for the object
+            $_SESSION['objects_ts0'][$randObj]++;
+            // Sends object to upload file
+            $_SESSION['currObj'] = $randObj;
+            return $randObj;
+        }
+    }
+>>>>>>> b3ca12e2863e5326a8567b6675c39282e5ffb03c
 ?>
 
 <!-- Uploads images to "test0" folder in server -->
@@ -19,6 +62,22 @@
   	<?php printMetaInfo(); ?>
     <title>Test 0</title>
 
+<<<<<<< HEAD
+=======
+            $.ajax({
+                type: 'post',
+                url: 'upload.php',
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                success: function () {
+                    $("#done").load("upload.php");            
+              }
+          });
+          });
+        });
+    </script>
+>>>>>>> b3ca12e2863e5326a8567b6675c39282e5ffb03c
 
     <script type="text/javascript">
 
@@ -75,9 +134,16 @@
             $output.empty();
             $output.prepend(img);
             
+            $rec_result = $("#rec_result");
+            $rec_result.empty();
+            
             $.ajax({
               type: "POST",
+<<<<<<< HEAD
               url: "test_upload.php",
+=======
+              url: "upload.php",
+>>>>>>> b3ca12e2863e5326a8567b6675c39282e5ffb03c
               data: { 
                  imgBase64: img.src,
                  phase: 'test0',
@@ -86,6 +152,7 @@
               success: function (data) {
                 console.log('success'+data);
                 $rec_result = $("#rec_result");
+                $rec_result.empty();
                 $rec_result.append(data);
               },
               error: function () { console.log('fail'); }
@@ -120,7 +187,7 @@
         </div>
         
         <div align='center' style='display:inline-block;'>
-            <video autoplay="true" id="videoElement" width="45%"></video><br>
+            <video autoplay="true" control="true" id="videoElement" width="45%" playsinline></video><br>
             <button type="button" class="btn btn-primary" onclick="captureImage()">Take a Picture</button>
 
             <div class="card border-success mb-3">
