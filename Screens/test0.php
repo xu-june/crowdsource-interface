@@ -7,6 +7,7 @@
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
         
+    $_SESSION['phase'] = 'test0';
     // Gets array of objects and counts
     $objects = $_SESSION['objects_ts0'];
 
@@ -65,12 +66,12 @@
 
             $.ajax({
                 type: 'post',
-                url: 'test0_upload.php',
+                url: 'upload.php',
                 data: new FormData(this),
                 processData: false,
                 contentType: false,
                 success: function () {
-                    $("#done").load("test0_upload.php");            
+                    $("#done").load("upload.php");            
               }
           });
           });
@@ -112,9 +113,12 @@
             $output.empty();
             $output.prepend(img);
             
+            $rec_result = $("#rec_result");
+            $rec_result.empty();
+            
             $.ajax({
               type: "POST",
-              url: "test0_upload.php",
+              url: "upload.php",
               data: { 
                  imgBase64: img.src,
                  filename: '<?php echo $_SESSION['pid']."_tmpObj_test0"?>'
@@ -122,6 +126,7 @@
               success: function (data) {
                 console.log('success'+data);
                 $rec_result = $("#rec_result");
+                $rec_result.empty();
                 $rec_result.append(data);
               },
               error: function () { console.log('fail'); }
@@ -152,7 +157,7 @@
         </div>
         
         <div align='center' style='display:inline-block;'>
-            <video autoplay="true" id="videoElement" width="45%"></video><br>
+            <video autoplay="true" control="true" id="videoElement" width="45%" playsinline></video><br>
             <button type="button" class="btn btn-primary" onclick="captureImage()">Take a Picture</button>
 
             <div class="card border-success mb-3">

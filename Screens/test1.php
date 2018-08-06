@@ -1,9 +1,13 @@
 <?php
+    include 'connectDB.php';
     include 'header.php';
+    savePageLog($_SESSION['pid'], "test1");
 
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
     session_start();
+
+    $_SESSION['phase'] = 'test1';
     // Gets array of objects and counts
     $objects = $_SESSION['objects_ts1'];
 
@@ -57,13 +61,12 @@
 
             $.ajax({
                 type: 'post',
-                url: 'test1_upload.php',
+                url: 'upload.php',
                 data: new FormData(this),
                 processData: false,
                 contentType: false,
-                success: function (output) {
-                    var result = "Looks like \"" + output + "\"!";
-                    $("#done").html(result);
+                success: function () {
+                    $("#done").load("upload.php");            
               }
           });
           });
@@ -85,6 +88,46 @@
         function uploadImg() {
             document.getElementById("uploadbtn").click();
         }
+
+        function captureImage() {
+            var video = document.getElementById("videoElement")
+            var canvas = document.createElement("canvas");
+            var scale = 1.0
+            
+            canvas.width = video.videoWidth * scale;
+            canvas.height = video.videoHeight * scale;
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+ 
+            var img = document.createElement("img");
+            img.height = video.videoHeight/4;
+            img.width = video.videoWidth/4;
+            img.src = canvas.toDataURL();
+
+            $output = $("#output");
+            $output.empty();
+            $output.prepend(img);
+            
+            $rec_result = $("#rec_result");
+            $rec_result.empty();
+            
+            $.ajax({
+              type: "POST",
+              url: "upload.php",
+              data: { 
+                 imgBase64: img.src,
+                 filename: '<?php echo $_SESSION['pid']."_tmpObj_test1"?>'
+              },
+              success: function (data) {
+                console.log('success'+data);
+                $rec_result = $("#rec_result");
+                $rec_result.empty();
+                $rec_result.append(data);
+              },
+              error: function () { console.log('fail'); }
+            }).done(function(o) {
+              console.log('done'); 
+            });
+        }
     </script>
 </head>
 <body>
@@ -94,26 +137,50 @@
     <h3>Let's see how well you did!</h3>    
     <p>Take a picture of the requested object to see how well you did. Again, click <i class="buttonname">Get Object</i> to know which one to take a picture of, then <i class="buttonname">Upload</i> to upload it. You'll be done when <i class="buttonname">Get Object</i> disappears.</p>
 
-    <p><button type="button" class="btn btn-primary" id="objButton" onclick="reload()">Get Object</button></p>
+    <div align="center">
+            <p><button type="button" class="btn btn-primary" id="objButton" onclick="reload()">Get Object</button></p>
+        </div>
 
-    <div id="objects" class="objects">
-        <?php echo randomize(); ?>
-    </div>
+        <div id="objects" class="objects">
+            <?php echo randomize(); ?>
+        </div>
+        
+        <div align='center' style='display:inline-block;'>
+            <video autoplay="true" control="true" id="videoElement" width="45%" playsinline></video><br>
+            <button type="button" class="btn btn-primary" onclick="captureImage()">Take a Picture</button>
 
-    <p></p>
-
-    <form action="test1_upload.php" method="post" enctype="multipart/form-data">
-        <span class="test-text">Test</span> the object recognizer with your images:
-        <input type="file" style="display: none;" accept="image/*" capture="camera" name="fileToUpload" id="fileToUpload" required="true">
-        <p><button type="button" class="btn btn-primary" onclick="takePic()">Take a Picture</button></p>
-        <input type="submit" id="uploadbtn" value="Upload Image" name="submit" style="display: none;">
-        <p><button type="button" class="btn btn-primary" onclick="uploadImg()">Test Image</button></p>
-    </form>
-
-     <!-- For AJAX part; to prevent user from going to upload file -->
-    <div id="done"></div>
-
-    <button type="button" class="btn btn-default" onclick="window.location.href='feedbackscreen1.php'">Next</button>
+            <div class="card border-success mb-3">
+              <div class="card-header">Result</div>
+              <div class="card-body text-success">
+                <div id="output" style='display:inline-block;'></div>
+                <div id='rec_result' class="card-text" style='display:inline-block;'></div>
+              </div>
+            </div>
+        </div>
+        
+        <br>
+        
+        <button type="button" class="btn btn-default" onclick="window.location.href='feedbackscreen1.php'">Next</button>
+        
+        <script>
+             var video = document.querySelector("#videoElement");
+            const constraints = {
+                advanced: [{
+                    facingMode: "environment"
+                }]
+            };
+            navigator.mediaDevices.getUserMedia({
+                video: constraints
+            }).then((stream) => {
+                video.srcObject = stream;
+            }).catch(function(err0r) {
+                console.log("Something went wrong!");
+              });
+        </script>
 
 </body>
 </html>
+           
+<?php
+    include 'footer.php';
+?>

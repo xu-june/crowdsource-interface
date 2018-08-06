@@ -29,7 +29,7 @@
 		<p>Assign your objects to Object 1, Object 2, and Object 3.</p>
 
 
-		<form name="form" action="" method="get">
+		<form name="form" action="before_test0.php" method="get">
 			<div class="form-group row">
 				<label for="obj1" class="col-3 col-form-label">Object 1</label>
 				<div class="col-9">
@@ -49,106 +49,11 @@
 				</div>
 			</div>
 		
-			<input type="submit" value="Submit" name="submit" id="submitbtn" style="display: none;">
-			<p><button type="button" class="btn btn-primary" onclick="submit_objects()">Submit</button></p>
-			<div>
-				<?php 
-
-				// Configuring errors
-				// ini_set('display_errors',1);
-				// error_reporting(E_ALL);
-				// var_dump($_FILES); 
-
-				session_start();
-
-				// echo dirname(__FILE__) . "/images/";
-                $img_base_dir = "images";
-                $uuid = "12345"; // NOTE: for testing
-
-				$urlts = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/test0/";
-				$urltr1 = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/train1/";
-				$urltr2 = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/train2/";
-				$urlts1 = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/test1/";
-				$urlts2 = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/test2/";
-
-				// for randomization function in test phases
-				$objects0 = array(
-					$_GET["obj1"] => 0, 
-					$_GET["obj2"] => 0, 
-					$_GET["obj3"] => 0,
-				);
-
-				$objects1 = array(
-					$_GET["obj1"] => 0, 
-					$_GET["obj2"] => 0, 
-					$_GET["obj3"] => 0,
-				);
-
-				$objects2 = array(
-					$_GET["obj1"] => 0, 
-					$_GET["obj2"] => 0, 
-					$_GET["obj3"] => 0,
-				);
-
-				$objects_tr1 = array(
-					$_GET["obj1"] => 0, 
-					$_GET["obj2"] => 0, 
-					$_GET["obj3"] => 0,
-				);
-
-				$objects_tr2 = array(
-					$_GET["obj1"] => 0, 
-					$_GET["obj2"] => 0, 
-					$_GET["obj3"] => 0,
-				);
-
-				$_SESSION['objects_ts0'] = $objects0;
-				$_SESSION['objects_ts1'] = $objects1;
-				$_SESSION['objects_ts2'] = $objects2;
-				$_SESSION['objects_tr1'] = $objects_tr1;
-				$_SESSION['objects_tr2'] = $objects_tr2;
-
-				// to make directories
-				$url1_ts = $urlts . $_GET["obj1"];
-				$url2_ts = $urlts . $_GET["obj2"];
-				$url3_ts = $urlts . $_GET["obj3"];
-
-				$url1_tr1 = $urltr1 . $_GET["obj1"];
-				$url2_tr1 = $urltr1 . $_GET["obj2"];
-				$url3_tr1 = $urltr1 . $_GET["obj3"];
-
-				$url1_tr2 = $urltr2 . $_GET["obj1"];
-				$url2_tr2 = $urltr2 . $_GET["obj2"];
-				$url3_tr2 = $urltr2 . $_GET["obj3"];
-
-				$url1_ts1 = $urlts1 . $_GET["obj1"];
-				$url2_ts1 = $urlts1 . $_GET["obj2"];
-				$url3_ts1 = $urlts1 . $_GET["obj3"];
-
-				$url1_ts2 = $urlts2 . $_GET["obj1"];
-				$url2_ts2 = $urlts2 . $_GET["obj2"];
-				$url3_ts2 = $urlts2 . $_GET["obj3"];
-
-                // to make all necessary directories
-				if (mkdir($url1_tr1, 0774, true) && mkdir($url2_tr1, 0774, true) &&
-                    mkdir($url3_tr1, 0774, true) && mkdir($url1_tr2, 0774, true) &&
-                    mkdir($url2_tr2, 0774, true) && mkdir($url3_tr2, 0774, true) &&
-                    mkdir($url1_ts1, 0774, true) && mkdir($url2_ts1, 0774, true) &&
-                    mkdir($url3_ts1, 0774, true) && mkdir($url1_ts2, 0774, true) &&
-                    mkdir($url2_ts2, 0774, true) && mkdir($url3_ts2, 0774, true) &&
-                    mkdir($url1_ts, 0774, true) && mkdir($url2_ts, 0774, true) &&
-                    mkdir($url3_ts, 0774, true))
-				{
-				    echo("Folders created");
-				}
-
-				?>
-			</div>
+			<!-- <input type="submit" value="Submit" name="submit" id="submitbtn" style="display: none;"> -->
+			<p><button type="submit" class="btn btn-primary">Next</button></p>
 		</form>
 
-		<p>
-			<button type="button"  class="btn btn-default" onclick="window.location.href='before_test0.php'">Next</button>
-		</p>
+		<!-- <p><button type="button" class="btn btn-default" onclick="window.location.href='before_test0.php'">Next</button></p> -->
         
 <?php
 	include 'footer.php';
