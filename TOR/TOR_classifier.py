@@ -49,13 +49,14 @@ class Classifier:
     # NOTE: use CPUs only for testing
     #       this config prevent from errors due to other process using GPUs
     # https://stackoverflow.com/questions/37660312/how-to-run-tensorflow-on-cpu
-    config = tf.ConfigProto(
-              device_count = {'GPU': 0}
-            )
+    # config = tf.ConfigProto(
+    #           device_count = {'GPU': 0}
+    #         )
     # config.gpu_options.allow_growth = True
 
     # session for recognizer
-    self.sess = tf.Session(graph=obj_recog_graph, config = config)
+    self.sess = tf.Session(graph=obj_recog_graph)
+                          # config = config)
 
 
   # function to load graph

@@ -8,7 +8,7 @@
 
 // global variables
 // create a POST request with the zip file and uuid info using cURL
-$rest_server = "http://128.8.235.4:5000/";
+$rest_server = "http://128.8.224.124:5000/";
 // a base dir for zip files
 $zip_dir = realpath("zips");
 // a base dir for image files
