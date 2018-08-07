@@ -39,12 +39,14 @@
                 	var objectname = words[0];
                 	var count = words[1];
                 	upload_cnt = count-1;
+                	console.log('uc: ' + upload_cnt);
                 	
 	                $objects = $("#objects");
 	                $objects.empty();
                 	$objects.append(objectname);
                 	
             		load_images();
+            		$("#nextButton").hide();
                 	
                 	// show modal
                 	$modalLabel = $("#guideBody");
@@ -96,7 +98,7 @@
                 fixImage(upload_cnt);
                 
                 if (upload_cnt >= 5) {
-                	$("#buttonContainer").append("<button type='button' class='btn btn-default' onclick='get_random_object();'>Next</button>");
+                	$("#nextButton").show();
                 }
               },
               error: function () { console.log('fail'); }
@@ -148,6 +150,7 @@
         <div id='buttonContainer' align='center' style='display:inline-block;'>
             <video autoplay="true" control="true" id="videoElement" width="100%" playsinline></video><br>
             <button type="button" class="btn btn-primary" onclick="captureImage()">Take</button>
+            <button type='button' id='nextButton' class='btn btn-default' onclick='get_random_object();' style="display:none;">Next</button>
         </div>
         
         <br>
