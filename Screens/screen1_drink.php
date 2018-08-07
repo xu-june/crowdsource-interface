@@ -5,26 +5,27 @@
 
 	// get participant id	
 	if (!isset($_SESSION['pid'])) {
-		$query = "SELECT participant_id, participant_code FROM participant_status where status='INCOMPLETE' order by participant_id";
+		$query = "SELECT participant_id, participant_code, trial FROM participant_status where status='INCOMPLETE' order by participant_id";
 		$result = getSelect($query);
 		$pid = $result['participant_id'];
 		$pcode = $result['participant_code'];
+		$trial = $result['trial'];
 		$date = date("Y-m-d H:i:s");
 		$time = round(microtime(true) * 1000);
 
 		// enter participant info	
 		$age = $_POST["age"];
 		$gender = $_POST["gender"];
-		$q1 = $_POST["q1"];
-		$q2 = $_POST["q2"];
-		$q3 = $_POST["q3"];
-		$q4 = $_POST["q4"];
-		$sql = "INSERT INTO participant_info (`participant_id`, `age`, `gender`, `q1`, `q2`, `q3`, `q4`, `time`, `date`) VALUES ("
+		$q1 = $_POST["bq1"];
+		$q2 = $_POST["bq2"];
+		$q3 = $_POST["bq3"];
+		$q4 = $_POST["bq4"];
+		$sql = "INSERT INTO participant_info (`participant_id`, `age`, `gender`, `bq1`, `bq2`, `bq3`, `bq4`, `time`, `date`) VALUES ("
 			.$pid.",".$age.", '".$gender."', '".$q1."', '".$q2."', '".$q3."', '".$q4."','".$time."','".$date."');";
 		execSQL($sql);
 	
 		// update participant status
-		$sql = "UPDATE participant_status set `status`='IN PROGRESS', `trial`=1, `last_update_time`='"
+		$sql = "UPDATE participant_status set `status`='IN PROGRESS', `trial`=".($trial+1).", `last_update_time`='"
 			.$time."', `last_update_date`='".$date."'WHERE `participant_id`=".$pid.";";
 		execSQL($sql);
 	

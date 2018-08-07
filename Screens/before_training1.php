@@ -24,6 +24,10 @@
     
 			<h3>See if you can do better than our machine!</h3>
 			<p>Try adding your own images of your objects.</p>
+			
+			<p>You will take 30 pictures of the requested object at a time. 
+	        <p>Once you complete 30 images for each object, click <mark>Next</mark> to know what to train next! </p>
+
 
 			<button type="button" class="btn btn-default" onclick="window.location.href='training1.php'">Next</button>
 		</div>

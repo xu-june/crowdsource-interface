@@ -11,9 +11,9 @@
 		$objects_key = 'objects_ts1';
 	} else if ($phase == 'test2') {
 		$objects_key = 'objects_ts2';
-	} else if ($phase == 'training1') {
+	} else if ($phase == 'traini1') {
 		$objects_key = 'objects_tr1';
-	} else if ($phase == 'training2') {
+	} else if ($phase == 'train1') {
 		$objects_key = 'objects_tr2';
 	}
 	$objects = $_SESSION[$objects_key];
@@ -29,16 +29,22 @@
 	reset($objects); 
 
 	$randObj = "";
+	$limit = 5; // temporary value for debugging
+	if (strpos($phase, 'test') === 0) {
+		$limit = 1;
+		//$limit = 1; // temporary value for debugging
+	}
+	
 	// Ensures that this executes until all objects have been shown 5 times
-	if ($_SESSION['objects_ts0'][$obj1] < 5 || $_SESSION['objects_ts0'][$obj2] < 5 || $_SESSION['objects_ts0'][$obj3] < 5) {
+	if ($_SESSION[$objects_key][$obj1] < $limit || $_SESSION[$objects_key][$obj2] < $limit || $_SESSION[$objects_key][$obj3] < $limit) {
 		$randObj = array_rand($objects, 1);
 		// Ensures each object is called 5 times
-		while ($objects[$randObj] >= 5) {
+		while ($objects[$randObj] >= $limit) {
 			$randObj = array_rand($objects, 1);
 		}
 		// Sends object to upload file
 		$_SESSION['currObj'] = $randObj;
-		echo $randObj;
+		echo $randObj.' '.($objects[$randObj]+1);
 	} else {
 		echo 'this step is done';
 	}

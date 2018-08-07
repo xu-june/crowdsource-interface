@@ -1,5 +1,8 @@
-<?php
+<?php 
+    session_start();
 	include 'header.php';
+    include 'connectDB.php';
+    savePageLog($_SESSION['pid'], "post_questions");
 ?>
 
 <!doctype html>
@@ -20,30 +23,30 @@
           <!-- text form -->
           <div class="form-group">
             <label for="q1"><strong>How did you position the object in the image?</strong></label>
-            <textarea class="form-control" id="q1" rows="3"></textarea>
+            <textarea class="form-control" id="pq1" rows="3"></textarea>
           </div>
           
           <!-- text form -->
           <div class="form-group">
             <label for="q2"><strong>How did you decide the distance of the camera from the object?</strong></label>
-            <textarea class="form-control" id="q2" rows="3"></textarea>
+            <textarea class="form-control" id="pq2" rows="3"></textarea>
           </div>
           
           <!-- text form -->
           <div class="form-group">
             <label for="q3"><strong>How did you decide which side of the object is visible in the image?</strong></label>
-            <textarea class="form-control" id="q3" rows="3"></textarea>
+            <textarea class="form-control" id="pq3" rows="3"></textarea>
           </div>
           
           <!-- text form -->
           <div class="form-group">
             <label for="q4"><strong>Did you have anything else in mind while taking pictures?</strong></label>
-            <textarea class="form-control" id="q4" rows="3"></textarea>
+            <textarea class="form-control" id="pq4" rows="3"></textarea>
           </div>
           
           <button type="submit" class="btn btn-default">Next</button>
           
         </form>
-    </div> 
-  </body>
-</html>
+<?php
+	include 'footer.php';
+?>

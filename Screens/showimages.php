@@ -1,26 +1,25 @@
-<!-- Displays images -->
-
 <?php 
-
+//<!-- Displays images -->
 session_start();
-$phase = $_SESSION['phase'];
-$object = $_SESSION['currObj'];
-
-// echo "<p></p>";
-// echo $folder . " is the folder";
-// echo "<p></p>";
+$uuid = $_SESSION['pid']; 
+$phase = $_POST['phase'];
+$obj = $_POST['obj'];
 
  // Displays the images
-$files = glob("images/12345/".$phase."/".$object."/*.png");
+$dest_path = dirname(__FILE__) .'/images/p' . $uuid . '/t' .$_SESSION['trial'] .'/'. $phase . '/' . $obj . '/';
+$files = glob($dest_path."*.png");
 $numFiles = count($files);
+//echo $dest_path."*.png";
 
-echo $numFiles ." images taken";
-echo "<p></p>";
-
-for ($i=0; $i<$numFiles; $i++)
-{
-    $num = $files[$i];
-    echo '<img src="'.$num.'" width="150" height="150">'."&nbsp;&nbsp;";
-}
+echo $numFiles;
+// echo $numFiles ." images taken";
+// echo "<p></p>";
+// 
+// for ($i=0; $i<$numFiles; $i++)
+// {
+//     $num = $files[$i];
+//     $src = 'images/p' . $uuid . '/t' .$_SESSION['trial'] .'/'. $phase . '/' . $obj . '/'.($i+1).".png";
+//     echo "<img src='".$src."' width='45%'>&nbsp;&nbsp;";
+// }
 
 ?>

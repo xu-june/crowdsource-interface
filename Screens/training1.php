@@ -1,53 +1,10 @@
 <?php
+    session_start();
     include 'connectDB.php';
     include 'header.php';
     savePageLog($_SESSION['pid'], "train1");
-
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
-    session_start();
     
-    $_SESSION['phase'] = 'train1';
-
-    // Gets array of objects and counts
-    $objects = $_SESSION['objects_tr1'];
-
-    $obj1 = $_SESSION['obj1'];
-    $obj2 = $_SESSION['obj2'];
-    $obj3 = $_SESSION['obj3'];
-    $arrSize = count($_SESSION['subselectObj']);
-
-    $randObj = "";
-    // $numFiles = 0;
-
-    // echo "<p></p>";
-    // echo "count 1: " . $_SESSION['objects_ts0'][$obj1];
-    // echo "<p></p>";
-    // echo "count 2: " . $_SESSION['objects_ts0'][$obj2];
-    // echo "<p></p>";
-    // echo "count 3: " . $_SESSION['objects_ts0'][$obj3];
-    // echo "<p></p>";
-
-    // Randomizes object labels
-    function randomize() {
-        global $objects, $randObj, $obj1, $obj2, $obj3, $numFiles;
-        // Ensures that this executes until all objects have been shown 5 times
-        if ($_SESSION['objects_tr1'][$obj1] < 1 || $_SESSION['objects_tr1'][$obj2] < 1 || $_SESSION['objects_tr1'][$obj3] < 1) {
-            $randObj = array_rand($objects, 1);
-            // Ensures each object is called 5 times
-            while ($objects[$randObj] >= 1) {
-                $randObj = array_rand($objects, 1);
-            }
-            // Increases the count for the object
-            $_SESSION['objects_tr1'][$randObj]++;
-            // Sends object to upload file
-            $_SESSION['currObj'] = $randObj;
-            $_SESSION['subselectObj'][] = $randObj;
-            // $numFiles = count(glob("images/12345/train1/".$randObj."/*.jpg"));
-            return $randObj;
-        }
-    }
-
+    $imgPath = 'images/p' . $_SESSION['pid'] . '/t' .$_SESSION['trial'] .'/train1/';
 ?>
 
 <!-- Uploads images to "train1" folder in server -->
@@ -59,49 +16,50 @@
     <title>Training 1</title>
     <?php printMetaInfo(); ?>
 
-    <!-- <script>
-        // Refreshes bottom portion of the page to upload and show images
-        $(document).ready(function () {
-            $('form').on('submit', function (e) {
-              e.preventDefault();
-
-            $.ajax({
-                type: 'post',
-                url: 'upload.php',
-                data: new FormData(this),
-                processData: false,
-                contentType: false,
-                success: function () {
-                    $("#images").load("showimages.php");              
-              }
-          });
-          });
-        });
-    </script> -->
-
     <script type="text/javascript">
-        // For "Get Object" button; it disappears after three objects are shown
-        function reload() {
-            var size = "<?php echo $arrSize ?>";
-            if (size < 2) {
-                window.location.reload();
-            }
-            else {
-                document.getElementById("objButton").style.display = "none";
-                document.getElementById("nextbtn").style.display = "block";
-            }
-        }
+        var upload_cnt = 0;
+        
+        function get_random_object() {
+            $.ajax({
+              type: "POST",
+              url: "get_random_object.php",
+              data: { 
+                 phase: 'train1'
+              },
+              success: function (data) {
+                console.log('random object: '+data);
 
-        // For "Take a Picture" button
-        function takePic() {
-            document.getElementById("fileToUpload").click();
+				$objects = $("#objects");
+				$objects.empty();
+				
+                if (data == 'this step is done') {
+                	window.location.href='training1_subset20.php';
+                } else {
+                	var words = data.split(' ');
+                	var objectname = words[0];
+                	var count = words[1];
+                	upload_cnt = count-1;
+                	
+	                $objects = $("#objects");
+	                $objects.empty();
+                	$objects.append(objectname);
+                	
+            		load_images();
+                	
+                	// show modal
+                	$modalLabel = $("#guideBody");
+                	$modalLabel.empty();
+                	$modalLabel.append("<h1 class='bg-warning' align='center'>" +objectname + "</h1>"
+                					+"Bring your "+objectname+" to take pictures.");
+            		$("#triggerModal").click();
+                }
+              },
+              error: function () { console.log('fail'); }
+            }).done(function(o) {
+              console.log('done'); 
+            });
         }
-
-        // For "Upload Image" button
-        function uploadImg() {
-            document.getElementById("uploadbtn").click();
-        }
-
+        
         function captureImage() {
             var video = document.getElementById("videoElement")
             var canvas = document.createElement("canvas");
@@ -120,28 +78,61 @@
             $output.empty();
             $output.prepend(img);
             
-            $rec_result = $("#rec_result");
-            $rec_result.empty();
+            $("#rec_result").empty();
+            $("#nextContainer").empty();
             
             $.ajax({
               type: "POST",
               url: "upload.php",
               data: { 
                  imgBase64: img.src,
-                 filename: '<?php echo $_SESSION['pid']."_tmpObj_train1"?>'
+                 phase: 'train1',
+                 objectname: $("#objects").text().split(" ")[0]
               },
               success: function (data) {
                 console.log('success'+data);
-                $("#images").load("showimages.php");
-                // $rec_result = $("#rec_result");
-                // $rec_result.empty();
-                // $rec_result.append(data);
+                upload_cnt++;
+                addImage(upload_cnt);
+                fixImage(upload_cnt);
+                
+                if (upload_cnt >= 5) {
+                	$("#buttonContainer").append("<button type='button' class='btn btn-default' onclick='get_random_object();'>Next</button>");
+                }
               },
               error: function () { console.log('fail'); }
             }).done(function(o) {
               console.log('done'); 
             });
         }
+        
+        function addImage(index) {
+			var path = '<?=$imgPath?>'+$("#objects").text().split(" ")[0]+'/'+index+'.png';
+			var dummyPath = 'images/dummy.jpg'
+			$images = $("#images");
+			
+			$images.prepend("<div class='ml-1 mr-1' style='display:inline-block;'>"
+                				+"<div id='img"+index+"' style=\"width:100px;height:100px;background-image:url(\'"+path+"\');background-size:cover;\"></div>"
+                				+index+"</div>");
+        }
+        
+        function fixImage(index) {
+        	var path = '<?=$imgPath?>'+$("#objects").text().split(" ")[0]+'/'+index+'.png';
+			document.getElementById("img"+index).style.backgroundImage = "url('"+path+"')";
+        }
+        
+        function load_images() {
+	        $images = $("#images");
+	        $images.empty();
+			for (i = 0; i < upload_cnt; i++) { 
+				addImage(i+1);
+			}
+        }
+        
+        // Refreshes bottom portion of the page to upload images
+        $(document).ready(function () {
+	        get_random_object();
+            $("#triggerModal").click();
+        });
     </script>
 </head>
 <body>
@@ -149,35 +140,46 @@
         <?php printProgressBar(4); ?>
 
         <h3>Add your own objects!</h3>
-        <p>Take 30 pictures of the requested object. Click on <mark>Get Object</mark>, then click <mark>Upload</mark> to upload your image of the object. The counter at the bottom will help you keep track of how many images you've uploaded.</p>
-        <p>Once you complete 30 images for each object, click <mark>Get Object</mark>again to know what to train next! You'll know you're finished when <mark>Next</mark> appears.</p>
+        <p>Take 30 pictures of the following object.</p>
 
-        <div align="center">
-            <p><button type="button" class="btn btn-primary" id="objButton" onclick="reload()">Get Object</button></p>
-        </div>
-
-        <div id="objects" class="objects">
-            <?php echo randomize(); ?>
-        </div>
+        <h4><div id="objects" class="bg-warning" align='center'>
+        </div></h4>
         
-        <div align='center' style='display:inline-block;'>
-            <video autoplay="true" control="true" id="videoElement" width="45%" playsinline></video><br>
-            <button type="button" class="btn btn-primary" onclick="captureImage()">Take a Picture</button>
-
-            <!-- <div class="card border-success mb-3">
-              <div class="card-header">Result</div>
-              <div class="card-body text-success">
-                <div id="output" style='display:inline-block;'></div>
-                <div id='rec_result' class="card-text" style='display:inline-block;'></div>
-              </div>
-            </div> -->
+        <div id='buttonContainer' align='center' style='display:inline-block;'>
+            <video autoplay="true" control="true" id="videoElement" width="100%" playsinline></video><br>
+            <button type="button" class="btn btn-primary" onclick="captureImage()">Take</button>
         </div>
         
         <br>
 
         <div id="images"></div>
         
-        <button type="button" id="nextbtn" class="btn btn-default" onclick="window.location.href='training1_subset20.php'" style="display: none;">Next</button>
+        <div id='nextContainer' align='center'>
+        </div>
+        
+        <!-- Button trigger modal -->
+		<button type="button" id='triggerModal' class="btn btn-primary" data-toggle="modal" data-target="#guideModal" style="display:none;">
+		  Launch modal
+		</button>
+        
+        <!-- Modal -->
+		<div class="modal fade" id="guideModal" tabindex="-1" role="dialog" aria-labelledby="guideModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+			  <div class="modal-header" align='center'>
+				<h5 class="modal-title" id="guideModalLabel">Next item</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body" id="guideBody">
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
         
         <script>
              var video = document.querySelector("#videoElement");
