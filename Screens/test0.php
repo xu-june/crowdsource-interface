@@ -158,7 +158,7 @@
         
         <div align='center' style='display:inline-block;'>
             <video autoplay="true" control="true" id="videoElement" width="45%" playsinline></video><br>
-            <button type="button" class="btn btn-primary" onclick="captureImage()">Take a Picture</button>
+            <p><button type="button" class="btn btn-primary" onclick="captureImage()">Take a Picture</button></p>
 
             <div class="card border-success mb-3">
               <div class="card-header">Result</div>
