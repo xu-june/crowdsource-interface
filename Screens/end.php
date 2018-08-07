@@ -1,3 +1,26 @@
+<?php
+	session_start();
+	include 'connectDB.php';
+	include 'header.php';
+    savePageLog($_SESSION['pid'], "end");
+
+	// enter participant info	
+	$age = $_POST["age"];
+	$gender = $_POST["gender"];
+	$q1 = $_POST["pq1"];
+	$q2 = $_POST["pq2"];
+	$q3 = $_POST["pq3"];
+	$q4 = $_POST["pq4"];
+	$sql = "INSERT INTO participant_info (`participant_id`, `age`, `gender`, `pq1`, `pq2`, `pq3`, `pq4`, `time`, `date`) VALUES ("
+		.$pid.",".$age.", '".$gender."', '".$q1."', '".$q2."', '".$q3."', '".$q4."','".$time."','".$date."');";
+	execSQL($sql);
+
+	// update participant status
+	$sql = "UPDATE participant_status set `status`='COMPLETE', `last_update_time`='"
+		.$time."', `last_update_date`='".$date."'WHERE `participant_id`=".$pid.";";
+	execSQL($sql);
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,7 +40,7 @@
         <h1>Congratulations!</h1>
         <p>You finished all steps in our study. Please enter the following code in our HIT page in Amazon Mechanical Turk to get compensation. </p>
         
-        <div id='code' align='center'> 615112 </div>
+        <div id='code' align='center'> <?=$_SESSION['pcode']?> </div>
          <br>
          
         <p>If you want to do this study again with other objects, go to the introduction page and enter this code or touch the button below. 

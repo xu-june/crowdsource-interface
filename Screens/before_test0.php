@@ -1,22 +1,35 @@
 <?php
-	include 'header.php';
-
-	// Configuring errors
-	// ini_set('display_errors',1);
-	// error_reporting(E_ALL);
-	// var_dump($_FILES); 
-
 	session_start();
-
+	include 'connectDB.php';
+	include 'header.php';
+	savePageLog($_SESSION['pid'], "before_test0");
+	
+	function recursive_rmdir($dir) { 
+		if( is_dir($dir) ) { 
+		  $objects = array_diff( scandir($dir), array('..', '.') );
+		  foreach ($objects as $object) { 
+			$objectPath = $dir."/".$object;
+			if( is_dir($objectPath) )
+			  recursive_rmdir($objectPath);
+			else
+			  unlink($objectPath); 
+		  } 
+		  rmdir($dir); 
+		} 
+	  }
+	
 	// echo dirname(__FILE__) . "/images/";
-    $img_base_dir = "images";
-    $uuid = "12345"; // NOTE: for testing
+	$img_base_dir = "images";
+	$uuid = $_SESSION['pid']; // NOTE: for testing
 
-	$urlts = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/test0/";
-	$urltr1 = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/train1/";
-	$urltr2 = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/train2/";
-	$urlts1 = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/test1/";
-	$urlts2 = dirname(__FILE__) . '/' . $img_base_dir . '/' . $uuid . "/test2/";
+	// clear the previous data which may be incomplete
+	recursive_rmdir(dirname(__FILE__) . '/' . $img_base_dir . '/p' . $uuid . "/t" . $_SESSION['trial']);
+	
+	$urlts = dirname(__FILE__) . '/' . $img_base_dir . '/p' . $uuid . "/t" . $_SESSION['trial'] . "/test0/";
+	$urltr1 = dirname(__FILE__) . '/' . $img_base_dir . '/p' . $uuid . "/t" . $_SESSION['trial'] . "/train1/";
+	$urltr2 = dirname(__FILE__) . '/' . $img_base_dir . '/p' . $uuid . "/t" . $_SESSION['trial'] . "/train2/";
+	$urlts1 = dirname(__FILE__) . '/' . $img_base_dir . '/p' . $uuid . "/t" . $_SESSION['trial'] . "/test1/";
+	$urlts2 = dirname(__FILE__) . '/' . $img_base_dir . '/p' . $uuid . "/t" . $_SESSION['trial'] . "/test2/";
 
 	// for randomization function in test phases
 	$objects0 = array(
@@ -76,17 +89,19 @@
 	$url2_ts2 = $urlts2 . $_GET["obj2"];
 	$url3_ts2 = $urlts2 . $_GET["obj3"];
 
-    // to make all necessary directories
+	// to make all necessary directories
 	if (mkdir($url1_tr1, 0774, true) && mkdir($url2_tr1, 0774, true) &&
-        mkdir($url3_tr1, 0774, true) && mkdir($url1_tr2, 0774, true) &&
-        mkdir($url2_tr2, 0774, true) && mkdir($url3_tr2, 0774, true) &&
-        mkdir($url1_ts1, 0774, true) && mkdir($url2_ts1, 0774, true) &&
-        mkdir($url3_ts1, 0774, true) && mkdir($url1_ts2, 0774, true) &&
-        mkdir($url2_ts2, 0774, true) && mkdir($url3_ts2, 0774, true) &&
-        mkdir($url1_ts, 0774, true) && mkdir($url2_ts, 0774, true) &&
-        mkdir($url3_ts, 0774, true))
+		mkdir($url3_tr1, 0774, true) && mkdir($url1_tr2, 0774, true) &&
+		mkdir($url2_tr2, 0774, true) && mkdir($url3_tr2, 0774, true) &&
+		mkdir($url1_ts1, 0774, true) && mkdir($url2_ts1, 0774, true) &&
+		mkdir($url3_ts1, 0774, true) && mkdir($url1_ts2, 0774, true) &&
+		mkdir($url2_ts2, 0774, true) && mkdir($url3_ts2, 0774, true) &&
+		mkdir($url1_ts, 0774, true) && mkdir($url2_ts, 0774, true) &&
+		mkdir($url3_ts, 0774, true))
 	{
-	    echo("Folders created");
+		echo("<script>console.log('Folders created');</script>");
+	} else {
+		echo("<script>console.log('Failed to create folder');</script>");
 	}
 ?>
 
@@ -104,11 +119,20 @@
 	  		<?php printProgressBar(3); ?>
        
 			<h3>Now, can our system tell which is which?</h3>
+			
+			<p>Use your camera to take pictures of your objects in the next page. </p>
+			
+			<p>You will take an image with one of your objects at a time 
+			and the object recognizer will give you the recognition result in response. You will take <strong>5 images</strong> for each object.</p>
+		
+			<p class="text-info">(Here's a hint: don't be scared if the object doesn't change! It's randomized, 
+			so if you've clicked the next button and it doesn't change, take another picture.)</p>
+			
 			<p>Continue to find out!</p>
 
 			<button type="button" class="btn btn-default" onclick="window.location.href='test0.php'">Next</button>
 		
-		
-		</div>
-	</body>
-</html>
+
+<?php
+	include 'footer.php';
+?>

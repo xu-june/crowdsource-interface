@@ -49,11 +49,11 @@
 				</div>
 			</div>
 		
-			<!-- <input type="submit" value="Submit" name="submit" id="submitbtn" style="display: none;"> -->
-			<p><button type="submit" class="btn btn-primary">Next</button></p>
+			<input type="submit"  class="btn btn-default" value="Submit" name="submit" id="submitbtn">
+			
+			<!-- php code is moved to before_test0.php -->
+			
 		</form>
-
-		<!-- <p><button type="button" class="btn btn-default" onclick="window.location.href='before_test0.php'">Next</button></p> -->
         
 <?php
 	include 'footer.php';
