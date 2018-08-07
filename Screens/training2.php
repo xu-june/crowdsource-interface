@@ -150,8 +150,8 @@
         </div></h4>
         
         <div id='buttonContainer' align='center' style='display:inline-block;'>
-            <video autoplay="true" control="true" id="videoElement" width="100%" playsinline></video><br>
-            <button type="button" class="btn btn-primary" onclick="captureImage()">Take</button>
+            <video autoplay="true" onclick="captureImage()" control="true" id="videoElement" width="100%" playsinline></video><br>
+            <!-- <button type="button" class="btn btn-primary" onclick="captureImage()">Take</button> -->
             <button type='button' id='nextButton' class='btn btn-default' onclick='get_random_object();' style="display:none;">Next</button>
         </div>
         

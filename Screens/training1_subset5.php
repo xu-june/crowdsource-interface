@@ -10,6 +10,7 @@
 	// var_dump($_POST['selections']);
 
 	$currObj = $_SESSION['curr'];
+	$uuid = $_SESSION['pid'];
 
 	$tr1_subselect20 = array();
 	// Code from https://www.formget.com/php-checkbox/
@@ -84,14 +85,14 @@
 	<div class="mt-3 mb-3 mr-3 ml-3">
 	<?php printProgressBar(5); ?>
 
-	<h3>Select the 5 best images out of the 20 you just chose!</h3>
+	<h3>Select the 5 best images out of the 20 you just chose of <?php echo $currObj ?>!</h3>
 
 	<!-- Form redirects to subset selection - 1 -->
 	<form id="selection" action="training1_subset1.php" method="post">
 		<p>A green border will appear around the images you select:</p>
 			<?php
 			// Displays the images
-			$files = glob("images/12345/train1/".$currObj."/*.png");
+			$files = glob("images/p" . $uuid . "/t" . $_SESSION['trial'] ."/train1/" . $currObj . "/*.png");
 			for ($i=0; $i<count($files); $i++)
 			{
 				$num = $files[$i];

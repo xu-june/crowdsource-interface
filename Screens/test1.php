@@ -45,7 +45,7 @@
                     $rec_result = $("#rec_result");
                     $rec_result.empty();
                     $("#nextButton").hide();
-                    $("#takeButton").show();
+                    // $("#takeButton").show();
                     $("#result").hide();
                     
                     // show modal
@@ -82,7 +82,7 @@
             
             $("#rec_result").empty();
             $("#nextContainer").empty();
-            $("#takeButton").hide();
+            // $("#takeButton").hide();
             $("#result").show();
             
             $.ajax({
@@ -126,8 +126,8 @@
         
         <div align='center' style='display:inline-block;'>
 
-            <video autoplay="true" control="true" id="videoElement" width="100%" playsinline></video><br>
-            <p><button type="button" id='takeButton' class="btn btn-primary" onclick="captureImage()">Take</button></p>
+            <video autoplay="true" onclick="captureImage()" control="true" id="videoElement" width="100%" playsinline></video><br>
+            <!-- <p><button type="button" id='takeButton' class="btn btn-primary" onclick="captureImage()">Take</button></p> -->
 
             <div id='result' class="card border-success mt-3 mb-3">
               <div class="card-header">Result</div>

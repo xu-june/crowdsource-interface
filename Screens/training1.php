@@ -18,6 +18,7 @@
 
     <script type="text/javascript">
         var upload_cnt = 0;
+        var subselectObj = [];
         
         function get_random_object() {
             $.ajax({
@@ -53,6 +54,7 @@
                 	$modalLabel.empty();
                 	$modalLabel.append("<h1 class='bg-warning' align='center'>" +objectname + "</h1>"
                 					+"Bring your "+objectname+" to take pictures.");
+                    subselectObj.push(objectname);
             		$("#triggerModal").click();
                 }
               },
@@ -148,8 +150,8 @@
         </div></h4>
         
         <div id='buttonContainer' align='center' style='display:inline-block;'>
-            <video autoplay="true" control="true" id="videoElement" width="100%" playsinline></video><br>
-            <button type="button" class="btn btn-primary" onclick="captureImage()">Take</button>
+            <video autoplay="true" onclick="captureImage()" control="true" id="videoElement" width="100%" playsinline></video><br>
+            <!-- <button type="button" class="btn btn-primary" onclick="captureImage()">Take</button> -->
             <button type='button' id='nextButton' class='btn btn-default' onclick='get_random_object();' style="display:none;">Next</button>
         </div>
         
