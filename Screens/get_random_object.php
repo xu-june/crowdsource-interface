@@ -31,7 +31,7 @@
 	$randObj = "";
 	$limit = 5; // temporary value for debugging
 	if (strpos($phase, 'test') === 0) {
-		$limit = 1;
+		$limit = 2;
 		//$limit = 1; // temporary value for debugging
 	}
 	

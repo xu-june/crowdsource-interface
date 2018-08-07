@@ -45,6 +45,9 @@
 					$output.empty();           	
 					$rec_result = $("#rec_result");
 					$rec_result.empty();
+            		$("#nextButton").hide();
+            		$("#takeButton").show();
+					$("#result").hide();
                 	
                 	// show modal
                 	$modalLabel = $("#guideBody");
@@ -80,6 +83,8 @@
             
             $("#rec_result").empty();
             $("#nextContainer").empty();
+            $("#takeButton").hide();
+            $("#result").show();
             
             $.ajax({
               type: "POST",
@@ -95,7 +100,7 @@
                 $rec_result.empty();
                 $rec_result.append(data);
                 
-                $("#nextContainer").append("<button type='button' class='btn btn-default' onclick='get_random_object();'>Next</button>");
+            	$("#nextButton").show();
               },
               error: function () { console.log('fail'); }
             }).done(function(o) {
@@ -123,9 +128,9 @@
         
         <div align='center' style='display:inline-block;'>
             <video autoplay="true" control="true" id="videoElement" width="100%" playsinline></video><br>
-            <button type="button" class="btn btn-primary" onclick="captureImage()">Take</button>
+            <button type="button" id='takeButton' class="btn btn-primary" onclick="captureImage()">Take</button>
 
-            <div class="card border-success mt-3 mb-3">
+            <div id='result' class="card border-success mt-3 mb-3">
               <div class="card-header">Result</div>
               <div class="card-body text-success">
               	<table style="table-layout:fixed;width:100%">
@@ -139,6 +144,7 @@
                 </table>
               </div>
             </div>
+            <button type='button' id='nextButton' class='btn btn-default' onclick='get_random_object();' style="display:none;">Next</button>
         </div>
         
         <br>
