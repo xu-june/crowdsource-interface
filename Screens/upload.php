@@ -18,9 +18,9 @@ if ($phase == 'test0') {
 	$objects_key = 'objects_ts1';
 } else if ($phase == 'test2') {
 	$objects_key = 'objects_ts2';
-} else if ($phase == 'traini1') {
-	$objects_key = 'objects_tr1';
 } else if ($phase == 'train1') {
+	$objects_key = 'objects_tr1';
+} else if ($phase == 'train2') {
 	$objects_key = 'objects_tr2';
 }
 # increment counter
