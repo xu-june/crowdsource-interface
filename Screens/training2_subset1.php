@@ -46,17 +46,44 @@
 
 		<script type="text/javascript">
 
-		// If there are no more elements in the array of objects, page redirects to test1 phase; else goes back to subset selection
-		function next() {
-			var hasNext = "<?php echo $hasNext ?>";
-			// document.getElementById("test").innerHTML = hasNext;
-			if (hasNext == "true") {
-				document.getElementById("selection").action = "training2_subset20.php";
-			}
-			else {
-				document.getElementById("selection").action = "test2.php";
-			}
-		}
+		// Limits images selected
+		function limitCheck() {
+        	var limit = 1;
+        	var checked = 0;
+        	var difference = 0;
+        	var selections = document.getElementsByName('selections[]');
+        	for (var i = 0; i < selections.length; i++) {
+        		if (selections[i].checked) {
+        			checked++;
+        		}
+        	}
+        	if (checked > limit) {
+        		difference = checked - limit;
+        		var str = "images";
+        		if (difference == 1) {
+        			str = "image";
+        		}
+        		window.alert("Please deselect " + difference + " " + str);
+        	}
+        	else if (checked < limit) {
+        		difference = limit - checked;
+        		var str = "images";
+        		if (difference == 1) {
+        			str = "image";
+        		}
+        		window.alert("Please select " + difference + " more " + str);
+        	}
+        	else {
+        		var hasNext = "<?php echo $hasNext ?>";
+				if (hasNext == "true") {
+					document.getElementById("selection").action = "training1_subset20.php";
+				}
+				else {
+					document.getElementById("selection").action = "test1.php";
+				}
+        		document.getElementById("selection").submit();
+        	}
+        }
 
 		function uploadImg() {
         	document.getElementById("uploadbtn").click();
@@ -129,7 +156,7 @@
 				}
 
 				?>
-			<p><button type="submit" class="btn btn-default">Next</button></p>
+			<p><button id="submitbtn" type="button" onclick="limitCheck()" class="btn btn-default">Next</button></p>
 		</form>
 	</div>
 </body>

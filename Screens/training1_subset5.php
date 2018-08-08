@@ -1,5 +1,5 @@
 <!-- CSS and jQuery adapted from http://www.prepbootstrap.com/bootstrap-template/image-checkbox -->
-<!-- Takes images from train1 folder and saves selected filenames into $scr5_subselect5 -->
+<!-- Takes images from train2 folder and saves selected filenames into $scr9_subselect5 -->
 <?php
 	include 'header.php';
 	if (!isset($_SESSION)) { 
@@ -10,9 +10,9 @@
 	// var_dump($_POST['selections']);
 
 	$currObj = $_SESSION['curr'];
-	$uuid = $_SESSION['pid'];
+	$uuid = $_SESSION['pid']; 
 
-	$tr1_subselect20 = array();
+	$tr2_subselect20 = array();
 	// Code from https://www.formget.com/php-checkbox/
 	if(isset($_POST['selections']) && is_array($_POST['selections']))
 	{ //to run PHP script on submit
@@ -21,21 +21,54 @@
 			// Copy each file name into $scr5_subselect20
 			foreach($_POST['selections'] as $selected)
 			{
-				$tr1_subselect20[] = $selected;
+				$tr2_subselect20[] = $selected;
 			}
 		}
 	}
 ?>
 
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Subset selection - 5</title>
+	<title>Subset Selection - 5</title>
 	<?php printMetaInfo(); ?>
 
 	<script type="text/javascript">
 		function uploadImg() {
         	document.getElementById("uploadbtn").click();
+        }
+
+        // Limits images selected
+        function limitCheck() {
+        	var limit = 3;
+        	var checked = 0;
+        	var difference = 0;
+        	var selections = document.getElementsByName('selections[]');
+        	for (var i = 0; i < selections.length; i++) {
+        		if (selections[i].checked) {
+        			checked++;
+        		}
+        	}
+        	if (checked > limit) {
+        		difference = checked - limit;
+        		var str = "images";
+        		if (difference == 1) {
+        			str = "image";
+        		}
+        		window.alert("Please deselect " + difference + " " + str);
+        	}
+        	else if (checked < limit) {
+        		difference = limit - checked;
+        		var str = "images";
+        		if (difference == 1) {
+        			str = "image";
+        		}
+        		window.alert("Please select " + difference + " more " + str);
+        	}
+        	else {
+        		document.getElementById("selection").submit();
+        	}
         }
 
 		jQuery(function ($) {
@@ -83,32 +116,31 @@
 </head>
 <body>
 	<div class="mt-3 mb-3 mr-3 ml-3">
-	<?php printProgressBar(5); ?>
+		<?php printProgressBar(8); ?>
 
-	<h3>Select the 5 best images out of the 20 you just chose of <?php echo $currObj ?>!</h3>
+		<h3>Select the 5 best images out of the 20 you just chose of <?php echo $currObj ?>!</h3>
 
-	<!-- Form redirects to subset selection - 1 -->
-	<form id="selection" action="training1_subset1.php" method="post">
-		<p>A green border will appear around the images you select:</p>
-			<?php
-			// Displays the images
-			$files = glob("images/p" . $uuid . "/t" . $_SESSION['trial'] ."/train1/" . $currObj . "/*.png");
-			for ($i=0; $i<count($files); $i++)
-			{
-				$num = $files[$i];
-				$filename = basename($num);
-				// if $filename is contained in $scr5_subselect20, then display the picture
-				if (in_array($filename, $tr1_subselect20)) {
-					echo '<label class="image-checkbox">';
-						echo '<img src="'.$num.'" style="width:150px; height:150px;" class="imgselect"/>'."&nbsp;&nbsp;";
-						echo '<input type="checkbox" name="selections[]" value="' . $filename . '" />';
-					echo '</label>'; 
+		<!-- Form redirects to subset selection - 1 -->
+		<form id="selection" action="training2_subset1.php" method="post">
+			<p>A green border will appear around the images you select:</p>
+				<?php
+				// Displays the images
+				$files = glob("images/p" . $uuid . "/t" . $_SESSION['trial'] ."/train2/" . $currObj . "/*.png");
+				for ($i=0; $i<count($files); $i++)
+				{
+					$num = $files[$i];
+					$filename = basename($num);
+					// if $filename is contained in $scr5_subselect20, then display the picture
+					if (in_array($filename, $tr2_subselect20)) {
+						echo '<label class="image-checkbox">';
+							echo '<img src="'.$num.'" style="width:150px; height:150px;" class="imgselect"/>'."&nbsp;&nbsp;";
+							echo '<input type="checkbox" name="selections[]" value="' . $filename . '" />';
+						echo '</label>'; 
+					}
 				}
-			}
-			?>
-        <p><button type="submit" class="btn btn-default">Next</button></p>
-	</form>
-
+				?>
+	        <p><button type="button" onclick="limitCheck()" class="btn btn-default">Next</button></p>
+		</form>
 	</div>
 </body>
 </html>

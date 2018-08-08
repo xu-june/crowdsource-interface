@@ -39,6 +39,38 @@
         	document.getElementById("uploadbtn").click();
         }
 
+        // Limits images selected
+        function limitCheck() {
+        	var limit = 3;
+        	var checked = 0;
+        	var difference = 0;
+        	var selections = document.getElementsByName('selections[]');
+        	for (var i = 0; i < selections.length; i++) {
+        		if (selections[i].checked) {
+        			checked++;
+        		}
+        	}
+        	if (checked > limit) {
+        		difference = checked - limit;
+        		var str = "images";
+        		if (difference == 1) {
+        			str = "image";
+        		}
+        		window.alert("Please deselect " + difference + " " + str);
+        	}
+        	else if (checked < limit) {
+        		difference = limit - checked;
+        		var str = "images";
+        		if (difference == 1) {
+        			str = "image";
+        		}
+        		window.alert("Please select " + difference + " more " + str);
+        	}
+        	else {
+        		document.getElementById("selection").submit();
+        	}
+        }
+
 		jQuery(function ($) {
 			$(".image-checkbox").on("click", function (e) {
 				// if checked, uncheck it
@@ -107,7 +139,7 @@
 					}
 				}
 				?>
-	        <p><button type="submit" class="btn btn-default">Next</button></p>
+	        <p><button type="button" onclick="limitCheck()" class="btn btn-default">Next</button></p>
 		</form>
 	</div>
 </body>
