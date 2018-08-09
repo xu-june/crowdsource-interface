@@ -33,6 +33,7 @@
                 } else {
                     var words = data.split(' ');
                     var objectname = words[0];
+                    var objectname_space = objectname.replace(/_/g,' ');
                     var count = words[1];
                     
                     $objects = $("#objects");
@@ -51,8 +52,8 @@
                     // show modal
                     $modalLabel = $("#guideBody");
                     $modalLabel.empty();
-                    $modalLabel.append("<h1 class='bg-warning' align='center'>" +objectname + " ("+count+" / 5)</h1>"
-                                    +"Bring your "+objectname+" to take a picture.");
+                    $modalLabel.append("<h1 class='bg-warning' align='center'>" +objectname_space + " ("+count+" / 5)</h1>"
+                                    +"Bring your "+objectname_space+" to take a picture.");
                     $("#triggerModal").click();
                 }
               },

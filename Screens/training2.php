@@ -37,6 +37,7 @@
                 } else {
                     var words = data.split(' ');
                     var objectname = words[0];
+                    var objectname_space = objectname.replace(/_/g,' ');
                     var count = words[1];
                     upload_cnt = count-1;
                     console.log('uc: ' + upload_cnt);
@@ -51,8 +52,9 @@
                     // show modal
                     $modalLabel = $("#guideBody");
                     $modalLabel.empty();
-                    $modalLabel.append("<h1 class='bg-warning' align='center'>" +objectname + "</h1>"
-                                    +"Bring your "+objectname+" to take pictures.");
+                    $modalLabel.append("<h1 class='bg-warning' align='center'>" +objectname_space + "</h1>"
+                                    +"Bring your "+objectname_space+" to take pictures.");
+                    subselectObj.push(objectname);
                     $("#triggerModal").click();
                 }
               },

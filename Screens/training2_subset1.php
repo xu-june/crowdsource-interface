@@ -9,6 +9,7 @@
 	// var_dump($_SESSION['curr']);
 
 	$currObj = $_SESSION['curr'];
+	$obj = str_replace('_', ' ', $currObj);
 	$uuid = $_SESSION['pid'];
 	array_shift($_SESSION['objects_tr2']);
 
@@ -136,7 +137,7 @@
 	<div class="mt-3 mb-3 mr-3 ml-3">
 		<?php printProgressBar(8); ?>
 
-		<h3>Select the best image out of the 5 you just chose of <?php echo $currObj ?>!</h3>
+		<h3>Select the best image out of the 5 you just chose of <?php echo $obj ?>!</h3>
 
 		<form id="selection" action="" onsubmit="next()" method="post">
 			<p>A green border will appear around the images you select:</p>

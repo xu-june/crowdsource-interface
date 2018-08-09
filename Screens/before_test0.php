@@ -32,34 +32,42 @@
 	$urlts2 = dirname(__FILE__) . '/' . $img_base_dir . '/p' . $uuid . "/t" . $_SESSION['trial'] . "/test2/";
 
 	// for randomization function in test phases
+	$obj1 = str_replace(' ', '_', $_GET["obj1"]);
+	$obj2 = str_replace(' ', '_', $_GET["obj2"]);
+	$obj3 = str_replace(' ', '_', $_GET["obj3"]);
+
+	$_SESSION["obj1"] = $obj1;
+	$_SESSION["obj2"] = $obj2;
+	$_SESSION["obj3"] = $obj3;
+
 	$objects0 = array(
-		$_GET["obj1"] => 0, 
-		$_GET["obj2"] => 0, 
-		$_GET["obj3"] => 0,
+		$obj1 => 0, 
+		$obj2 => 0, 
+		$obj3 => 0,
 	);
 
 	$objects1 = array(
-		$_GET["obj1"] => 0, 
-		$_GET["obj2"] => 0, 
-		$_GET["obj3"] => 0,
+		$obj1 => 0, 
+		$obj2 => 0, 
+		$obj3 => 0,
 	);
 
 	$objects2 = array(
-		$_GET["obj1"] => 0, 
-		$_GET["obj2"] => 0, 
-		$_GET["obj3"] => 0,
+		$obj1 => 0, 
+		$obj2 => 0, 
+		$obj3 => 0,
 	);
 
 	$objects_tr1 = array(
-		$_GET["obj1"] => 0, 
-		$_GET["obj2"] => 0, 
-		$_GET["obj3"] => 0,
+		$obj1 => 0, 
+		$obj2 => 0, 
+		$obj3 => 0,
 	);
 
 	$objects_tr2 = array(
-		$_GET["obj1"] => 0, 
-		$_GET["obj2"] => 0, 
-		$_GET["obj3"] => 0,
+		$obj1 => 0, 
+		$obj2 => 0, 
+		$obj3 => 0,
 	);
 
 	$_SESSION['objects_ts0'] = $objects0;
@@ -69,25 +77,25 @@
 	$_SESSION['objects_tr2'] = $objects_tr2;
 
 	// to make directories
-	$url1_ts = $urlts . $_GET["obj1"];
-	$url2_ts = $urlts . $_GET["obj2"];
-	$url3_ts = $urlts . $_GET["obj3"];
+	$url1_ts = $urlts . $obj1;
+	$url2_ts = $urlts . $obj2;
+	$url3_ts = $urlts . $obj3;
 
-	$url1_tr1 = $urltr1 . $_GET["obj1"];
-	$url2_tr1 = $urltr1 . $_GET["obj2"];
-	$url3_tr1 = $urltr1 . $_GET["obj3"];
+	$url1_tr1 = $urltr1 . $obj1;
+	$url2_tr1 = $urltr1 . $obj2;
+	$url3_tr1 = $urltr1 . $obj3;
 
-	$url1_tr2 = $urltr2 . $_GET["obj1"];
-	$url2_tr2 = $urltr2 . $_GET["obj2"];
-	$url3_tr2 = $urltr2 . $_GET["obj3"];
+	$url1_tr2 = $urltr2 . $obj1;
+	$url2_tr2 = $urltr2 . $obj2;
+	$url3_tr2 = $urltr2 . $obj3;
 
-	$url1_ts1 = $urlts1 . $_GET["obj1"];
-	$url2_ts1 = $urlts1 . $_GET["obj2"];
-	$url3_ts1 = $urlts1 . $_GET["obj3"];
+	$url1_ts1 = $urlts1 . $obj1;
+	$url2_ts1 = $urlts1 . $obj2;
+	$url3_ts1 = $urlts1 . $obj3;
 
-	$url1_ts2 = $urlts2 . $_GET["obj1"];
-	$url2_ts2 = $urlts2 . $_GET["obj2"];
-	$url3_ts2 = $urlts2 . $_GET["obj3"];
+	$url1_ts2 = $urlts2 . $obj1;
+	$url2_ts2 = $urlts2 . $obj2;
+	$url3_ts2 = $urlts2 . $obj3;
 
 	// to make all necessary directories
 	if (mkdir($url1_tr1, 0774, true) && mkdir($url2_tr1, 0774, true) &&

@@ -13,6 +13,7 @@
 	// $currObj = $_SESSION['subselectObj'][key($_SESSION['subselectObj'])];
 	// echo $currObj;
 	$currObj = key($_SESSION['objects_tr2']);
+	$obj = str_replace('_', ' ', $currObj);
 	$uuid = $_SESSION['pid']; 
 	$_SESSION['curr'] = $currObj;
 ?>
@@ -107,7 +108,7 @@
 	<div class="mt-3 mb-3 mr-3 ml-3">
 		<?php printProgressBar(5); ?>
 
-		<h3>Select the 20 best images out of the 30 you took of <?php echo $currObj ?>!</h3>
+		<h3>Select the 20 best images out of the 30 you took of <?php echo $obj ?>!</h3>
 
 		<!-- Form redirects to subset selection - 5 -->
 		<form id="selection" action="training2_subset5.php" method="post">

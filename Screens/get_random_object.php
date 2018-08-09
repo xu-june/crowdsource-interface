@@ -18,15 +18,19 @@
 	}
 	$objects = $_SESSION[$objects_key];
 
-	$obj1 = key($objects);
-	$_SESSION['obj1'] = $obj1;
-	next($objects);
-	$obj2 = key($objects);
-	$_SESSION['obj2'] = $obj2;
-	next($objects);
-	$obj3 = key($objects);
-	$_SESSION['obj3'] = $obj3;
-	reset($objects); 
+	// $obj1 = key($objects);
+	// $_SESSION['obj1'] = $obj1;
+	// next($objects);
+	// $obj2 = key($objects);
+	// $_SESSION['obj2'] = $obj2;
+	// next($objects);
+	// $obj3 = key($objects);
+	// $_SESSION['obj3'] = $obj3;
+	// reset($objects); 
+
+	$obj1 = $_SESSION["obj1"];
+	$obj2 = $_SESSION["obj2"];
+	$obj3 = $_SESSION["obj3"];
 
 	$randObj = "";
 	$limit = 5; // temporary value for debugging

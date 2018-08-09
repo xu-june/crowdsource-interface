@@ -9,7 +9,7 @@ session_start();
 
 $uuid = $_SESSION['pid']; 
 $phase = $_POST['phase'];
-$objectname = $_POST['objectname'];
+$objectname = str_replace(' ', '_', $_POST['objectname']);
 
 $objects_key = '';
 if ($phase == 'test0') {
