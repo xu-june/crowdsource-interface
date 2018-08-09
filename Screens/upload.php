@@ -42,8 +42,9 @@ file_put_contents($img_path, $fileData);
 
 if (strpos($phase, 'test') === 0) {
 	require(dirname(__FILE__).'/../TOR/rest_client.php');
+	$puuid = 'p' . $uuid;
 	// send an image to the server for testing
-	$label = upload_and_test($uuid, $phase, $img_path);
+	$label = upload_and_test($puuid, $phase, $img_path);
 	// return the testing result, label
 	echo $label; 
 }

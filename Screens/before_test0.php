@@ -22,6 +22,11 @@
 	$img_base_dir = "images";
 	$uuid = $_SESSION['pid']; // NOTE: for testing
 
+	// init the object recognizer
+	require(dirname(__FILE__).'/../TOR/rest_client.php');
+	$puuid = 'p' . $uuid;
+	init_recognizer($puuid);
+
 	// clear the previous data which may be incomplete
 	recursive_rmdir(dirname(__FILE__) . '/' . $img_base_dir . '/p' . $uuid . "/t" . $_SESSION['trial']);
 	

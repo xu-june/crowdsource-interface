@@ -16,6 +16,15 @@
 	$uuid = $_SESSION['pid']; 
 	// echo $currObj;
 	$_SESSION['curr'] = $currObj;
+
+	// trigger the training for now
+	require(dirname(__FILE__).'/../TOR/rest_client.php');
+	// send the training images to the server
+	$puuid = 'p' . $uuid;
+	$trial = 't' . $_SESSION['trial'];
+	$phase = "train1";
+	// TODO: we need to trigger a training only once
+	prepare_upload($puuid, $trial, $phase);
 ?>
 
 <!DOCTYPE html>
@@ -140,21 +149,3 @@
 </body>
 </html>
 
-
-<?php 
-
-// Configuring errors
-// ini_set('display_errors',1);
-// error_reporting(E_ALL);
-// var_dump($_POST); 
-
-// trigger the training for now
-require(dirname(__FILE__).'/../TOR/rest_client.php');
-// send the training images to the server
-// init_recognizer("12345");
-$uuid = "12345";
-$phase = "train1";
-// TODO: we need to trigger a training only once
-prepare_upload($uuid, $phase);
-
-?>
