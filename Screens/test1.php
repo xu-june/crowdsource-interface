@@ -120,7 +120,7 @@
         <?php printProgressBar(6); ?>
     
     <h3>Let's see how well you did!</h3>    
-    <p>Take a picture of the requested object to see how well you did. Again, click <i class="buttonname">Get Object</i> to know which one to take a picture of, then <i class="buttonname">Upload</i> to upload it. You'll be done when <i class="buttonname">Get Object</i> disappears.</p>
+    <p>Take a picture of the requested object to see how well you did - tap on the camera stream, then scroll down to view your result.</p>
 
      <h4><div id="objects" class="bg-warning" align='center'>
         </div></h4>

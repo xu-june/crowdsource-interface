@@ -77,10 +77,10 @@
         	else {
         		var hasNext = "<?php echo $hasNext ?>";
 				if (hasNext == "true") {
-					document.getElementById("selection").action = "training1_subset20.php";
+					document.getElementById("selection").action = "training2_subset20.php";
 				}
 				else {
-					document.getElementById("selection").action = "test1.php";
+					document.getElementById("selection").action = "test2.php";
 				}
         		document.getElementById("selection").submit();
         	}
@@ -139,7 +139,7 @@
 
 		<h3>Select the best image out of the 5 you just chose of <?php echo $obj ?>!</h3>
 
-		<form id="selection" action="" onsubmit="next()" method="post">
+		<form id="selection" action="" method="post">
 			<p>A green border will appear around the images you select:</p>
 				<?php
 				$files = glob("images/p" . $uuid . "/t" . $_SESSION['trial'] ."/train2/" . $currObj . "/*.png");

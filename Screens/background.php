@@ -9,12 +9,65 @@
 
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
   <?php printMetaInfo(); ?>
   <title>
-    	Background Survey
-    </title>
-  </head>
+   Background Survey
+ </title>
+
+ <script type="text/javascript">
+  // Validates form values
+  function validateForm() {
+    var age = document.forms["bgForm"]["age"].value;
+    if (age == "" || age == null) {
+      alert("Please enter your age");
+      return false;
+    }
+
+    var gender = validateRadios(document.forms["bgForm"]["gender"]);
+    if (!gender) {
+      alert("Please select your gender");
+      return false;
+    }
+
+    var bq1 = validateRadios(document.forms["bgForm"]["bq1"]);
+    if (!bq1) {
+      alert("Please answer the first question");
+      return false;
+    }
+
+    var bq2 = validateRadios(document.forms["bgForm"]["bq2"]);
+    if (!bq2) {
+      alert("Please answer the second question");
+      return false;
+    }
+
+    var bq3 = document.forms["bgForm"]["bq3"].value;
+    if (bq3 == "" || bq3 == null) {
+      alert("Please answer the third question");
+      return false;
+    }
+
+    var bq4 = document.forms["bgForm"]["bq4"].value;
+    if (bq4 == "" || bq4 == null) {
+      alert("Please answer the last question");
+      return false;
+    }
+  }
+
+   // Validates radio buttons
+   function validateRadios(radioArr) {
+    for (var i = 0; i < radioArr.length; i++) {
+      if (radioArr[i].checked) {
+        return true;
+      }
+    }
+    return false;
+   }
+ </script>
+
+
+</head>
   
 	<body>
 		<div class="mt-3 mb-3 mr-3 ml-3">
@@ -22,11 +75,11 @@
   		
         <h3> Background Survey </h3><br>
         
-        <form  action="screen1_drink.php" method="post" id='backgroundForm'>
+        <form  action="screen1_drink.php" onsubmit="return validateForm()" name="bgForm" method="post" id='backgroundForm'>
           <div class="form-group row">
             <label for="inputAge" class="col-2 col-form-label"><strong>Age</strong></label>
             <div class="col-10">
-              <input type="text" name="age" class="form-control" id="inputAge" placeholder="Age">
+              <input type="text" name="age" required="true" class="form-control" id="inputAge" placeholder="Age">
             </div>
           </div><br>
           
@@ -144,13 +197,13 @@
           <!-- text form -->
           <div class="form-group">
             <label for="q5"><strong>What do you think the purpose of training is? What about testing?</strong></label>
-            <textarea class="form-control" id="q3" name="bq3" rows="3"></textarea>
+            <textarea class="form-control" required="true" id="q3" name="bq3" rows="3"></textarea>
           </div>
           
           <!-- text form -->
           <div class="form-group">
             <label for="q6"><strong>How do you think the images taken for training purposes and those taken for test purposes compare?</strong></label>
-            <textarea class="form-control" id="q4" name="bq4" rows="3"></textarea>
+            <textarea class="form-control" required="true" id="q4" name="bq4" rows="3"></textarea>
           </div>
           
           <button type="submit" class="btn btn-default">Next</button>

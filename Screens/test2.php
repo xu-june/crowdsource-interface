@@ -120,8 +120,7 @@
         <?php printProgressBar(9); ?>
     
         <h3>Let's see how well you did the second time around!</h3> 
-        <p>Take a picture of the requested object to see how well you did. Click on <mark>Get Object</mark>, then <mark>Upload</mark> to save your photo.  
-        You'll know when you're finished when <mark>Get Object</mark> disappears.</p>
+        <p>Again, take a picture of the requested object to see how well you did. Tap on the camera stream, then scroll down to view your result.</p>
 
         <h4><div id="objects" class="bg-warning" align='center'>
         </div></h4>

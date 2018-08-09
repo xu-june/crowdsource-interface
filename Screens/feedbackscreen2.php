@@ -24,17 +24,16 @@
 		<?php printProgressBar(9); ?>
     
 		<h3>Compare the result to your expectations!</h3>
-		<p>Did you expect to get this result? Or did you expect the accuracy to be higher/lower? Please tell us what you expected and why, as well as your result and why you think you got this result.</p>
+		<p>Did you expect to get this result? Or did you expect the accuracy to be higher/lower?</p>
+		<p>Please tell us what you expected and why, as well as your result and why you think you got this result.</p>
 
-		
-		<textarea name="feedback1" class="form-control" id="feedback1" rows="3" onkeyup="countChar(this)" placeholder="Enter feedback here"></textarea>
-		<div class="chcount"><small><span id="charCount">800</span>/800 characters left</small></div>
-		<br>
-		
-		
-		<p>
-			<button type="button" class="btn btn-default" onclick="window.location.href='post_questions.php'">Next</button>
-		</p>
+		<form name="feedback" action="post_questions.php" method="post">
+			<textarea name="feedback1" required="true" class="form-control" id="feedback1" rows="3" onkeyup="countChar(this)" placeholder="Enter feedback here"></textarea>
+			<div class="chcount"><small><span id="charCount">800</span>/800 characters left</small></div>
+			<br>
+
+			<button type="submit" class="btn btn-default">Next</button>
+		</form>
 	</div>
 </body>
 </html>

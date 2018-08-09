@@ -143,10 +143,8 @@
     <div class="mt-3 mb-3 mr-3 ml-3">
         <?php printProgressBar(8); ?>
 
-        <h3>Round 2: Put your ideas in motion!</h3>
-        <p>Take pictures of the requested object, like you did before. Again, click on <mark>Get Object</mark>, then click <mark>Upload</mark> 
-        after taking each photo. The counter at the bottom will help you keep track of how many images you've already taken. 
-        Click on <mark>Get Object</mark> after each 30 images to know what to capture next! You'll know you're finished when <mark>Upload</mark> disappears.</p>
+        <h3>Add your own objects (part 2)!</h3>
+        <p>Like you did before, take 30 pictures of the following object by tapping on the camera stream, and scrolling down to see how many images you've taken.</p>
 
         <h4><div id="objects" class="bg-warning" align='center'>
         </div></h4>

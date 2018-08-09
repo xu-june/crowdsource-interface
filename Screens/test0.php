@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?php printMetaInfo(); ?>
+  	<?php printMetaInfo(); ?>
     <title>Test 0</title>
 
     <script type="text/javascript">
@@ -26,36 +26,36 @@
               success: function (data) {
                 console.log('random object: '+data);
 
-                $objects = $("#objects");
-                $objects.empty();
-                
+				$objects = $("#objects");
+				$objects.empty();
+				
                 if (data == 'this step is done') {
-                    window.location.href='before_training1.php';
+                	window.location.href='before_training1.php';
                 } else {
-                    var words = data.split(' ');
-                    var objectname = words[0];
+                	var words = data.split(' ');
+                	var objectname = words[0];
                     var objectname_space = objectname.replace(/_/g,' ');
-                    var count = words[1];
-                    
-                    $objects = $("#objects");
-                    $objects.empty();
-                    $objects.append(objectname + " ("+count+" / 5)");
-                    
-                    // remove previous result     
-                    $output = $("#output");
-                    $output.empty();            
-                    $rec_result = $("#rec_result");
-                    $rec_result.empty();
-                    $("#nextButton").hide();
-                    // $("#takeButton").show();
-                    $("#result").hide();
-                    
-                    // show modal
-                    $modalLabel = $("#guideBody");
-                    $modalLabel.empty();
-                    $modalLabel.append("<h1 class='bg-warning' align='center'>" +objectname_space + " ("+count+" / 5)</h1>"
-                                    +"Bring your "+objectname_space+" to take a picture.");
-                    $("#triggerModal").click();
+                	var count = words[1];
+                	
+	                $objects = $("#objects");
+	                $objects.empty();
+                	$objects.append(objectname + " ("+count+" / 5)");
+                	
+					// remove previous result     
+					$output = $("#output");
+					$output.empty();           	
+					$rec_result = $("#rec_result");
+					$rec_result.empty();
+            		$("#nextButton").hide();
+            		// $("#takeButton").show();
+					$("#result").hide();
+                	
+                	// show modal
+                	$modalLabel = $("#guideBody");
+                	$modalLabel.empty();
+                	$modalLabel.append("<h1 class='bg-warning' align='center'>" +objectname_space + " ("+count+" / 5)</h1>"
+                					+"Bring your "+objectname_space+" to take a picture.");
+            		$("#triggerModal").click();
                 }
               },
               error: function () { console.log('fail'); }
@@ -101,7 +101,7 @@
                 $rec_result.empty();
                 $rec_result.append(data);
                 
-                $("#nextButton").show();
+            	$("#nextButton").show();
               },
               error: function () { console.log('fail'); }
             }).done(function(o) {
@@ -111,7 +111,7 @@
         
         // Refreshes bottom portion of the page to upload images
         $(document).ready(function () {
-            get_random_object();
+	        get_random_object();
             $("#triggerModal").click();
         });
     </script>
@@ -122,7 +122,7 @@
         <?php printProgressBar(3); ?>
 
         <h3>Let's test our system!</h3>
-        <p>Take a picture of the following object.</p>
+        <p>Take a picture of the following object by tapping on the camera stream, then scroll down to see your result.</p>
         
         <h4><div id="objects" class="bg-warning" align='center'>
         </div></h4>
@@ -135,14 +135,14 @@
             <div id='result' class="card border-success mt-3 mb-3">
               <div class="card-header">Result</div>
               <div class="card-body text-success">
-                <table style="table-layout:fixed;width:100%">
-                    <tr>
-                        <td>
-                            <div id="output" style='display:inline-block;'></div>
-                        </td>
-                        <td>
-                            <div id='rec_result' class="card-text" align='center'></div>
-                        </td>
+              	<table style="table-layout:fixed;width:100%">
+              		<tr>
+              			<td>
+			                <div id="output" style='display:inline-block;'></div>
+			            </td>
+			            <td>
+			                <div id='rec_result' class="card-text" align='center'></div>
+			            </td>
                 </table>
               </div>
             </div>
@@ -155,29 +155,29 @@
         </div>
         
         <!-- Button trigger modal -->
-        <button type="button" id='triggerModal' class="btn btn-primary" data-toggle="modal" data-target="#guideModal" style="display:none;">
-          Launch modal
-        </button>
+		<button type="button" id='triggerModal' class="btn btn-primary" data-toggle="modal" data-target="#guideModal" style="display:none;">
+		  Launch modal
+		</button>
         
         <!-- Modal -->
-        <div class="modal fade" id="guideModal" tabindex="-1" role="dialog" aria-labelledby="guideModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header" align='center'>
-                <h5 class="modal-title" id="guideModalLabel">Next item</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body" id="guideBody">
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        
+		<div class="modal fade" id="guideModal" tabindex="-1" role="dialog" aria-labelledby="guideModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+			  <div class="modal-header" align='center'>
+				<h5 class="modal-title" id="guideModalLabel">Next item</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body" id="guideBody">
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		
         
         <script>
              var video = document.querySelector("#videoElement");
@@ -196,5 +196,5 @@
         </script>
         
 <?php
-    include 'footer.php';
+	include 'footer.php';
 ?>

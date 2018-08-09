@@ -130,13 +130,12 @@
 			
 			<p>Use your camera to take pictures of your objects in the next page. </p>
 			
-			<p>You will take an image with one of your objects at a time 
-			and the object recognizer will give you the recognition result in response. You will take <strong>5 images</strong> for each object.</p>
+			<p>Please take an image with one of your objects at a time, and the object recognizer will give you the recognition result in response. Please take <strong>5 images</strong> for each object.</p>
 		
-			<p class="text-info">(Here's a hint: don't be scared if the object doesn't change! It's randomized, 
-			so if you've clicked the next button and it doesn't change, take another picture.)</p>
+			<!-- <p class="text-info">(Here's a hint: don't be scared if the object doesn't change! It's randomized, 
+			so if you've clicked the next button and it doesn't change, take another picture.)</p> -->
 			
-			<p>Continue to find out!</p>
+			<!-- <p>Continue to find out!</p> -->
 
 			<button type="button" class="btn btn-default" onclick="window.location.href='test0.php'">Next</button>
 		

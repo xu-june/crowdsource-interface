@@ -145,7 +145,7 @@
         <?php printProgressBar(4); ?>
 
         <h3>Add your own objects!</h3>
-        <p>Take 30 pictures of the following object.</p>
+        <p>Take 30 pictures of the following object by tapping on the camera stream, and scrolling down to see how many images you've taken.</p>
 
         <h4><div id="objects" class="bg-warning" align='center'>
         </div></h4>

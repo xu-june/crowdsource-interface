@@ -43,8 +43,8 @@
         <div id='code' align='center'> <?=$_SESSION['pcode']?> </div>
          <br>
          
-        <p>If you want to do this study again with other objects, go to the introduction page and enter this code or touch the button below. 
-        You are not allowed to use the objects that are already used in the previous study.</p>
+        <p>If you want to do this study again with other objects, touch the button below to go to the introduction page, then enter this code. 
+        You are not allowed to use the objects that you already used.</p>
         <button type="button" class="btn btn-default" onclick="window.location.href='index.php'">Repeat this study with other objects</button>
     </div> 
   </body>
