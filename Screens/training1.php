@@ -102,6 +102,7 @@
                 
                 if (upload_cnt >= 5) {
                 	$("#nextButton").show();
+                    document.getElementById("nextButton").scrollIntoView();
                 }
               },
               error: function () { console.log('fail'); }

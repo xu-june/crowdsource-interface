@@ -101,11 +101,14 @@
                 $rec_result.append(data);
                 
                 $("#nextButton").show();
+                document.getElementById("nextButton").scrollIntoView();
               },
               error: function () { console.log('fail'); }
             }).done(function(o) {
               console.log('done'); 
             });
+
+            document.getElementById("result").scrollIntoView();
         }
         
         // Refreshes bottom portion of the page to upload images
@@ -120,7 +123,7 @@
         <?php printProgressBar(9); ?>
     
         <h3>Let's see how well you did the second time around!</h3> 
-        <p>Again, take a picture of the requested object to see how well you did. Tap on the camera stream, then scroll down to view your result.</p>
+        <p>Again, take a picture of the requested object to see how well you did. Tap on the camera stream, then click "Next" for the next object.</p>
 
         <h4><div id="objects" class="bg-warning" align='center'>
         </div></h4>

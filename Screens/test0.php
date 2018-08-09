@@ -102,11 +102,14 @@
                 $rec_result.append(data);
                 
             	$("#nextButton").show();
+                document.getElementById("nextButton").scrollIntoView();
               },
               error: function () { console.log('fail'); }
             }).done(function(o) {
               console.log('done'); 
             });
+
+            document.getElementById("result").scrollIntoView();
         }
         
         // Refreshes bottom portion of the page to upload images
@@ -122,7 +125,7 @@
         <?php printProgressBar(3); ?>
 
         <h3>Let's test our system!</h3>
-        <p>Take a picture of the following object by tapping on the camera stream, then scroll down to see your result.</p>
+        <p>Take a picture of the following object by tapping on the camera stream, then view your result and "Next" to get the next object.</p>
         
         <h4><div id="objects" class="bg-warning" align='center'>
         </div></h4>
