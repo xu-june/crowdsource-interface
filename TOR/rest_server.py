@@ -53,7 +53,9 @@ stop the recognizer
 def stop_recognizer(uuid):
   global TORs
   # we may have to rely on python's GCC
-  TORs[uuid].stop_all()
+  if TORs[uuid] is not None:
+    TORs[uuid].stop_all()
+    TORs[uuid] = None
 
 
 """
@@ -416,7 +418,7 @@ def check_recognizer(uuid):
     model = models[uuid]
     label = labels[uuid]
     # if turned off, turn it on
-    if not recognizer:
+    if recognizer is None:
       model = models[uuid]
       label = labels[uuid]
       TORs[uuid] = init_recognizer(model, label, debug)
