@@ -74,26 +74,28 @@ function check_dir($dir) {
   create a zip file with all images received during the given phase
   for more information, https://stackoverflow.com/questions/4914750/how-to-zip-a-whole-folder-using-php
     @input  : uuid (string),
+              trial (string),
               phase (string)
     @output : zipfile path (on success)
               "N/A" (on failure)
  */
-function compress_images($uuid, $phase) {
+function compress_images($uuid, $trial, $phase) {
   global $zip_dir, $imgs_dir, $debug;
 
   $zip_dest = $zip_dir . '/' . $uuid;
   check_dir($zip_dest);
 
-  $zip_dest =  $zip_dest . '/' . $phase . '.zip';
-  $imgs_src = $imgs_dir . '/' . $uuid . '/' . $phase;
+  $zip_dest =  $zip_dest . '/' . $trial . '_' . $phase . '.zip';
+  $imgs_src = $imgs_dir . '/' . $uuid . '/' . $trial . '/' . $phase;
 
-  if ($debug) {
-    echo "\ncompressing into " . $zip_dest;
-  }
   // open a zip file while checking if the zip file is already existed
   $zip = new ZipArchive;
   $res = $zip->open($zip_dest, ZipArchive::CREATE);
+
   if ($res) {
+    if ($debug) {
+      echo "\ncompressing " . $imgs_src . " into " . $zip_dest;
+    }  
     // add all subdirs into the zip file
     $files = new RecursiveIteratorIterator(
               new RecursiveDirectoryIterator($imgs_src),
@@ -116,6 +118,9 @@ function compress_images($uuid, $phase) {
   } elseif ($res == ZipArchive::ER_EXISTS) {
     return $zip_dest;
   } else {
+    if ($debug) {
+      echo "\n Error occurred during the compression";
+    }
     return "N/A";  
   }
 }
@@ -166,11 +171,12 @@ function upload_zip($uuid, $zip_file) {
 /*
   upload a zip file and then trigger the training
     @input  : uuid (string),
+              trial (string),
               phase (string),
               zipfile path (string)
     @output : N/A
  */
-function upload_and_train($uuid, $phase, $zip_file) {
+function upload_and_train($uuid, $trial, $phase, $zip_file) {
   global $rest_server, $debug;
   // the target url
   $target_url = $rest_server;
@@ -196,7 +202,7 @@ function upload_and_train($uuid, $phase, $zip_file) {
     array(
       'file' => new \CurlFile($zip_file, 'application/octet-stream', basename($zip_file)),
       'uuid' => $uuid,
-      'phase' => $phase
+      'phase' => $trial . '_' . $phase
       )
   );
   curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
@@ -276,10 +282,11 @@ function upload_and_test($uuid, $phase, $img_file) {
 /*
   prepare a upload request
     @input  : uuid (string),
+              trial (string),
               phase (string)
     @output : N/A
  */
-function prepare_upload($uuid, $phase) {
+function prepare_upload($uuid, $trial, $phase) {
   global $imgs_dir, $zip_dir, $debug;
 
   if ($debug) {
@@ -288,8 +295,8 @@ function prepare_upload($uuid, $phase) {
   }
 
   // first compress the images
-  $zip_file = compress_images($uuid, $phase);
-  upload_and_train($uuid, $phase, $zip_file);
+  $zip_file = compress_images($uuid, $trial, $phase);
+  upload_and_train($uuid, $trial, $phase, $zip_file);
 }
 
 

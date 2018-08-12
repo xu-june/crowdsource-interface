@@ -53,7 +53,9 @@ stop the recognizer
 def stop_recognizer(uuid):
   global TORs
   # we may have to rely on python's GCC
-  TORs[uuid].stop_all()
+  if TORs[uuid] is not None:
+    TORs[uuid].stop_all()
+    TORs[uuid] = None
 
 
 """
@@ -301,7 +303,7 @@ initialize a recognzer for a user
 # TO TEST: curl -d '{"uuid": "1234"}' -H "Content-Type: application/json" -X POST http://0.0.0.0:5000/init
 @receiver.route('/init', methods = ['POST'])
 def init():
-  global TORs, input_label, classifier_model, classifier_label, debug
+  global TORs, input_label, classifier_model, classifier_label, debug, models, labels
 
   r = request
   print("request:", r)
@@ -325,6 +327,8 @@ def init():
 
   # retrieve the result of the initialization
   TORs[uuid] = future.result()
+  models[uuid] = classifier_model
+  labels[uuid] = classifier_label
   # TORs[uuid] = init_recognizer(classifier_model, classifier_label, debug)
   
   # build JSON response containing the result
@@ -408,12 +412,16 @@ check recognizer
 """
 def check_recognizer(uuid):
   # get the global recognizer variable
-  global TORs, classifier_model, classifier_label
+  global TORs, models, labels
   try:
     recognizer = TORs[uuid]
+    model = models[uuid]
+    label = labels[uuid]
     # if turned off, turn it on
-    if not recognizer:
-      TORs[uuid] = init_recognizer(classifier_model, classifier_label, debug)
+    if recognizer is None:
+      model = models[uuid]
+      label = labels[uuid]
+      TORs[uuid] = init_recognizer(model, label, debug)
     # check whether recognizer is available
     elif not recognizer.is_alive():
       """
@@ -424,11 +432,14 @@ def check_recognizer(uuid):
         classifier_label = new_c_label
       """
       # now resuming it
-      resume_recognizer(uuid, classifier_model, classifier_label)
+      resume_recognizer(uuid, model, label)
 
   except KeyError:
     # initialize it if not
+    global classifier_model, classifier_label
     TORs[uuid] = init_recognizer(classifier_model, classifier_label, debug)
+    models[uuid] = classifier_model
+    labels[uuid] = classifier_label
 
 
 """

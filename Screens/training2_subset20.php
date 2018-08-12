@@ -16,6 +16,15 @@
 	$obj = str_replace('_', ' ', $currObj);
 	$uuid = $_SESSION['pid']; 
 	$_SESSION['curr'] = $currObj;
+
+	// trigger the training for now
+	require(dirname(__FILE__).'/../TOR/rest_client.php');
+	// send the training images to the server
+	$puuid = 'p' . $uuid;
+	$trial = 't' . $_SESSION['trial'];
+	$phase = "train2";
+	// TODO: we need to trigger a training only once
+	prepare_upload($puuid, $trial, $phase);
 ?>
 
 <!DOCTYPE html>
@@ -136,15 +145,3 @@
 	</div>
 </body>
 </html>
-
-<?php 
-// trigger the training for now
-require(dirname(__FILE__).'/../TOR/rest_client.php');
-// send the training images to the server
-// init_recognizer("12345");
-$uuid = "12345";
-$phase = "train2";
-// TODO: we need to trigger a training only once
-prepare_upload($uuid, $phase);
-
-?>

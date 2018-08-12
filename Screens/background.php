@@ -15,57 +15,18 @@
    Background Survey
  </title>
 
- <script type="text/javascript">
-  // Validates form values
-  function validateForm() {
-    var age = document.forms["bgForm"]["age"].value;
-    if (age == "" || age == null) {
-      alert("Please enter your age");
-      return false;
-    }
-
-    var gender = validateRadios(document.forms["bgForm"]["gender"]);
-    if (!gender) {
-      alert("Please select your gender");
-      return false;
-    }
-
-    var bq1 = validateRadios(document.forms["bgForm"]["bq1"]);
-    if (!bq1) {
-      alert("Please answer the first question");
-      return false;
-    }
-
-    var bq2 = validateRadios(document.forms["bgForm"]["bq2"]);
-    if (!bq2) {
-      alert("Please answer the second question");
-      return false;
-    }
-
-    var bq3 = document.forms["bgForm"]["bq3"].value;
-    if (bq3 == "" || bq3 == null) {
-      alert("Please answer the third question");
-      return false;
-    }
-
-    var bq4 = document.forms["bgForm"]["bq4"].value;
-    if (bq4 == "" || bq4 == null) {
-      alert("Please answer the last question");
-      return false;
-    }
-  }
-
-   // Validates radio buttons
-   function validateRadios(radioArr) {
-    for (var i = 0; i < radioArr.length; i++) {
-      if (radioArr[i].checked) {
-        return true;
-      }
-    }
-    return false;
-   }
- </script>
-
+	<script type="text/javascript">
+	  
+	  function vi_status(status){
+		document.getElementById("level_of_vision").disabled = status;
+		document.getElementById("vi_years").disabled = status;
+	  }
+	  
+	  function mi_status(status){
+		document.getElementById("motor_ability").disabled = status;
+		document.getElementById("mi_years").disabled = status;
+	  }
+ 	</script>
 
 </head>
   
@@ -75,11 +36,11 @@
   		
         <h3> Background Survey </h3><br>
         
-        <form  action="screen1_drink.php" onsubmit="return validateForm()" name="bgForm" method="post" id='backgroundForm'>
+        <form  action="tech_experience1.php" name="bgForm" method="post" id='backgroundForm'>
           <div class="form-group row">
             <label for="inputAge" class="col-2 col-form-label"><strong>Age</strong></label>
             <div class="col-10">
-              <input type="text" name="age" required="true" class="form-control" id="inputAge" placeholder="Age">
+              <input type="number" name="age" required="true" class="form-control" id="inputAge" placeholder="Age">
             </div>
           </div><br>
           
@@ -89,54 +50,49 @@
               <legend class="col-form-label col-2 pt-0"><strong>Gender</strong></legend>
               <div class="col-10">
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="gender" id="genderMale" value="male">
+                  <input class="form-check-input" required="true" type="radio" name="gender" id="genderMale" value="male" >
                   <label class="form-check-label" for="genderMale">
                     Male
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="female">
+                  <input class="form-check-input" required="true" type="radio" name="gender" id="genderFemale" value="female">
                   <label class="form-check-label" for="genderFemale">
                     Female
                   </label>
                 </div>
+                <div class="form-check">
+                  <input class="form-check-input" required="true" type="radio" name="gender" id="genderNB" value="nb">
+                  <label class="form-check-label" for="genderNB">
+                    Nonbinary (neither, both, or something else)
+                  </label>
+                </div>
               </div>
             </div>
           </fieldset><br>
           
+          
+          <!-- text form -->
+          <div class="form-group">
+            <label for="occupation"><strong>What is your occupation? (If student, what do you study?)</strong></label>
+            <textarea class="form-control" required="true" id="occupation" name="occupation" rows="1"></textarea>
+          </div><br>
+          
           <!-- radio button set -->
           <fieldset class="form-group">
             <div>
-              <legend class="col-form-label  pt-0"><strong>How do you know about object recognizer?</strong></legend>
+              <legend class="col-form-label  pt-0"><strong>What is your dominant hand?</strong></legend>
               <div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="bq1" id="q1a1" value="1">
-                  <label class="form-check-label" for="q1a1">
-                    No idea
+                  <input class="form-check-input" required="true" type="radio" name="dom_hand" id="left_hand" value="left">
+                  <label class="form-check-label" for="left_hand">
+                    Left hand
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="bq1" id="q1a2" value="2">
-                  <label class="form-check-label" for="q1a2">
-                    Have heard the name, but nothing more
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="bq1" id="q1a3" value="3">
-                  <label class="form-check-label" for="q1a3">
-                    Know what it does
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="bq1" id="q1a4" value="4">
-                  <label class="form-check-label" for="q1a4">
-                    Have studied object recognizer
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="bq1" id="q1a5" value="5">
-                  <label class="form-check-label" for="q1a5">
-                    Have experience with project or work about object recognizer
+                  <input class="form-check-input" required="true" type="radio" name="dom_hand" id="right_hand" value="right">
+                  <label class="form-check-label" for="right_hand">
+                    Right hand 
                   </label>
                 </div>
               </div>
@@ -146,67 +102,57 @@
           <!-- radio button set -->
           <fieldset class="form-group">
             <div>
-              <legend class="col-form-label  pt-0"><strong>How often do you use object recognizer?</strong></legend>
+              <legend class="col-form-label  pt-0"><strong>Do you have visual impairments?</strong></legend>
               <div>
+              
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="bq2" id="q2a1" value="1">
-                  <label class="form-check-label" for="q2a1">
-                    Less than once a month
+                  <input class="form-check-input" onclick="vi_status(false);" required="true" type="radio" name="has_vi" id="vi_yes" value="yes">
+                  <label class="form-check-label" onclick="vi_status(false);" required="true" for="vi_yes">
+                    Yes
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="bq2" id="q2a2" value="2">
-                  <label class="form-check-label" for="q2a2">
-                    Once a month
+                  <input class="form-check-input" onclick="vi_status(true);" required="true" type="radio" name="has_vi" id="vi_no" value="no">
+                  <label class="form-check-label" onclick="vi_status(true);" for="vi_no">
+                    No
                   </label>
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="bq2" id="q2a3" value="3">
-                  <label class="form-check-label" for="q2a3">
-                    Several times a month
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="bq2" id="q2a4" value="4">
-                  <label class="form-check-label" for="q2a4">
-                    Once a week
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="bq2" id="q2a5" value="5">
-                  <label class="form-check-label" for="q2a5">
-                    Several times a week
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="bq2" id="q2a6" value="5">
-                  <label class="form-check-label" for="q2a6">
-                    Once a day
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="bq2" id="q2a7" value="5">
-                  <label class="form-check-label" for="q2a7">
-                    Several times a day
-                  </label>
-                </div>
+                <label for="level_of_vision">Please describe your current level of vision. </label>
+              	<textarea class="form-control" required="true" id="level_of_vision" name="level_of_vision" rows="1"></textarea>
+                <label for="vi_age">For how many years have you had this level of vision ability? </label>
+              	<textarea class="form-control" required="true" id="vi_years" name="vi_years" rows="1"></textarea>  
               </div>
             </div>
           </fieldset><br>
           
-          <!-- text form -->
-          <div class="form-group">
-            <label for="q5"><strong>What do you think the purpose of training is? What about testing?</strong></label>
-            <textarea class="form-control" required="true" id="q3" name="bq3" rows="3"></textarea>
-          </div>
+          <!-- radio button set -->
+          <fieldset class="form-group">
+            <div>
+              <legend class="col-form-label  pt-0"><strong>Do you have motor impairments?</strong></legend>
+              <div>
+                <div class="form-check">
+                  <input class="form-check-input" onclick="mi_status(false);" required="true" type="radio" name="has_mi" id="mi_yes" value="yes">
+                  <label class="form-check-label" onclick="mi_status(false);" for="mi_yes">
+                    Yes
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" onclick="mi_status(true);" required="true" type="radio" name="has_mi" id="mi_no" value="no">
+                  <label class="form-check-label" onclick="mi_status(true);" for="mi_no">
+                    No
+                  </label>
+                </div>
+                <label for="motor_ability">Please describe your current motor ability. </label>
+              	<textarea class="form-control" required="true" id="motor_ability" name="motor_ability" rows="1"></textarea>
+                <label for="mi_age">For how many years have you had this level of motor ability? </label>
+              	<textarea class="form-control" required="true" id="mi_years" name="mi_years" rows="1"></textarea>  
+              </div>
+            </div>
+          </fieldset><br>
           
-          <!-- text form -->
-          <div class="form-group">
-            <label for="q6"><strong>How do you think the images taken for training purposes and those taken for test purposes compare?</strong></label>
-            <textarea class="form-control" required="true" id="q4" name="bq4" rows="3"></textarea>
+          <div align='right'>
+	          <button type="submit" class="btn btn-default">Next ></button>
           </div>
-          
-          <button type="submit" class="btn btn-default">Next</button>
           
         </form>
 

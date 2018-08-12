@@ -1,13 +1,10 @@
 <!-- CSS and jQuery adapted from http://www.prepbootstrap.com/bootstrap-template/image-checkbox -->
 <!-- Takes images from train1 folder and saves selected filenames into $scr5_subselect5 -->
 <?php
+    session_start();
 	include 'header.php';
-	if (!isset($_SESSION)) { 
-		session_start(); 
-	}
-
-	// var_dump($_SESSION['curr']);
-	// var_dump($_POST['selections']);
+    include 'connectDB.php';
+    savePageLog($_SESSION['pid'], "train1_subset5");
 
 	$currObj = $_SESSION['curr'];
 	$obj = str_replace('_', ' ', $currObj);
@@ -26,6 +23,14 @@
 			}
 		}
 	}
+	
+	//echo implode(",", $tr1_subselect20);
+
+	$obj_index = $_SESSION['train1_order'][$_SESSION['step']-1];
+	// update participant status
+	$sql = "UPDATE Objects set `subset1_".$obj_index."_20`='".str_replace(".png", "", implode(":", $tr1_subselect20))."'"
+		." WHERE `participant_id`=".$uuid.";";
+	execSQL($sql);
 ?>
 
 <!DOCTYPE html>
@@ -35,13 +40,14 @@
 	<?php printMetaInfo(); ?>
 
 	<script type="text/javascript">
+		var cnt=0;
 		function uploadImg() {
         	document.getElementById("uploadbtn").click();
         }
 
         // Limits images selected
         function limitCheck() {
-        	var limit = 3;
+        	var limit = 5;
         	var checked = 0;
         	var difference = 0;
         	var selections = document.getElementsByName('selections[]');
@@ -77,13 +83,27 @@
 				if ($(this).hasClass('image-checkbox-checked')) {
 					$(this).removeClass('image-checkbox-checked');
 					$(this).find('input[type="checkbox"]').removeAttr("checked");
+					$(this).find('img').css('border', "solid 0px");
+					cnt--;
 				}
 				else {
-					$(this).addClass('image-checkbox-checked');
-					$(this).find('input[type="checkbox"]').attr("checked", "checked");
+					if (cnt <= 4) {
+						$(this).addClass('image-checkbox-checked');
+						$(this).find('input[type="checkbox"]').attr("checked", "checked");
+						$(this).find('img').css('border', "solid 4px #33cc33");
+						$(this).find('img').css('padding', "0px");
+						cnt++;
+					}
 				}
 
 				e.preventDefault();
+				
+				$("#showCnt").text("Selected "+cnt+" out of 20");
+				if (cnt == 5) {
+					$("#nextButton").show();
+				} else {
+					$("#nextButton").hide();
+				}
 			});
 		});
 	</script>
@@ -106,7 +126,7 @@
 
 		.image-checkbox-checked
 		{
-			outline: 4px solid #33cc33;
+			/*outline: 4px solid #33cc33;*/
 		}
 
 		.imgselect {
@@ -133,13 +153,17 @@
 				// if $filename is contained in $scr5_subselect20, then display the picture
 				if (in_array($filename, $tr1_subselect20)) {
 					echo '<label class="image-checkbox">';
-						echo '<img src="'.$num.'" style="width:150px; height:150px;" class="imgselect"/>'."&nbsp;&nbsp;";
+						echo '<img src="'.$num.'" style="width:100px; height:100px;" class="imgselect"/>'."&nbsp;&nbsp;";
 						echo '<input type="checkbox" name="selections[]" value="' . $filename . '" />';
 					echo '</label>'; 
 				}
 			}
 			?>
-        <p><button type="button" onclick="limitCheck()" class="btn btn-default">Next</button></p>
+		<div id='showCnt'>Selected 0 out of 20</div>		
+		
+		<div align='right'>
+			<button type="button" id='nextButton' onclick="limitCheck()" class="btn btn-default">Next ></button>
+		</div>
 	</form>
 
 	</div>

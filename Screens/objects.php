@@ -30,26 +30,43 @@
 
 
 		<form name="form" action="before_test0.php" method="get">
-			<div class="form-group row">
-				<label for="obj1" class="col-3 col-form-label">Object 1</label>
-				<div class="col-9">
-				  <input type="text" name="obj1" required="true" class="form-control" id="obj1" placeholder="Name of object 1 (e.g., Coke)">
-				</div>
+			<table>
+				<tr>
+					<td width="20%">
+						<img src="images/can_green.png" width="100%">
+					</td>
+					<td>
+						<div><label for="obj1">Object 1: </label></div>
+						<input type="text" required="true" name="obj1" required="true" class="form-control" id="obj1" placeholder="Name of object 1 (e.g., Coke)">
+					</td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td width="20%">
+						<img src="images/can_orange.png" width="100%">
+					</td>
+					<td>
+						<div><label for="obj2">Object 2: </label></div>
+						<input type="text" required="true" name="obj2" required="true" class="form-control" id="obj2" placeholder="Name of object 2 (e.g., Pepsi)">
+					</td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td width="20%">
+						<img src="images/can_blue.png" width="100%">
+					</td>
+					<td>
+						<div><label for="obj3">Object 3: </label></div>
+						<input type="text" required="true" name="obj3" required="true" class="form-control" id="obj3" placeholder="Name of object 3 (e.g., Sprite)">
+					</td>
+				</tr>
+			</table>
+			
+			<div align='right'>
+				<input type="submit"  class="btn btn-default" value="Next >" name="submit" id="submitbtn">
 			</div>
-			<div class="form-group row">
-				<label for="obj2" class="col-3 col-form-label">Object 2</label>
-				<div class="col-9">
-				  <input type="text" name="obj2" required="true" class="form-control" id="obj2" placeholder="Name of object 2 (e.g., Pepsi)">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="obj3" class="col-3 col-form-label">Object 3</label>
-				<div class="col-9">
-				  <input type="text" name="obj3" required="true" class="form-control" id="obj3" placeholder="Name of object 3 (e.g., Sprite)">
-				</div>
-			</div>
-		
-			<input type="submit"  class="btn btn-default" value="Submit" name="submit" id="submitbtn">
 			
 			<!-- php code is moved to before_test0.php -->
 			

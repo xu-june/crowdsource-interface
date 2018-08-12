@@ -36,8 +36,19 @@ function printMetaInfo() {
 			});
 		}, refreshTime );
 	</script>
+	
+	<style>
+		.circle {
+		   background-color: #00FFF0;
+		   border-color: #DDDDDD;
+		   border-style: solid;
+		   padding: 1vw;
+		   -moz-border-radius:50%;
+		   -webkit-border-radius: 50%;
+		   border-radius:50%; 
+		}
+	</style>
 
 <?php
 }
 ?>
-
