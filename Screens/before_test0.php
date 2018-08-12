@@ -20,7 +20,7 @@
 	
 	// echo dirname(__FILE__) . "/images/";
 	$img_base_dir = "images";
-	$uuid = $_SESSION['pid']; // NOTE: for testing
+	$uuid = $_SESSION['pid']; 
 
 	// init the object recognizer
 	require(dirname(__FILE__).'/../TOR/rest_client.php');
@@ -40,47 +40,8 @@
 	$obj1 = str_replace(' ', '_', $_GET["obj1"]);
 	$obj2 = str_replace(' ', '_', $_GET["obj2"]);
 	$obj3 = str_replace(' ', '_', $_GET["obj3"]);
-
-	$_SESSION["obj1"] = $obj1;
-	$_SESSION["obj2"] = $obj2;
-	$_SESSION["obj3"] = $obj3;
-
-	$objects0 = array(
-		$obj1 => 0, 
-		$obj2 => 0, 
-		$obj3 => 0,
-	);
-
-	$objects1 = array(
-		$obj1 => 0, 
-		$obj2 => 0, 
-		$obj3 => 0,
-	);
-
-	$objects2 = array(
-		$obj1 => 0, 
-		$obj2 => 0, 
-		$obj3 => 0,
-	);
-
-	$objects_tr1 = array(
-		$obj1 => 0, 
-		$obj2 => 0, 
-		$obj3 => 0,
-	);
-
-	$objects_tr2 = array(
-		$obj1 => 0, 
-		$obj2 => 0, 
-		$obj3 => 0,
-	);
-
-	$_SESSION['objects_ts0'] = $objects0;
-	$_SESSION['objects_ts1'] = $objects1;
-	$_SESSION['objects_ts2'] = $objects2;
-	$_SESSION['objects_tr1'] = $objects_tr1;
-	$_SESSION['objects_tr2'] = $objects_tr2;
-
+	$_SESSION["object_names"] = array($obj1, $obj2, $obj3);
+	
 	// to make directories
 	$url1_ts = $urlts . $obj1;
 	$url2_ts = $urlts . $obj2;
@@ -116,6 +77,53 @@
 	} else {
 		echo("<script>console.log('Failed to create folder');</script>");
 	}
+	
+	
+	// set order of trainig and testing
+	$test0_order = array();
+	$test1_order = array();
+	$test2_order = array();
+	$train1_order = array();
+	$train2_order = array();
+	
+	for ($i=0; $i<$_SESSION['test_img_num']; $i++) {
+		array_push($test0_order, 1, 2, 3);
+		array_push($test1_order, 1, 2, 3);
+		array_push($test2_order, 1, 2, 3);
+	}
+	array_push($train1_order, 1, 2, 3);
+	array_push($train2_order, 1, 2, 3);
+	
+	shuffle($test0_order);
+	shuffle($test1_order);
+	shuffle($test2_order);
+	shuffle($train1_order);
+	shuffle($train2_order);
+	
+	$_SESSION['test0_order'] = $test0_order;
+	$_SESSION['test1_order'] = $test1_order;
+	$_SESSION['test2_order'] = $test2_order;
+	$_SESSION['train1_order'] = $train1_order;
+	$_SESSION['train2_order'] = $train2_order;
+	
+	/*
+	echo implode(':', $_SESSION['test0_order'])."<br>";
+	echo implode(':', $_SESSION['test1_order'])."<br>";
+	echo implode(':', $_SESSION['test2_order'])."<br>";
+	echo implode(':', $_SESSION['train1_order'])."<br>";
+	echo implode(':', $_SESSION['train2_order'])."<br>";
+	*/
+	
+	$sql = "delete from Objects where `participant_id`=".$uuid." and `trial`=".$_SESSION['trial'].";";
+	execSQL($sql);
+	
+	$date = date("Y-m-d H:i:s");
+	$time = round(microtime(true) * 1000);
+	$sql = "INSERT INTO Objects "
+			."(`participant_id`, `trial`, `name1`, `name2`, `name3`, `test0_order`, `test1_order`, `test2_order`, `train1_order`, `train2_order`, `add_time`, `add_date`) VALUES ("
+			.$uuid.",".$_SESSION['trial'].", '".$obj1."', '".$obj2."', '".$obj3."', '".implode(':',$test0_order)."', '".implode(':',$test1_order)."', '"
+			.implode(':',$test2_order)."', '".implode(':',$train1_order)."', '".implode(':',$train2_order)."', '".$time."', '".$date."');";
+	execSQL($sql);
 ?>
 
 <!doctype html>
@@ -123,7 +131,7 @@
   <head>
   <?php printMetaInfo(); ?>
   <title>
-    	Test 1
+    	Before test 1
     </title>
   </head>
   
@@ -131,18 +139,18 @@
 		<div class="mt-3 mb-3 mr-3 ml-3">
 	  		<?php printProgressBar(3); ?>
        
-			<h3>Now, can our system tell which is which?</h3>
+			<h3>Testing images</h3>
 			
-			<p>Use your camera to take pictures of your objects in the next page. </p>
+			<p>We will randomly choose one of your objects and ask you to take a photo of it. </p>
 			
-			<p>Please take an image with one of your objects at a time, and the object recognizer will give you the recognition result in response. Please take <strong>5 images</strong> for each object.</p>
-		
-			<!-- <p class="text-info">(Here's a hint: don't be scared if the object doesn't change! It's randomized, 
-			so if you've clicked the next button and it doesn't change, take another picture.)</p> -->
+			<p>You will do this 15 times total (5 photos per object). </p>
 			
-			<!-- <p>Continue to find out!</p> -->
-
-			<button type="button" class="btn btn-default" onclick="window.location.href='test0.php'">Next</button>
+			<p> <strong>Hint</strong>: We have already trained an object recognizer but chances are it does not include your objects. 
+			Every time you take a photo it will try to guess what it is based on what it knows. </p>
+			
+			<div align='right'>
+				<button type="button" class="btn btn-default" onclick="window.location.href='test0.php'">Next ></button>
+			</div>
 		
 
 <?php

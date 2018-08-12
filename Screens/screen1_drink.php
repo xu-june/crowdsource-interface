@@ -2,49 +2,22 @@
 	session_start();
 	include 'connectDB.php';
 	include 'header.php';
-
-	// get participant id	
-	if (!isset($_SESSION['pid'])) {
-		$query = "SELECT participant_id, participant_code, trial FROM participant_status where status='INCOMPLETE' order by participant_id";
-		$result = getSelect($query);
-		$pid = $result['participant_id'];
-		$pcode = $result['participant_code'];
-		$trial = $result['trial'];
-		$date = date("Y-m-d H:i:s");
-		$time = round(microtime(true) * 1000);
-
-		// enter participant info	
-		$age = $_POST["age"];
-		$gender = $_POST["gender"];
-		$q1 = $_POST["bq1"];
-		$q2 = $_POST["bq2"];
-		$q3 = $_POST["bq3"];
-		$q4 = $_POST["bq4"];
-		$sql = "INSERT INTO participant_info (`participant_id`, `age`, `gender`, `bq1`, `bq2`, `bq3`, `bq4`, `time`, `date`) VALUES ("
-			.$pid.",".$age.", '".$gender."', '".$q1."', '".$q2."', '".$q3."', '".$q4."','".$time."','".$date."');";
-		execSQL($sql);
-	
-		// update participant status
-		$sql = "UPDATE participant_status set `status`='IN PROGRESS', `trial`=".($trial+1).", `last_update_time`='"
-			.$time."', `last_update_date`='".$date."'WHERE `participant_id`=".$pid.";";
-		execSQL($sql);
-	
-		// save page log and session variables
-		savePageLog($pid, "screen1_drink");
-		$_SESSION['pid'] = $pid;
-		$_SESSION['pcode'] = $pcode;
-		$_SESSION['trial'] = 1;
-	}
 	savePageLog($_SESSION['pid'], "screen1_drink");
-?>
 
+	$q4 = $_POST["bq4"];
+	$q5 = $_POST["bq5"];
+	$q6 = $_POST["bq6"];
+	$q7 = $_POST["bq7"];
+	$sql = "UPDATE participant_info set `bq4`='".$q4."', `bq5`='".$q5."', `bq6`='".$q6."', `bq7`='".$q7."' WHERE `participant_id`=".$_SESSION['pid'].";";
+	execSQL($sql);
+?>
 
 <!doctype html>
 <html lang="en">
   <head>
   <?php printMetaInfo(); ?>
   <title>
-    	Background Survey
+    	Data Collection Prerequisite
     </title>
   </head>
   
@@ -52,17 +25,18 @@
 		<div class="mt-3 mb-3 mr-3 ml-3">
 			<?php printProgressBar(2); ?>
 		
-			<h3>Welcome to our study!</h3>
-			<p>Before continuing, please choose 3 distinct canned drinks to use! Here are some ideas:</p>
+			<h3>Data Collection Prerequisite</h3>
+			<p>Before going to the next step, please have 3 distinct canned drinks in your proximity. This could be anything from soda, sparkling water, beer, or any soft drink that you happen to have that is canned. </p>
+			
+			For example: <br>
 
-			<img src="images/coke.jpg" width="30%">
-			<img src="images/pepsi.jpg" width="30%">
-			<img src="images/sprite.jpg" width="30%">
-		
-			<br>
-			<p>Assign each of your objects as Object 1, Object 2, and Object 3 on the next page.</p>
+			<img src="images/coke.jpg" width="30%"> Object 1: <strong>Coca cola</strong> <br>
+			<img src="images/pepsi.jpg" width="30%"> Object 2: <strong>Pepsi</strong> <br>
+			<img src="images/sprite.jpg" width="30%"> Object 3: <strong>Sprite</strong> <br>
 
-			<button class="btn btn-default" onclick="window.location.href='objects.php'">Next</button>
+			<div align='right'>
+				<button class="btn btn-default" onclick="window.location.href='objects.php'">Next ></button>
+			</div>
 		
         
 <?php

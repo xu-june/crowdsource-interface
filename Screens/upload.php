@@ -6,26 +6,11 @@
 ini_set('display_errors',1);
 // error_reporting(E_ALL); 
 session_start();
+include 'connectDB.php';
 
 $uuid = $_SESSION['pid']; 
 $phase = $_POST['phase'];
 $objectname = str_replace(' ', '_', $_POST['objectname']);
-
-$objects_key = '';
-if ($phase == 'test0') {
-	$objects_key = 'objects_ts0';
-} else if ($phase == 'test1') {
-	$objects_key = 'objects_ts1';
-} else if ($phase == 'test2') {
-	$objects_key = 'objects_ts2';
-} else if ($phase == 'train1') {
-	$objects_key = 'objects_tr1';
-} else if ($phase == 'train2') {
-	$objects_key = 'objects_tr2';
-}
-# increment counter
-$_SESSION[$objects_key][$objectname]++;
-$_SESSION['phase'] = $phase;
 
 $img = $_POST['imgBase64'];
 $img = str_replace('data:image/png;base64,', '', $img);
@@ -33,10 +18,10 @@ $img = str_replace(' ', '+', $img);
 $fileData = base64_decode($img);
 
 //saving
-$filename = $_SESSION[$objects_key][$objectname];
-$obj = $_POST['objectname'];
+$filename = $_POST['obj_count'];
+
 $ext = 'png';
-$dest_path = dirname(__FILE__) . '/images/p' . $uuid . '/t' .$_SESSION['trial'] .'/'. $phase . '/' . $obj . '/';
+$dest_path = dirname(__FILE__) . '/images/p' . $uuid . '/t' .$_SESSION['trial'] .'/'. $phase . '/' . $objectname . '/';
 $img_path = $dest_path . $filename . '.' . $ext;
 file_put_contents($img_path, $fileData);
 
@@ -47,8 +32,16 @@ if (strpos($phase, 'test') === 0) {
 	$label = upload_and_test($puuid, $phase, $img_path);
 	// return the testing result, label
 	echo $label; 
+} else {
+	echo $img_path; 
 }
 
-// return the testing result, label
-echo ' '.json_encode($_SESSION[$objects_key])."_".$_SESSION['currObj']; 
+
+	
+	$date = date("Y-m-d H:i:s");
+	$time = round(microtime(true) * 1000);
+	$sql = "INSERT INTO action_logs "
+			."(`participant_id`, `trial`, `event`, `time`, `date`) VALUES ("
+			.$uuid.",".$_SESSION['trial'].", 'upload-".$phase . "-" . $objectname . "-".$filename."', '".$time."', '".$date."');";
+	execSQL($sql);
 ?>
