@@ -125,7 +125,7 @@
         <?php printProgressBar(3); ?>
 
         <h3>Let's test our system!</h3>
-        <p>Take a picture of the following object by tapping on the camera stream, then view your result and "Next" to get the next object.</p>
+        <p>Take a picture of the following object by tapping on the camera stream, then view your result and tap "Next" to get the next object.</p>
         
         <h4><div id="objects" class="bg-warning" align='center'>
         </div></h4>
