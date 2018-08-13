@@ -2,7 +2,7 @@
 function printProgressBar($step){
 ?>
 	<div class="progress mb-3">
-	  <div class="progress-bar" role="progressbar" style="width: <?=$step?>0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?=$step?> / 10</div>
+	  <div class="progress-bar" role="progressbar" style="width: <?= ($step/18) * 100 ?>%;" aria-valuenow="<?=$step?>" aria-valuemin="1" aria-valuemax="18"><?=$step?> / 18</div>
 	</div>
 <?php
 }

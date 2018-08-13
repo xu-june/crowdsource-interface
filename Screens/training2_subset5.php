@@ -141,7 +141,7 @@
 </head>
 <body>
 	<div class="mt-3 mb-3 mr-3 ml-3">
-		<?php printProgressBar(8); ?>
+		<?php printProgressBar(15); ?>
 
 		<h3>Select the 5 best images out of the 20 you just chose of <?php echo $obj ?>!</h3>
 

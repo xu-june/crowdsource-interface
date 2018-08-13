@@ -126,9 +126,8 @@
 </head>
 <body>
     <div class="mt-3 mb-3 mr-3 ml-3">
-        <?php printProgressBar(3); ?>
+        <?php printProgressBar(7); ?>
 
-        <h3>Let's test our system!</h3>
         <p>Take a photo by tapping in the camera screen.</p>
         
         <h4><div id="objects" align='center'>

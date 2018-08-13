@@ -21,7 +21,7 @@
 </head>
 <body>
 	<div class="mt-3 mb-3 mr-3 ml-3">
-		<?php printProgressBar(9); ?>
+		<?php printProgressBar(17); ?>
     
 		<h3>Compare the result to your expectations!</h3>
 		<p>Did you expect to get this result? Or did you expect the accuracy to be higher/lower?</p>
@@ -32,7 +32,9 @@
 			<div class="chcount"><small><span id="charCount">800</span>/800 characters left</small></div>
 			<br>
 
-			<button type="submit" class="btn btn-default">Next ></button>
+			<div align="right">
+				<button type="submit" class="btn btn-default">Next ></button>
+			</div>
 		</form>
 	</div>
 </body>

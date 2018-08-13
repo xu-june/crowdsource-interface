@@ -76,7 +76,7 @@
               url: "upload.php",
               data: { 
                  imgBase64: img.src,
-                 phase: 'train1',
+                 phase: 'train2',
                  objectname: obj_name,
                  obj_count: upload_cnt%30+1
               },
@@ -127,7 +127,7 @@
 </head>
 <body>
     <div class="mt-3 mb-3 mr-3 ml-3">
-        <?php printProgressBar(8); ?>
+        <?php printProgressBar(14); ?>
 
         <h3>Add your own objects (part 2)!</h3>
         <p>Like you did before, take 30 pictures of the following object by tapping on the camera stream.</p>

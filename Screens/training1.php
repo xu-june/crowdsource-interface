@@ -127,7 +127,7 @@
 </head>
 <body>
     <div class="mt-3 mb-3 mr-3 ml-3">
-        <?php printProgressBar(4); ?>
+        <?php printProgressBar(9); ?>
 
         <p>Take 30 photos by tapping in the camera screen.</p>
 

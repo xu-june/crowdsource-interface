@@ -124,7 +124,7 @@
 </head>
 <body>
     <div class="mt-3 mb-3 mr-3 ml-3">
-        <?php printProgressBar(9); ?>
+        <?php printProgressBar(16); ?>
     
         <h3>Let's see how well you did the second time around!</h3> 
         <p>Again, take a picture of the requested object to see how well you did. Tap on the camera stream, then click "Next" for the next object.</p>

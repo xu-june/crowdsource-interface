@@ -16,7 +16,7 @@
   
 	<body>
 		<div class="mt-3 mb-3 mr-3 ml-3">
-  			<?php printProgressBar(2); ?>
+  			<?php printProgressBar(5); ?>
 		<script>
 			function submit() {
 				document.getElementById("submitbtn").click();

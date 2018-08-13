@@ -22,7 +22,7 @@
   
 	<body>
 		<div class="mt-3 mb-3 mr-3 ml-3">
-	  		<?php printProgressBar(4); ?>
+	  		<?php printProgressBar(8); ?>
     
 			<h3>Training Images</h3>
 			<p>Let’s see if you can train our object recognizer to identify correctly your objects. You can do this by providing many examples of how it looks.</p>

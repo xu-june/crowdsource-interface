@@ -124,7 +124,7 @@
 </head>
 <body>
     <div class="mt-3 mb-3 mr-3 ml-3">
-        <?php printProgressBar(6); ?>
+        <?php printProgressBar(11); ?>
     
     <h3>Let's see how well you did!</h3>    
     <p>Tap on the camera stream to take a picture and see how well you did.</p>

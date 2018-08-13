@@ -42,7 +42,7 @@
 			</div>
 			
 			<div align='center'>
-				<button type="button" id="nextButton" class="btn btn-default" onclick="window.location.href='background.php'">Start ></button>
+				<button type="button" id="nextButton" class="btn btn-default" onclick="window.location.href='background.php'">Start</button>
 			</div>
         	</div>
 

@@ -24,7 +24,7 @@
   
 	<body>
 		<div class="mt-3 mb-3 mr-3 ml-3">
-  		<?php printProgressBar(1); ?>
+  		<?php printProgressBar(3); ?>
   		
         <h3> Technology Experience Questions </h3>
         

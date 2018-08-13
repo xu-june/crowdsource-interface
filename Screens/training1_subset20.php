@@ -159,7 +159,7 @@
 </head>
 <body>
 	<div class="mt-3 mb-3 mr-3 ml-3">
-		<?php printProgressBar(5); ?>
+		<?php printProgressBar(10); ?>
 
 		<h3>Subset Selection 20</h3>
 		

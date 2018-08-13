@@ -30,7 +30,7 @@
 </head>
 <body>
 	<div class="mt-3 mb-3 mr-3 ml-3">
-		<?php printProgressBar(7); ?>
+		<?php printProgressBar(12); ?>
     
 		<form name="feedback" action="before_training2.php" method="post">
 			<h3>Compare the result to your expectations!</h3>
@@ -45,7 +45,9 @@
 			<div class="chcount"><small><span id="charCount2">800</span>/800 characters left</small></div>
 
 
-			<button type="submit" class="btn btn-default">Next ></button>
+			<div align="right">
+				<button type="submit" class="btn btn-default">Next ></button>
+			</div>
 		</form>
 		
 	</div>

@@ -15,7 +15,7 @@
   </head>
   <body>
     <div class="mt-3 mb-3 mr-3 ml-3">
-        <?php printProgressBar(10); ?>
+        <?php printProgressBar(18); ?>
         
         <h3> Post-study Questions </h3><br>
         
@@ -44,8 +44,9 @@
             <textarea class="form-control" required="true" id="pq4" rows="3"></textarea>
           </div>
           
-          <button type="submit" class="btn btn-default">Next ></button>
-          
+          <div align="right">
+            <button type="submit" class="btn btn-default">Next ></button>
+          </div>
         </form>
 <?php
 	include 'footer.php';
