@@ -18,6 +18,7 @@
 	$hasNext = "true";
 	if ($_SESSION['step'] >= 3) {
 		$hasNext = "false";
+		$_SESSION['step'] = 0;
 	}
 	/*
 	if (count($_SESSION['objects_tr1']) == 0 || !isset($_SESSION['objects_tr1'])) {

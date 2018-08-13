@@ -1,10 +1,10 @@
 <!-- CSS and jQuery adapted from http://www.prepbootstrap.com/bootstrap-template/image-checkbox -->
 <!-- Takes images from train2 folder and saves selected filename into $scr9_subselect1 -->
 <?php
+    session_start();
 	include 'header.php';
-	if (!isset($_SESSION)) { 
-		session_start(); 
-	}
+    include 'connectDB.php';
+    savePageLog($_SESSION['pid'], "train2_subset1");
 
 	// var_dump($_SESSION['curr']);
 
@@ -13,14 +13,16 @@
 	$uuid = $_SESSION['pid'];
 	array_shift($_SESSION['objects_tr2']);
 
-	var_dump($_SESSION['subselectObj']);
+	// var_dump($_SESSION['subselectObj']);
 
 	$hasNext = "true";
-	if (count($_SESSION['objects_tr2']) == 0 || !isset($_SESSION['objects_tr2'])) {
-		// echo "hello?";
+	if ($_SESSION['step'] >= 3) {
 		$hasNext = "false";
-		// unset($_SESSION['subselectObj']);
 	}
+	/*
+	if (count($_SESSION['objects_tr1']) == 0 || !isset($_SESSION['objects_tr1'])) {
+		$hasNext = "false";
+	}*/
 
 	$tr2_subselect5 = array();
 
@@ -36,7 +38,13 @@
 			}
 		}
 	}
-
+	
+	$obj_index = $_SESSION['train2_order'][$_SESSION['step']-1];
+	
+	// update participant status
+	$sql = "UPDATE Objects set `subset2_".$obj_index."_5`='".str_replace(".png", "", implode(":", $tr2_subselect5))."'"
+		." WHERE `participant_id`=".$uuid.";";
+	execSQL($sql);
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +54,7 @@
 	<?php printMetaInfo(); ?>
 
 		<script type="text/javascript">
+		var cnt=0;
 
 		// Limits images selected
 		function limitCheck() {
@@ -96,13 +105,28 @@
 				if ($(this).hasClass('image-checkbox-checked')) {
 					$(this).removeClass('image-checkbox-checked');
 					$(this).find('input[type="checkbox"]').removeAttr("checked");
+					$(this).find('img').css('border', "solid 0px");
+					cnt--;
 				}
 				else {
-					$(this).addClass('image-checkbox-checked');
-					$(this).find('input[type="checkbox"]').attr("checked", "checked");
+					if (cnt <= 0) {
+						$(this).addClass('image-checkbox-checked');
+						$(this).find('input[type="checkbox"]').attr("checked", "checked");
+						$(this).find('img').addClass("img-selected");
+						$(this).find('img').css('border', "solid 4px #33cc33");
+						$(this).find('img').css('padding', "0px");
+						cnt++;
+					}
 				}
 
 				e.preventDefault();
+				
+				$("#showCnt").text("Selected "+cnt+" out of 5");
+				if (cnt == 1) {
+					$("#nextButton").show();
+				} else {
+					$("#nextButton").hide();
+				}
 			});
 		});
 	</script>
@@ -125,7 +149,7 @@
 
 		.image-checkbox-checked
 		{
-			outline: 4px solid #33cc33;
+			/*outline: 4px solid #33cc33;*/
 		}
 
 		.imgselect {
@@ -157,8 +181,14 @@
 				}
 
 				?>
-			<p><button id="submitbtn" type="button" onclick="limitCheck()" class="btn btn-default">Next</button></p>
+			<div id='showCnt'>Selected 0 out of 5</div>		
+		
+			<div align='right'>
+				<button type="button" id='nextButton' onclick="limitCheck()" class="btn btn-default">Next ></button>
+				<!-- <button type="button" id='nextButton' onclick="window.location.href='test2.php'" class="btn btn-default">Next ></button> -->
+			</div>
 		</form>
+
 	</div>
 </body>
 </html>
@@ -170,7 +200,7 @@
 // error_reporting(E_ALL);
 // var_dump($_POST); 
 
-// $tr2_subselect1 = array();
+// $tr1_subselect1 = array();
 
 // // Code from https://www.formget.com/php-checkbox/
 // if(isset($_POST['selections']) && is_array($_POST['selections']))
@@ -180,17 +210,17 @@
 // 		// Copy each file name into $scr5_subselect20
 // 		foreach($_POST['selections'] as $selected)
 // 		{
-// 			$tr2_subselect1[] = $selected;
+// 			$tr1_subselect1[] = $selected;
 // 		}
 // 		// Display name of each file selected
-// 		// foreach($scr9_subselect1 as $image)
+// 		// foreach($scr5_subselect1 as $image)
 // 		// {
 // 		// 	echo $image."</br>";
 // 		// }
 // 	}
 
-// 	$_SESSION['tr2_1'] = $tr2_subselect1;
-// 	// if (empty($scr9_subselect20)) 
+// 	$_SESSION['tr1_1'] = $tr1_subselect1;
+// 	// if (empty($scr5_subselect20)) 
 // 	// {
 // 	// 	echo "array is empty";
 // 	// }

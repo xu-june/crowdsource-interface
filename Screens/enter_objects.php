@@ -12,9 +12,9 @@
         <br>
         
         <center>
-            <img src="images/coke.jpg" class="img-responsive" style="width:25%">
-            <img src="images/pepsi.jpg" class="img-responsive" style="width:25%">
-            <img src="images/sprite.jpg" class="img-responsive" style="width:25%">
+            <img src="old/images/coke.jpg" class="img-responsive" style="width:25%">
+            <img src="old/images/pepsi.jpg" class="img-responsive" style="width:25%">
+            <img src="old/images/sprite.jpg" class="img-responsive" style="width:25%">
         </center>
         <br>
         

@@ -4,7 +4,17 @@
     include 'header.php';
     savePageLog($_SESSION['pid'], "train2");
     
+    // count files already uploaded
+    $upload_cnt = 0;
+    $obj_cnt = array(0, 0, 0);
     $imgPath = 'images/p' . $_SESSION['pid'] . '/t' .$_SESSION['trial'] .'/train2/';
+    for ($i=0; $i<count($_SESSION["object_names"]); $i++) {
+        $obj = $_SESSION["object_names"][$i];
+        $files = glob($imgPath . $obj . "/*.png");
+        $upload_cnt += count($files);
+        $obj_cnt[$i] = count($files);
+        //echo $obj."...".$obj_cnt[$i]."<br>";
+    }
 ?>
 
 <!-- Uploads images to "train2" folder in server -->
@@ -17,54 +27,29 @@
     <?php printMetaInfo(); ?>
 
     <script type="text/javascript">
-        var upload_cnt = 0;
+        var bgColors = ['#76D7C4', '#FAD7A0', '#D7BDE2'];
+        var upload_cnt = <?=$upload_cnt?>;
+        var obj_index = [<?=implode(',', $_SESSION['train2_order'])?>];
+        var obj_names = ["<?=implode('","', $_SESSION['object_names'])?>"];
+        var clickable = true;
         
         function get_random_object() {
-            $.ajax({
-              type: "POST",
-              url: "get_random_object.php",
-              data: { 
-                 phase: 'train2'
-              },
-              success: function (data) {
-                console.log('random object: '+data);
-
-                $objects = $("#objects");
-                $objects.empty();
-                
-                if (data == 'this step is done') {
-                    window.location.href='training2_subset20.php';
-                } else {
-                    var words = data.split(' ');
-                    var objectname = words[0];
-                    var objectname_space = objectname.replace(/_/g,' ');
-                    var count = words[1];
-                    upload_cnt = count-1;
-                    console.log('uc: ' + upload_cnt);
-                    
-                    $objects = $("#objects");
-                    $objects.empty();
-                    $objects.append(objectname);
-                    
-                    load_images();
-                    $("#nextButton").hide();
-                    
-                    // show modal
-                    $modalLabel = $("#guideBody");
-                    $modalLabel.empty();
-                    $modalLabel.append("<h1 class='bg-warning' align='center'>" +objectname_space + "</h1>"
-                                    +"Bring your "+objectname_space+" to take pictures.");
-                    subselectObj.push(objectname);
-                    $("#triggerModal").click();
-                }
-              },
-              error: function () { console.log('fail'); }
-            }).done(function(o) {
-              console.log('done'); 
-            });
+            $objects = $("#objects");
+            if (upload_cnt >= <?=$_SESSION['training_img_num']*3?>) {
+                clickable = false;
+                window.location.href='training2_subset20.php';
+            }
+            
+            var step = Math.floor(upload_cnt/30);
+            var obj_name = obj_names[obj_index[step]-1];
+            
+            $objects.text(obj_name);
+            document.getElementById("objects").style.backgroundColor = bgColors[step];
         }
         
         function captureImage() {
+            if (!clickable) return;
+            
             var video = document.getElementById("videoElement")
             var canvas = document.createElement("canvas");
             var scale = 1.0
@@ -77,31 +62,29 @@
             img.height = video.videoHeight/4;
             img.width = video.videoWidth/4;
             img.src = canvas.toDataURL();
-
-            $output = $("#output");
-            $output.empty();
-            $output.prepend(img);
             
-            $("#rec_result").empty();
-            $("#nextContainer").empty();
+            upload_cnt++;
+            show_prev_image(upload_cnt % 30);
+            
+            var step = Math.floor((upload_cnt-1)/30);
+            var obj_name = obj_names[obj_index[step]-1];
+            
+            console.log(upload_cnt + ", " + step + ", " + obj_index[step]);
             
             $.ajax({
               type: "POST",
               url: "upload.php",
               data: { 
                  imgBase64: img.src,
-                 phase: 'train2',
-                 objectname: $("#objects").text().split(" ")[0]
+                 phase: 'train1',
+                 objectname: obj_name,
+                 obj_count: upload_cnt%30+1
               },
               success: function (data) {
                 console.log('success'+data);
-                upload_cnt++;
-                addImage(upload_cnt);
-                fixImage(upload_cnt);
                 
-                if (upload_cnt >= 5) {
-                    $("#nextButton").show();
-                    document.getElementById("nextButton").scrollIntoView();
+                if (upload_cnt >= <?=$_SESSION['training_img_num']?>) {
+                    get_random_object();
                 }
               },
               error: function () { console.log('fail'); }
@@ -110,33 +93,35 @@
             });
         }
         
-        function addImage(index) {
-            var path = '<?=$imgPath?>'+$("#objects").text().split(" ")[0]+'/'+index+'.png';
-            var dummyPath = 'images/dummy.jpg'
-            $images = $("#images");
+        function clearCanvas(cnt) {
+            var canvas=document.querySelector('canvas');
+            var context=canvas.getContext('2d');
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            $("#count").text(30-cnt);
+        }
+        
+        function show_prev_image(index) {
+            console.log('set prev img - ' + index);
+            $("#count").text(30-index);
             
-            $images.prepend("<div class='ml-1 mr-1' style='display:inline-block;'>"
-                                +"<div id='img"+index+"' style=\"width:100px;height:100px;background-image:url(\'"+path+"\');background-size:cover;\"></div>"
-                                +index+"</div>");
-        }
-        
-        function fixImage(index) {
-            var path = '<?=$imgPath?>'+$("#objects").text().split(" ")[0]+'/'+index+'.png';
-            document.getElementById("img"+index).style.backgroundImage = "url('"+path+"')";
-        }
-        
-        function load_images() {
-            $images = $("#images");
-            $images.empty();
-            for (i = 0; i < upload_cnt; i++) { 
-                addImage(i+1);
-            }
+            var video=document.querySelector('#videoElement');
+            var canvas=document.querySelector('canvas');
+            var context=canvas.getContext('2d');
+            var w,h,ratio;
+            ratio = video.videoWidth/video.videoHeight;
+            w = video.videoWidth-100;
+            h = parseInt(w/ratio,10);
+            
+            canvas.width = w;
+            canvas.height = h;
+            context.fillRect(0,0,w,h);
+            context.drawImage(video,0,0,w,h);
         }
         
         // Refreshes bottom portion of the page to upload images
         $(document).ready(function () {
             get_random_object();
-            $("#triggerModal").click();
+            show_prev_image(upload_cnt % 30);
         });
     </script>
 </head>
@@ -145,47 +130,24 @@
         <?php printProgressBar(8); ?>
 
         <h3>Add your own objects (part 2)!</h3>
-        <p>Like you did before, take 30 pictures of the following object by tapping on the camera stream, and scrolling down to see how many images you've taken.</p>
+        <p>Like you did before, take 30 pictures of the following object by tapping on the camera stream.</p>
 
-        <h4><div id="objects" class="bg-warning" align='center'>
+        <h4><div id="objects" align='center'>
         </div></h4>
         
-        <div id='buttonContainer' align='center' style='display:inline-block;'>
-            <video autoplay="true" onclick="captureImage()" control="true" id="videoElement" width="100%" playsinline></video><br>
-            <!-- <button type="button" class="btn btn-primary" onclick="captureImage()">Take</button> -->
-            <button type='button' id='nextButton' class='btn btn-default' onclick='get_random_object();' style="display:none;">Next</button>
-        </div>
-        
-        <br>
-
-        <div id="images"></div>
-        
-        <div id='nextContainer' align='center'>
-        </div>
-        
-        <!-- Button trigger modal -->
-        <button type="button" id='triggerModal' class="btn btn-primary" data-toggle="modal" data-target="#guideModal" style="display:none;">
-          Launch modal
-        </button>
-        
-        <!-- Modal -->
-        <div class="modal fade" id="guideModal" tabindex="-1" role="dialog" aria-labelledby="guideModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header" align='center'>
-                <h5 class="modal-title" id="guideModalLabel">Next item</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body" id="guideBody">
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
+        <div id='videoContainer' align='center' style='position:relative;'>
+            <video id='videoElement' autoplay="true" onclick="captureImage()" control="true" width="100%" playsinline></video><br>
+            
+            <div class="fixed-bottom mb-3 ml-3" style="width:20vw;height:20vw;position:absolute;bottom:10px;">
+                <div align='right'>
+                    <span id='count' class='circle'>30</span>
+                </div>
+            
+                <canvas id="canvas" style="width:18vw;height:18vw;background-color: gray;"></canvas>
+                <!--<div id='prev_img' style="width:18vw;height:18vw;background-color: gray; align='center'">No image</div>-->
             </div>
-          </div>
         </div>
+        
         
         <script>
              var video = document.querySelector("#videoElement");
