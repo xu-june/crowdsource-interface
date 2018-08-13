@@ -45,7 +45,7 @@
          
         <p>If you want to do this study again with other objects, touch the button below to go to the introduction page, then enter this code. 
         You are not allowed to use the objects that you already used.</p>
-        <button type="button" class="btn btn-default" onclick="window.location.href='index.php'">Repeat this study with other objects</button>
+        <button type="button" class="btn btn-default" onclick="window.location.href='index.php'">Repeat this study with other objects ></button>
     </div> 
   </body>
 </html>

@@ -16,7 +16,7 @@
 		<h3>You told us what you would do differently, now show us!</h3>
 		<p>On the next screen, take 30 more pictures of the requested object.</p>
 
-		<button type="button" class="btn btn-default" onclick="window.location.href='training2.php'">Next</button>
+		<button type="button" class="btn btn-default" onclick="window.location.href='training2.php'">Next ></button>
 	</div>
 </body>
 </html>

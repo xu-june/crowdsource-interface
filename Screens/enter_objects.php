@@ -40,7 +40,7 @@
             </div>
           </div>
           
-          <button type="submit" class="btn btn-primary">Next</button>
+          <button type="submit" class="btn btn-primary">Next ></button>
           
         </form>
         

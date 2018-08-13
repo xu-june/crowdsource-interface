@@ -45,7 +45,7 @@
 			<div class="chcount"><small><span id="charCount2">800</span>/800 characters left</small></div>
 
 
-			<button type="submit" class="btn btn-default">Next</button>
+			<button type="submit" class="btn btn-default">Next ></button>
 		</form>
 		
 	</div>

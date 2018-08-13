@@ -44,7 +44,7 @@
             <textarea class="form-control" required="true" id="pq4" rows="3"></textarea>
           </div>
           
-          <button type="submit" class="btn btn-default">Next</button>
+          <button type="submit" class="btn btn-default">Next ></button>
           
         </form>
 <?php
