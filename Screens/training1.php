@@ -44,7 +44,7 @@
 			var obj_name = obj_names[obj_index[step]-1];
 			
 			$objects.text(obj_name);
-	        document.getElementById("objects").style.backgroundColor = bgColors[step];
+	        document.getElementById("videoElement").style.borderColor = document.getElementById("objects").style.backgroundColor = bgColors[step];
         }
         
         function captureImage() {
@@ -124,6 +124,12 @@
 			show_prev_image(upload_cnt % 30);
         });
     </script>
+
+    <style type="text/css">
+        #videoElement {
+            border: 8px solid black;
+        }
+    </style>
 </head>
 <body>
     <div class="mt-3 mb-3 mr-3 ml-3">

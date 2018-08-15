@@ -42,7 +42,7 @@
             }
             
             $objects.text(obj_names[obj_index[upload_cnt]-1]);
-            document.getElementById("objects").style.backgroundColor = bgColors[obj_index[upload_cnt]-1];
+            document.getElementById("videoElement").style.borderColor = document.getElementById("objects").style.backgroundColor = bgColors[obj_index[upload_cnt]-1];
             show_prev_image(upload_cnt);
         }
         
@@ -121,6 +121,12 @@
             $("#nextButton").hide();
         });
     </script>
+
+    <style type="text/css">
+        #videoElement {
+            border: 8px solid black;
+        }
+    </style>
 </head>
 <body>
     <div class="mt-3 mb-3 mr-3 ml-3">
