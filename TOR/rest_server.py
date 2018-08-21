@@ -22,7 +22,11 @@ import json
 import zipfile
 
 # from multiprocessing import Pool
-from concurrent.futures import ThreadPoolExecutor
+# from concurrent.futures import ThreadPoolExecutor
+import threading
+
+# garbage collector
+import gc
 
 
 # configuration for Flask upload
@@ -47,15 +51,21 @@ def init_recognizer(classifer_model, classifier_label, debug):
 
 """
 stop the recognizer
-@input  : uuid (string)
+@input  : uuid (string), terminating (boolean)
 @output : N/A
 """
-def stop_recognizer(uuid):
-  global TORs
+def stop_recognizer(uuid, terminating = False):
+  global TORs, models, labels, in_training
   # we may have to rely on python's GCC
   if TORs[uuid] is not None:
     TORs[uuid].stop_all()
-    TORs[uuid] = None
+    # TORs.pop(uuid, None)
+    if terminating:
+      del TORs[uuid]
+      del models[uuid]
+      del labels[uuid]
+      del in_training[uuid]
+      # TORs[uuid] = None
 
 
 """
@@ -214,11 +224,14 @@ retrain a classifier that is associated with uuid and phase
 @output : boolean (True/False)
 """
 def retrain_classifier(uuid, phase):
+  global in_training
   # stop the recognizer if alive
   stop_recognizer(uuid)
-
   # trigger the retrain
   new_model, new_label = TORs[uuid].retrain(uuid, phase)
+  # reset the training flag
+  in_training[uuid] = False
+
   if new_model != "" and new_label != "":
     global models, labels
     models[uuid] = new_model
@@ -237,6 +250,7 @@ receive an image from a client to save
 @output : Response {count of images in the label}
 """
 # route http posts to this method
+"""
 @receiver.route('/save', methods = ['POST'])
 def save_image():
   global input_label
@@ -259,6 +273,7 @@ def save_image():
   
   # build JSON response containing the output label and probability
   return jsonify(label = label, count = str(cnt))
+"""
 
 
 """
@@ -267,6 +282,7 @@ receive a label from a client for retraining
 @output : Response {count of images in the label}
 """
 # route http posts to this method
+"""
 @receiver.route('/label', methods = ['POST'])
 def save_label():
   global input_label
@@ -292,6 +308,7 @@ def save_label():
   
   # build JSON response containing the output label and probability
   return jsonify(label = label, count = str(cnt))
+"""
 
 
 """
@@ -303,7 +320,7 @@ initialize a recognzer for a user
 # TO TEST: curl -d '{"uuid": "1234"}' -H "Content-Type: application/json" -X POST http://0.0.0.0:5000/init
 @receiver.route('/init', methods = ['POST'])
 def init():
-  global TORs, input_label, classifier_model, classifier_label, debug, models, labels
+  global TORs, classifier_model, classifier_label, debug, models, labels
 
   r = request
   print("request:", r)
@@ -318,19 +335,44 @@ def init():
     print("Error: no uuid")
     return jsonify(result = "False")
 
-  # run this initialization in a thread
-  # so that the initialization may not block the FLASK server processing
-  global thread_pool
-  future = thread_pool.submit(init_recognizer,
-                              classifier_model,
-                              classifier_label,
-                              debug)
-
-  # retrieve the result of the initialization
-  TORs[uuid] = future.result()
+  # initialize a recognizer
+  print("NOTICE: Starting a recognizer for ", uuid)
+  TORs[uuid] = init_recognizer(classifier_model, classifier_label, debug)
   models[uuid] = classifier_model
   labels[uuid] = classifier_label
-  # TORs[uuid] = init_recognizer(classifier_model, classifier_label, debug)
+  in_training[uuid] = False
+  
+  # build JSON response containing the result
+  return jsonify(result = "True")
+
+
+"""
+stop a recognzer for a user
+@input  : N/A
+@output : Response {result = True/False}
+"""
+# route http posts to this method
+# TO TEST: curl -d '{"uuid": "1234"}' -H "Content-Type: application/json" -X POST http://0.0.0.0:5000/stop
+@receiver.route('/stop', methods = ['POST'])
+def stop():
+  r = request
+  print("request:", r)
+  # get json body - contains "uuid"
+  body = r.json
+  if not body:
+    print("Error: invalid request")
+    return jsonify(result = "False")
+
+  uuid = body['uuid']
+  if not uuid:
+    print("Error: no uuid")
+    return jsonify(result = "False")
+
+  # stop the recognizer associated with a given UUID
+  print("NOTICE: Stopping a recognizer for ", uuid)
+  stop_recognizer(uuid, terminating = True)
+  # trigger the python's garbage collector
+  gc.collect()
   
   # build JSON response containing the result
   return jsonify(result = "True")
@@ -343,6 +385,7 @@ download a zip file that contains images
 """
 # route http posts to this method
 # TO TEST: curl -v -X POST -F "uuid=1234" -F "file=@test1.zip" http://0.0.0.0:5000/upload
+"""
 @receiver.route('/upload', methods = ['POST'])
 def download():
   r = request
@@ -381,7 +424,7 @@ def download():
   
   # build JSON response containing the result
   return jsonify(result = "True")
-
+"""
 
 """
 unzip a given zip file
@@ -557,11 +600,10 @@ def test():
   
   # recognize image in a thread
   # so that the recognition may not block the FLASK server processing
-  global thread_pool
-  future = thread_pool.submit(test_image, uuid, phase, image)
+  result = test_image(uuid, phase, image)
   # output = test_images(uuid, phase)
   # build JSON response containing the output label and probability
-  return jsonify(future.result())
+  return jsonify(result)
 
 
 """
@@ -577,7 +619,7 @@ train classifiers with images received from a client
 # TO TEST: curl -v -X POST -F "uuid=1234" -F "phase=train1" -F "file=@train1.zip" http://0.0.0.0:5000/train
 @receiver.route('/train', methods = ['POST'])
 def train():
-  global TORs
+  global TORs, in_training
 
   r = request
   print("request:", r)
@@ -608,9 +650,14 @@ def train():
   # sarmap = a variant of map, to take multiple arguments
   # FYI, https://stackoverflow.com/questions/5442910/python-multiprocessing-pool-map-for-multiple-arguments
   # proc_pool.starmap(retrain_classifier, [(uuid, phase)])
-  global thread_pool
-  thread_pool.submit(retrain_classifier, uuid, phase)
-  # result = "True" if future.result() else "False"
+  # with ThreadPoolExecutor(max_workers=1) as thread_pool:
+    # thread_pool.submit(retrain_classifier, uuid, phase)
+  if not in_training[uuid]:
+    in_training[uuid] = True
+    # https://stackoverflow.com/questions/2846653/how-to-use-threading-in-python
+    t = threading.Thread(target = retrain_classifier, args = (uuid, phase))
+    t.daemon = True
+    t.start()
 
   # return "True" if we "trigger" the retraining
   return jsonify(uuid = uuid,
@@ -722,10 +769,11 @@ classifier_label = os.path.join(classifier_model_dir, "classifier_labels.txt")
 TORs = {}
 models = {}
 labels = {}
+in_training = {}
 # proc_pool = Pool(8) # 8 is the number of GPUs
-thread_pool = ThreadPoolExecutor(8)
+# thread_pool = ThreadPoolExecutor(max_workers = 8)
 
 
 # run the RESTful server
-receiver.run(host = "0.0.0.0", port = 5000)
+receiver.run(host = "0.0.0.0", port = 5000, threaded = True)
 

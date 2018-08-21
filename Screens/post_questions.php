@@ -1,8 +1,15 @@
 <?php 
-    session_start();
-	include 'header.php';
-    include 'connectDB.php';
-    savePageLog($_SESSION['pid'], "post_questions");
+  session_start();
+  include 'header.php';
+  include 'connectDB.php';
+  savePageLog($_SESSION['pid'], "post_questions");
+
+  $uuid = $_SESSION['pid'];
+
+  // stop the object recognizer
+  require(dirname(__FILE__).'/../TOR/rest_client.php');
+  $puuid = 'p' . $uuid;
+  stop_recognizer($puuid);
 ?>
 
 <!doctype html>

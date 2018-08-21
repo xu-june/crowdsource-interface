@@ -52,6 +52,40 @@ function init_recognizer($uuid) {
 
 
 /*
+  stop a recognizer
+    @input  : uuid (string)
+    @output : N/A
+ */
+function stop_recognizer($uuid) {
+  global $rest_server, $debug;
+  // the target url
+  $target_url = $rest_server . "stop";
+  if ($debug) {
+    echo "\nrequest to " . $target_url;  
+  }
+  // create a json file
+  $data = array("uuid" => $uuid);
+  $json_data = json_encode($data);
+  // create the POST request
+  $request = curl_init($target_url);
+  curl_setopt($request, CURLOPT_POST, true);
+  curl_setopt($request, CURLOPT_POSTFIELDS, $json_data);
+  curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($request, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/json',
+      'Content-Length: ' . strlen($json_data)
+  ));
+
+  $response = curl_exec($request);
+  if ($debug) {
+    echo "\nresponse: " . $response;
+  }
+
+  curl_close($request);
+}
+
+
+/*
   check if a given dir is existed; if not existed, craete it
     @input  : dir (string)
     @output : true/false (boolean)
