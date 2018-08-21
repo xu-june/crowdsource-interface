@@ -320,6 +320,7 @@ def init():
 
   # run this initialization in a thread
   # so that the initialization may not block the FLASK server processing
+  global thread_pool
   future = thread_pool.submit(init_recognizer,
                               classifier_model,
                               classifier_label,
@@ -556,6 +557,7 @@ def test():
   
   # recognize image in a thread
   # so that the recognition may not block the FLASK server processing
+  global thread_pool
   future = thread_pool.submit(test_image, uuid, phase, image)
   # output = test_images(uuid, phase)
   # build JSON response containing the output label and probability
@@ -606,6 +608,7 @@ def train():
   # sarmap = a variant of map, to take multiple arguments
   # FYI, https://stackoverflow.com/questions/5442910/python-multiprocessing-pool-map-for-multiple-arguments
   # proc_pool.starmap(retrain_classifier, [(uuid, phase)])
+  global thread_pool
   thread_pool.submit(retrain_classifier, uuid, phase)
   # result = "True" if future.result() else "False"
 
