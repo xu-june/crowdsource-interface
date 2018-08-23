@@ -10,6 +10,9 @@ include 'connectDB.php';
 
 $uuid = $_SESSION['pid']; 
 $phase = $_POST['phase'];
+if (isset($_POST['ratio'])) {
+	$_SESSION['ratio'] = $_POST['ratio'];
+}
 $objectname = str_replace(' ', '_', $_POST['objectname']);
 
 $img = $_POST['imgBase64'];
@@ -24,6 +27,9 @@ $ext = 'png';
 $dest_path = dirname(__FILE__) . '/images/p' . $uuid . '/t' .$_SESSION['trial'] .'/'. $phase . '/' . $objectname . '/';
 $img_path = $dest_path . $filename . '.' . $ext;
 file_put_contents($img_path, $fileData);
+// echo $uuid."<br>";
+// echo $phase."<br>";
+// echo $objectname."<br>";
 
 if (strpos($phase, 'test') === 0) {
 	require(dirname(__FILE__).'/../TOR/rest_client.php');

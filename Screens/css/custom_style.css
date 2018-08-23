@@ -1,0 +1,48 @@
+.overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+.overlay_contents{
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    color: white;
+}
+
+input[type=radio]{
+  transform:scale(1.5);
+}
+
+.radio_font {
+	font-size: 120%;
+}
+
+
+.circle {
+   background-color: #00FFF0;
+   border-color: #DDDDDD;
+   border-style: solid;
+   padding: 1vw;
+   -moz-border-radius:50%;
+   -webkit-border-radius: 50%;
+   border-radius:50%; 
+}
+
+.numCircle {
+    width: 10vw;
+    line-height: 10vw;
+    border-radius: 50%;
+    text-align: center;
+    border: 2px solid #DDDDDD;
+   	background-color: #00FFF0;
+}

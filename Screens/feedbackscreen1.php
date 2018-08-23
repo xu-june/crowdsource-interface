@@ -1,5 +1,8 @@
 <?php
-	include 'header.php';
+    session_start();
+    include 'connectDB.php';
+    include 'header.php';
+    savePageLog($_SESSION['pid'], "feedback1");
 ?>
 
 <!DOCTYPE html>
@@ -33,15 +36,15 @@
 		<?php printProgressBar(12); ?>
     
 		<form name="feedback" action="before_training2.php" method="post">
-			<h3>Compare the result to your expectations!</h3>
+			<h4>Compare the result to your expectations!</h4>
 			<p>Did you expect to get this result? Or did you expect the accuracy to be higher/lower?</p>
 			<p>Please tell us what you expected and why, as well as your result and why you think you got this result.</p>
-			<textarea name="feedback1" required="true" class="form-control" id="feedback1" rows="3" onkeyup="countChar1(this)" placeholder="Enter feedback here"></textarea>
+			<textarea name="f1q1" required="true" class="form-control" id="feedback1" rows="3" onkeyup="countChar1(this)" placeholder="Enter feedback here"></textarea>
 			<div class="chcount"><small><span id="charCount1">800</span>/800 characters left</small></div>
 			<br>
 
 			<p>If you were to retrain the system, what would you do differently? Think in terms of photo style, angle, lighting, etc.</p>
-			<textarea name="feedback2" id="feedback2" required="true" class="form-control" rows="3" onkeyup="countChar2(this)" placeholder="Enter feedback here"></textarea>
+			<textarea name="f1q2" id="feedback2" required="true" class="form-control" rows="3" onkeyup="countChar2(this)" placeholder="Enter feedback here"></textarea>
 			<div class="chcount"><small><span id="charCount2">800</span>/800 characters left</small></div>
 
 
@@ -50,6 +53,7 @@
 			</div>
 		</form>
 		
-	</div>
-</body>
-</html>
+
+<?php
+	include 'footer.php';
+?>

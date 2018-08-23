@@ -5,19 +5,11 @@
     savePageLog($_SESSION['pid'], "end");
 
 	// enter participant info	
-	$age = $_POST["age"];
-	$gender = $_POST["gender"];
-	$q1 = $_POST["pq1"];
-	$q2 = $_POST["pq2"];
-	$q3 = $_POST["pq3"];
-	$q4 = $_POST["pq4"];
-	$sql = "INSERT INTO participant_info (`participant_id`, `age`, `gender`, `pq1`, `pq2`, `pq3`, `pq4`, `time`, `date`) VALUES ("
-		.$pid.",".$age.", '".$gender."', '".$q1."', '".$q2."', '".$q3."', '".$q4."','".$time."','".$date."');";
-	execSQL($sql);
-
-	// update participant status
-	$sql = "UPDATE participant_status set `status`='COMPLETE', `last_update_time`='"
-		.$time."', `last_update_date`='".$date."'WHERE `participant_id`=".$pid.";";
+	$pq1 = $_POST["pq1"];
+	$pq2 = $_POST["pq2"];
+	$pq3 = $_POST["pq3"];
+	$pq4 = $_POST["pq4"];
+	$sql = "UPDATE participant_info set `pq1`='".$f1q1."', `pq2`='".$f1q2."', `pq3`='".$pq3."', `pq4`='".$pq4."' WHERE `participant_id`=".$_SESSION['pid'].";";
 	execSQL($sql);
 ?>
 
@@ -46,6 +38,7 @@
         <p>If you want to do this study again with other objects, touch the button below to go to the introduction page, then enter this code. 
         You are not allowed to use the objects that you already used.</p>
         <button type="button" class="btn btn-default" onclick="window.location.href='index.php'">Repeat this study with other objects</button>
-    </div> 
-  </body>
-</html>
+
+<?php
+	include 'footer.php';
+?>

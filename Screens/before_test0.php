@@ -100,11 +100,18 @@
 	shuffle($train1_order);
 	shuffle($train2_order);
 	
+	$_SESSION['order']['test0'] = $test0_order;
+	$_SESSION['order']['test1'] = $test1_order;
+	$_SESSION['order']['test2'] = $test2_order;
+	$_SESSION['order']['train1'] = $train1_order;
+	$_SESSION['order']['train2'] = $train2_order;
+	/*
 	$_SESSION['test0_order'] = $test0_order;
 	$_SESSION['test1_order'] = $test1_order;
 	$_SESSION['test2_order'] = $test2_order;
 	$_SESSION['train1_order'] = $train1_order;
 	$_SESSION['train2_order'] = $train2_order;
+	*/
 	
 	/*
 	echo implode(':', $_SESSION['test0_order'])."<br>";
@@ -139,7 +146,7 @@
 		<div class="mt-3 mb-3 mr-3 ml-3">
 	  		<?php printProgressBar(6); ?>
        
-			<h3>Testing images</h3>
+			<h4>Testing images</h4>
 			
 			<p>We will randomly choose one of your objects and ask you to take a photo of it. </p>
 			

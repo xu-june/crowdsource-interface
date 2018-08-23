@@ -38,31 +38,31 @@
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq4" id="q4a1" value="1">
                   <label class="form-check-label" required="true" for="q4a1">
-                    Putting your intelligence into a smart machine and robot
+                    <p class='radio_font'>Putting your intelligence into a smart machine and robot</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq4" id="q4a2" value="2">
                   <label class="form-check-label" required="true" for="q4a2">
-                    Programming a smart machine and robot with your own intelligence
+                    <p class='radio_font'>Programming a smart machine and robot with your own intelligence</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq4" id="q4a3" value="3">
                   <label class="form-check-label" required="true" for="q4a3">
-                    Making a smart machine and robot intelligent
+                    <p class='radio_font'>Making a smart machine and robot intelligent</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq4" id="q4a4" value="4">
                   <label class="form-check-label" required="true" for="q4a4">
-                    Putting more memory into a smart machine or robot
+                    <p class='radio_font'>Putting more memory into a smart machine or robot</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq4" id="q4a5" value="5">
                   <label class="form-check-label" required="true" for="q4a5">
-                    Playing a game
+                    <p class='radio_font'>Playing a game</p>
                   </label>
                 </div>
               </div>
@@ -77,25 +77,25 @@
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq5" id="q5a1" value="1">
                   <label class="form-check-label" required="true" for="q5a1">
-                    Not familiar at all (have never heard of machine learning) 
+                    <p class='radio_font'>Not familiar at all (have never heard of machine learning) </p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq5" id="q5a2" value="2">
                   <label class="form-check-label" required="true" for="q5a2">
-                    Slightly familiar (have heard of it but don’t know what it does)
+                    <p class='radio_font'>Slightly familiar (have heard of it but don’t know what it does)</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq5" id="q5a3" value="3">
                   <label class="form-check-label" required="true" for="q5a3">
-                    Somewhat familiar (I have a broad understanding of what it is and what it does)
+                    <p class='radio_font'>Somewhat familiar (I have a broad understanding of what it is and what it does)</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq5" id="q5a4" value="4">
                   <label class="form-check-label" required="true" for="q5a4">
-                    Extremely familiar (I have extensive knowledge on machine learning.)
+                    <p class='radio_font'>Extremely familiar (I have extensive knowledge on machine learning.)</p>
                   </label>
                 </div>
               </div>

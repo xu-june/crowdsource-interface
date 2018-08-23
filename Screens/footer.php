@@ -4,9 +4,11 @@
 
 
 <script>
-	console.log('<?php echo $_SESSION['pid']."_".$_SESSION['pcode']?>');
+	console.log('<?php echo $_SESSION['pid']."_".$_SESSION['pcode']."_".$_SESSION['step']?>');
 </script>
 
+        <pre id='log'></pre>
+		<br><br><br> <!-- space at the bottom -->
 
 		</div>
 	</body>

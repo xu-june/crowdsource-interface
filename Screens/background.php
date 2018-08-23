@@ -31,10 +31,10 @@
 </head>
   
 	<body>
-		<div class="mt-3 mb-3 mr-3 ml-3">
+		<div class="mt-3 mb-5 mr-3 ml-3">
   		<?php printProgressBar(1); ?>
   		
-        <h3> Background Survey </h3><br>
+        <h4> Background Survey </h4><br>
         
         <form  action="tech_experience1.php" name="bgForm" method="post" id='backgroundForm'>
           <div class="form-group row">
@@ -52,19 +52,19 @@
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="gender" id="genderMale" value="male" >
                   <label class="form-check-label" for="genderMale">
-                    Male
+                    <p class='radio_font'>Male</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="gender" id="genderFemale" value="female">
                   <label class="form-check-label" for="genderFemale">
-                    Female
+						<p class='radio_font'>Female</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="gender" id="genderNB" value="nb">
                   <label class="form-check-label" for="genderNB">
-                    Nonbinary (neither, both, or something else)
+                    <p class='radio_font'>Nonbinary (neither, both, or something else)</p>
                   </label>
                 </div>
               </div>
@@ -86,13 +86,13 @@
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="dom_hand" id="left_hand" value="left">
                   <label class="form-check-label" for="left_hand">
-                    Left hand
+                    <p class='radio_font'>Left hand</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="dom_hand" id="right_hand" value="right">
                   <label class="form-check-label" for="right_hand">
-                    Right hand 
+                    <p class='radio_font'>Right hand </p>
                   </label>
                 </div>
               </div>
@@ -108,18 +108,18 @@
                 <div class="form-check">
                   <input class="form-check-input" onclick="vi_status(false);" required="true" type="radio" name="has_vi" id="vi_yes" value="yes">
                   <label class="form-check-label" onclick="vi_status(false);" required="true" for="vi_yes">
-                    Yes
+                    <p class='radio_font'>Yes</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" onclick="vi_status(true);" required="true" type="radio" name="has_vi" id="vi_no" value="no">
                   <label class="form-check-label" onclick="vi_status(true);" for="vi_no">
-                    No
+                    <p class='radio_font'>No</p>
                   </label>
                 </div>
                 <label for="level_of_vision">Please describe your current level of vision. </label>
               	<textarea class="form-control" required="true" id="level_of_vision" name="level_of_vision" rows="1"></textarea>
-                <label for="vi_age">For how many years have you had this level of vision ability? </label>
+                <label for="vi_years">For how many years have you had this level of vision ability? </label>
               	<textarea class="form-control" required="true" id="vi_years" name="vi_years" rows="1"></textarea>  
               </div>
             </div>
@@ -133,18 +133,18 @@
                 <div class="form-check">
                   <input class="form-check-input" onclick="mi_status(false);" required="true" type="radio" name="has_mi" id="mi_yes" value="yes">
                   <label class="form-check-label" onclick="mi_status(false);" for="mi_yes">
-                    Yes
+                    <p class='radio_font'>Yes</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" onclick="mi_status(true);" required="true" type="radio" name="has_mi" id="mi_no" value="no">
                   <label class="form-check-label" onclick="mi_status(true);" for="mi_no">
-                    No
+                    <p class='radio_font'>No</p>
                   </label>
                 </div>
                 <label for="motor_ability">Please describe your current motor ability. </label>
               	<textarea class="form-control" required="true" id="motor_ability" name="motor_ability" rows="1"></textarea>
-                <label for="mi_age">For how many years have you had this level of motor ability? </label>
+                <label for="mi_years">For how many years have you had this level of motor ability? </label>
               	<textarea class="form-control" required="true" id="mi_years" name="mi_years" rows="1"></textarea>  
               </div>
             </div>
@@ -156,6 +156,8 @@
           
         </form>
 
-<?php
-	include 'footer.php';
-?>
+<br><br><br> <!-- space at the bottom -->
+
+		</div>
+	</body>
+</html>

@@ -25,7 +25,7 @@
 				document.getElementById("submitbtn").click();
 			} 
 		</script>
-		<h3>Number your objects!</h3>
+		<h4>Number your objects!</h4>
 		<p>Assign your objects to Object 1, Object 2, and Object 3.</p>
 
 

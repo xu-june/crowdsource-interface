@@ -3,6 +3,11 @@
 	include 'header.php';
     include 'connectDB.php';
     savePageLog($_SESSION['pid'], "post_questions");
+    
+    
+    $f2q1 = $_POST["f2q1"];
+	$sql = "UPDATE participant_info set `f2q1`='".$f2q1."' WHERE `participant_id`=".$_SESSION['pid'].";";
+	execSQL($sql);
 ?>
 
 <!doctype html>
@@ -17,7 +22,7 @@
     <div class="mt-3 mb-3 mr-3 ml-3">
         <?php printProgressBar(18); ?>
         
-        <h3> Post-study Questions </h3><br>
+        <h4> Post-study Questions </h4><br>
         
         <form  action="end.php">
           <!-- text form -->

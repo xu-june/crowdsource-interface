@@ -1,10 +1,12 @@
-<!-- 
-  send images to a deep learning server
-    1. first compress (zip) the images
-    2. then send the zip file to the server
--->
+
 
 <?php
+
+// <!-- 
+//   send images to a deep learning server
+//     1. first compress (zip) the images
+//     2. then send the zip file to the server
+// -->
 
 // global variables
 // create a POST request with the zip file and uuid info using cURL

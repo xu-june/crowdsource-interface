@@ -1,5 +1,8 @@
 <?php
-	include 'header.php';
+    session_start();
+    include 'connectDB.php';
+    include 'header.php';
+    savePageLog($_SESSION['pid'], "feedback2");
 ?>
 
 <!DOCTYPE html>
@@ -23,12 +26,12 @@
 	<div class="mt-3 mb-3 mr-3 ml-3">
 		<?php printProgressBar(17); ?>
     
-		<h3>Compare the result to your expectations!</h3>
+		<h4>Compare the result to your expectations!</h4>
 		<p>Did you expect to get this result? Or did you expect the accuracy to be higher/lower?</p>
 		<p>Please tell us what you expected and why, as well as your result and why you think you got this result.</p>
 
 		<form name="feedback" action="post_questions.php" method="post">
-			<textarea name="feedback1" required="true" class="form-control" id="feedback1" rows="3" onkeyup="countChar(this)" placeholder="Enter feedback here"></textarea>
+			<textarea name="f2q1" required="true" class="form-control" id="feedback1" rows="3" onkeyup="countChar(this)" placeholder="Enter feedback here"></textarea>
 			<div class="chcount"><small><span id="charCount">800</span>/800 characters left</small></div>
 			<br>
 
@@ -36,6 +39,7 @@
 				<button type="submit" class="btn btn-default">Next ></button>
 			</div>
 		</form>
-	</div>
-</body>
-</html>
+
+<?php
+	include 'footer.php';
+?>

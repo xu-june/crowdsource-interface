@@ -20,6 +20,7 @@ function printMetaInfo() {
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/custom_style.css">
     <script src="./js/jquery-3.3.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/js-functions.js"></script>
@@ -37,17 +38,6 @@ function printMetaInfo() {
 		}, refreshTime );
 	</script>
 	
-	<style>
-		.circle {
-		   background-color: #00FFF0;
-		   border-color: #DDDDDD;
-		   border-style: solid;
-		   padding: 1vw;
-		   -moz-border-radius:50%;
-		   -webkit-border-radius: 50%;
-		   border-radius:50%; 
-		}
-	</style>
 
 <?php
 }

@@ -75,43 +75,43 @@
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq1" id="q1a1" value="1">
                   <label class="form-check-label" required="true" for="q1a1">
-                    Never
+                    <p class='radio_font'>Never</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq1" id="q1a2" value="2">
                   <label class="form-check-label" required="true" for="q1a2">
-                    Once a month
+                    <p class='radio_font'>Once a month</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq1" id="q1a3" value="3">
                   <label class="form-check-label" required="true" for="q1a3">
-                    Several times a month
+                    <p class='radio_font'>Several times a month</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq1" id="q1a4" value="4">
                   <label class="form-check-label" required="true" for="q1a4">
-                    Once a week
+                    <p class='radio_font'>Once a week</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq1" id="q1a5" value="5">
                   <label class="form-check-label" required="true" for="q1a5">
-                    Several times a week
+                    <p class='radio_font'>Several times a week</p>
                   </label>
                 </div>
 				<div class="form-check">
 				  <input class="form-check-input" required="true" type="radio" name="bq1" id="q1a6" value="6">
 				  <label class="form-check-label" required="true" for="q1a6">
-					Once a day
+					<p class='radio_font'>Once a day</p>
 				  </label>
 					</div>
 				<div class="form-check">
 				  <input class="form-check-input" required="true" type="radio" name="bq1" id="q1a7" value="7">
 				  <label class="form-check-label" required="true" for="q1a7">
-					Several times a day
+					<p class='radio_font'>Several times a day</p>
 				  </label>
 				</div>
               </div>
@@ -126,43 +126,43 @@
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq2" id="q2a1" value="1">
                   <label class="form-check-label" required="true" for="q2a1">
-                    Never
+                    <p class='radio_font'>Never</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq2" id="q2a2" value="2">
                   <label class="form-check-label" required="true" for="q2a2">
-                    Once a month
+                    <p class='radio_font'>Once a month</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq2" id="q2a3" value="3">
                   <label class="form-check-label" required="true" for="q2a3">
-                    Several times a month
+                    <p class='radio_font'>Several times a month</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq2" id="q2a4" value="4">
                   <label class="form-check-label" required="true" for="q2a4">
-                    Once a week
+                    <p class='radio_font'>Once a week</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq2" id="q2a5" value="5">
                   <label class="form-check-label" required="true" for="q2a5">
-                    Several times a week
+                    <p class='radio_font'>Several times a week</p>
                   </label>
                 </div>
 				<div class="form-check">
 				  <input class="form-check-input" required="true" type="radio" name="bq2" id="q2a6" value="6">
 				  <label class="form-check-label" required="true" for="q2a6">
-					Once a day
+					<p class='radio_font'>Once a day</p>
 				  </label>
 					</div>
 				<div class="form-check">
 				  <input class="form-check-input" required="true" type="radio" name="bq2" id="q2a7" value="7">
 				  <label class="form-check-label" required="true" for="q2a7">
-					Several times a day
+					<p class='radio_font'>Several times a day</p>
 				  </label>
 				</div>
               </div>
@@ -177,43 +177,43 @@
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq3" id="q3a1" value="1">
                   <label class="form-check-label" required="true" for="q3a1">
-                    Never
+                    <p class='radio_font'>Never</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq3" id="q3a2" value="2">
                   <label class="form-check-label" required="true" for="q3a2">
-                    Once a month
+                    <p class='radio_font'>Once a month</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq3" id="q3a3" value="3">
                   <label class="form-check-label" required="true" for="q3a3">
-                    Several times a month
+                    <p class='radio_font'>Several times a month</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq3" id="q3a4" value="4">
                   <label class="form-check-label" required="true" for="q3a4">
-                    Once a week
+                    <p class='radio_font'>Once a week</p>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" required="true" type="radio" name="bq3" id="q3a5" value="5">
                   <label class="form-check-label" required="true" for="q3a5">
-                    Several times a week
+                    <p class='radio_font'>Several times a week</p>
                   </label>
                 </div>
 				<div class="form-check">
 				  <input class="form-check-input" required="true" type="radio" name="bq3" id="q3a6" value="6">
 				  <label class="form-check-label" required="true" for="q3a6">
-					Once a day
+					<p class='radio_font'>Once a day</p>
 				  </label>
 					</div>
 				<div class="form-check">
 				  <input class="form-check-input" required="true" type="radio" name="bq3" id="q3a7" value="7">
 				  <label class="form-check-label" required="true" for="q3a7">
-					Several times a day
+					<p class='radio_font'>Several times a day</p>
 				  </label>
 				</div>
               </div>
