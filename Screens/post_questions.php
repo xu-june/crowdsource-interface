@@ -1,13 +1,21 @@
 <?php 
+<<<<<<< HEAD
     session_start();
 	include 'header.php';
     include 'connectDB.php';
     savePageLog($_SESSION['pid'], "post_questions");
-    
-    
-    $f2q1 = $_POST["f2q1"];
+  
+	$f2q1 = $_POST["f2q1"];
 	$sql = "UPDATE participant_info set `f2q1`='".$f2q1."' WHERE `participant_id`=".$_SESSION['pid'].";";
 	execSQL($sql);
+
+	$uuid = $_SESSION['pid'];
+
+	// stop the object recognizer
+	require(dirname(__FILE__).'/../TOR/rest_client.php');
+	$puuid = 'p' . $uuid;
+	stop_recognizer($puuid);
+
 ?>
 
 <!doctype html>
