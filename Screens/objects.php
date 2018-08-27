@@ -2,7 +2,20 @@
 	session_start();
 	include 'connectDB.php';
 	include 'header.php';
-	savePageLog($_SESSION['pid'], "objects");
+	savePageLog($_SESSION['pid'], basename($_SERVER['PHP_SELF']));
+    
+    $examples = array();
+    if ($_SESSION['current_category']=='drink'){
+        $examples = array('Coca cola', 'Pepsi', 'Sprite');
+    } else if ($_SESSION['current_category']=='bottle'){
+        $examples = array('Coca cola', 'Dasani', 'Sprite');
+    } else if ($_SESSION['current_category']=='cereal'){
+        $examples = array('Lucky charms', 'Cheerios', 'Frosted flakes');
+    } else if ($_SESSION['current_category']=='snack'){
+        $examples = array('Photato chips', 'Fritos', 'Pretzels');
+    } else if ($_SESSION['current_category']=='spice'){
+        $examples = array('Cinnamon', 'Nutmeg', 'Chili powder');
+    }
 ?>
 
 <!doctype html>
@@ -30,36 +43,39 @@
 
 
 		<form name="form" action="before_test0.php" method="get">
-			<table>
+			<table cellspacing="10">
 				<tr>
 					<td width="20%">
-						<img src="images/can_green.png" width="100%">
+						<img src="images/<?=$_SESSION['current_category']?>_green.png" width="100%">
 					</td>
 					<td>
 						<div><label for="obj1">Object 1: </label></div>
-						<input type="text" required="true" name="obj1" required="true" class="form-control" id="obj1" placeholder="Name of object 1 (e.g., Coke)">
+						<input type="text" required="true" name="obj1" required="true" class="form-control" id="obj1" placeholder="Name of object 1 (e.g., <?=$examples[0]?>)">
+                        <br>
 					</td>
 				</tr>
 			</table>
 			<table>
 				<tr>
 					<td width="20%">
-						<img src="images/can_orange.png" width="100%">
+						<img src="images/<?=$_SESSION['current_category']?>_orange.png" width="100%">
 					</td>
 					<td>
 						<div><label for="obj2">Object 2: </label></div>
-						<input type="text" required="true" name="obj2" required="true" class="form-control" id="obj2" placeholder="Name of object 2 (e.g., Pepsi)">
+						<input type="text" required="true" name="obj2" required="true" class="form-control" id="obj2" placeholder="Name of object 2 (e.g., <?=$examples[1]?>)">
+                        <br>
 					</td>
 				</tr>
 			</table>
 			<table>
 				<tr>
 					<td width="20%">
-						<img src="images/can_blue.png" width="100%">
+						<img src="images/<?=$_SESSION['current_category']?>_blue.png" width="100%">
 					</td>
 					<td>
 						<div><label for="obj3">Object 3: </label></div>
-						<input type="text" required="true" name="obj3" required="true" class="form-control" id="obj3" placeholder="Name of object 3 (e.g., Sprite)">
+						<input type="text" required="true" name="obj3" required="true" class="form-control" id="obj3" placeholder="Name of object 3 (e.g., <?=$examples[2]?>)">
+                        <br>
 					</td>
 				</tr>
 			</table>

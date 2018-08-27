@@ -4,9 +4,8 @@
 	include 'connectDB.php';
 	include 'header.php';
 	
-	savePageLog(-1, "background");
+	savePageLog(-1, basename($_SERVER['PHP_SELF']));
 ?> 
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -32,7 +31,40 @@
   
 	<body>
 		<div class="mt-3 mb-5 mr-3 ml-3">
-  		<?php printProgressBar(1); ?>
+  		<?php 
+            printProgressBar(1); 
+            
+            if (!empty($_POST['code'])) {
+                $query = "SELECT participant_id, participant_code, trial FROM participant_status where status='COMPLETE' and participant_code='".$_POST['code']."';";
+                
+                echo $query."<br>";
+                $rows = getConn()->query($query);
+                
+                if ($rows->num_rows > 0) {
+                    $result = $rows->fetch_assoc();
+                    $pid = $result['participant_id'];
+                    $pcode = $result['participant_code'];
+                    $trial = $result['trial'];
+                    $date = date("Y-m-d H:i:s");
+                    $time = round(microtime(true) * 1000);
+                    
+                    $_SESSION['pid'] = $pid;
+                    $_SESSION['pcode'] = $pcode;
+                    $_SESSION['trial'] = $trial+1;
+                    
+                    // update participant status
+                    $sql = "UPDATE participant_status set `status`='IN PROGRESS', `trial`=".($trial+1).", `last_update_time`='"
+                        .$time."', `last_update_date`='".$date."'WHERE `participant_id`=".$pid.";";
+                    execSQL($sql);
+                    
+                    header("Location: screen1_objects.php"); /* Redirect browser */
+                    exit();
+                } else {
+                    echo "Your code is invalid. <br>Start a new study if you have never completed this study before. Otherwise, enter the correct code.";
+                    exit();
+                }
+            }
+        ?>
   		
         <h4> Background Survey </h4><br>
         

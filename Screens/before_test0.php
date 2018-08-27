@@ -2,7 +2,7 @@
 	session_start();
 	include 'connectDB.php';
 	include 'header.php';
-	savePageLog($_SESSION['pid'], "before_test0");
+	savePageLog($_SESSION['pid'], basename($_SERVER['PHP_SELF']));
 	
 	function recursive_rmdir($dir) { 
 		if( is_dir($dir) ) { 
@@ -105,21 +105,6 @@
 	$_SESSION['order']['test2'] = $test2_order;
 	$_SESSION['order']['train1'] = $train1_order;
 	$_SESSION['order']['train2'] = $train2_order;
-	/*
-	$_SESSION['test0_order'] = $test0_order;
-	$_SESSION['test1_order'] = $test1_order;
-	$_SESSION['test2_order'] = $test2_order;
-	$_SESSION['train1_order'] = $train1_order;
-	$_SESSION['train2_order'] = $train2_order;
-	*/
-	
-	/*
-	echo implode(':', $_SESSION['test0_order'])."<br>";
-	echo implode(':', $_SESSION['test1_order'])."<br>";
-	echo implode(':', $_SESSION['test2_order'])."<br>";
-	echo implode(':', $_SESSION['train1_order'])."<br>";
-	echo implode(':', $_SESSION['train2_order'])."<br>";
-	*/
 	
 	$sql = "delete from Objects where `participant_id`=".$uuid." and `trial`=".$_SESSION['trial'].";";
 	execSQL($sql);
@@ -127,9 +112,9 @@
 	$date = date("Y-m-d H:i:s");
 	$time = round(microtime(true) * 1000);
 	$sql = "INSERT INTO Objects "
-			."(`participant_id`, `trial`, `name1`, `name2`, `name3`, `test0_order`, `test1_order`, `test2_order`, `train1_order`, `train2_order`, `add_time`, `add_date`) VALUES ("
-			.$uuid.",".$_SESSION['trial'].", '".$obj1."', '".$obj2."', '".$obj3."', '".implode(':',$test0_order)."', '".implode(':',$test1_order)."', '"
-			.implode(':',$test2_order)."', '".implode(':',$train1_order)."', '".implode(':',$train2_order)."', '".$time."', '".$date."');";
+			."(`participant_id`, `trial`, `category`, `name1`, `name2`, `name3`, `test0_order`, `test1_order`, `test2_order`, `train1_order`, `train2_order`, `add_time`, `add_date`) VALUES ("
+			.$uuid.",".$_SESSION['trial'].", '".$_SESSION['current_category'].", '".$obj1."', '".$obj2."', '".$obj3."', '".implode(':',$test0_order)."', '"
+            .implode(':',$test1_order)."', '".implode(':',$test2_order)."', '".implode(':',$train1_order)."', '".implode(':',$train2_order)."', '".$time."', '".$date."');";
 	execSQL($sql);
 ?>
 

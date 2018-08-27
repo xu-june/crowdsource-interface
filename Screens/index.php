@@ -31,18 +31,18 @@
 		
 			<div class="alert alert-info">
 				<p><em>If you are continuing this study from the last session, please enter the code we shared with you here. <p class="text-danger">You will not be compensated if you participate for more than once without your code.</p></em></p>
-				<form>
+				<form id='codeForm' action='background.php' method='post'>
 					<div class="form-group row">
 						<label for="code" class="col-2 col-form-label">Code:</label>
 						<div class="col-10">
-							<input type="text" class="form-control" id="code" placeholder="Enter code">
+							<input type="text" class="form-control" id="code" name="code" placeholder="Enter code">
 						</div>
 					</div>
 				</form>
 			</div>
 			
 			<div align='center'>
-				<button type="button" id="nextButton" class="btn btn-default" onclick="window.location.href='background.php'">Start</button>
+				<button type="button" id="nextButton" class="btn btn-default" onclick="document.getElementById('codeForm').submit();">Start</button>
 			</div>
         	</div>
 

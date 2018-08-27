@@ -2,7 +2,7 @@
 	session_start();
 	include 'connectDB.php';
 	include 'header.php';
-	savePageLog($_SESSION['pid'], "tech_experience2");
+	savePageLog($_SESSION['pid'], basename($_SERVER['PHP_SELF']));
 
 	$q1 = $_POST["bq1"];
 	$q2 = $_POST["bq2"];
@@ -28,7 +28,7 @@
   		
         <h3> Technology Experience Questions </h3>
         
-        <form  action="screen1_drink.php" name="bgForm" method="post" id='backgroundForm'>
+        <form  action="screen1_objects.php" name="bgForm" method="post" id='backgroundForm'>
           
           <!-- radio button set -->
           <fieldset class="form-group">

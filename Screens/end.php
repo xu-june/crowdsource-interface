@@ -2,7 +2,7 @@
 	session_start();
 	include 'connectDB.php';
 	include 'header.php';
-    savePageLog($_SESSION['pid'], "end");
+    savePageLog($_SESSION['pid'], basename($_SERVER['PHP_SELF']));
 
 	// enter participant info	
 	$pq1 = $_POST["pq1"];
@@ -11,6 +11,14 @@
 	$pq4 = $_POST["pq4"];
 	$sql = "UPDATE participant_info set `pq1`='".$f1q1."', `pq2`='".$f1q2."', `pq3`='".$pq3."', `pq4`='".$pq4."' WHERE `participant_id`=".$_SESSION['pid'].";";
 	execSQL($sql);
+    
+    // update participant status
+    $date = date("Y-m-d H:i:s");
+    $time = round(microtime(true) * 1000);
+	$sql = "UPDATE participant_status set `status`='COMPLETE', `last_update_time`='"
+		.$time."', `last_update_date`='".$date."'WHERE `participant_id`=".$_SESSION['pid'].";";
+	execSQL($sql);
+    
 ?>
 
 <!doctype html>
@@ -37,7 +45,16 @@
          
         <p>If you want to do this study again with other objects, touch the button below to go to the introduction page, then enter this code. 
         You are not allowed to use the objects that you already used.</p>
-        <button type="button" class="btn btn-default" onclick="window.location.href='index.php'">Repeat this study with other objects</button>
+        
+        <form id='codeForm' action='background.php' method='post'>
+            <div class="form-group row">
+                <div class="col-10">
+                    <input type="hidden" id="code" name="code" value="<?=$_SESSION['pcode']?>">
+                </div>
+            </div>
+        </form>
+        
+        <button type="button" class="btn btn-default" onclick="document.getElementById('codeForm').submit();">Repeat this study with other objects</button>
 
 <?php
 	include 'footer.php';

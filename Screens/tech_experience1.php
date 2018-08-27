@@ -44,7 +44,7 @@
 		$_SESSION['test_img_num'] = 5;  // temporary value for debugging
 		$_SESSION['training_img_num'] = 30; // temporary value for debugging
 	}
-	savePageLog($_SESSION['pid'], "tech_experience1");
+	savePageLog($_SESSION['pid'], basename($_SERVER['PHP_SELF']));
 ?> 
 
 <!doctype html>

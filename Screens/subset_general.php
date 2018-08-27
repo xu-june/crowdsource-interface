@@ -71,7 +71,7 @@
 		
 		<?php
 			if ($subset_num == 20) {
-				echo 'var limit = 5;';
+				echo 'var limit = 20;';
 			} else {
 				echo 'var limit = '.$subset_num.';';
 			}
