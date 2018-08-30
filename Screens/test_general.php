@@ -68,7 +68,6 @@
             
                 <canvas id="canvas" style="background-color: black;"></canvas>
             </div>
-        
         </div>
         <div id="output" style='background-color:#00FFF0;' align='center'></div>
         <canvas id="hiddenCanvas" style="position: absolute; z-index: -1"></canvas>

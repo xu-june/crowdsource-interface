@@ -37,9 +37,12 @@
 	$urlts2 = dirname(__FILE__) . '/' . $img_base_dir . '/p' . $uuid . "/t" . $_SESSION['trial'] . "/test2/";
 
 	// for randomization function in test phases
-	$obj1 = str_replace(' ', '_', $_GET["obj1"]);
-	$obj2 = str_replace(' ', '_', $_GET["obj2"]);
-	$obj3 = str_replace(' ', '_', $_GET["obj3"]);
+    $obj1 = preg_replace('/[^A-Za-z0-9\. -]/', '', $_GET["obj1"]);
+    $obj2 = preg_replace('/[^A-Za-z0-9\. -]/', '', $_GET["obj2"]);
+    $obj3 = preg_replace('/[^A-Za-z0-9\. -]/', '', $_GET["obj3"]);
+	$obj1 = str_replace(' ', '_', $obj1);
+	$obj2 = str_replace(' ', '_', $obj2);
+	$obj3 = str_replace(' ', '_', $obj3);
 	$_SESSION["object_names"] = array($obj1, $obj2, $obj3);
 	
 	// to make directories
@@ -113,9 +116,13 @@
 	$time = round(microtime(true) * 1000);
 	$sql = "INSERT INTO Objects "
 			."(`participant_id`, `trial`, `category`, `name1`, `name2`, `name3`, `test0_order`, `test1_order`, `test2_order`, `train1_order`, `train2_order`, `add_time`, `add_date`) VALUES ("
-			.$uuid.",".$_SESSION['trial'].", '".$_SESSION['current_category'].", '".$obj1."', '".$obj2."', '".$obj3."', '".implode(':',$test0_order)."', '"
+			.$uuid.",".$_SESSION['trial'].", '".$_SESSION['current_category']."', '".$obj1."', '".$obj2."', '".$obj3."', '".implode(':',$test0_order)."', '"
             .implode(':',$test1_order)."', '".implode(':',$test2_order)."', '".implode(':',$train1_order)."', '".implode(':',$train2_order)."', '".$time."', '".$date."');";
 	execSQL($sql);
+	
+	$sql = "UPDATE variables set `phase`='test0', `upload_cnt_obj1`=0, `upload_cnt_obj2`=0, `upload_cnt_obj3`=0, `subset_cnt_obj`=0, `subset_cnt_num`=0 "
+                ."where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+    execSQL($sql);
 ?>
 
 <!doctype html>
@@ -133,7 +140,8 @@
        
 			<h4>Testing images</h4>
 			
-			<p>We will randomly choose one of your objects and ask you to take a photo of it. </p>
+			<p>We will randomly choose one of your objects and ask you to take a photo of it. </p> 
+			<p>Take a photo of an object (name at the top) by tapping in the camera screen. The recognition result will be shown at the bottom. </p>
 			
 			<p>You will do this 15 times total (5 photos per object). </p>
 			
@@ -141,7 +149,8 @@
 			Every time you take a photo it will try to guess what it is based on what it knows. </p>
 			
 			<div align='right'>
-				<button type="button" class="btn btn-default" onclick="window.location.href='test0.php'">Next ></button>
+				<!--<button type="button" class="btn btn-default" onclick="window.location.href='test0.php'">Next ></button>-->
+                <button type="button" class="btn btn-default" onclick="window.location.href='task.php'">Next ></button>
 			</div>
 		
 

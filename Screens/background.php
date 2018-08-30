@@ -1,9 +1,8 @@
 <?php
 	session_start();
-	session_unset();
 	include 'connectDB.php';
 	include 'header.php';
-	
+		
 	savePageLog(-1, basename($_SERVER['PHP_SELF']));
 ?> 
 <!doctype html>
@@ -160,7 +159,7 @@
           <!-- radio button set -->
           <fieldset class="form-group">
             <div>
-              <legend class="col-form-label  pt-0"><strong>Do you have motor impairments?</strong></legend>
+              <legend class="col-form-label pt-0"><strong>Do you have motor impairments?</strong></legend>
               <div>
                 <div class="form-check">
                   <input class="form-check-input" onclick="mi_status(false);" required="true" type="radio" name="has_mi" id="mi_yes" value="yes">

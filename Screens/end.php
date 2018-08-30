@@ -9,7 +9,7 @@
 	$pq2 = $_POST["pq2"];
 	$pq3 = $_POST["pq3"];
 	$pq4 = $_POST["pq4"];
-	$sql = "UPDATE participant_info set `pq1`='".$f1q1."', `pq2`='".$f1q2."', `pq3`='".$pq3."', `pq4`='".$pq4."' WHERE `participant_id`=".$_SESSION['pid'].";";
+	$sql = "UPDATE participant_info set `pq1`='".$pq1."', `pq2`='".$pq2."', `pq3`='".$pq3."', `pq4`='".$pq4."' WHERE `participant_id`=".$_SESSION['pid'].";";
 	execSQL($sql);
     
     // update participant status
@@ -18,6 +18,12 @@
 	$sql = "UPDATE participant_status set `status`='COMPLETE', `last_update_time`='"
 		.$time."', `last_update_date`='".$date."'WHERE `participant_id`=".$_SESSION['pid'].";";
 	execSQL($sql);
+    
+    
+    // update state
+    $sql = "UPDATE variables set `phase`='end', `upload_cnt_obj1`=5, `upload_cnt_obj2`=5, `upload_cnt_obj3`=5, `subset_cnt_obj`=3, `subset_cnt_num`=0  "
+            ."where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+    execSQL($sql);
     
 ?>
 

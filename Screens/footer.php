@@ -4,7 +4,7 @@
 
 
 <script>
-	console.log('<?php echo $_SESSION['pid']."_".$_SESSION['pcode']?>');
+	console.log('<?php echo $_SESSION['pid']."_".$_SESSION['pcode']."_".$_SESSION['trial']?>');
 </script>
 
         <pre id='log'></pre>

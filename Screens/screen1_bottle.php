@@ -17,9 +17,9 @@
 			
 			For example: <br>
 
-			<img src="old/images/cokebottle.jpg" width="30%"> Object 1: <strong>Coca cola</strong> <br>
-			<img src="old/images/dasani.jpg" width="30%"> Object 2: <strong>Dasani</strong> <br>
-			<img src="old/images/spritebottle.jpg" width="30%"> Object 3: <strong>Sprite</strong> <br>
+			<img src="images/cokebottle.jpg" width="30%"> Object 1: <strong>Coca cola</strong> <br>
+			<img src="images/dasani.jpg" width="30%"> Object 2: <strong>Dasani</strong> <br>
+			<img src="images/spritebottle.jpg" width="30%"> Object 3: <strong>Sprite</strong> <br>
 
 			<div align='right'>
 				<button class="btn btn-default" onclick="window.location.href='objects.php'">Next ></button>

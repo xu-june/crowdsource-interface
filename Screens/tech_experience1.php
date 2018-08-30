@@ -1,49 +1,47 @@
 <?php
-	session_unset();
 	session_start();
 	include 'connectDB.php';
 	include 'header.php';
 
 	// get participant id	
-	if (!isset($_SESSION['pid'])) {
-		$query = "SELECT participant_id, participant_code, trial FROM participant_status where status='INCOMPLETE' order by participant_id";
-		$result = getSelect($query);
-		$pid = $result['participant_id'];
-		$pcode = $result['participant_code'];
-		$trial = $result['trial'];
-		$date = date("Y-m-d H:i:s");
-		$time = round(microtime(true) * 1000);
+    $query = "SELECT participant_id, participant_code, trial FROM participant_status where status='INCOMPLETE' order by participant_id";
+    $result = getSelect($query);
+    $pid = $result['participant_id'];
+    $pcode = $result['participant_code'];
+    $trial = $result['trial'];
+    $date = date("Y-m-d H:i:s");
+    $time = round(microtime(true) * 1000);
 
-		// enter participant info	
-		$age = $_POST["age"];
-		$gender = $_POST["gender"];
-		$occupation = $_POST["occupation"];
-		$dom_hand = $_POST["dom_hand"];
-		$has_vi = $_POST["has_vi"];
-		$level_of_vision = $_POST["level_of_vision"];
-		$vi_years = $_POST["vi_years"];
-		$has_mi = $_POST["has_mi"];
-		$motor_ability = $_POST["motor_ability"];
-		$mi_years = $_POST["mi_years"];
-		$sql = "INSERT INTO participant_info "
-			."(`participant_id`, `age`, `gender`, `occupation`, `dom_hand`, `has_vi`, `level_of_vision`, `vi_years`, `has_mi`, `motor_ability`, `mi_years`, `time`, `date`) VALUES ("
-			.$pid.",".$age.", '".$gender."', '".$occupation."', '".$dom_hand."', '".$has_vi."', '".$level_of_vision."','".$vi_years."','".$has_mi."','".$motor_ability."','".$mi_years
-			."','".$time."','".$date."');";
-			
-		execSQL($sql);
-	
-		// update participant status
-		$sql = "UPDATE participant_status set `status`='IN PROGRESS', `trial`=".($trial+1).", `last_update_time`='"
-			.$time."', `last_update_date`='".$date."'WHERE `participant_id`=".$pid.";";
-		execSQL($sql);
-	
-		// save page log and session variables
-		$_SESSION['pid'] = $pid;
-		$_SESSION['pcode'] = $pcode;
-		$_SESSION['trial'] = 1;
-		$_SESSION['test_img_num'] = 5;  // temporary value for debugging
-		$_SESSION['training_img_num'] = 30; // temporary value for debugging
-	}
+    // enter participant info	
+    $age = $_POST["age"];
+    $gender = $_POST["gender"];
+    $occupation = $_POST["occupation"];
+    $dom_hand = $_POST["dom_hand"];
+    $has_vi = $_POST["has_vi"];
+    $level_of_vision = $_POST["level_of_vision"];
+    $vi_years = $_POST["vi_years"];
+    $has_mi = $_POST["has_mi"];
+    $motor_ability = $_POST["motor_ability"];
+    $mi_years = $_POST["mi_years"];
+    $sql = "INSERT INTO participant_info "
+        ."(`participant_id`, `age`, `gender`, `occupation`, `dom_hand`, `has_vi`, `level_of_vision`, `vi_years`, `has_mi`, `motor_ability`, `mi_years`, `time`, `date`) VALUES ("
+        .$pid.",".$age.", '".$gender."', '".$occupation."', '".$dom_hand."', '".$has_vi."', '".$level_of_vision."','".$vi_years."','".$has_mi."','".$motor_ability."','".$mi_years
+        ."','".$time."','".$date."');";
+        
+    execSQL($sql);
+
+    // update participant status
+    $sql = "UPDATE participant_status set `status`='IN PROGRESS', `trial`=".($trial+1).", `last_update_time`='"
+        .$time."', `last_update_date`='".$date."'WHERE `participant_id`=".$pid.";";
+    execSQL($sql);
+
+    // save page log and session variables
+    $_SESSION['pid'] = $pid;
+    $_SESSION['pcode'] = $pcode;
+    $_SESSION['trial'] = 1;
+    $_SESSION['test_img_num'] = 5;  // temporary value for debugging
+    $_SESSION['training_img_num'] = 30; // temporary value for debugging
+    
 	savePageLog($_SESSION['pid'], basename($_SERVER['PHP_SELF']));
 ?> 
 

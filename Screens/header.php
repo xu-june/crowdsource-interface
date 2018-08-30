@@ -1,4 +1,22 @@
 <?php
+    function getObjectIndex($phase, $cnt){
+        if (strpos($phase, 'test') === 0) {
+            $order = $_SESSION['order'][$phase];
+            return $order[min($cnt, 14)];
+        } else if (strpos($phase, 'train') === 0) {
+            $order = $_SESSION['order'][$phase];
+            return $order[min(floor($cnt/30), 2)];
+        } else {
+            $subset_for = 'train1';
+            if (strpos($phase, 'train1') === false)
+                $subset_for = 'train2';
+            
+            $order = $_SESSION['order'][$subset_for];
+            return $order[$cnt];
+        }
+    }
+?>
+<?php
 function printProgressBar($step){
 ?>
 	<div class="progress mb-3">
@@ -7,10 +25,6 @@ function printProgressBar($step){
 <?php
 }
 ?>
-
-
- 
-
 <?php
 function printMetaInfo() {
 ?>
@@ -37,8 +51,7 @@ function printMetaInfo() {
 			});
 		}, refreshTime );
 	</script>
-	
-
 <?php
 }
 ?>
+

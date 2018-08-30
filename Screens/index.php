@@ -1,5 +1,6 @@
 <?php
 	include 'header.php';
+	session_destroy();
 ?>
 
 <!doctype html>

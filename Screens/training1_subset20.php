@@ -14,6 +14,3 @@
 	
     include 'subset_general.php';
 ?>
-
-
-

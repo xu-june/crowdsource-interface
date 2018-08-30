@@ -24,7 +24,7 @@ input[type=radio]{
 }
 
 .radio_font {
-	font-size: 120%;
+	font-size: 100%;
 }
 
 
@@ -45,4 +45,31 @@ input[type=radio]{
     text-align: center;
     border: 2px solid #DDDDDD;
    	background-color: #00FFF0;
+}
+
+#videoElement {
+    border: 8px solid black;
+}
+
+.image-checkbox
+{
+    cursor: pointer;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    outline: 0;
+}
+
+.image-checkbox input[type="checkbox"]
+{
+    display: none;
+}
+
+.image-checkbox-checked
+{
+    /*outline: 4px solid #33cc33;*/
+}
+
+.imgselect {
+    padding: 5px;
 }

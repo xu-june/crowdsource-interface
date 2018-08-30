@@ -13,10 +13,19 @@
 $rest_server = "http://128.8.224.124:5000/";
 // a base dir for zip files
 $zip_dir = realpath("zips");
+//$zip_dir = getcwd()."/zips";
 // a base dir for image files
 $imgs_dir = realpath("images");
 // debug boolean
 $debug = false;
+
+function init_vars() {
+	global $rest_server, $zip_dir, $imgs_dir, $debug;
+	$rest_server = "http://128.8.224.124:5000/";
+	$zip_dir = realpath("zips");
+	$imgs_dir = realpath("images");
+	$debug = false;
+}
 
 
 /*
@@ -94,6 +103,7 @@ function stop_recognizer($uuid) {
  */
 function check_dir($dir) {
   // first check whether existed
+  
   if (!file_exists($dir)) {
     // create it if not existed
     if (!mkdir($dir, 0774, true)) {
@@ -117,8 +127,9 @@ function check_dir($dir) {
  */
 function compress_images($uuid, $trial, $phase) {
   global $zip_dir, $imgs_dir, $debug;
-
+  
   $zip_dest = $zip_dir . '/' . $uuid;
+  //error_log($zip_dest."This is the folder, zip dir: " .$zip_dir. " Curr dir: ".getcwd());
   check_dir($zip_dest);
 
   $zip_dest =  $zip_dest . '/' . $trial . '_' . $phase . '.zip';

@@ -19,6 +19,24 @@
     $order = explode(":", $result['category_order']);
     $current_category = $order[$_SESSION['trial']-1];
     //echo $result['category_order']."_".$current_category;
+        
+    $date = date("Y-m-d H:i:s");
+    $time = round(microtime(true) * 1000);
+    // add variables
+    $sql = "DELETE from variables where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+    execSQL($sql);
+    
+    $sql = "INSERT INTO variables (`participant_id`, `trial`, `phase`, `time`, `date`) "
+            ."VALUES ( ".$_SESSION['pid'].",".$_SESSION['trial'].", 'test0', '".$time."', '".$date."');";
+    execSQL($sql);
+    
+    //delete existing feedback info
+    $sql = "DELETE from feedback WHERE `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+    execSQL($sql);
+    
+    // insert feedback info
+    $sql = "INSERT INTO feedback (`participant_id`, `trial`) VALUES(".$_SESSION['pid'].", ".$_SESSION['trial'].");";
+    execSQL($sql);
     
     if ($current_category == '1') {
         $_SESSION['current_category'] = 'drink';

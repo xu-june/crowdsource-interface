@@ -12,7 +12,7 @@
     } else if ($_SESSION['current_category']=='cereal'){
         $examples = array('Lucky charms', 'Cheerios', 'Frosted flakes');
     } else if ($_SESSION['current_category']=='snack'){
-        $examples = array('Photato chips', 'Fritos', 'Pretzels');
+        $examples = array('Potato chips', 'Fritos', 'Pretzels');
     } else if ($_SESSION['current_category']=='spice'){
         $examples = array('Cinnamon', 'Nutmeg', 'Chili powder');
     }

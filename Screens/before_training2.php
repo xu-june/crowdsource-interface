@@ -2,32 +2,19 @@
 	session_start();
     include 'connectDB.php';
     include 'header.php';
-    savePageLog($_SESSION['pid'], 'before_training2');
+	savePageLog($_SESSION['pid'], basename($_SERVER['PHP_SELF']));
     
-    $f1q1 = $_POST["f1q1"];
-	$f1q2 = $_POST["f1q2"];
-	$sql = "UPDATE participant_info set `f1q1`='".$f1q1."', `f1q2`='".$f1q2."' WHERE `participant_id`=".$_SESSION['pid'].";";
-	execSQL($sql);
+    // update state
+    $sql = "UPDATE variables set `phase`='before_training2', `upload_cnt_obj1`=0, `upload_cnt_obj2`=0, `upload_cnt_obj3`=0, `subset_cnt_obj`=0, `subset_cnt_num`=0 "
+            ."where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+    execSQL($sql);
 ?>
 
-<!DOCTYPE html>
+<?php printProgressBar(13); ?>
 
-<html>
-<head>
-	<title>Training 2</title>
-	<?php printMetaInfo(); ?>
-</head>
-<body>
-	<div class="mt-3 mb-3 mr-3 ml-3">
-		<?php printProgressBar(13); ?>
-    
-		<h3>You told us what you would do differently, now show us!</h3>
-		<p>On the next screen, take 30 more pictures of the requested object.</p>
+<h3>You told us what you would do differently, now show us!</h3>
+<p>On the next screen, take 30 more pictures of the requested object.</p>
 
-		<div align="right">
-			<button type="button" class="btn btn-default" onclick="window.location.href='training2.php'">Next ></button>
-		</div>
-
-<?php
-	include 'footer.php';
-?>
+<div align="right">
+    <button type="button" class="btn btn-default" onclick="goToNext('train2');">Next ></button>
+</div>
