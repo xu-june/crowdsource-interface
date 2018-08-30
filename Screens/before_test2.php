@@ -11,7 +11,7 @@
     
 ?>
 
-<?php printProgressBar(13); ?>
+<?php printProgressBar(33); ?>
 
 <h4>Test the system again.</h4>
 

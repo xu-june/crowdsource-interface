@@ -136,7 +136,9 @@
   
 	<body>
 		<div class="mt-3 mb-3 mr-3 ml-3">
-	  		<?php printProgressBar(6); ?>
+	  		<?php 
+                printProgressBar(6); 
+            ?>
        
 			<h4>Testing images</h4>
 			

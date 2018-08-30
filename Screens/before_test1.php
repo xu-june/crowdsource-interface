@@ -11,7 +11,7 @@
     
 ?>
 
-<?php printProgressBar(13); ?>
+<?php printProgressBar(19); ?>
 
 <h4>Now, can our system tell which is which?</h4>
 

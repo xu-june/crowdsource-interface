@@ -81,5 +81,6 @@ $latestVar['upload_cnt_obj'.$curr_obj_index] += 1;
 $curr_obj_index = getObjectIndex($phase, $total_cnt+1);
 $objectname = $_SESSION["object_names"][$curr_obj_index-1];
 echo $phase."=".$latestVar['upload_cnt_obj1']."=".$latestVar['upload_cnt_obj2']."=".$latestVar['upload_cnt_obj3']."=0=0=".$objectname."=".$curr_obj_index."=".$label;
+$_SESSION['phase'] = $phase;
 
 ?>

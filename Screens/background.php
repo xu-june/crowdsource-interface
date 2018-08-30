@@ -36,7 +36,7 @@
             if (!empty($_POST['code'])) {
                 $query = "SELECT participant_id, participant_code, trial FROM participant_status where status='COMPLETE' and participant_code='".$_POST['code']."';";
                 
-                echo $query."<br>";
+                //echo $query."<br>";
                 $rows = getConn()->query($query);
                 
                 if ($rows->num_rows > 0) {
@@ -46,6 +46,12 @@
                     $trial = $result['trial'];
                     $date = date("Y-m-d H:i:s");
                     $time = round(microtime(true) * 1000);
+                    
+                    if ($trial == 5) {
+                        echo "<p>A participant is allowed to participate 5 times at most. You already participated 5 times.<br> Thank you!</p>";
+                        echo "<p>(You will not be compensated if you participate again without the code or with another code.)</p>";
+                        exit();
+                    }
                     
                     $_SESSION['pid'] = $pid;
                     $_SESSION['pcode'] = $pcode;

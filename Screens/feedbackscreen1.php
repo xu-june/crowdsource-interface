@@ -30,7 +30,7 @@
       
 </script>
 
-<?php printProgressBar(12); ?>
+<?php printProgressBar(21); ?>
 
 <form name="feedback" action="" method="post" id="feedbackForm">
     <h4>Compare the result to your expectations!</h4>

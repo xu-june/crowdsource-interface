@@ -19,11 +19,26 @@
         
         $obj_index = getObjectIndex($phase, $total_cnt);
         $obj_name = $_SESSION["object_names"][$obj_index-1];
+        
+        if ($phase == 'test0')
+            $_SESSION['progress'] = 7;
+        else if ($phase == 'test1')
+            $_SESSION['progress'] = 7;
+        else if ($phase == 'test2')
+            $_SESSION['progress'] = 7;
+        
     } else if (strpos($phase, 'train') == 0){
         $total_cnt = $latestVar['upload_cnt_obj1']+$latestVar['upload_cnt_obj2']+$latestVar['upload_cnt_obj3'];
         
         $obj_index = getObjectIndex($phase, $total_cnt);
         $obj_name = $_SESSION["object_names"][$obj_index-1];
+        
+        if ($phase == 'train1')
+            $_SESSION['progress'] = 9;
+        else if ($phase == 'train2')
+            $_SESSION['progress'] = 7;
+        else if ($phase == 'test2')
+            $_SESSION['progress'] = 7;
     } else {
         $subset_for = 'train1';
         $subset_for_num = 1;
@@ -45,6 +60,7 @@
         }
     } 
     
+    $_SESSION['phase'] = $phase;
     //echo implode(", ", $_SESSION['order'][$phase])."<br>".implode(", ", $_SESSION['object_names']);
 ?>
 

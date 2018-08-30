@@ -9,6 +9,7 @@
             ."where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
     execSQL($sql);
     
+    $_SESSION['progress'] = 8;
 ?>
 
 <?php printProgressBar(8); ?>

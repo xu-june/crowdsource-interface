@@ -26,7 +26,7 @@
   </head>
   <body>
     <div class="mt-3 mb-3 mr-3 ml-3">
-        <?php printProgressBar(18); ?>
+        <?php printProgressBar(35); ?>
         
         <h4> Post-study Questions </h4><br>
         

@@ -22,7 +22,7 @@
       
 </script>
 
-<?php printProgressBar(17); ?>
+<?php printProgressBar(34); ?>
 
 <h4>Compare the result to your expectations!</h4>
 <p>Did you expect to get this result? Or did you expect the accuracy to be higher/lower?</p>

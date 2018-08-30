@@ -271,7 +271,7 @@ var limit = -1;
 var selected = [];
 var selected_str = 'na';
 
-var clickable = false;
+var clickable = true;
 var offScreenCanvas = null;
 var offContext = null;
 var canvas = null;

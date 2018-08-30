@@ -10,7 +10,7 @@
     execSQL($sql);
 ?>
 
-<?php printProgressBar(13); ?>
+<?php printProgressBar(22); ?>
 
 <h3>You told us what you would do differently, now show us!</h3>
 <p>On the next screen, take 30 more pictures of the requested object.</p>

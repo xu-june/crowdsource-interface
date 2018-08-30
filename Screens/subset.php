@@ -1,6 +1,25 @@
 <?php
     session_start();
+    include 'connectDB.php';
     include 'header.php';
+    
+    // get state variables from database
+    $query = "SELECT phase, upload_cnt_obj1, upload_cnt_obj2, upload_cnt_obj3, subset_cnt_obj, subset_cnt_num FROM "
+        ."variables where participant_id=".$_SESSION['pid']." and trial = ".$_SESSION['trial']." order by time desc";
+    $latestVar = getSelect($query);
+    
+    $progress = 9;
+    if ($latestVar['phase'] == 'subset_train2') {
+        $progress = 23;
+    }
+    if ($latestVar['subset_cnt_num'] == 0){
+        $progress += 1;
+    } else if ($latestVar['subset_cnt_num'] == 5){
+        $progress += 3;
+    } else if ($latestVar['subset_cnt_num'] == 20){
+        $progress += 2;
+    }
+    $progress += $latestVar['subset_cnt_obj']*3;
 ?>    
 
 <script type="text/javascript">
@@ -72,7 +91,7 @@
 </script>
 
 <?php
-	printProgressBar(10); 
+    printProgressBar($progress);
 ?>
 
 <div id='subset_header'></div>
