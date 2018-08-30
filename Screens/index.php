@@ -43,7 +43,7 @@
 			</div>
 			
 			<div align='center'>
-				<button type="button" id="nextButton" class="btn btn-default" onclick="document.getElementById('codeForm').submit();">Start</button>
+				<button type="button" id="nextButton" class="btn btn-primary" onclick="document.getElementById('codeForm').submit();">Start</button>
 			</div>
         	</div>
 

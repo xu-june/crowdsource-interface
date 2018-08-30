@@ -16,5 +16,5 @@
 <p>On the next screen, take 30 more pictures of the requested object.</p>
 
 <div align="right">
-    <button type="button" class="btn btn-default" onclick="goToNext('train2');">Next ></button>
+    <button type="button" class="btn btn-primary" onclick="goToNext('train2');">Next ></button>
 </div>

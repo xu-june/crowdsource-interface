@@ -37,12 +37,32 @@
 			function submit_objects() {
 				document.getElementById("submitbtn").click();
 			} 
+            function isValid(str){
+                return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
+            }
+            function submit_form() {
+                var obj1 = $("#obj1").val();
+                var obj2 = $("#obj2").val();
+                var obj3 = $("#obj3").val();
+                
+                re = /^[a-zA-Z0-9 ]$/i;
+                if (!isValid(obj1) || !isValid(obj2) || !isValid(obj3)) {
+                    alert('No special characters in the object name is allowed.');
+                    return;
+                }
+                if (obj1.trim() == obj2.trim() || obj1.trim() == obj3.trim() || obj2.trim() == obj3.trim()) {
+                    alert('Objects should have different names.');
+                    return;
+                }
+                
+                document.getElementById("objectForm").submit();
+            }
 		</script>
 		<h4>Number your objects!</h4>
 		<p>Assign your objects to Object 1, Object 2, and Object 3.</p>
 
 
-		<form name="form" action="before_test0.php" method="get">
+		<form name="form" action="before_test0.php" method="get" id='objectForm'>
 			<table cellspacing="10">
 				<tr>
 					<td width="20%">
@@ -81,7 +101,7 @@
 			</table>
 			
 			<div align='right'>
-				<input type="submit"  class="btn btn-default" value="Next >" name="submit" id="submitbtn">
+				<input type="button"  class="btn btn-primary" value="Next >" id="submitbtn" onclick='submit_form();'>
 			</div>
 			
 			<!-- php code is moved to before_test0.php -->

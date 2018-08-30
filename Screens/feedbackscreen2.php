@@ -34,6 +34,6 @@
     <br>
 
     <div align="right">
-        <button type="submit" id='submit_button' class="btn btn-default">Next ></button>
+        <button type="submit" id='submit_button' class="btn btn-primary">Next ></button>
     </div>
 </form>

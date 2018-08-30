@@ -116,7 +116,7 @@
           </div><br>
           
           <div align='right'>
-	          <button type="submit" class="btn btn-default">Next ></button>
+	          <button type="submit" class="btn btn-primary">Next ></button>
           </div>
           
         </form>

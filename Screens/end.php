@@ -60,7 +60,7 @@
             </div>
         </form>
         
-        <button type="button" class="btn btn-default" onclick="document.getElementById('codeForm').submit();">Repeat this study with other objects</button>
+        <button type="button" class="btn btn-primary" onclick="document.getElementById('codeForm').submit();">Repeat this study with other objects</button>
 
 <?php
 	include 'footer.php';

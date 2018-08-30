@@ -46,8 +46,8 @@
 
 
     <div align="right">
-        <button type="button" class="btn btn-default" onclick="submit_feedback('submit_feedback1')">Next ></button>
-        <button type="submit" id='submit_button' class="btn btn-default" style='display:none;'>Next ></button>
+        <button type="button" class="btn btn-primary" onclick="submit_feedback('submit_feedback1')">Next ></button>
+        <button type="submit" id='submit_button' class="btn btn-primary" style='display:none;'>Next ></button>
     </div>
 </form>
 		

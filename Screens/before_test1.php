@@ -24,6 +24,6 @@
 
 <div align='right'>
     <!--<button type="button" class="btn btn-default" onclick="window.location.href='test0.php'">Next ></button>-->
-    <button type="button" class="btn btn-default" onclick="goToNext('test1');">Next ></button>
+    <button type="button" class="btn btn-primary" onclick="goToNext('test1');">Next ></button>
 </div>
 		

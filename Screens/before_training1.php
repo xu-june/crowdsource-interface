@@ -20,5 +20,5 @@
 
 
 <div align='right'>
-    <button type="button" class="btn btn-default" onclick="goToNext('train1');">Next ></button>
+    <button type="button" class="btn btn-primary" onclick="goToNext('train1');">Next ></button>
 </div>

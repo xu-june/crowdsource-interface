@@ -82,7 +82,7 @@
 <div id='imgView'></div>
 <div id='showCnt'></div>
 <div align='right'>
-	<button type="button" id='subset_next' class="btn btn-default" style="display:none;" onclick='submit_selection()'>Next ></button>
+	<button type="button" id='subset_next' class="btn btn-primary" style="display:none;" onclick='submit_selection()'>Next ></button>
 </div>
 
 
