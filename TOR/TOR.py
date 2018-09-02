@@ -10,7 +10,7 @@ from TOR_classifier import Classifier
 from retrain import retrain_model
 
 import cv2
-
+import os
 
 """
 Recognize class
@@ -23,6 +23,13 @@ class Recognizer:
               classifier_model,
               classifier_label,
               debug = False):
+    # allocating TF graph to only one GPU
+    #https://stackoverflow.com/questions/37893755/tensorflow-set-cuda-visible-devices-within-jupyter
+    os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   # see issue #152
+    # os.environ["CUDA_VISIBLE_DEVICES"]="0"
+    # only using CPUs
+    os.environ["CUDA_VISIBLE_DEVICES"]=""
+    
     # flag for debugging mode
     self.debug = debug
     # initialize a classifier
