@@ -9,7 +9,7 @@
 	$pq2 = $_POST["pq2"];
 	$pq3 = $_POST["pq3"];
 	$pq4 = $_POST["pq4"];
-	$sql = "UPDATE participant_info set `pq1`='".$pq1."', `pq2`='".$pq2."', `pq3`='".$pq3."', `pq4`='".$pq4."' WHERE `participant_id`=".$_SESSION['pid'].";";
+	$sql = "UPDATE feedback set `pq1`='".$pq1."', `pq2`='".$pq2."', `pq3`='".$pq3."', `pq4`='".$pq4."' WHERE `participant_id`=".$_SESSION['pid'].";";
 	execSQL($sql);
     
     // update participant status
@@ -24,7 +24,6 @@
     $sql = "UPDATE variables set `phase`='end', `upload_cnt_obj1`=5, `upload_cnt_obj2`=5, `upload_cnt_obj3`=5, `subset_cnt_obj`=3, `subset_cnt_num`=0  "
             ."where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
     execSQL($sql);
-    
 ?>
 
 <!doctype html>
@@ -43,7 +42,7 @@
   </head>
   <body>
     <div class="mt-3 mb-3 mr-3 ml-3">
-        <?php printProgressBar(36); ?>
+        <?php printProgressBar(27); ?>
         <h1>Congratulations!</h1>
         <p>You finished all steps in our study. Please enter the following code in our HIT page in Amazon Mechanical Turk to get compensation. </p>
         
@@ -61,7 +60,8 @@
             </div>
         </form>
         
-        <button type="button" class="btn btn-primary" onclick="document.getElementById('codeForm').submit();">Repeat this study with other objects</button>
+        <!--<button type="button" class="btn btn-primary" onclick="document.getElementById('codeForm').submit();">Repeat this study with other objects</button>-->
+        <button type="button" class="btn btn-primary" onclick="window.location='index.php';">Repeat this study with other objects</button>
 
 <?php
 	include 'footer.php';

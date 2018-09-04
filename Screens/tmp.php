@@ -1,46 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta content="stuff, to, help, search, engines, not" name="keywords">
-<meta content="What this page is about." name="description">
-<meta content="Display Webcam Stream" name="title">
-<title>Display Webcam Stream</title>
-  
-<style>
-#container {
-    margin: 0px auto;
-    width: 300px;
-    height: 300px;
-    border: 10px #333 solid;
-}
-#videoElement {
-    width: 300px;
-    height: 300px;
-    background-color: #666;
-}
-</style>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <script src="browser-deeplink.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    deeplink.setup({
+        iOS: {
+            appId: "284882215",
+            appName: "facebook",
+        },
+        android: {
+            appId: "com.facebook.katana"
+        }
+    });
+    function clickHandler(uri) {
+        deeplink.open(uri);
+        return false;
+    }
+    
+    
+        
+        window.onerror = function (msg, url, lineNo, columnNo, error) {
+          //alert(msg+"--"+url+"--"+lineNo+"--"+columnNo+"--"+error);
+          $("#errorDiv").append("<br><br><br><br><br><br>"+msg+"--"+url+"--"+lineNo+"--"+columnNo+"--"+error);
+
+          return false;
+        }
+    </script>
+    <style>
+    *, *:before, *:after {
+        box-sizing: border-box;
+    }
+    a {
+        font-family: monospace;
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 25px;
+        background: #060;
+        color:#fff;
+        text-align: center;
+        font-size: 20px;
+    }
+    </style>
 </head>
-  
 <body>
-<div id="container">
-    <video autoplay="true" id="videoElement">
-     
-    </video>
-</div>
-<script>
- var video = document.querySelector("#videoElement");
- 
-if (navigator.mediaDevices.getUserMedia) {       
-    navigator.mediaDevices.getUserMedia({video: true})
-  .then(function(stream) {
-    video.srcObject = stream;
-  })
-  .catch(function(err0r) {
-    console.log("Something went wrong!");
-  });
-}
-</script>
-<canvas id="canvas" width="150" height="150"></canvas>
+    <a href="#" data-uri="fb://profile" onclick="clickHandler(this.dataset.uri)">open fb://profile</a>
+        <div id='errorDiv'></div>
 </body>
 </html>

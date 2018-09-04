@@ -8,9 +8,9 @@
         ."variables where participant_id=".$_SESSION['pid']." and trial = ".$_SESSION['trial']." order by time desc";
     $latestVar = getSelect($query);
     
-    $progress = 9;
+    $progress = 13;
     if ($latestVar['phase'] == 'subset_train2') {
-        $progress = 23;
+        $progress = 28;
     }
     if ($latestVar['subset_cnt_num'] == 0){
         $progress += 1;
@@ -24,7 +24,7 @@
 
 <script type="text/javascript">
     var cnt=0;
-    var img_path = 'images/p<?=$_SESSION['pid']?>/t<?=$_SESSION['trial']?>/'+subset_for+'/'+obj_name+'/';
+    var img_path = 'images/p<?=$_SESSION['pid']?>/t<?=$_SESSION['trial']?>/'+subset_for+'/'+replaceSpecial(obj_name)+'/';
     var img_size = 100;
     var img_num = 30;
     
@@ -43,9 +43,6 @@
 		$("#subset_header").append("<h4>If you were to choose only 5?</h4>");
 	}
     
-    if (limit == 1) {
-    	img_size = 150;
-    }
     console.log(img_path);
     
     $imgView = $("#imgView");
@@ -64,6 +61,11 @@
 	cnt = 0;
 	selected = [];
 	$("#showCnt").text("Selected "+cnt+" out of "+img_num);
+    
+    
+    $('html, body').animate({
+        scrollTop: $("#subset_header").offset().top
+    }, 500);
 	
 	function click_img(id) {
 		if (selected[id-1]) {

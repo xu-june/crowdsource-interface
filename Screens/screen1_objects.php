@@ -54,4 +54,6 @@
         $_SESSION['current_category'] = 'spice';
         include 'screen1_spices.php';
     }
+    //$_SESSION['current_category'] = 'spice';
+    //include 'screen1_spices.php';
 ?>

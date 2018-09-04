@@ -23,6 +23,109 @@ function end_overlay_off() {
 	document.getElementById("end_overlay").style.display = "none";
 	document.getElementById("preview").style.display = "block";
 }
+function replaceSpecial(str){
+    var res = str;
+    res = res.replace(/=/g, "-");
+    res = res.replace(/~/g, "--a--");
+    res = res.replace(/`/g, "--b--");
+    res = res.replace(/\!/g, "--c--");
+    res = res.replace(/@/g, "--d--");
+    res = res.replace(/#/g, "--e--");
+    res = res.replace(/\$/g, "--f--");
+    res = res.replace(/%/g, "--g--");
+    res = res.replace(/\^/g, "--h--");
+    res = res.replace(/&/g, "--i--");
+    res = res.replace(/\*/g, "--j--");
+    res = res.replace(/\(/g, "--k--");
+    res = res.replace(/\)/g, "--l--");
+    res = res.replace(/\+/g, "--n--");
+    res = res.replace(/{/g, "--p--");
+    res = res.replace(/}/g, "--q--");
+    res = res.replace(/\[/g, "--r--");
+    res = res.replace(/\]/g, "--s--");
+    res = res.replace(/\|/g, "--t--");
+    res = res.replace(/\\/g, "--u--");
+    res = res.replace(/'/g, "--v--");
+    res = res.replace(/"/g, "--w--");
+    res = res.replace(/:/g, "--x--");
+    res = res.replace(/;/g, "--y--");
+    res = res.replace(/\//g, "--z--");
+    res = res.replace(/\?/g, "--ma--");
+    res = res.replace(/</g, "--mb--");
+    res = res.replace(/>/g, "--mc--");
+    res = res.replace(/\./g, "--md--");
+    res = res.replace(/,/g, "--me--");
+    res = res.replace(/ /g, "-----");
+    return res;
+}
+function restoreSpecial(str){
+    var res = str;
+    res = res.replace(/--a--/g, "~");
+    res = res.replace(/--b--/g, "`");
+    res = res.replace(/--c--/g, "!");
+    res = res.replace(/--d--/g, "@");
+    res = res.replace(/--e--/g, "#");
+    res = res.replace(/--f--/g, "$");
+    res = res.replace(/--g--/g, "%");
+    res = res.replace(/--h--/g, "^");
+    res = res.replace(/--i--/g, "&");
+    res = res.replace(/--j--/g, "*");
+    res = res.replace(/--k--/g, "(");
+    res = res.replace(/--l--/g, ")");
+    res = res.replace(/--n--/g, "+");
+    res = res.replace(/--p--/g, "{");
+    res = res.replace(/--q--/g, "}");
+    res = res.replace(/--r--/g, "[");
+    res = res.replace(/--s--/g, "]");
+    res = res.replace(/--t--/g, "|");
+    res = res.replace(/--u--/g, "\\");
+    res = res.replace(/--v--/g, "'");
+    res = res.replace(/--w--/g, "\"");
+    res = res.replace(/--x--/g, ":");
+    res = res.replace(/--y--/g, ";");
+    res = res.replace(/--z--/g, "\/");
+    res = res.replace(/--ma--/g, "?");
+    res = res.replace(/--mb--/g, "<");
+    res = res.replace(/--mc--/g, ">");
+    res = res.replace(/--md--/g, ".");
+    res = res.replace(/--me--/g, ",");
+    res = res.replace(/-----/g, " ");
+    return res;
+}
+function restoreSpecial_label(str){
+    var res = str;
+    res = res.replace(/ a/g, "~");
+    res = res.replace(/ b/g, "`");
+    res = res.replace(/ c/g, "!");
+    res = res.replace(/ d/g, "@");
+    res = res.replace(/ e/g, "#");
+    res = res.replace(/ f/g, "$");
+    res = res.replace(/ g/g, "%");
+    res = res.replace(/ h/g, "^");
+    res = res.replace(/ i/g, "&");
+    res = res.replace(/ j/g, "*");
+    res = res.replace(/ k/g, "(");
+    res = res.replace(/ l/g, ")");
+    res = res.replace(/ n/g, "+");
+    res = res.replace(/ p/g, "{");
+    res = res.replace(/ q/g, "}");
+    res = res.replace(/ r/g, "[");
+    res = res.replace(/ s/g, "]");
+    res = res.replace(/ t/g, "|");
+    res = res.replace(/ u/g, "\\");
+    res = res.replace(/ v/g, "'");
+    res = res.replace(/ w/g, "\"");
+    res = res.replace(/ x/g, ":");
+    res = res.replace(/ y/g, ";");
+    res = res.replace(/ z/g, "\/");
+    res = res.replace(/ ma/g, "?");
+    res = res.replace(/ mb/g, "<");
+    res = res.replace(/ mc/g, ">");
+    res = res.replace(/ md/g, ".");
+    res = res.replace(/ me/g, ",");
+    res = res.replace(/ /g, "");
+    return res;
+}
 
 function captureImage() {
     if (!clickable) return;
@@ -54,15 +157,59 @@ function captureImage() {
         upload_cnt_obj3 = parseInt(info[3]);
         subset_cnt_obj = parseInt(info[4]);
         subset_cnt_num = parseInt(info[5]);
-        obj_name = info[6];
+        obj_name = restoreSpecial(info[6]);
         obj_index = parseInt(info[7]);
-        label = info[8];
+        label = restoreSpecial_label(info[8]);
         update_interface();
 	  },
-	  error: function () { console.log('fail'); }
+	  error: function () { 
+                clickable = true;
+                console.log('fail'); 
+      }
 	}).done(function(o) {
 	  console.log('done'); 
 	});
+}
+
+function showResult(upload_cnt) {
+    var elem = document.getElementById("label"); 
+    var width = 0;
+    var id = setInterval(frame, 1000)
+    var cnt = 3;
+    function frame() {
+        if (cnt == 1) {
+            clearInterval(id);
+            clearTest(upload_cnt);
+        } else {
+            cnt--;
+            elem.innerHTML = "<b>"+label+"</b> <br><br> The next object will be shown in "+cnt+" seconds";
+        }
+    }
+}
+
+function clearTest(upload_cnt){
+    $('#prediction').fadeOut('fast');
+    $("#count").text(test_img_num*3-upload_cnt);
+    $("#objects").text(obj_name);
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    
+    videoElement.play();
+    videoElement.style.borderColor = obj_colors[obj_index-1];
+    document.getElementById("objects").style.backgroundColor = obj_colors[obj_index-1];
+    clickable = true;
+    
+    if (upload_cnt == test_img_num*3) {
+        $('#taskArea').hide();
+        $('#msgArea').show();
+        if (phase == 'test0'){
+            $('#msgArea').load('before_training1.php');
+        } else if (phase=='test1') {
+            $('#msgArea').load('feedbackscreen1.php');
+        } else if (phase=='test2') {
+            $('#msgArea').load('feedbackscreen2.php');
+            
+        }
+    }
 }
 
 function update_interface() {
@@ -71,44 +218,20 @@ function update_interface() {
         
         $('#taskArea').show();
         $('#msgArea').hide();
-        $("#label").text(label);
+        var elem = document.getElementById("label"); 
+        elem.innerHTML = "<b>"+label+"</b> <br><br> The next object will be shown in 3 seconds";
         
         if (label != ''){
             $('#prediction').show();
-            videoElement.pause();
-            
-            setTimeout(function() {
-                $('#prediction').fadeOut('fast');
-                $("#count").text(test_img_num*3-upload_cnt);
-                $("#objects").text(obj_name);
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                
-                videoElement.play();
-                videoElement.style.borderColor = obj_colors[obj_index-1];
-                document.getElementById("objects").style.backgroundColor = obj_colors[obj_index-1];
-                clickable = true;
-                
-                if (upload_cnt == test_img_num*3) {
-                    $('#taskArea').hide();
-					$('#msgArea').show();
-                    if (phase == 'test0'){
-                        $('#msgArea').load('before_training1.php');
-                    } else if (phase=='test1') {
-                        $('#msgArea').load('feedbackscreen1.php');
-                    } else if (phase=='test2') {
-                        $('#msgArea').load('feedbackscreen2.php');
-                        
-                    }
-                }
-            }, 500); // <-- time in milliseconds
-            
+            videoElement.pause();            
+            showResult(upload_cnt);
         } else {
             $("#objects").text(obj_name);
             $("#count").text(test_img_num*3-upload_cnt);
             videoElement.style.borderColor = obj_colors[obj_index-1];
             document.getElementById("objects").style.backgroundColor = obj_colors[obj_index-1];
         }
-    } else if (phase.startsWith("train")) {
+    } else if (phase.startsWith("train") && phase.length==6) {
         clickable = true;
         var upload_cnt = upload_cnt_obj1+upload_cnt_obj2+upload_cnt_obj3;
         
@@ -133,22 +256,27 @@ function update_interface() {
         $('#msgArea').load('subset.php');
     } else {
     	console.log(phase+".php load");
+        $('#msgArea').load(phase+'.php');
         $('#taskArea').hide();
         $('#msgArea').show();
-        $('#msgArea').load(phase+'.php');
     }
 }
 
 function goToNext(p){
     context.clearRect(0, 0, canvas.width, canvas.height);
-    phase = p;
+    var phase_to_send = p;
+    if (p == 'train1_question') {
+        phase_to_send = 'training1_question';
+    } else if (p == 'train2_question') {
+        phase_to_send = 'training2_question';
+    }
     
     $.ajax({
 	  type: "POST",
 	  url: "requestHandler.php",
 	  data: { 
 		 type: 'update_phase',
-         phase: p
+         phase: phase_to_send
 	  },
 	  success: function (data) {
 		console.log('success');
@@ -162,7 +290,7 @@ function goToNext(p){
         upload_cnt_obj3 = parseInt(info[3]);
         subset_cnt_obj = parseInt(info[4]);
         subset_cnt_num = parseInt(info[5]);
-        obj_name = info[6];
+        obj_name = restoreSpecial(info[6]);
         obj_index = parseInt(info[7]);
         label = info[8];
         update_interface();
@@ -185,7 +313,6 @@ function getSelected(){
 }
 
 function submit_selection() {
-	//console.log(limit+"-"+img_num+"-"+subset_cnt_obj+"-"+subset_cnt_num+"-"+subset_for+"-"+getSelected());
 	$.ajax({
 	  type: "POST",
 	  url: "requestHandler.php",
@@ -209,7 +336,7 @@ function submit_selection() {
         upload_cnt_obj3 = parseInt(info[3]);
         subset_cnt_obj = parseInt(info[4]);
         subset_cnt_num = parseInt(info[5]);
-        obj_name = info[6];
+        obj_name = restoreSpecial(info[6]);
         obj_index = parseInt(info[7]);
         label = info[8];
         update_interface();
@@ -220,20 +347,92 @@ function submit_selection() {
 	});
 }
 
-function submit_feedback(p) {
+function submit_feedback1() {
     var feedbackForm = document.getElementById("feedbackForm");
     if (!feedbackForm.checkValidity()) {
         $("#submit_button").click();
+        return;
+    }
+    subset_for = 'train1';
+    
+    $.ajax({
+	  type: "POST",
+	  url: "requestHandler.php",
+	  data: { 
+		 type: 'submit_feedback1',
+         f1q1: $("#f1q1").val(),
+         f1q2: $("#f1q2").val(),
+	  },  
+	  success: function (data) {
+        console.log(data.trim());
+        
+        var info = data.trim().split("=");
+        phase = info[0];
+        upload_cnt_obj1 = parseInt(info[1]);
+        upload_cnt_obj2 = parseInt(info[2]);
+        upload_cnt_obj3 = parseInt(info[3]);
+        subset_cnt_obj = parseInt(info[4]);
+        subset_cnt_num = parseInt(info[5]);
+        obj_name = restoreSpecial(info[6]);
+        obj_index = parseInt(info[7]);
+        label = info[8];
+        update_interface();
+	  },
+	  error: function () { console.log('fail'); }
+	}).done(function(o) {
+	  console.log('done'); 
+	});
+}
+
+function submit_feedback2() {
+    var feedbackForm = document.getElementById("feedbackForm");
+    if (!feedbackForm.checkValidity()) {
+        $("#submit_button").click();
+        return;
+    }
+    subset_for = 'train2';
+    
+    $.ajax({
+	  type: "POST",
+	  url: "requestHandler.php",
+	  data: { 
+		 type: 'submit_feedback2',
+         f2q1: $("#f2q1").val()
+	  },
+	  success: function (data) {
+        console.log(data.trim());
+        
+        var info = data.trim().split("=");
+        phase = info[0];
+        upload_cnt_obj1 = parseInt(info[1]);
+        upload_cnt_obj2 = parseInt(info[2]);
+        upload_cnt_obj3 = parseInt(info[3]);
+        subset_cnt_obj = parseInt(info[4]);
+        subset_cnt_num = parseInt(info[5]);
+        obj_name = restoreSpecial(info[6]);
+        obj_index = parseInt(info[7]);
+        label = info[8];
+        update_interface();
+	  },
+	  error: function () { console.log('fail'); }
+	}).done(function(o) {
+	  console.log('done'); 
+	});
+}
+
+function submit_trq(index) {
+    var feedbackForm = document.getElementById("feedForm");
+    if (!feedbackForm.checkValidity()) {
+        $("#submit_button").click();
+        return;
     }
     
     $.ajax({
 	  type: "POST",
 	  url: "requestHandler.php",
 	  data: { 
-		 type: p,
-         f1q1: $("#f1q1").val(),
-         f1q2: $("#f1q2").val(),
-         f2q1: $("#f2q1").val()
+		 type: 'submit_trq'+index,
+         q1: $("#q1").val()
 	  },
       
 	  success: function (data) {
@@ -246,7 +445,7 @@ function submit_feedback(p) {
         upload_cnt_obj3 = parseInt(info[3]);
         subset_cnt_obj = parseInt(info[4]);
         subset_cnt_num = parseInt(info[5]);
-        obj_name = info[6];
+        obj_name = restoreSpecial(info[6]);
         obj_index = parseInt(info[7]);
         label = info[8];
         update_interface();

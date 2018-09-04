@@ -49,6 +49,8 @@
 
 	   </div> 
 	   
+       <div id='test'></div>
+       
 		<script>
 			window.mobileAndTabletcheck = function() {
 			  var check = false;
@@ -61,6 +63,40 @@
 				$("#main").append("<p class='bg-warning text-dark' align='center'>Please open this link in a mobile device to continue with the study.</p>");
 				$("#nextButton").hide();
 			}
+            
+            /*
+            $("#test").append(replaceSpecial('aa~~')+'<?=replaceSpecial('aa~')?><br>');
+            $("#test").append(replaceSpecial('aa`')+'<?=replaceSpecial('aa`')?><br>');
+            $("#test").append(replaceSpecial('aa!')+'<?=replaceSpecial('aa!')?><br>');
+            $("#test").append(replaceSpecial('aa@')+'<?=replaceSpecial('aa@')?><br>');
+            $("#test").append(replaceSpecial('aa#')+'<?=replaceSpecial('aa#')?><br>');
+            $("#test").append(replaceSpecial('aa$')+'<?=replaceSpecial('aa$')?><br>');
+            $("#test").append(replaceSpecial('aa%')+'<?=replaceSpecial('aa%')?><br>');
+            $("#test").append(replaceSpecial('aa^')+'<?=replaceSpecial('aa^')?><br>');
+            $("#test").append(replaceSpecial('aa&')+'<?=replaceSpecial('aa&')?><br>');
+            $("#test").append(replaceSpecial('aa*')+'<?=replaceSpecial('aa*')?><br>');
+            $("#test").append(replaceSpecial('aa(')+'<?=replaceSpecial('aa(')?><br>');
+            $("#test").append(replaceSpecial('aa)')+'<?=replaceSpecial('aa)')?><br>');
+            $("#test").append(replaceSpecial('aa+')+'<?=replaceSpecial('aa+')?><br>');
+            $("#test").append(replaceSpecial('aa=')+'<?=replaceSpecial('aa=')?><br>');
+            $("#test").append(replaceSpecial('aa{')+'<?=replaceSpecial('aa{')?><br>');
+            $("#test").append(replaceSpecial('aa}')+'<?=replaceSpecial('aa}')?><br>');
+            $("#test").append(replaceSpecial('aa[')+'<?=replaceSpecial('aa[')?><br>');
+            $("#test").append(replaceSpecial('aa]')+'<?=replaceSpecial('aa]')?><br>');
+            $("#test").append(replaceSpecial('aa|')+'<?=replaceSpecial('aa|')?><br>');
+            $("#test").append(replaceSpecial('aa\\')+'<?=replaceSpecial('aa\\')?><br>');
+            $("#test").append(replaceSpecial('aa\'')+'<?=replaceSpecial('aa\'')?><br>');
+            $("#test").append(replaceSpecial('aa"')+'<?=replaceSpecial('aa"')?><br>');
+            $("#test").append(replaceSpecial('aa:')+'<?=replaceSpecial('aa:')?><br>');
+            $("#test").append(replaceSpecial('aa;')+'<?=replaceSpecial('aa;')?><br>');
+            $("#test").append(replaceSpecial('aa/')+'<?=replaceSpecial('aa/')?><br>');
+            $("#test").append(replaceSpecial('aa?')+'<?=replaceSpecial('aa?')?><br>');
+            $("#test").append(replaceSpecial('aa<')+'<?=replaceSpecial('aa<')?><br>');
+            $("#test").append(replaceSpecial('aa>')+'<?=replaceSpecial('aa>')?><br>');
+            $("#test").append(replaceSpecial('aa.')+'<?=replaceSpecial('aa.')?><br>');
+            $("#test").append(replaceSpecial('aa,')+'<?=replaceSpecial('aa,')?><br>');
+            $("#test").append(replaceSpecial('aa ')+'<?=replaceSpecial('aa ')?><br>');
+            */
 		</script>
   </body>
 </html>

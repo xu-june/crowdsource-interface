@@ -6,17 +6,17 @@
 	
 	function recursive_rmdir($dir) { 
 		if( is_dir($dir) ) { 
-		  $objects = array_diff( scandir($dir), array('..', '.') );
-		  foreach ($objects as $object) { 
-			$objectPath = $dir."/".$object;
-			if( is_dir($objectPath) )
-			  recursive_rmdir($objectPath);
-			else
-			  unlink($objectPath); 
-		  } 
-		  rmdir($dir); 
+            $objects = array_diff( scandir($dir), array('..', '.') );
+            foreach ($objects as $object) { 
+                $objectPath = $dir."/".$object;
+                if(is_dir($objectPath))
+                  recursive_rmdir($objectPath);
+                else
+                  unlink($objectPath); 
+            } 
+            rmdir($dir); 
 		} 
-	  }
+	}
 	
 	// echo dirname(__FILE__) . "/images/";
 	$img_base_dir = "images";
@@ -37,13 +37,21 @@
 	$urlts2 = dirname(__FILE__) . '/' . $img_base_dir . '/p' . $uuid . "/t" . $_SESSION['trial'] . "/test2/";
 
 	// for randomization function in test phases
-    $obj1 = preg_replace('/[^A-Za-z0-9\. -]/', '', $_GET["obj1"]);
-    $obj2 = preg_replace('/[^A-Za-z0-9\. -]/', '', $_GET["obj2"]);
-    $obj3 = preg_replace('/[^A-Za-z0-9\. -]/', '', $_GET["obj3"]);
+    /*
+    $obj1 = preg_replace('/[^A-Za-z0-9\. -]/', '', $_POST["obj1"]);
+    $obj2 = preg_replace('/[^A-Za-z0-9\. -]/', '', $_POST["obj2"]);
+    $obj3 = preg_replace('/[^A-Za-z0-9\. -]/', '', $_POST["obj3"]);
 	$obj1 = str_replace(' ', '_', $obj1);
 	$obj2 = str_replace(' ', '_', $obj2);
 	$obj3 = str_replace(' ', '_', $obj3);
 	$_SESSION["object_names"] = array($obj1, $obj2, $obj3);
+    */
+    $obj1 = replaceSpecial($_POST["obj1"]);
+    $obj2 = replaceSpecial($_POST["obj2"]);
+    $obj3 = replaceSpecial($_POST["obj3"]);
+	$_SESSION["object_names"] = array($obj1, $obj2, $obj3);
+    
+    //echo $obj1."<br>".$obj2."<br>".$obj3."<br>";
 	
 	// to make directories
 	$url1_ts = $urlts . $obj1;

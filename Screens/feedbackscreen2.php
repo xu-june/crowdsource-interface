@@ -22,18 +22,19 @@
       
 </script>
 
-<?php printProgressBar(34); ?>
+<?php printProgressBar(22); ?>
 
 <h4>Compare the result to your expectations!</h4>
 <p>Did you expect to get this result? Or did you expect the accuracy to be higher/lower?</p>
 <p>Please tell us what you expected and why, as well as your result and why you think you got this result.</p>
 
 <form name="feedback" action="post_questions.php" method="post" id="feedbackForm">
-    <textarea name="f2q1" required="true" class="form-control" id="feedback1" rows="3" onkeyup="countChar(this)" placeholder="Enter feedback here"></textarea>
+    <textarea name="f2q1" id = "f2q1" required="true" class="form-control" rows="3" onkeyup="countChar(this)" placeholder="Enter feedback here"></textarea>
     <div class="chcount"><small><span id="charCount">800</span>/800 characters left</small></div>
     <br>
 
     <div align="right">
-        <button type="submit" id='submit_button' class="btn btn-primary">Next ></button>
+        <button type="button" class="btn btn-primary" onclick="submit_feedback2()">Next ></button>
+        <button type="submit" id='submit_button' class="btn btn-primary" style='display:none;'>Next ></button>
     </div>
 </form>

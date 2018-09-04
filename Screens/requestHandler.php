@@ -71,14 +71,14 @@
 		}
 		
 		if ($subset_cnt_obj == 3) {
-			if ($phase == 1)
-				$phase = 'test1';
-			else 
-				$phase = 'test2';
+			if ($phase == 1) {
+                $curr_obj_index = getObjectIndex('train2', 0);
+                $objectname = $_SESSION["object_names"][$curr_obj_index-1];
+                echo "before_training2=0=0=0=0=0=".$objectname."=".$curr_obj_index."=";
+			} else {
+				echo "post_questions=0=0=0=0=0=na=0=";
+            }
 	        
-	        $curr_obj_index = getObjectIndex($phase, 0);
-	        $objectname = $_SESSION["object_names"][$curr_obj_index-1];
-        	echo 'before_'.$phase."=0=0=0=0=0=".$objectname."=".$curr_obj_index."=";
 		} else {
 			$obj_index = $_SESSION['order'][$subset_for][$subset_cnt_obj];
 			$obj_name = $_SESSION['object_names'][$obj_index-1];
@@ -113,6 +113,7 @@
         echo $next."=0=0=0=0=0=".$objectname."=".$curr_obj_index."=";
         
         //start training if the phase is subset selection
+        /*
         if (strpos($next, 'subset') == 0) {
         	$subset_for = 'train1';
         	if (strpos($next, 'train1') === false) {
@@ -120,17 +121,7 @@
 			}
 			training_start($subset_for);
         }
-    }
-    
-    function training_start($p) {
-		// trigger the training for now
-		require(dirname(__FILE__).'/../TOR/rest_client.php');
-		// send the training images to the server
-		$puuid = 'p' . $_SESSION['pid'];
-		$trial = 't' . $_SESSION['trial'];
-		// TODO: we need to trigger a training only once
-		init_vars();
-		prepare_upload($puuid, $trial, $p);
+        */
     }
     
     function submit_feedback1() {
@@ -138,9 +129,48 @@
         $sql = "UPDATE feedback set `f1q1`='".$_POST['f1q1']."', `f1q2`='".$_POST['f1q2']."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
 		execSQL($sql);
         
-        echo "before_training2=0=0=0=0=0=na=0=";
+        $sql = "UPDATE variables set `phase`='subset_train1', `upload_cnt_obj1`=0, `upload_cnt_obj2`=0, `upload_cnt_obj3`=0, `subset_cnt_obj`=0, `subset_cnt_num`=0 "
+                ."where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+		execSQL($sql);
+        
+        $obj_index = $_SESSION['order']['train1'][0];
+        $obj_name = $_SESSION['object_names'][$obj_index - 1];
+        
+        //echo "before_training2=0=0=0=0=0=na=0=";
+        echo "subset_train1=0=0=0=0=0=".$obj_name."=".$obj_index."=";
     }
     
+    function submit_feedback2() {
+        //delete existing feedback info
+        $f2q1 = $_POST["f2q1"];
+        $sql = "UPDATE feedback set `f2q1`='".$f2q1."' WHERE `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+        execSQL($sql);
+        
+        $sql = "UPDATE variables set `phase`='subset_train2', `upload_cnt_obj1`=0, `upload_cnt_obj2`=0, `upload_cnt_obj3`=0, `subset_cnt_obj`=0, `subset_cnt_num`=0 "
+                ."where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+		execSQL($sql);
+        
+        $obj_index = $_SESSION['order']['train2'][0];
+        $obj_name = $_SESSION['object_names'][$obj_index - 1];
+        
+        echo "subset_train2=0=0=0=0=0=".$obj_name."=".$obj_index."=".$_POST["f2q1"];
+    }
+    
+    function submit_trq($index) {
+        //delete existing feedback info
+        $sql = "UPDATE feedback set `tr".$index."q1`='".$_POST['q1']."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+		execSQL($sql);
+        
+        echo "before_test".$index."=0=0=0=0=0=na=0=";
+    }
+    
+    // write action log
+    $date = date("Y-m-d H:i:s");
+    $time = round(microtime(true) * 1000);
+    $sql = "INSERT INTO action_logs "
+            ."(`participant_id`, `trial`, `event`, `time`, `date`) VALUES ("
+            .$_SESSION['pid'].",".$_SESSION['trial'].", 'request-".$_POST['type']."', '".$time."', '".$date."');";
+    execSQL($sql);
     
     if ($_POST['type']=='submit_code'){
     	submit_code();
@@ -152,5 +182,11 @@
         submit_selection();
     } else if ($_POST['type']=='submit_feedback1'){
         submit_feedback1();
-    } 
+    } else if ($_POST['type']=='submit_feedback2'){
+        submit_feedback2();
+    } else if ($_POST['type']=='submit_trq1'){
+        submit_trq(1);
+    } else if ($_POST['type']=='submit_trq2'){
+        submit_trq(2);
+    }  
 ?>

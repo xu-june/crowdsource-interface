@@ -20,7 +20,7 @@
 
 			<img src="images/chips.jpg" width="30%"> Object 1: <strong>Potato chips</strong> <br>
 			<img src="images/fritos.png" width="30%"> Object 2: <strong>Fritos</strong> <br>
-			<img src="images/pretzels.jpg" width="30%"> Object 3: <strong>Pretzels</strong> <br>
+			<img src="images/pretzels.png" width="30%"> Object 3: <strong>Pretzels</strong> <br>
 
 			<div align='right'>
 				<button class="btn btn-primary" onclick="window.location.href='objects.php'">Next ></button>

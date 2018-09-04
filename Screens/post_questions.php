@@ -4,9 +4,10 @@
     include 'connectDB.php';
 	savePageLog($_SESSION['pid'], basename($_SERVER['PHP_SELF']));
   
-	$f2q1 = $_POST["f2q1"];
-	$sql = "UPDATE feedback set `f2q1`='".$f2q1."' WHERE `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
-	execSQL($sql);
+    // update state
+    $sql = "UPDATE variables set `phase`='post_questions', `upload_cnt_obj1`=0, `upload_cnt_obj2`=0, `upload_cnt_obj3`=0, `subset_cnt_obj`=0, `subset_cnt_num`=0 "
+            ."where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+    execSQL($sql);
 
 	$uuid = $_SESSION['pid'];
 
@@ -16,19 +17,10 @@
 	stop_recognizer($puuid);
 ?>
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <?php printMetaInfo(); ?>
-
-    <title>Post-study Questions</title>
-  </head>
-  <body>
-    <div class="mt-3 mb-3 mr-3 ml-3">
-        <?php printProgressBar(35); ?>
+        <?php printProgressBar(26); ?>
         
-        <h4> Post-study Questions </h4><br>
+        <h4>Questions </h4><br>
+        <p>Please answer the questions about how you took photos for training and testing.</p>
         
         <form  action="end.php" method="post">
           <!-- text form -->
@@ -59,6 +51,4 @@
             <button type="submit" class="btn btn-primary">Next ></button>
           </div>
         </form>
-<?php
-	include 'footer.php';
-?>
+        
