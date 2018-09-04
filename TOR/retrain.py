@@ -123,6 +123,7 @@ import argparse
 import collections
 from datetime import datetime
 import hashlib
+import os
 import os.path
 import random
 import re
@@ -146,7 +147,7 @@ FAKE_QUANT_OPS = ('FakeQuantWithMinMaxVars',
                   'FakeQuantWithMinMaxVarsPerChannel')
 
 
-def create_image_lists(image_dir, testing_percentage, validation_percentage):
+def create_image_lists(image_dir, training_number, testing_number, validation_number):
   """Builds a list of training images from the file system.
 
   Analyzes the sub folders in the image directory, splits them into stable
@@ -155,8 +156,9 @@ def create_image_lists(image_dir, testing_percentage, validation_percentage):
 
   Args:
     image_dir: String path to a folder containing subfolders of images.
-    testing_percentage: Integer percentage of the images to reserve for tests.
-    validation_percentage: Integer percentage of images reserved for validation.
+    training_number: Integer number of the images to reserve for train.
+    testing_number: Integer number of the images to reserve for tests.
+    validation_number: Integer number of images reserved for validation.
 
   Returns:
     An OrderedDict containing an entry for each label subfolder, with images
@@ -174,7 +176,7 @@ def create_image_lists(image_dir, testing_percentage, validation_percentage):
     if is_root_dir:
       is_root_dir = False
       continue
-    extensions = ['jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'PNG']
+    extensions = ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']
     file_list = []
     dir_name = os.path.basename(sub_dir)
     if dir_name == image_dir:
@@ -197,6 +199,9 @@ def create_image_lists(image_dir, testing_percentage, validation_percentage):
     training_images = []
     testing_images = []
     validation_images = []
+    # Here simply randomize the file list to simulate
+    # "the random selection of training, validation, and testing sets"
+    random.shuffle(file_list)
     for file_name in file_list:
       base_name = os.path.basename(file_name)
       # We want to ignore anything after '_nohash_' in the file name when
@@ -204,7 +209,7 @@ def create_image_lists(image_dir, testing_percentage, validation_percentage):
       # grouping photos that are close variations of each other. For example
       # this is used in the plant disease data set to group multiple pictures of
       # the same leaf.
-      hash_name = re.sub(r'_nohash_.*$', '', file_name)
+      # hash_name = re.sub(r'_nohash_.*$', '', file_name)
       # This looks a bit magical, but we need to decide whether this file should
       # go into the training, testing, or validation sets, and we want to keep
       # existing files in the same set even if more files are subsequently
@@ -212,6 +217,7 @@ def create_image_lists(image_dir, testing_percentage, validation_percentage):
       # To do that, we need a stable way of deciding based on just the file name
       # itself, so we do a hash of that and then use that to generate a
       # probability value that we use to assign it.
+      """
       hash_name_hashed = hashlib.sha1(tf.compat.as_bytes(hash_name)).hexdigest()
       percentage_hash = ((int(hash_name_hashed, 16) %
                           (MAX_NUM_IMAGES_PER_CLASS + 1)) *
@@ -222,12 +228,24 @@ def create_image_lists(image_dir, testing_percentage, validation_percentage):
         testing_images.append(base_name)
       else:
         training_images.append(base_name)
+      """
+      if len(training_images) < training_number:
+        training_images.append(base_name)
+      elif len(validation_images) < validation_number:
+        validation_images.append(base_name)
+      elif len(testing_images) < testing_number:
+        testing_images.append(base_name)
+      else:
+        # no need to select images anymore
+        break
+
     result[label_name] = {
         'dir': dir_name,
         'training': training_images,
         'testing': testing_images,
         'validation': validation_images,
     }
+
   return result
 
 
@@ -1014,13 +1032,13 @@ def retrain_model(uuid, phase):
   # get names for graph and labels based on the given phase
   output_graph = "%s_graph.pb" % (phase)
   output_labels = "%s_labels.txt" % (phase)
-  # assuming images are under "images/(uuid)/(phase)"
+  # assuming images are under "images/(uuid)/(trial)/(phase)"
   img_dir = os.path.join("images", uuid, phase)
 
   try:
     FLAGS = FlagClass()
     FLAGS.bottleneck_dir = "/tmp/bottlenecks/"
-    FLAGS.how_many_training_steps = 200
+    FLAGS.how_many_training_steps = 500
     FLAGS.summaries_dir = "/tmp/summaires/"
     FLAGS.output_graph = os.path.join(model_dir, output_graph)
     FLAGS.output_labels = os.path.join(model_dir, output_labels)
@@ -1029,12 +1047,15 @@ def retrain_model(uuid, phase):
     FLAGS.intermediate_output_graphs_dir = '/tmp/intermediate_graph/'
     FLAGS.intermediate_store_frequency = 0
     FLAGS.learning_rate = 0.01
-    FLAGS.testing_percentage = 10
-    FLAGS.validation_percentage = 10
+    FLAGS.training_number = 28
+    FLAGS.testing_number = 1
+    FLAGS.validation_number = 1
+    # FLAGS.testing_percentage = 10
+    # FLAGS.validation_percentage = 10
     FLAGS.eval_step_interval = 50
     FLAGS.train_batch_size = 256
     FLAGS.test_batch_size = -1
-    FLAGS.validation_batch_size = 256
+    FLAGS.validation_batch_size = -1
     FLAGS.print_misclassified_test_images = False
     FLAGS.final_tensor_name = 'final_result'
     FLAGS.flip_left_right = False
@@ -1048,6 +1069,7 @@ def retrain_model(uuid, phase):
     start = time.time()
     main('')
     elapsed = time.time() - start
+    # print(FLAGS.output_graph, ",", FLAGS.output_labels)
     print('\nTraining time: {:.3f}s\n'.format(elapsed))
     return FLAGS.output_graph, FLAGS.output_labels
       
@@ -1058,6 +1080,13 @@ def retrain_model(uuid, phase):
 
 
 def main(_):
+  # allocating TF graph to only one GPU
+  #https://stackoverflow.com/questions/37893755/tensorflow-set-cuda-visible-devices-within-jupyter
+  os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   # see issue #152
+  # os.environ["CUDA_VISIBLE_DEVICES"]="0"
+  # only using CPUs
+  os.environ["CUDA_VISIBLE_DEVICES"]=""
+
   # Needed to make sure the logging output is visible.
   # See https://github.com/tensorflow/tensorflow/issues/3047
   tf.logging.set_verbosity(tf.logging.INFO)
@@ -1070,8 +1099,11 @@ def main(_):
   prepare_file_system()
 
   # Look at the folder structure, and create lists of all the images.
-  image_lists = create_image_lists(FLAGS.image_dir, FLAGS.testing_percentage,
-                                   FLAGS.validation_percentage)
+  image_lists = create_image_lists(FLAGS.image_dir, FLAGS.training_number,
+                                   FLAGS.testing_number,
+                                   FLAGS.validation_number)
+  # image_lists = create_image_lists(FLAGS.image_dir, FLAGS.testing_percentage,
+  #                                  FLAGS.validation_percentage)
   class_count = len(image_lists.keys())
   if class_count == 0:
     tf.logging.error('No valid folders of images found at ' + FLAGS.image_dir)
@@ -1231,6 +1263,36 @@ def main(_):
 
 
 if __name__ == '__main__':
+
+  # allocating TF graph to only one GPU
+  #https://stackoverflow.com/questions/37893755/tensorflow-set-cuda-visible-devices-within-jupyter
+  os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   # see issue #152
+  # os.environ["CUDA_VISIBLE_DEVICES"]="0"
+  # only using CPUs
+  os.environ["CUDA_VISIBLE_DEVICES"]=""
+
+  parser = argparse.ArgumentParser()
+  parser.add_argument(
+      '--uuid',
+      type=str,
+      default=None,
+      help='User Unique ID'
+  )
+  parser.add_argument(
+      '--phase',
+      type=str,
+      default=None,
+      help='Where to save the trained graph.'
+  )
+
+  FLAGS, unparsed = parser.parse_known_args()
+
+  if not FLAGS.uuid or not FLAGS.phase:
+    print("Usage: python3 %s --uuid [uuid] --phase [phase]"
+          % (os.path.basename(__FILE__)))
+    sys.exit()
+
+  retrain_model(FLAGS.uuid, FLAGS.phase)
 
   # parser = argparse.ArgumentParser()
   # parser.add_argument(
@@ -1406,6 +1468,4 @@ if __name__ == '__main__':
   #     help='Where to save the exported graph.')
   # FLAGS, unparsed = parser.parse_known_args()
   # tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)
-
-  retrain_model()
 
