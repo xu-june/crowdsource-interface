@@ -37,12 +37,6 @@
         execSQL($sql);
     }
     //echo $_SESSION['pid']."-".$_SESSION['pcode']."-".$_SESSION['trial'];
-    
-    $query = "SELECT category_order FROM participant_status where participant_id=".$_SESSION['pid'];
-    $result = getSelect($query);
-    $order = explode(":", $result['category_order']);
-    $current_category = $order[$_SESSION['trial']-1];
-    //echo $result['category_order']."_".$current_category;
         
     $date = date("Y-m-d H:i:s");
     $time = round(microtime(true) * 1000);
@@ -78,6 +72,13 @@
     $sql = "INSERT INTO feedback (`participant_id`, `trial`, `language`, `browser`, `os`) VALUES(".$_SESSION['pid'].", ".$_SESSION['trial'].", '".$lang."', '".$browser."', '".operating_system_detection()."');";
     execSQL($sql);
     
+    /*
+    $query = "SELECT category_order FROM participant_status where participant_id=".$_SESSION['pid'];
+    $result = getSelect($query);
+    $order = explode(":", $result['category_order']);
+    $current_category = $order[$_SESSION['trial']-1];
+    //echo $result['category_order']."_".$current_category;
+    
     if ($current_category == '1') {
         $_SESSION['current_category'] = 'drink';
         include 'screen1_drink.php';
@@ -94,6 +95,72 @@
         $_SESSION['current_category'] = 'spice';
         include 'screen1_spices.php';
     }
+    */
     //$_SESSION['current_category'] = 'spice';
     //include 'screen1_spices.php';
+    
+	$sql = "delete from Objects where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+	execSQL($sql);
+	
+    $sql = "SELECT category FROM Objects where participant_id=".$_SESSION['pid'].";";
+	$result = getConn()->query($sql);
+
+	$categories = array("bottle", "cereal", "drink", "snack", "spice");
+	$categories_done = array();
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			array_push($categories_done, $row['category']);
+		}
+	}
+?>
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+	<script src="./js/popper.js"></script>
+  <?php printMetaInfo(); ?>
+  	
+  <title>
+    	Data Collection Condition
+    </title>
+    <script>
+    	function update_category(category){
+	    	$('#category').text(category);
+    		$('#example').load('screen1_' + category.toLowerCase()+'.php');
+	    	$('#nextButton').show();
+    	}
+    </script>
+  </head>
+  
+	<body>
+		<div class="mt-3 mb-3 mr-3 ml-3">
+			<?php printProgressBar(4); ?>
+		
+			<h4>Data Collection Condition</h4>
+			
+			<p>
+			Select a category of object that you have three instances of. 
+			
+			<div class="btn-group">
+			  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id='category' style="width:10wv;">
+				Category
+			  </button>
+			  <div class="dropdown-menu">
+			  	<?php
+			  		for ($i = 0; $i < 5; $i++) {
+			  			if (!in_array($categories[$i], $categories_done)) {
+			  				$cat = ucfirst($categories[$i]);
+							echo "<a class=\"dropdown-item\" onclick=\"update_category('".$cat."');\">".$cat."</a>";
+						}
+					} 
+			  	?>
+			  </div>
+			</div>
+			</p>
+			
+			<div id='example'></div>
+<?php
+	include 'footer.php';
 ?>

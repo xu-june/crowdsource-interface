@@ -4,6 +4,8 @@
 	include 'header.php';
 	savePageLog($_SESSION['pid'], basename($_SERVER['PHP_SELF']));
     
+    $_SESSION['current_category'] = $_POST['category'];
+    
     $examples = array();
     if ($_SESSION['current_category']=='drink'){
         $examples = array('Coca cola', 'Pepsi', 'Sprite');
