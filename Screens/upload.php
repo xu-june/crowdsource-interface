@@ -73,6 +73,12 @@ $sql = "INSERT INTO action_logs "
         .$uuid.",".$_SESSION['trial'].", 'upload-".$phase . "-" . $objectname . "-".$filename."-".($total_cnt+1)."', '".$time."', '".$date."');";
 execSQL($sql);
 
+// write recognition log
+$sql = "INSERT INTO recognition_log "
+        ."(`participant_id`, `trial`, `phase`, `total_cnt`, `obj_cnt`, `truth`, `prediction`, `time`, `date`) VALUES ("
+        .$uuid.",".$_SESSION['trial'].", '".$_POST['phase']."', ".($total_cnt+1).",".($latestVar['upload_cnt_obj'.$curr_obj_index]+1).",'".$_POST['truth']."', '".$label."', '".$time."', '".$date."');";
+execSQL($sql);
+
 // update state and return result
 $sql = "UPDATE variables set `upload_cnt_obj".$curr_obj_index."`=".($obj_cnt+1)." where `participant_id`=".$uuid." and `trial`=".$_SESSION['trial'].";";
 execSQL($sql);

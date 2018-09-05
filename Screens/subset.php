@@ -64,7 +64,7 @@
     
     
     $('html, body').animate({
-        scrollTop: $("#subset_header").offset().top
+        scrollTop: 0
     }, 500);
 	
 	function click_img(id) {
@@ -103,7 +103,7 @@
 <div id='imgView'></div>
 <div id='showCnt'></div>
 <div align='right'>
-	<button type="button" id='subset_next' class="btn btn-primary" style="display:none;" onclick='submit_selection()'>Next ></button>
+	<button type="button" id='subset_next' class="btn btn-primary" style="display:none;" onclick='submit_selection()'>Next</button>
 </div>
 
 

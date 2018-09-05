@@ -60,7 +60,7 @@
 		<div class="mt-3 mb-3 mr-3 ml-3">
   		<?php printProgressBar(2); ?>
   		
-        <h3> Technology Experience Questions </h3>
+        <h4> Technology Experience Questions </h4>
         
         <p>Please indicate how often do you do the following.</p>
         <form  action="tech_experience2.php" name="bgForm" method="post" id='backgroundForm'>
@@ -70,37 +70,37 @@
             <div>
               <legend class="col-form-label  pt-0"><strong>Use a mobile device.</strong></legend>
               <div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq1" id="q1a1" value="1">
                   <label class="form-check-label" required="true" for="q1a1">
                     <p class='radio_font'>Never</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq1" id="q1a2" value="2">
                   <label class="form-check-label" required="true" for="q1a2">
                     <p class='radio_font'>Once a month</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq1" id="q1a3" value="3">
                   <label class="form-check-label" required="true" for="q1a3">
                     <p class='radio_font'>Several times a month</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq1" id="q1a4" value="4">
                   <label class="form-check-label" required="true" for="q1a4">
                     <p class='radio_font'>Once a week</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq1" id="q1a5" value="5">
                   <label class="form-check-label" required="true" for="q1a5">
                     <p class='radio_font'>Several times a week</p>
                   </label>
                 </div>
-				<div class="form-check">
+				<div class="form-check mb-2">
 				  <input class="form-check-input" required="true" type="radio" name="bq1" id="q1a6" value="6">
 				  <label class="form-check-label" required="true" for="q1a6">
 					<p class='radio_font'>Once a day</p>
@@ -121,43 +121,43 @@
             <div>
               <legend class="col-form-label  pt-0"><strong>Take pictures using a mobile phone</strong></legend>
               <div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq2" id="q2a1" value="1">
                   <label class="form-check-label" required="true" for="q2a1">
                     <p class='radio_font'>Never</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq2" id="q2a2" value="2">
                   <label class="form-check-label" required="true" for="q2a2">
                     <p class='radio_font'>Once a month</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq2" id="q2a3" value="3">
                   <label class="form-check-label" required="true" for="q2a3">
                     <p class='radio_font'>Several times a month</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq2" id="q2a4" value="4">
                   <label class="form-check-label" required="true" for="q2a4">
                     <p class='radio_font'>Once a week</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq2" id="q2a5" value="5">
                   <label class="form-check-label" required="true" for="q2a5">
                     <p class='radio_font'>Several times a week</p>
                   </label>
                 </div>
-				<div class="form-check">
+				<div class="form-check mb-2">
 				  <input class="form-check-input" required="true" type="radio" name="bq2" id="q2a6" value="6">
 				  <label class="form-check-label" required="true" for="q2a6">
 					<p class='radio_font'>Once a day</p>
 				  </label>
 					</div>
-				<div class="form-check">
+				<div class="form-check mb-2">
 				  <input class="form-check-input" required="true" type="radio" name="bq2" id="q2a7" value="7">
 				  <label class="form-check-label" required="true" for="q2a7">
 					<p class='radio_font'>Several times a day</p>
@@ -172,37 +172,37 @@
             <div>
               <legend class="col-form-label  pt-0"><strong>Use apps that can recognize type of objects, food, or plants through the camera. </strong></legend>
               <div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq3" id="q3a1" value="1">
                   <label class="form-check-label" required="true" for="q3a1">
                     <p class='radio_font'>Never</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq3" id="q3a2" value="2">
                   <label class="form-check-label" required="true" for="q3a2">
                     <p class='radio_font'>Once a month</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq3" id="q3a3" value="3">
                   <label class="form-check-label" required="true" for="q3a3">
                     <p class='radio_font'>Several times a month</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq3" id="q3a4" value="4">
                   <label class="form-check-label" required="true" for="q3a4">
                     <p class='radio_font'>Once a week</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq3" id="q3a5" value="5">
                   <label class="form-check-label" required="true" for="q3a5">
                     <p class='radio_font'>Several times a week</p>
                   </label>
                 </div>
-				<div class="form-check">
+				<div class="form-check mb-2">
 				  <input class="form-check-input" required="true" type="radio" name="bq3" id="q3a6" value="6">
 				  <label class="form-check-label" required="true" for="q3a6">
 					<p class='radio_font'>Once a day</p>
@@ -219,7 +219,7 @@
           </fieldset><br>
           
           <div align='right'>
-	          <button type="submit" class="btn btn-primary">Next ></button>
+	          <button type="submit" class="btn btn-primary">Next</button>
           </div>
           
         </form>

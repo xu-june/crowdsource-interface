@@ -17,7 +17,7 @@
 	stop_recognizer($puuid);
 ?>
 
-        <?php printProgressBar(26); ?>
+        <?php printProgressBar(38); ?>
         
         <h4>Questions </h4><br>
         <p>Please answer the questions about how you took photos for training and testing.</p>
@@ -48,7 +48,7 @@
           </div>
           
           <div align="right">
-            <button type="submit" class="btn btn-primary">Next ></button>
+            <button type="submit" class="btn btn-primary">Next</button>
           </div>
         </form>
         

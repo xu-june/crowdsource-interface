@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	$host="127.0.0.1";
 	$port=3306;
 	$socket="";
@@ -16,9 +17,14 @@
 	function savePageLog($pid, $page_name){
 		$date = date("Y-m-d H:i:s");
 		$time = round(microtime(true) * 1000);
-	
-		$sql = "INSERT INTO page_log (`participant_id`, `page`, `time`, `date`) "
-		."VALUES (".$pid.", '".$page_name."','".$time."','".$date."')";
+		
+		if (isset($_SESSION['trial'])){
+			$sql = "INSERT INTO page_log (`participant_id`, `trial`, `page`, `time`, `date`) "
+			."VALUES (".$pid.", ".$_SESSION['trial'].",'".$page_name."','".$time."','".$date."')";
+		} else {
+			$sql = "INSERT INTO page_log (`participant_id`, `trial`, `page`, `time`, `date`) "
+			."VALUES (".$pid.", -1,'".$page_name."','".$time."','".$date."')";
+		}
 	
 		//echo $sql;
 	

@@ -3,6 +3,30 @@
 	include 'connectDB.php';
 	include 'header.php';
 	savePageLog($_SESSION['pid'], basename($_SERVER['PHP_SELF']));
+    
+    /* return Operating System */
+    function operating_system_detection(){
+        //Detect special conditions devices
+        $iPod    = stripos($_SERVER['HTTP_USER_AGENT'],"iPod");
+        $iPhone  = stripos($_SERVER['HTTP_USER_AGENT'],"iPhone");
+        $iPad    = stripos($_SERVER['HTTP_USER_AGENT'],"iPad");
+        $Android = stripos($_SERVER['HTTP_USER_AGENT'],"Android");
+        $webOS   = stripos($_SERVER['HTTP_USER_AGENT'],"webOS");
+
+        //do something with this information
+        if( $iPod ){
+            //browser reported as an iPhone/iPod touch -- do something here
+            return 'iPod';
+        } else if ($iPhone) {
+            return 'iPhone';
+        } else if($iPad){
+            return 'iPad';
+        }else if($Android){
+            return 'Android';
+        }else if($webOS){
+            return 'webOS';
+        }
+    }
 
     if (!empty($_POST['bq4'])) {
         $q4 = $_POST["bq4"];
@@ -35,7 +59,23 @@
     execSQL($sql);
     
     // insert feedback info
-    $sql = "INSERT INTO feedback (`participant_id`, `trial`) VALUES(".$_SESSION['pid'].", ".$_SESSION['trial'].");";
+    $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+    $browser = 'Something else';
+    if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE)
+        $browser = 'Internet explorer';
+    elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) //For Supporting IE 11
+        $browser = 'Internet explorer';
+    elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox') !== FALSE)
+        $browser = 'Mozilla Firefox';
+     elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') !== FALSE)
+        $browser = 'Google Chrome';
+     elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Opera Mini') !== FALSE)
+        $browser = "Opera Mini";
+     elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Opera') !== FALSE)
+        $browser = "Opera";
+     elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') !== FALSE)
+        $browser = "Safari";
+    $sql = "INSERT INTO feedback (`participant_id`, `trial`, `language`, `browser`, `os`) VALUES(".$_SESSION['pid'].", ".$_SESSION['trial'].", '".$lang."', '".$browser."', '".operating_system_detection()."');";
     execSQL($sql);
     
     if ($current_category == '1') {

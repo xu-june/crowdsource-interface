@@ -26,7 +26,7 @@
 		<div class="mt-3 mb-3 mr-3 ml-3">
   		<?php printProgressBar(3); ?>
   		
-        <h3> Technology Experience Questions </h3>
+        <h4> Technology Experience Questions </h4>
         
         <form  action="screen1_objects.php" name="bgForm" method="post" id='backgroundForm'>
           
@@ -35,25 +35,25 @@
             <div>
               <legend class="col-form-label  pt-0"><strong>What do you believe artificial intelligence is?</strong></legend>
               <div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq4" id="q4a1" value="1">
                   <label class="form-check-label" required="true" for="q4a1">
                     <p class='radio_font'>Putting your intelligence into a smart machine and robot</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq4" id="q4a2" value="2">
                   <label class="form-check-label" required="true" for="q4a2">
                     <p class='radio_font'>Programming a smart machine and robot with your own intelligence</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq4" id="q4a3" value="3">
                   <label class="form-check-label" required="true" for="q4a3">
                     <p class='radio_font'>Making a smart machine and robot intelligent</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq4" id="q4a4" value="4">
                   <label class="form-check-label" required="true" for="q4a4">
                     <p class='radio_font'>Putting more memory into a smart machine or robot</p>
@@ -74,19 +74,19 @@
             <div>
               <legend class="col-form-label  pt-0"><strong>How would you classify your level of familiarity with machine learning?</strong></legend>
               <div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq5" id="q5a1" value="1">
                   <label class="form-check-label" required="true" for="q5a1">
                     <p class='radio_font'>Not familiar at all (have never heard of machine learning) </p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq5" id="q5a2" value="2">
                   <label class="form-check-label" required="true" for="q5a2">
                     <p class='radio_font'>Slightly familiar (have heard of it but don’t know what it does)</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="bq5" id="q5a3" value="3">
                   <label class="form-check-label" required="true" for="q5a3">
                     <p class='radio_font'>Somewhat familiar (I have a broad understanding of what it is and what it does)</p>
@@ -116,7 +116,7 @@
           </div><br>
           
           <div align='right'>
-	          <button type="submit" class="btn btn-primary">Next ></button>
+	          <button type="submit" class="btn btn-primary">Next</button>
           </div>
           
         </form>

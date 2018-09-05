@@ -160,7 +160,7 @@
 			
 			<div align='right'>
 				<!--<button type="button" class="btn btn-default" onclick="window.location.href='test0.php'">Next ></button>-->
-                <button type="button" class="btn btn-primary" onclick="window.location.href='task.php'">Next ></button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='task.php'">Next</button>
 			</div>
 		
 

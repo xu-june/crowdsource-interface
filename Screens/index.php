@@ -7,6 +7,7 @@
 <html lang="en">
   <head>
   <?php printMetaInfo(); ?>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bowser/1.9.3/bowser.min.js"></script>
   <title>
     	Welcome!
     </title>
@@ -31,7 +32,9 @@
 			<p>Please proceed to the study <strong>only if</strong> you are seeing this screen in a mobile device with a built-in camera. Otherwise copy this link to your mobile device.</p><br>
 		
 			<div class="alert alert-info">
-				<p><em>If you are continuing this study from the last session, please enter the code we shared with you here. <p class="text-danger">You will not be compensated if you participate for more than once without your code.</p></em></p>
+				<p><em>If you are continuing this study from the last session, please enter the code we shared with you here. 
+                <p class="text-danger">You will not be compensated if you participate for more than once without your code.</p> 
+                You don't need to enter a code if this is your first participation in this study.</em></p>
 				<form id='codeForm' action='background.php' method='post'>
 					<div class="form-group row">
 						<label for="code" class="col-2 col-form-label">Code:</label>
@@ -62,7 +65,35 @@
 				$("#main").empty();
 				$("#main").append("<p class='bg-warning text-dark' align='center'>Please open this link in a mobile device to continue with the study.</p>");
 				$("#nextButton").hide();
-			}
+			} else {
+                var browser = bowser.name.toLowerCase();
+                var os = bowser.osname.toLowerCase();
+                
+                if (os.includes("android")) {
+                    if (browser.includes("chrome")) {
+                    } else {
+                        $("#main").empty();
+                        $("#main").append("<p class='bg-warning text-dark' align='center'>Please use Chrome if you are Android device user.</p>");
+                        $("#nextButton").hide();
+                    }
+                } else if (os.includes("ios")){
+                    if (browser.includes("safari")) {
+                    } else {
+                        $("#main").empty();
+                        $("#main").append("<p class='bg-warning text-dark' align='center'>Please use Safari if you are iOS device user.</p>");
+                        $("#nextButton").hide();
+                    }
+                }
+                /*
+                var browser_name = '';
+                browser_name = "You are using " + bowser.name + " v" + bowser.version + " on " + bowser.osname;
+                $("#test").append("<br>"+browser + "_" + os);
+                $("#test").append("<br>"+screen.height + "_" + screen.width + "_" + $(window).height() + "_" + $(window).width() + "_" + $(document).height() + "_" + $(document).width());
+                */
+            }
+            
+            
+            
             
             /*
             $("#test").append(replaceSpecial('aa~~')+'<?=replaceSpecial('aa~')?><br>');

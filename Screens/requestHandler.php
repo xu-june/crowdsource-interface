@@ -126,7 +126,7 @@
     
     function submit_feedback1() {
         //delete existing feedback info
-        $sql = "UPDATE feedback set `f1q1`='".$_POST['f1q1']."', `f1q2`='".$_POST['f1q2']."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+        $sql = "UPDATE feedback set `f1q1`='".$_POST['q1']."', `f1q2`='".$_POST['q2']."', `f1q3`='".$_POST['q3']."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
 		execSQL($sql);
         
         $sql = "UPDATE variables set `phase`='subset_train1', `upload_cnt_obj1`=0, `upload_cnt_obj2`=0, `upload_cnt_obj3`=0, `subset_cnt_obj`=0, `subset_cnt_num`=0 "
@@ -136,15 +136,13 @@
         $obj_index = $_SESSION['order']['train1'][0];
         $obj_name = $_SESSION['object_names'][$obj_index - 1];
         
-        //echo "before_training2=0=0=0=0=0=na=0=";
         echo "subset_train1=0=0=0=0=0=".$obj_name."=".$obj_index."=";
     }
     
     function submit_feedback2() {
         //delete existing feedback info
-        $f2q1 = $_POST["f2q1"];
-        $sql = "UPDATE feedback set `f2q1`='".$f2q1."' WHERE `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
-        execSQL($sql);
+        $sql = "UPDATE feedback set `f2q1`='".$_POST['q1']."', `f2q2`='".$_POST['q2']."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+		execSQL($sql);
         
         $sql = "UPDATE variables set `phase`='subset_train2', `upload_cnt_obj1`=0, `upload_cnt_obj2`=0, `upload_cnt_obj3`=0, `subset_cnt_obj`=0, `subset_cnt_num`=0 "
                 ."where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
@@ -158,10 +156,15 @@
     
     function submit_trq($index) {
         //delete existing feedback info
-        $sql = "UPDATE feedback set `tr".$index."q1`='".$_POST['q1']."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+        $sql = "UPDATE feedback set `tr".$index."q1`='".$_POST['q1']."', `tr".$index."q2`='".$_POST['q2']."', `tr".$index."q3`='".$_POST['q3']."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
 		execSQL($sql);
         
         echo "before_test".$index."=0=0=0=0=0=na=0=";
+    }
+    
+    function submit_screen_size() {
+        $sql = "UPDATE feedback set `screen_size`='".$_POST['screen_size']."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+		execSQL($sql);
     }
     
     // write action log
@@ -188,5 +191,7 @@
         submit_trq(1);
     } else if ($_POST['type']=='submit_trq2'){
         submit_trq(2);
+    } else if ($_POST['type']=='submit_screen_size'){
+        submit_screen_size();
     }  
 ?>

@@ -26,13 +26,63 @@ The training process takes about 2 minutes. Please answer the question below whi
 <form id='feedForm' action="" method="post">
   <!-- text form -->
   <div class="form-group">
-    <label for="q1"><strong>What do you think is important when you take images for training object recognizer? How did it affect you in the previous step of collecting images?</strong></label>
-    <textarea class="form-control" required="true" id="q1" name='q1' rows="5"></textarea>
+    <label for="q1"><strong>What did you think was important to consider when training the object recognizer?</strong></label>
+    <textarea class="form-control" required="true" id="q1" name='q1' rows="3"></textarea>
+  </div>
+  
+  <!-- text form -->
+  <div class="form-group">
+      <fieldset class="form-group">
+          <legend class="col-form-label pt-0"><strong>How certain are you that the object recognizer will recognize your object at any time in any places? </strong></legend>
+          <div>
+            <table width="100%">
+            <tr>
+                <td>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" required="true" type="radio" name="q2" id="vu" value="1" >
+                      <label class="form-check-label" for="vu">
+                        <p class='radio_font'>Very uncertain</p>
+                      </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" required="true" type="radio" name="q2" id="u" value="2">
+                      <label class="form-check-label" for="u">
+                            <p class='radio_font'>Uncetain</p>
+                      </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" required="true" type="radio" name="q2" id="c" value="3">
+                      <label class="form-check-label" for="c">
+                        <p class='radio_font'>Certain</p>
+                      </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check">
+                      <input class="form-check-input" required="true" type="radio" name="q2" id="vc" value="4">
+                      <label class="form-check-label" for="vc">
+                        <p class='radio_font'>Very uncertain</p>
+                      </label>
+                    </div>
+                </td>
+            </tr>
+            </table>
+            
+          </div>          
+      </fieldset>
+    Why?
+    <textarea class="form-control" required="true" id="q3" name='q3' rows="3"></textarea>
   </div>
   
   <div align="right">
-    <button type="button" id='next_button' class="btn btn-primary" style='display:none;' onclick="submit_trq(2);">Next ></button>
-    <button type="submit" id='submit_button' class="btn btn-primary" style='display:none;'>Next ></button>
+    <button type="button" id='next_button' class="btn btn-primary" style='display:none;' onclick="submit_trq(2);">Next</button>
+    <button type="submit" id='submit_button' class="btn btn-primary" style='display:none;'>Next</button>
   </div>
 </form>
 

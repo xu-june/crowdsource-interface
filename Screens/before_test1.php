@@ -13,7 +13,7 @@
 
 <?php printProgressBar(11); ?>
 
-<h4>Now, can our system tell which is which?</h4>
+<h4>Now, can your object recognizer tell which is which?</h4>
 
 <p>Continue to find out! </p>
 
@@ -24,6 +24,6 @@
 
 <div align='right'>
     <!--<button type="button" class="btn btn-default" onclick="window.location.href='test0.php'">Next ></button>-->
-    <button type="button" class="btn btn-primary" onclick="goToNext('test1');">Next ></button>
+    <button type="button" class="btn btn-primary" onclick="goToNext('test1');">Next</button>
 </div>
 		

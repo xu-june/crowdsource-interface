@@ -22,7 +22,7 @@
 			<img src="images/frostedflakes.jpg" width="30%"> Object 3: <strong>Frosted Flakes</strong> <br>
 
 			<div align='right'>
-				<button class="btn btn-primary" onclick="window.location.href='objects.php'">Next ></button>
+				<button class="btn btn-primary" onclick="window.location.href='objects.php'">Next</button>
 			</div>
 		
         

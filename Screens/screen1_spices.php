@@ -22,7 +22,7 @@
 			<img src="images/chilipowder.JPG" width="30%"> Object 3: <strong>Chili powder</strong> <br>
 
 			<div align='right'>
-				<button class="btn btn-primary" onclick="window.location.href='objects.php'">Next ></button>
+				<button class="btn btn-primary" onclick="window.location.href='objects.php'">Next</button>
 			</div>
 		
         

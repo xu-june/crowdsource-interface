@@ -26,105 +26,113 @@ function end_overlay_off() {
 function replaceSpecial(str){
     var res = str;
     res = res.replace(/=/g, "-");
-    res = res.replace(/~/g, "--a--");
-    res = res.replace(/`/g, "--b--");
-    res = res.replace(/\!/g, "--c--");
-    res = res.replace(/@/g, "--d--");
-    res = res.replace(/#/g, "--e--");
-    res = res.replace(/\$/g, "--f--");
-    res = res.replace(/%/g, "--g--");
-    res = res.replace(/\^/g, "--h--");
-    res = res.replace(/&/g, "--i--");
-    res = res.replace(/\*/g, "--j--");
-    res = res.replace(/\(/g, "--k--");
-    res = res.replace(/\)/g, "--l--");
-    res = res.replace(/\+/g, "--n--");
-    res = res.replace(/{/g, "--p--");
-    res = res.replace(/}/g, "--q--");
-    res = res.replace(/\[/g, "--r--");
-    res = res.replace(/\]/g, "--s--");
-    res = res.replace(/\|/g, "--t--");
-    res = res.replace(/\\/g, "--u--");
-    res = res.replace(/'/g, "--v--");
-    res = res.replace(/"/g, "--w--");
-    res = res.replace(/:/g, "--x--");
-    res = res.replace(/;/g, "--y--");
-    res = res.replace(/\//g, "--z--");
-    res = res.replace(/\?/g, "--ma--");
-    res = res.replace(/</g, "--mb--");
-    res = res.replace(/>/g, "--mc--");
-    res = res.replace(/\./g, "--md--");
-    res = res.replace(/,/g, "--me--");
-    res = res.replace(/ /g, "-----");
+    res = res.replace(/~/g, "--xxa--");
+    res = res.replace(/`/g, "--xxb--");
+    res = res.replace(/\!/g, "--xxc--");
+    res = res.replace(/@/g, "--xxd--");
+    res = res.replace(/#/g, "--xxe--");
+    res = res.replace(/\$/g, "--xxf--");
+    res = res.replace(/%/g, "--xxg--");
+    res = res.replace(/\^/g, "--xxh--");
+    res = res.replace(/&/g, "--xxi--");
+    res = res.replace(/\*/g, "--xxj--");
+    res = res.replace(/\(/g, "--xxk--");
+    res = res.replace(/\)/g, "--xxl--");
+    res = res.replace(/\+/g, "--xxn--");
+    res = res.replace(/{/g, "--xxp--");
+    res = res.replace(/}/g, "--xxq--");
+    res = res.replace(/\[/g, "--xxr--");
+    res = res.replace(/\]/g, "--xxs--");
+    res = res.replace(/\|/g, "--xxt--");
+    res = res.replace(/\\/g, "--xxu--");
+    res = res.replace(/'/g, "--xxv--");
+    res = res.replace(/"/g, "--xxw--");
+    res = res.replace(/:/g, "--xxx--");
+    res = res.replace(/;/g, "--xxy--");
+    res = res.replace(/\//g, "--xxz--");
+    res = res.replace(/\?/g, "--xxma--");
+    res = res.replace(/</g, "--xxmb--");
+    res = res.replace(/>/g, "--xxmc--");
+    res = res.replace(/\./g, "--xxmd--");
+    res = res.replace(/,/g, "--xxme--");
+    res = res.replace(/ /g, "--xxmf--");
+    //alert(res);
     return res;
 }
 function restoreSpecial(str){
     var res = str;
-    res = res.replace(/--a--/g, "~");
-    res = res.replace(/--b--/g, "`");
-    res = res.replace(/--c--/g, "!");
-    res = res.replace(/--d--/g, "@");
-    res = res.replace(/--e--/g, "#");
-    res = res.replace(/--f--/g, "$");
-    res = res.replace(/--g--/g, "%");
-    res = res.replace(/--h--/g, "^");
-    res = res.replace(/--i--/g, "&");
-    res = res.replace(/--j--/g, "*");
-    res = res.replace(/--k--/g, "(");
-    res = res.replace(/--l--/g, ")");
-    res = res.replace(/--n--/g, "+");
-    res = res.replace(/--p--/g, "{");
-    res = res.replace(/--q--/g, "}");
-    res = res.replace(/--r--/g, "[");
-    res = res.replace(/--s--/g, "]");
-    res = res.replace(/--t--/g, "|");
-    res = res.replace(/--u--/g, "\\");
-    res = res.replace(/--v--/g, "'");
-    res = res.replace(/--w--/g, "\"");
-    res = res.replace(/--x--/g, ":");
-    res = res.replace(/--y--/g, ";");
-    res = res.replace(/--z--/g, "\/");
-    res = res.replace(/--ma--/g, "?");
-    res = res.replace(/--mb--/g, "<");
-    res = res.replace(/--mc--/g, ">");
-    res = res.replace(/--md--/g, ".");
-    res = res.replace(/--me--/g, ",");
-    res = res.replace(/-----/g, " ");
+    res = res.replace(/--xxa--/g, "~");
+    res = res.replace(/--xxb--/g, "`");
+    res = res.replace(/--xxc--/g, "!");
+    res = res.replace(/--xxd--/g, "@");
+    res = res.replace(/--xxe--/g, "#");
+    res = res.replace(/--xxf--/g, "$");
+    res = res.replace(/--xxg--/g, "%");
+    res = res.replace(/--xxh--/g, "^");
+    res = res.replace(/--xxi--/g, "&");
+    res = res.replace(/--xxj--/g, "*");
+    res = res.replace(/--xxk--/g, "(");
+    res = res.replace(/--xxl--/g, ")");
+    res = res.replace(/--xxn--/g, "+");
+    res = res.replace(/--xxp--/g, "{");
+    res = res.replace(/--xxq--/g, "}");
+    res = res.replace(/--xxr--/g, "[");
+    res = res.replace(/--xxs--/g, "]");
+    res = res.replace(/--xxt--/g, "|");
+    res = res.replace(/--xxu--/g, "\\");
+    res = res.replace(/--xxv--/g, "'");
+    res = res.replace(/--xxw--/g, "\"");
+    res = res.replace(/--xxx--/g, ":");
+    res = res.replace(/--xxy--/g, ";");
+    res = res.replace(/--xxz--/g, "\/");
+    res = res.replace(/--xxma--/g, "?");
+    res = res.replace(/--xxmb--/g, "<");
+    res = res.replace(/--xxmc--/g, ">");
+    res = res.replace(/--xxmd--/g, ".");
+    res = res.replace(/--xxme--/g, ",");
+    res = res.replace(/--xxmf--/g, " ");
     return res;
 }
 function restoreSpecial_label(str){
     var res = str;
-    res = res.replace(/ a/g, "~");
-    res = res.replace(/ b/g, "`");
-    res = res.replace(/ c/g, "!");
-    res = res.replace(/ d/g, "@");
-    res = res.replace(/ e/g, "#");
-    res = res.replace(/ f/g, "$");
-    res = res.replace(/ g/g, "%");
-    res = res.replace(/ h/g, "^");
-    res = res.replace(/ i/g, "&");
-    res = res.replace(/ j/g, "*");
-    res = res.replace(/ k/g, "(");
-    res = res.replace(/ l/g, ")");
-    res = res.replace(/ n/g, "+");
-    res = res.replace(/ p/g, "{");
-    res = res.replace(/ q/g, "}");
-    res = res.replace(/ r/g, "[");
-    res = res.replace(/ s/g, "]");
-    res = res.replace(/ t/g, "|");
-    res = res.replace(/ u/g, "\\");
-    res = res.replace(/ v/g, "'");
-    res = res.replace(/ w/g, "\"");
-    res = res.replace(/ x/g, ":");
-    res = res.replace(/ y/g, ";");
-    res = res.replace(/ z/g, "\/");
-    res = res.replace(/ ma/g, "?");
-    res = res.replace(/ mb/g, "<");
-    res = res.replace(/ mc/g, ">");
-    res = res.replace(/ md/g, ".");
-    res = res.replace(/ me/g, ",");
-    res = res.replace(/ /g, "");
+    res = res.replace(/ xxa/g, "~");
+    res = res.replace(/ xxb/g, "`");
+    res = res.replace(/ xxc/g, "!");
+    res = res.replace(/ xxd/g, "@");
+    res = res.replace(/ xxe/g, "#");
+    res = res.replace(/ xxf/g, "$");
+    res = res.replace(/ xxg/g, "%");
+    res = res.replace(/ xxh/g, "^");
+    res = res.replace(/ xxi/g, "&");
+    res = res.replace(/ xxj/g, "*");
+    res = res.replace(/ xxk/g, "(");
+    res = res.replace(/ xxl/g, ")");
+    res = res.replace(/ xxn/g, "+");
+    res = res.replace(/ xxp/g, "{");
+    res = res.replace(/ xxq/g, "}");
+    res = res.replace(/ xxr/g, "[");
+    res = res.replace(/ xxs/g, "]");
+    res = res.replace(/ xxt/g, "|");
+    res = res.replace(/ xxu/g, "\\");
+    res = res.replace(/ xxv/g, "'");
+    res = res.replace(/ xxw/g, "\"");
+    res = res.replace(/ xxx/g, ":");
+    res = res.replace(/ xxy/g, ";");
+    res = res.replace(/ xxz/g, "\/");
+    res = res.replace(/ xxma/g, "?");
+    res = res.replace(/ xxmb/g, "<");
+    res = res.replace(/ xxmc/g, ">");
+    res = res.replace(/ xxmd/g, ".");
+    res = res.replace(/ xxme/g, ",");
+    res = res.replace(/ xxmf/g, "");
     return res;
+}	
+function leaveCheck(){
+	if (confirm('Are you sure you want to leave this page?')){
+		return true;
+	} else {
+		return false;
+	}
 }
 
 function captureImage() {
@@ -132,6 +140,9 @@ function captureImage() {
     
     clickable = false;
     if (phase.startsWith("test")) {
+        var elem = document.getElementById("label"); 
+        elem.innerHTML = "Recognition is going on...";
+    	$('#prediction').show();
         videoElement.pause();
     }
     
@@ -143,9 +154,12 @@ function captureImage() {
 	  type: "POST",
 	  url: "upload.php",
 	  data: { 
-		 imgBase64: img.src
+		 imgBase64: img.src,
+         phase: phase,
+         truth: obj_name
 	  },
 	  success: function (data) {
+          //alert('success!');
 		console.log('success');
         console.log(data.trim());
         
@@ -163,12 +177,31 @@ function captureImage() {
         update_interface();
 	  },
 	  error: function () { 
-                clickable = true;
-                console.log('fail'); 
+		videoElement.play();
+		clickable = true;
+		showFail();
+		
+		console.log('fail'); 
       }
 	}).done(function(o) {
 	  console.log('done'); 
 	});
+}
+
+function showFail() {
+    var elem = document.getElementById("label"); 
+    var width = 0;
+    var id = setInterval(frame, 1000)
+    var cnt = 3;
+    function frame() {
+        if (cnt <= 1) {
+            clearInterval(id);
+            clearTest(upload_cnt);
+        } else {
+            cnt--;
+            elem.innerHTML = "Uploading image failed. Try again in "+cnt+" seconds.";
+        }
+    }
 }
 
 function showResult(upload_cnt) {
@@ -177,7 +210,7 @@ function showResult(upload_cnt) {
     var id = setInterval(frame, 1000)
     var cnt = 3;
     function frame() {
-        if (cnt == 1) {
+        if (cnt <= 1) {
             clearInterval(id);
             clearTest(upload_cnt);
         } else {
@@ -222,8 +255,8 @@ function update_interface() {
         elem.innerHTML = "<b>"+label+"</b> <br><br> The next object will be shown in 3 seconds";
         
         if (label != ''){
-            $('#prediction').show();
-            videoElement.pause();            
+            //$('#prediction').show();
+            //videoElement.pause();            
             showResult(upload_cnt);
         } else {
             $("#objects").text(obj_name);
@@ -246,7 +279,7 @@ function update_interface() {
         $("#count").text(training_img_num-upload_cnt % training_img_num);
         
         if (upload_cnt >= training_img_num*3) {
-            end_overlay_on();
+            goToNext(phase+'_question');
         } else if (upload_cnt%training_img_num == 0 ) {
             start_overlay_on();
         }
@@ -360,8 +393,9 @@ function submit_feedback1() {
 	  url: "requestHandler.php",
 	  data: { 
 		 type: 'submit_feedback1',
-         f1q1: $("#f1q1").val(),
-         f1q2: $("#f1q2").val(),
+         q1: $(".form-check-input:checked").val(),
+         q2: $("#q2").val(),
+         q3: $("#q3").val()
 	  },  
 	  success: function (data) {
         console.log(data.trim());
@@ -397,7 +431,8 @@ function submit_feedback2() {
 	  url: "requestHandler.php",
 	  data: { 
 		 type: 'submit_feedback2',
-         f2q1: $("#f2q1").val()
+         q1: $(".form-check-input:checked").val(),
+         q2: $("#q2").val()
 	  },
 	  success: function (data) {
         console.log(data.trim());
@@ -432,7 +467,9 @@ function submit_trq(index) {
 	  url: "requestHandler.php",
 	  data: { 
 		 type: 'submit_trq'+index,
-         q1: $("#q1").val()
+         q1: $("#q1").val(),
+         q2: $(".form-check-input:checked").val(),
+         q3: $("#q3").val()
 	  },
       
 	  success: function (data) {

@@ -83,16 +83,15 @@
           
           <!-- radio button set -->
           <fieldset class="form-group">
-            <div class="row">
-              <legend class="col-form-label col-2 pt-0"><strong>Gender</strong></legend>
-              <div class="col-10">
-                <div class="form-check">
+              <legend class="col-form-label pt-0"><strong>Gender </strong></legend>
+              <div>
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="gender" id="genderMale" value="male" >
                   <label class="form-check-label" for="genderMale">
                     <p class='radio_font'>Male</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="gender" id="genderFemale" value="female">
                   <label class="form-check-label" for="genderFemale">
 						<p class='radio_font'>Female</p>
@@ -105,9 +104,7 @@
                   </label>
                 </div>
               </div>
-            </div>
           </fieldset><br>
-          
           
           <!-- text form -->
           <div class="form-group">
@@ -120,13 +117,13 @@
             <div>
               <legend class="col-form-label  pt-0"><strong>What is your dominant hand?</strong></legend>
               <div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="dom_hand" id="left_hand" value="left">
                   <label class="form-check-label" for="left_hand">
                     <p class='radio_font'>Left hand</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" required="true" type="radio" name="dom_hand" id="right_hand" value="right">
                   <label class="form-check-label" for="right_hand">
                     <p class='radio_font'>Right hand </p>
@@ -139,16 +136,16 @@
           <!-- radio button set -->
           <fieldset class="form-group">
             <div>
-              <legend class="col-form-label  pt-0"><strong>Do you have visual impairments?</strong></legend>
+              <legend class="col-form-label pt-0"><strong>Do you have visual impairments?</strong></legend>
               <div>
               
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" onclick="vi_status(false);" required="true" type="radio" name="has_vi" id="vi_yes" value="yes">
                   <label class="form-check-label" onclick="vi_status(false);" required="true" for="vi_yes">
                     <p class='radio_font'>Yes</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" onclick="vi_status(true);" required="true" type="radio" name="has_vi" id="vi_no" value="no">
                   <label class="form-check-label" onclick="vi_status(true);" for="vi_no">
                     <p class='radio_font'>No</p>
@@ -167,13 +164,13 @@
             <div>
               <legend class="col-form-label pt-0"><strong>Do you have motor impairments?</strong></legend>
               <div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" onclick="mi_status(false);" required="true" type="radio" name="has_mi" id="mi_yes" value="yes">
                   <label class="form-check-label" onclick="mi_status(false);" for="mi_yes">
                     <p class='radio_font'>Yes</p>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-2">
                   <input class="form-check-input" onclick="mi_status(true);" required="true" type="radio" name="has_mi" id="mi_no" value="no">
                   <label class="form-check-label" onclick="mi_status(true);" for="mi_no">
                     <p class='radio_font'>No</p>
@@ -188,7 +185,7 @@
           </fieldset><br>
           
           <div align='right'>
-	          <button type="submit" class="btn btn-primary">Next ></button>
+	          <button type="submit" class="btn btn-primary">Next</button>
           </div>
           
         </form>

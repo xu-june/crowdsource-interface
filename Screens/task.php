@@ -102,7 +102,6 @@
         		selected[parseInt(ids[i])-1] = true;
         	}
         }
-        
         // Refreshes bottom portion of the page to upload images
         $(document).ready(function () {
         	videoElement = document.getElementById("videoElement");
@@ -120,7 +119,22 @@
           $("#errorDiv").append("<br><br><br><br><br><br>"+msg+"--"+url+"--"+lineNo+"--"+columnNo+"--"+error);
 
           return false;
-        }
+        };
+        
+        if (window.history && history.pushState) {
+			addEventListener('load', function() {
+				history.pushState(null, null, null); // creates new history entry with same URL
+				addEventListener('popstate', function() {
+					var stayOnPage = confirm("You are not allowed to go back. All of your data will be lost if you go back. Press 'OK' if you still want to go back, 'Cancel' if you want to stay.");
+					if (!stayOnPage) {
+						history.pushState(null, null, null);
+					} else {
+						history.back();
+					}
+				});    
+			});
+		}
+        //window.onbeforeunload = function() { return "You are not allowed to go back. All of your data will be lost if you press back button. You may not be compensated if you press back button."; };
         
         function test(){
             window.location.replace("safari://path/");
@@ -147,7 +161,7 @@
                     
                     <div id='prediction' style="width:100%;height:1vh;position:absolute;top:5vh;display:none;filter:alpha(opacity=70)" align='center'>
                         <div class="bg-dark text-white"> Recognition result: </div>
-                        <div class="bg-dark text-white" id='label'></div>
+                        <div class="bg-dark text-white" id='label'>Recognition is going on...</div>
                     </div>
                 </div>
                 
@@ -165,14 +179,11 @@
         
         
         <div class="overlay" id="start_overlay" onclick="start_overlay_off()">
-        	<div class="overlay_contents">
+        	<div class="overlay_contents mt-3 mb-3 mr-3 ml-3">
 				<h2><span id='obj_name1'></span></h2>
 				<p>Take 30 photos of <span id='obj_name2'></span> by tapping in the camera screen. The photos will be used to train the object recognizer.</p>
 				<p>Repeat until you take 30 photos of this object.</p>
                 <p>Tap on the screen to start.</p>
-				<br>
-				<br>
-				<div align='center'> Start > </div>
         	</div>
         </div>
         
@@ -182,18 +193,10 @@
 				<p>You finished training the object recognizer. Tap on the screen to go to the next step.</p>
 				<br>
 				<br>
-				<div align='center'> Next > </div>
+				<div align='center'> Next </div>
         	</div>
         </div>
         
-        <!--
-        <a href="https://stephenradford.me/link-to-url-scheme-or-not-and-force-out-of-the-app-youre-in/" target="_blank">your link</a>
-        <br><br><br>
-        <div id='test' onclick='test();'>test===========================================<br><br><br><br><br><br><br>
-        test===========================================<br><br><br><br><br><br><br>
-        test===========================================<br><br><br><br><br><br><br>
-        test===========================================<br><br><br><br><br><br><br></a></div>
-        -->
         
         <script>
              var video = document.querySelector("#videoElement");
@@ -210,35 +213,6 @@
             }).catch(function(err0r) {
                 console.log("Something went wrong!");
               });   
-            /*
-              
-            
-            alert(navigator.appVersion);
-            navigator.getWebcam = (navigator.getUserMedia || navigator.webKitGetUserMedia || navigator.moxGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
-            if (navigator.mediaDevices.getUserMedia) {
-                navigator.mediaDevices.getUserMedia({  audio: true, video: constraints })
-                .then(function (stream) {
-                    video.srcObject = stream;//Display the video stream in the video object
-                 })
-                 .catch(function (e) { alert(e.name + ": " + e.message); });
-            }
-            else {
-                navigator.getWebcam({ audio: true, video: true }, 
-                 function (stream) {
-                    video.srcObject = stream;//Display the video stream in the video object
-                 }, 
-                 function () { alert("Web cam is not accessible."); });
-            }
-            
-            
-            navigator.getUserMedia({
-                video: constraints
-            }).then((stream) => {
-                video.srcObject = stream;
-            }).catch(function(err0r) {
-                console.log("Something went wrong!");
-              });  
-            */ 
             
               
             console.log('<?php echo $_SESSION['pid']."_".$_SESSION['pcode']."_".$_SESSION['trial']?>');   

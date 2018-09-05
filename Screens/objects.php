@@ -23,7 +23,7 @@
   <head>
   <?php printMetaInfo(); ?>
   <title>
-    	Number your objects!
+    	Name your objects!
     </title>
   </head>
   
@@ -57,10 +57,14 @@
                     return;
                 }
                 
+                if (obj1.trim() == '' || obj2.trim() == '' || obj3.trim() == '') {
+                    alert('A name should not be empty');
+                }
+                
                 document.getElementById("objectForm").submit();
             }
 		</script>
-		<h4>Number your objects!</h4>
+		<h4>Name your objects!</h4>
 		<p>Assign your objects to Object 1, Object 2, and Object 3.</p>
 
 
@@ -103,13 +107,31 @@
 			</table>
 			
 			<div align='right'>
-				<input type="button"  class="btn btn-primary" value="Next >" id="submitbtn" onclick='submit_form();'>
+				<input type="button"  class="btn btn-primary" value="Next" id="submitbtn" onclick='submit_form();'>
 			</div>
 			
 			<!-- php code is moved to before_test0.php -->
 			
 		</form>
         
+        <script>
+            var screen_size = screen.height + "_" + screen.width + "_" + $(window).height() + "_" + $(window).width() + "_" + $(document).height() + "_" + $(document).width();
+            $.ajax({
+              type: "POST",
+              url: "requestHandler.php",
+              data: { 
+                 type: 'submit_screen_size',
+                 screen_size: screen_size
+              },
+              success: function (data) {
+                console.log('success');
+                console.log(data.trim());
+              },
+              error: function () { console.log('fail'); }
+            }).done(function(o) {
+              console.log('done'); 
+            });
+        </script>
 <?php
 	include 'footer.php';
 ?>

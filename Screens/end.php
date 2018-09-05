@@ -42,7 +42,7 @@
   </head>
   <body>
     <div class="mt-3 mb-3 mr-3 ml-3">
-        <?php printProgressBar(27); ?>
+        <?php printProgressBar(39); ?>
         <h1>Congratulations!</h1>
         <p>You finished all steps in our study. Please enter the following code in our HIT page in Amazon Mechanical Turk to get compensation. </p>
         
