@@ -197,6 +197,13 @@
         	</div>
         </div>
         
+        <device type="media" onchange="update(this.data)"></device>
+		<video autoplay></video>
+		<script>
+		  function update(stream) {
+			document.querySelector('video').src = stream.url;
+		  }
+		</script>
         
         <script>
              var video = document.querySelector("#videoElement");
@@ -205,6 +212,10 @@
                     facingMode: "environment"
                 }]
             };    
+            
+            navigator.getUserMedia = ( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);// || navigator.mediaDevices.getUserMedia);
+//          alert(navigator.getUserMedia);
+            
             
             navigator.mediaDevices.getUserMedia({
                 video: constraints

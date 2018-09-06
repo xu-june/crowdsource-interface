@@ -68,8 +68,17 @@
 			} else {
                 var browser = bowser.name.toLowerCase();
                 var os = bowser.osname.toLowerCase();
+                var osversion = bowser.osversion;
+                var browserversion = bowser.version;
                 
                 if (os.includes("android")) {
+                	if (browserversion < 28.0) {
+                		$("#main").empty();
+                        $("#main").append("<p class='bg-warning text-dark' align='center'>This website works on Android version 28.0 or higher. The version of your Android is "+ osversion + "."+
+                        				" Please update Android to participate this study. </p>");
+                        $("#nextButton").hide();
+                	}
+                	
                     if (browser.includes("chrome")) {
                     } else {
                         $("#main").empty();
@@ -77,6 +86,13 @@
                         $("#nextButton").hide();
                     }
                 } else if (os.includes("ios")){
+                	if (osversion < 11.0) {
+                		$("#main").empty();
+                        $("#main").append("<p class='bg-warning text-dark' align='center'>This website works on iOS version 11.0 or higher. The version of your iOS is "+ osversion + "."+
+                        				" Please update iOS to participate this study. </p>");
+                        $("#nextButton").hide();
+                	}
+                	
                     if (browser.includes("safari")) {
                     } else {
                         $("#main").empty();
@@ -84,50 +100,15 @@
                         $("#nextButton").hide();
                     }
                 }
+                
                 /*
                 var browser_name = '';
-                browser_name = "You are using " + bowser.name + " v" + bowser.version + " on " + bowser.osname;
-                $("#test").append("<br>"+browser + "_" + os);
+                browser_name = "You are using " + bowser.name + " v" + bowser.version + " on " + bowser.osname + " " + bowser.osversion;
+                $("#test").append("<br>"+browser_name);
                 $("#test").append("<br>"+screen.height + "_" + screen.width + "_" + $(window).height() + "_" + $(window).width() + "_" + $(document).height() + "_" + $(document).width());
+                $("#test").append("<br>"+window.navigator.userAgent);
                 */
             }
-            
-            
-            
-            
-            /*
-            $("#test").append(replaceSpecial('aa~~')+'<?=replaceSpecial('aa~')?><br>');
-            $("#test").append(replaceSpecial('aa`')+'<?=replaceSpecial('aa`')?><br>');
-            $("#test").append(replaceSpecial('aa!')+'<?=replaceSpecial('aa!')?><br>');
-            $("#test").append(replaceSpecial('aa@')+'<?=replaceSpecial('aa@')?><br>');
-            $("#test").append(replaceSpecial('aa#')+'<?=replaceSpecial('aa#')?><br>');
-            $("#test").append(replaceSpecial('aa$')+'<?=replaceSpecial('aa$')?><br>');
-            $("#test").append(replaceSpecial('aa%')+'<?=replaceSpecial('aa%')?><br>');
-            $("#test").append(replaceSpecial('aa^')+'<?=replaceSpecial('aa^')?><br>');
-            $("#test").append(replaceSpecial('aa&')+'<?=replaceSpecial('aa&')?><br>');
-            $("#test").append(replaceSpecial('aa*')+'<?=replaceSpecial('aa*')?><br>');
-            $("#test").append(replaceSpecial('aa(')+'<?=replaceSpecial('aa(')?><br>');
-            $("#test").append(replaceSpecial('aa)')+'<?=replaceSpecial('aa)')?><br>');
-            $("#test").append(replaceSpecial('aa+')+'<?=replaceSpecial('aa+')?><br>');
-            $("#test").append(replaceSpecial('aa=')+'<?=replaceSpecial('aa=')?><br>');
-            $("#test").append(replaceSpecial('aa{')+'<?=replaceSpecial('aa{')?><br>');
-            $("#test").append(replaceSpecial('aa}')+'<?=replaceSpecial('aa}')?><br>');
-            $("#test").append(replaceSpecial('aa[')+'<?=replaceSpecial('aa[')?><br>');
-            $("#test").append(replaceSpecial('aa]')+'<?=replaceSpecial('aa]')?><br>');
-            $("#test").append(replaceSpecial('aa|')+'<?=replaceSpecial('aa|')?><br>');
-            $("#test").append(replaceSpecial('aa\\')+'<?=replaceSpecial('aa\\')?><br>');
-            $("#test").append(replaceSpecial('aa\'')+'<?=replaceSpecial('aa\'')?><br>');
-            $("#test").append(replaceSpecial('aa"')+'<?=replaceSpecial('aa"')?><br>');
-            $("#test").append(replaceSpecial('aa:')+'<?=replaceSpecial('aa:')?><br>');
-            $("#test").append(replaceSpecial('aa;')+'<?=replaceSpecial('aa;')?><br>');
-            $("#test").append(replaceSpecial('aa/')+'<?=replaceSpecial('aa/')?><br>');
-            $("#test").append(replaceSpecial('aa?')+'<?=replaceSpecial('aa?')?><br>');
-            $("#test").append(replaceSpecial('aa<')+'<?=replaceSpecial('aa<')?><br>');
-            $("#test").append(replaceSpecial('aa>')+'<?=replaceSpecial('aa>')?><br>');
-            $("#test").append(replaceSpecial('aa.')+'<?=replaceSpecial('aa.')?><br>');
-            $("#test").append(replaceSpecial('aa,')+'<?=replaceSpecial('aa,')?><br>');
-            $("#test").append(replaceSpecial('aa ')+'<?=replaceSpecial('aa ')?><br>');
-            */
 		</script>
   </body>
 </html>

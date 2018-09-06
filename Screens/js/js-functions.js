@@ -196,6 +196,8 @@ function showFail() {
     function frame() {
         if (cnt <= 1) {
             clearInterval(id);
+            
+            var upload_cnt = upload_cnt_obj1+upload_cnt_obj2+upload_cnt_obj3;
             clearTest(upload_cnt);
         } else {
             cnt--;
@@ -212,6 +214,8 @@ function showResult(upload_cnt) {
     function frame() {
         if (cnt <= 1) {
             clearInterval(id);
+
+            var upload_cnt = upload_cnt_obj1+upload_cnt_obj2+upload_cnt_obj3;
             clearTest(upload_cnt);
         } else {
             cnt--;
@@ -247,6 +251,7 @@ function clearTest(upload_cnt){
 
 function update_interface() {
     if (phase.startsWith("test")) {
+    	clickable = true;
         var upload_cnt = upload_cnt_obj1+upload_cnt_obj2+upload_cnt_obj3;
         
         $('#taskArea').show();
