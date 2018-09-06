@@ -74,8 +74,8 @@
                 if (os.includes("android")) {
                 	if (browserversion < 28.0) {
                 		$("#main").empty();
-                        $("#main").append("<p class='bg-warning text-dark' align='center'>This website works on Android version 28.0 or higher. The version of your Android is "+ osversion + "."+
-                        				" Please update Android to participate this study. </p>");
+                        $("#main").append("<p class='bg-warning text-dark' align='center'>This website works on Chrome version 28.0 or higher. The version of your Chrome is "+ browserversion + "."+
+                        				" Please update Chrome to participate this study. </p>");
                         $("#nextButton").hide();
                 	}
                 	
