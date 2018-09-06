@@ -50,7 +50,9 @@
          <br>
          
         <p>If you want to do this study again with other objects, touch the button below to go to the introduction page, then enter this code. 
-        You are not allowed to use the objects that you already used.</p>
+        You are not allowed to use the objects that you already used. You will be paid $5 for the participation with your code. 
+        (You already got $10 for your first participation if you completed the study faithfully.)
+        </p>
         
         <form id='codeForm' action='background.php' method='post'>
             <div class="form-group row">

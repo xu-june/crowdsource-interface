@@ -126,7 +126,7 @@
     
     function submit_feedback1() {
         //delete existing feedback info
-        $sql = "UPDATE feedback set `f1q1`='".$_POST['q1']."', `f1q2`='".$_POST['q2']."', `f1q3`='".$_POST['q3']."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+        $sql = "UPDATE feedback set `f1q1`='".str_replace("'", "", $_POST['q1'])."', `f1q2`='".str_replace("'", "", $_POST['q2'])."', `f1q3`='".str_replace("'", "", $_POST['q3'])."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
 		execSQL($sql);
         
         $sql = "UPDATE variables set `phase`='subset_train1', `upload_cnt_obj1`=0, `upload_cnt_obj2`=0, `upload_cnt_obj3`=0, `subset_cnt_obj`=0, `subset_cnt_num`=0 "
@@ -141,7 +141,7 @@
     
     function submit_feedback2() {
         //delete existing feedback info
-        $sql = "UPDATE feedback set `f2q1`='".$_POST['q1']."', `f2q2`='".$_POST['q2']."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+        $sql = "UPDATE feedback set `f2q1`='".str_replace("'", "", $_POST['q1'])."', `f2q2`='".str_replace("'", "", $_POST['q2'])."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
 		execSQL($sql);
         
         $sql = "UPDATE variables set `phase`='subset_train2', `upload_cnt_obj1`=0, `upload_cnt_obj2`=0, `upload_cnt_obj3`=0, `subset_cnt_obj`=0, `subset_cnt_num`=0 "
@@ -156,7 +156,7 @@
     
     function submit_trq($index) {
         //delete existing feedback info
-        $sql = "UPDATE feedback set `tr".$index."q1`='".$_POST['q1']."', `tr".$index."q2`='".$_POST['q2']."', `tr".$index."q3`='".$_POST['q3']."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+        $sql = "UPDATE feedback set `tr".$index."q1`='".str_replace("'", "", $_POST['q1'])."', `tr".$index."q2`='".str_replace("'", "", $_POST['q2'])."', `tr".$index."q3`='".str_replace("'", "", $_POST['q3'])."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
 		execSQL($sql);
         
         echo "before_test".$index."=0=0=0=0=0=na=0=";

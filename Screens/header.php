@@ -97,7 +97,6 @@
         $res = str_replace("--xxmf--", " ",$res);
         return $res;
     }
-    
 ?>
 <?php
 function printProgressBar($step){

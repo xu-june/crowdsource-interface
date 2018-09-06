@@ -27,7 +27,7 @@
 		
 			<br>
 			<div id="main">
-			<p> In this study, you will be asked to take photos of everyday products such as soda cans, cereal boxes, and spices to teach your phone to automatically recognize them.  </p>
+			<p> In this study, you will be asked to take photos of everyday products such as soda cans, cereal boxes, and spices to teach your phone to automatically recognize them. The study takes 30-40 minutes.</p>
 		
 			<p>Please proceed to the study <strong>only if</strong> you are seeing this screen in a mobile device with a built-in camera. Otherwise copy this link to your mobile device.</p><br>
 		
