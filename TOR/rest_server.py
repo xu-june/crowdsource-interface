@@ -388,7 +388,7 @@ def test_image(uuid, phase, image):
   output = {"uuid": uuid}
   if image is not None:
     # check if there is a recognizer for the given UUID
-    check_recognizer(uuid)
+    check_recognizer(uuid, phase)
     # recognize the input image
     label, prob = TORs[uuid].do(image)
     # prepare the output
