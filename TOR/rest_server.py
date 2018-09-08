@@ -36,6 +36,13 @@ ZIP_EXTENSIONS = set(['zip'])
 # initializer the Flask application
 receiver = Flask(__name__)
 
+# lock for the global variables
+# https://hackernoon.com/synchronization-primitives-in-python-564f89fee732
+# https://docs.python.org/3/library/threading.html
+TOR_lock = threading.RLock()
+q_lock = threading.RLock()
+
+
 """
 initialize recognizer
 @input  : classifier model name (string),
@@ -55,17 +62,23 @@ stop the recognizer
 @output : N/A
 """
 def stop_recognizer(uuid, terminating = False):
-  global TORs, models, labels, in_training
+  # global TORs, models, labels, in_training
+  global TORs
   # we may have to rely on python's GCC
-  if TORs[uuid] is not None:
-    TORs[uuid].stop_all()
-    # TORs.pop(uuid, None)
-    if terminating:
-      del TORs[uuid]
-      del models[uuid]
-      del labels[uuid]
-      del in_training[uuid]
-      # TORs[uuid] = None
+  try:
+    if TORs[uuid] is not None:
+      TORs[uuid].stop_all()
+      # TORs.pop(uuid, None)
+      if terminating:
+        # lock.acquire()
+        del TORs[uuid]
+        # del models[uuid]
+        # del labels[uuid]
+        # del in_training[uuid]
+        # lock.release()
+        # TORs[uuid] = None
+  except KeyError:
+    print("ERROR: couldn't find TOR of", uuid)
 
 
 """
@@ -79,50 +92,60 @@ def resume_recognizer(uuid, classifier_model, classifier_label):
   TORs[uuid].resume_all(classifier_model, classifier_label)
 
 
-"""
-reload the latest recognizer
-@input  :
-@output :
-"""
-"""
-def reload_recognizer(classifier_model, classifier_label):
-  new_c_model, new_c_label = get_latest_classifier(classifier_model_dir)
-  if classifier_model < new_c_model and classifier_label < new_c_label:
-    print("found the latest classifier: %s and %s" % (classifier_model, classifier_label))
-    stop_recognizer()
-    classifier_model = new_c_model
-    classifier_label = new_c_label
-    resume_recognizer(classifier_model, classifier_label)
-"""
+def get_model_and_label(uuid, phase):
+  global classifier_model_dir, classifier_model, classifier_label
+  if phase == "test0":
+    return classifier_model, classifier_label
+  else:
+    if phase == "test1":
+      # as of now, only the first trial (t1) is considered
+      model_name = "t1_train1_graph.pb"
+      label_name = "t1_train1_label.pb"
+    elif phase == "test2":
+      model_name = "t1_train2_graph.pb"
+      label_name = "t1_train2_label.pb"
+    else:
+      print("ERROR: no recognized phase")
+      return classifier_model, classifier_label
 
+    model = os.path.join(classifier_model_dir, uuid, model_name)
+    label = os.path.join(classifier_model_dir, uuid, label_name)
+    if os.path.exists(model) and os.path.exists(label):
+      return model, label
+    else:
+      print("ERROR: couldn't find the recognizer for", uuid, phase)
+      return classifier_model, classifier_label
+    
 
 """
-pick the latest version of classifier
-@input  : model dir (string)
-@output : classifier model dir (string), classifier label dir (string)
+check recognizer
+  1) if not initialized, initialize it
+  2) if not resumed, resume it
+@input  : uuid, phase
+@output : N/A
 """
-"""
-def get_latest_classifier(model_dir):
-  # get all .pb files in the model dir
-  latest_model = latest_label = ""
-  for each in os.listdir(model_dir):
-    if each.endswith(".pb"):
-      if latest_model == "":
-        latest_model = each
-      elif latest_model < each:
-        latest_model = each
-    elif each.endswith(".txt"):
-      if latest_label == "":
-        latest_label = each
-      elif latest_label < each:
-        latest_model = each
-
-  # get their paths
-  latest_model = os.path.join(model_dir, latest_model)
-  latest_label = os.path.join(model_dir, latest_label)
-
-  return latest_model, latest_label
-"""
+def check_recognizer(uuid, phase):
+  # get the global recognizer variable
+  global TORs,classifier_model, classifier_label, debug, TOR_lock
+  try:
+    recognizer = TORs[uuid]
+    # if turned off, turn it on
+    if recognizer is None:
+      model, label = get_model_and_label(uuid, phase)
+      TOR_lock.acquire()
+      TORs[uuid] = init_recognizer(model, label, debug)
+      TOR_lock.release()
+    # check whether recognizer is available
+    elif not recognizer.is_alive():
+      # now resuming it
+      resume_recognizer(uuid, model, label)
+  except KeyError:
+    # initialize it if not
+    TOR_lock.acquire()
+    TORs[uuid] = init_recognizer(classifier_model, classifier_label, debug)
+    # models[uuid] = classifier_model
+    # labels[uuid] = classifier_label
+    TOR_lock.release()
 
 
 """
@@ -224,91 +247,31 @@ retrain a classifier that is associated with uuid and phase
 @output : boolean (True/False)
 """
 def retrain_classifier(uuid, phase):
-  global in_training
+  global on_training, training_q, q_lock
   # stop the recognizer if alive
   stop_recognizer(uuid)
-  # trigger the retrain
-  new_model, new_label = TORs[uuid].retrain(uuid, phase)
-  # reset the training flag
-  in_training[uuid] = False
-
-  if new_model != "" and new_label != "":
-    global models, labels
-    models[uuid] = new_model
-    labels[uuid] = new_label
-    return True
+  # trigger the retrain in a subprocess due to its os environ change
+  tr_script = "python3 retrain.py --uuid %s --phase %s" % (uuid, phase)
+  os.system(tr_script)
+  # new_model, new_label = TORs[uuid].retrain(uuid, phase)
+  # reset the training flag and pop itself from the training queue
+  q_lock.acquire()
+  on_training = False
+  # check the first uuid in the training queue
+  # it should be the same as the uuid given here
+  at_first = training_q[0]
+  if at_first != (uuid, phase):
+    print("Error: why the popped uuid is not matched with ")
   else:
-    global classifier_model, classifier_label
-    models[uuid] = classifier_model
-    labels[uuid] = classifier_label
-    return False
-
-
-"""
-receive an image from a client to save
-@input  : N/A
-@output : Response {count of images in the label}
-"""
-# route http posts to this method
-"""
-@receiver.route('/save', methods = ['POST'])
-def save_image():
-  global input_label
-  label = input_label
-  r = request
-  print("request:", r)
-  # convert string of image data to uint8
-  raw = np.fromstring(r.data, np.uint8)
-  # decode image
-  image = cv2.imdecode(raw, cv2.IMREAD_COLOR)
-  # get object image
-  obj_img = localize_object(image)
-
-  if not label:
-    print("Error: no label")
-    return jsonify(label = "N/A", count = "N/A")
-
-  # save the image
-  cnt = save_image_with_label(obj_img, label)
-  
-  # build JSON response containing the output label and probability
-  return jsonify(label = label, count = str(cnt))
-"""
-
-
-"""
-receive a label from a client for retraining
-@input  : N/A
-@output : Response {count of images in the label}
-"""
-# route http posts to this method
-"""
-@receiver.route('/label', methods = ['POST'])
-def save_label():
-  global input_label
-
-  r = request
-  print("request:", r)
-  # get json body
-  body = r.json
-  if not body:
-    print("Error: invalid request")
-    return jsonify(label = "N/A", count = "N/A")
-
-  label = body['label']
-  if not label:
-    print("Error: no label")
-    return jsonify(label = "N/A", count = "N/A")
-
-  # get the label
-  input_label = label
-
-  # save the image
-  cnt, _ = count_images_with_label(label)
-  
-  # build JSON response containing the output label and probability
-  return jsonify(label = label, count = str(cnt))
-"""
+    training_q.pop(0)
+    print("Notice: ", uuid, "removed from the training queue")
+    if len(training_q) > 0:
+      # automatically trigger the training again
+      next_uuid, next_phase = training_q[0]
+      on_training = True
+      t = threading.Thread(target = retrain_classifier, args = (next_uuid, next_phase))
+      t.start()
+  q_lock.release()
 
 
 """
@@ -320,7 +283,8 @@ initialize a recognzer for a user
 # TO TEST: curl -d '{"uuid": "1234"}' -H "Content-Type: application/json" -X POST http://0.0.0.0:5000/init
 @receiver.route('/init', methods = ['POST'])
 def init():
-  global TORs, classifier_model, classifier_label, debug, models, labels
+  # global TORs, classifier_model, classifier_label, debug, models, labels, in_training
+  global TORs, classifier_model, classifier_label, debug, TOR_lock
 
   r = request
   print("request:", r)
@@ -337,10 +301,12 @@ def init():
 
   # initialize a recognizer
   print("NOTICE: Starting a recognizer for ", uuid)
+  TOR_lock.acquire()
   TORs[uuid] = init_recognizer(classifier_model, classifier_label, debug)
-  models[uuid] = classifier_model
-  labels[uuid] = classifier_label
-  in_training[uuid] = False
+  # models[uuid] = classifier_model
+  # labels[uuid] = classifier_label
+  # in_training[uuid] = False
+  TOR_lock.release()
   
   # build JSON response containing the result
   return jsonify(result = "True")
@@ -379,54 +345,6 @@ def stop():
 
 
 """
-download a zip file that contains images
-@input  : N/A
-@output : Response {result = True/False}
-"""
-# route http posts to this method
-# TO TEST: curl -v -X POST -F "uuid=1234" -F "file=@test1.zip" http://0.0.0.0:5000/upload
-"""
-@receiver.route('/upload', methods = ['POST'])
-def download():
-  r = request
-  print("request:", r)
-  
-  # request must contain "file"
-  if "file" not in r.files:
-    print("Error: invalid request")
-    return jsonify(result = "False")
-  
-  # retrieve the file
-  file = r.files['file']
-  if file.filename == '':
-    print("Error: invalid filename")
-    return jsonify(result = "False")
-
-  # request must contain "uuid" in the form
-  uuid = str(r.form.get("uuid"))
-  if not uuid or uuid == '':
-    print("Error: invalid request")
-    return jsonify(result = "False")
-
-  # print(uuid)
-  target_dir = os.path.join(UPLOAD_DIR, uuid)
-  # check the destination path is existed
-  # if not, created all necessary dirs
-  if not os.path.exists(target_dir):
-    os.makedirs(target_dir)
-
-  if file and is_zip(file.filename):
-    target_file = os.path.join(target_dir, file.filename)
-    file.save(target_file)
-    with zipfile.ZipFile(target_file, "r") as zip_f:
-      print("unzipping %s into %s" % (file.filename, target_dir))
-      zip_f.extractall(target_dir)
-  
-  # build JSON response containing the result
-  return jsonify(result = "True")
-"""
-
-"""
 unzip a given zip file
 @input  : zip_file (FileStorage)
 @output : True/False (boolean)
@@ -437,6 +355,7 @@ def unzip_file(uuid, phase, zip_file):
   target_dir = os.path.join(zip_dir, phase)
 
   if zip_file and is_zip(zip_file.filename):
+    check_dir(target_dir)
     zip_file_path = os.path.join(zip_dir, zip_file.filename)
     zip_file.save(zip_file_path)
     with zipfile.ZipFile(zip_file_path, "r") as zip_f:
@@ -445,45 +364,6 @@ def unzip_file(uuid, phase, zip_file):
     return True
   else:
     return False
-
-
-"""
-check recognizer
-  1) if not initialized, initialize it
-  2) if not resumed, resume it
-@input  : N/A
-@output : N/A
-"""
-def check_recognizer(uuid):
-  # get the global recognizer variable
-  global TORs, models, labels
-  try:
-    recognizer = TORs[uuid]
-    model = models[uuid]
-    label = labels[uuid]
-    # if turned off, turn it on
-    if recognizer is None:
-      model = models[uuid]
-      label = labels[uuid]
-      TORs[uuid] = init_recognizer(model, label, debug)
-    # check whether recognizer is available
-    elif not recognizer.is_alive():
-      """
-      # get the latest classifier model and label
-      new_c_model, new_c_label = get_latest_classifier(classifier_model_dir)
-      if new_c_model > classifier_model and new_c_label > classifier_label:
-        classifier_model = new_c_model
-        classifier_label = new_c_label
-      """
-      # now resuming it
-      resume_recognizer(uuid, model, label)
-
-  except KeyError:
-    # initialize it if not
-    global classifier_model, classifier_label
-    TORs[uuid] = init_recognizer(classifier_model, classifier_label, debug)
-    models[uuid] = classifier_model
-    labels[uuid] = classifier_label
 
 
 """
@@ -527,7 +407,7 @@ test an image
 def test_images(uuid, phase):
   global TORs
 
-  check_recognizer(uuid)
+  check_recognizer(uuid, phase)
 
   img_dir = os.path.join(UPLOAD_DIR, uuid, phase)
   labels = set()
@@ -607,6 +487,44 @@ def test():
 
 
 """
+check how many participants waiting in the queue berfore the given uuid
+@input  : N/A
+@output : Response {
+            result: True/False,
+            before_me: the number of users waiting in the queue
+          }
+"""
+# route http posts to this method
+# TO TEST: curl -d '{"uuid": "1234"}' -H "Content-Type: application/json" -X POST http://0.0.0.0:5000/check
+@receiver.route('/check', methods = ['POST'])
+def check():
+  global training_q
+
+  r = request
+  print("request:", r)
+  # get json body - contains "uuid"
+  body = r.json
+  if not body:
+    print("Error: invalid request")
+    return jsonify(result = "False", before_me = "-1")
+
+  uuid = body['uuid']
+  phase = body['phase']
+  if not uuid or not phase:
+    print("Error: no uuid or no phase")
+    return jsonify(result = "False", before_me = "-1")
+
+  # if this user is in the first element of the queue
+  # start the retraining!
+  before_me = training_q.index((uuid, phase))
+  if before_me == 0:
+    return jsonify(result = "True", before_me = str(before_me))
+  else:
+    # otherwise, simply return "False" and the number of users in the queue before herself
+    return jsonify(result = "False", before_me = str(before_me))
+
+
+"""
 train classifiers with images received from a client
 @input  : N/A
 @output : Response {
@@ -619,15 +537,14 @@ train classifiers with images received from a client
 # TO TEST: curl -v -X POST -F "uuid=1234" -F "phase=train1" -F "file=@train1.zip" http://0.0.0.0:5000/train
 @receiver.route('/train', methods = ['POST'])
 def train():
-  global TORs, in_training
+  global on_training, q_lock
 
   r = request
   print("request:", r)
   # request must contain "file"
   if "file" not in r.files:
     print("Error: invalid request")
-    return jsonify(uuid = "N/A",
-                  result = "False")
+    return jsonify(uuid = "N/A", result = "False", before_me = "-1")
   
   # retrieve the file
   file = r.files['file']
@@ -637,14 +554,12 @@ def train():
       not uuid or uuid == '' or \
       not phase or phase == '':
     print("Error: invalid request")
-    return jsonify(uuid = "N/A",
-                  result = "False")
+    return jsonify(uuid = "N/A", result = "False", before_me = "-1")
 
   # now unzip the received zip file
   if not unzip_file(uuid, phase, file):
     print("Error: failed to unzip %s" % (file.filename))
-    return jsonify(uuid = uuid,
-                  result = "False")
+    return jsonify(uuid = uuid, result = "False", before_me = "-1")
 
   # spawn a new process for training its classifier
   # sarmap = a variant of map, to take multiple arguments
@@ -652,112 +567,45 @@ def train():
   # proc_pool.starmap(retrain_classifier, [(uuid, phase)])
   # with ThreadPoolExecutor(max_workers=1) as thread_pool:
     # thread_pool.submit(retrain_classifier, uuid, phase)
-  if not in_training[uuid]:
-    in_training[uuid] = True
-    # https://stackoverflow.com/questions/2846653/how-to-use-threading-in-python
-    t = threading.Thread(target = retrain_classifier, args = (uuid, phase))
-    t.daemon = True
-    t.start()
+  # if not in_training[uuid]:
+  #   lock.acquire()
+  #   in_training[uuid] = True
+  #   lock.release()
+  #   # https://stackoverflow.com/questions/2846653/how-to-use-threading-in-python
+  #   t = threading.Thread(target = retrain_classifier, args = (uuid, phase))
+  #   # t.daemon = True
+  #   t.start()
+  # if on_training == True:
+  #   print("Error: on training? why?")
+  #   return jsonify(uuid = uuid, result = "False")
 
-  # return "True" if we "trigger" the retraining
-  return jsonify(uuid = uuid,
-                result = "True")
+  # training_q consists of tuples: (uuid, phase)
+  # there should be at most one tuple associated with uuid
+  in_training = [each for each in training_q if each[0] == uuid]
+  if len(in_training) == 0:
+    q_lock.acquire()
+    # first put the uid into the training queue
+    training_q.append((uuid, phase))
+    q_lock.release()
 
-"""
-test images received from a client
-@input  : N/A
-@output : Response {
-            labels: a set of labels,
-            probs: a set of probabilities
-          }
-"""
-"""
-# route http posts to this method
-# TO TEST:
-# curl -d '{"uuid":"1234", "phase": "test1"}' -H "Content-Type: application/json" -X POST http://0.0.0.0:5000/test
-@receiver.route('/test', methods = ['POST'])
-def test():
-  # TODO: revamp this function to recognize images
-  r = request
-  print("request:", r)
-  # get json body
-  body = r.json
-  if not body:
-    print("Error: invalid request")
-    return jsonify(labels = "N/A", probs = "N/A")
-
-  # get phase: test1, test2, or test3
-  phase = body['phase']
-  uuid = body['uuid']
-  if not phase or not uuid:
-    print("Error: not sufficient parameter")
-    return jsonify(labels = "N/A", probs = "N/A")
-  
-  # recognize image
-  output = test_image(uuid, phase)
-  # build JSON response containing the output label and probability
-  return jsonify(output)
-"""
-
-"""
-response = {'label': label, 'prob': prob}
-
-return Response(response = json.dumps(response_pickled),
-                status = 200,
-                mimetype = "application/json")
-"""
-
-
-"""
-train classifiers with images received from a client
-@input  : N/A
-@output : Response {
-            uuid: uuid,
-            classifier_model: classifier model filename,
-            classifier_label: classifier label text filename
-          }
-"""
-# route http posts to this method
-"""
-@receiver.route('/train', methods = ['POST'])
-def retrain_classifier():
-
-  r = request
-  print("request:", r)
-  # get json body
-  # TODO: receive UUID from the survey server
-  body = r.json
-  if not body:
-    print("Error: invalid request")
-    return jsonify(classifier_model = "N/A", classifier_label = "N/A")
-
-  phase = body['phase']
-  uuid = body['uuid']
-  if not phase or not uuid:
-    print("Error: not sufficient parameter")
-    return jsonify(uuid = uuid,
-                  classifier_model = "N/A",
-                  classifier_label = "N/A")
-  else:
-    global TORs
-    # stop the recognizer if alive
-    stop_recognizer(uuid)
-    # trigger the retrain
-    new_model, new_label = TORs[uuid].retrain(uuid, phase)
-    if new_model != "" and new_label != "":
-      global models, labels
-      models[uuid] = new_model
-      labels[uuid] = new_label
+  # if this user is in the first element of the queue
+  # start the retraining if first
+  try:
+    before_me = training_q.index((uuid, phase))
+    if before_me == 0 and not on_training:
+      q_lock.acquire()
+      on_training = True
+      q_lock.release()
+      # now trigger the training here
+      t = threading.Thread(target = retrain_classifier, args = (uuid, phase))
+      t.start()
+      return jsonify(uuid = uuid, result = "True", before_me = str(before_me))
     else:
-      global classifier_model, classifier_label
-      models[uuid] = classifier_model
-      labels[uuid] = classifier_label
-
-  # build JSON response containing the output label and probability
-  return jsonify(uuid = uuid,
-                classifier_model = models[uuid],
-                classifier_label = labels[uuid])
-"""
+      # otherwise, simply return "False" and the number of users in the queue before herself
+      return jsonify(uuid = uuid, result = "False", before_me = str(before_me))
+  except ValueError:
+    # otherwise, simply return "False" and the number of users in the queue before herself
+    return jsonify(uuid = uuid, result = "False", before_me = "-1")
 
 
 # global variables
@@ -767,12 +615,13 @@ classifier_model_dir = "models/"
 classifier_model = os.path.join(classifier_model_dir, "classifier_graph.pb")
 classifier_label = os.path.join(classifier_model_dir, "classifier_labels.txt")
 TORs = {}
-models = {}
-labels = {}
-in_training = {}
+training_q = []
+on_training = False
+# models = {}
+# labels = {}
+# in_training = {}
 # proc_pool = Pool(8) # 8 is the number of GPUs
 # thread_pool = ThreadPoolExecutor(max_workers = 8)
-
 
 # run the RESTful server
 receiver.run(host = "0.0.0.0", port = 5000, threaded = True)

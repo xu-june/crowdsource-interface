@@ -1052,10 +1052,10 @@ def retrain_model(uuid, phase):
     FLAGS.validation_number = 1
     # FLAGS.testing_percentage = 10
     # FLAGS.validation_percentage = 10
-    FLAGS.eval_step_interval = 50
+    FLAGS.eval_step_interval = 500 # to minimize the evaluation time
     FLAGS.train_batch_size = 256
-    FLAGS.test_batch_size = -1
-    FLAGS.validation_batch_size = -1
+    FLAGS.test_batch_size = 1
+    FLAGS.validation_batch_size = 1
     FLAGS.print_misclassified_test_images = False
     FLAGS.final_tensor_name = 'final_result'
     FLAGS.flip_left_right = False
@@ -1083,9 +1083,9 @@ def main(_):
   # allocating TF graph to only one GPU
   #https://stackoverflow.com/questions/37893755/tensorflow-set-cuda-visible-devices-within-jupyter
   os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   # see issue #152
-  # os.environ["CUDA_VISIBLE_DEVICES"]="0"
+  os.environ["CUDA_VISIBLE_DEVICES"]="0"
   # only using CPUs
-  os.environ["CUDA_VISIBLE_DEVICES"]=""
+  # os.environ["CUDA_VISIBLE_DEVICES"]=""
 
   # Needed to make sure the logging output is visible.
   # See https://github.com/tensorflow/tensorflow/issues/3047
@@ -1267,9 +1267,9 @@ if __name__ == '__main__':
   # allocating TF graph to only one GPU
   #https://stackoverflow.com/questions/37893755/tensorflow-set-cuda-visible-devices-within-jupyter
   os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   # see issue #152
-  # os.environ["CUDA_VISIBLE_DEVICES"]="0"
+  os.environ["CUDA_VISIBLE_DEVICES"]="0"
   # only using CPUs
-  os.environ["CUDA_VISIBLE_DEVICES"]=""
+  # os.environ["CUDA_VISIBLE_DEVICES"]=""
 
   parser = argparse.ArgumentParser()
   parser.add_argument(

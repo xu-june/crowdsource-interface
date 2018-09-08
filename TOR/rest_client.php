@@ -95,6 +95,49 @@ function stop_recognizer($uuid) {
   curl_close($request);
 }
 
+/*
+  check if a user can trigger the training
+    @input  : uuid (string), phase (string)
+    @output : N/A
+ */
+function check_for_training($uuid, $phase) {
+  global $rest_server, $debug;
+  // the target url
+  $target_url = $rest_server . "check";
+  if ($debug) {
+    echo "\nrequest to " . $target_url;  
+  }
+  // create a json file
+  $data = array("uuid" => $uuid, "phase" => $phase);
+  $json_data = json_encode($data);
+  // create the POST request
+  $request = curl_init($target_url);
+  curl_setopt($request, CURLOPT_POST, true);
+  curl_setopt($request, CURLOPT_POSTFIELDS, $json_data);
+  curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($request, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/json',
+      'Content-Length: ' . strlen($json_data)
+  ));
+
+  $response = curl_exec($request);
+  // response includes the following:
+  //  result: "True" or "False"
+  //  before_me: (the number of participants waiting in the queue)
+  //             or -1 --- error
+  if ($debug) {
+    echo "\nresponse: " . $response;
+  }
+
+  curl_close($request);
+  
+  $json = json_decode($response, true);
+  // $ret = $json['result'];
+  $num_waiting = $json['before_me']
+
+  return $num_waiting
+}
+
 
 /*
   check if a given dir is existed; if not existed, craete it
@@ -265,6 +308,12 @@ function upload_and_train($uuid, $trial, $phase, $zip_file) {
 
   // close the session
   curl_close($request);
+
+  $json = json_decode($response, true);
+  // $ret = $json['result'];
+  $num_waiting = $json['before_me']
+
+  return $num_waiting
 }
 
 
@@ -343,7 +392,7 @@ function prepare_upload($uuid, $trial, $phase) {
 
   // first compress the images
   $zip_file = compress_images($uuid, $trial, $phase);
-  upload_and_train($uuid, $trial, $phase, $zip_file);
+  return upload_and_train($uuid, $trial, $phase, $zip_file);
 }
 
 
