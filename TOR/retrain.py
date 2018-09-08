@@ -1053,7 +1053,7 @@ def retrain_model(uuid, phase):
     # FLAGS.testing_percentage = 10
     # FLAGS.validation_percentage = 10
     FLAGS.eval_step_interval = 500 # to minimize the evaluation time
-    FLAGS.train_batch_size = 256
+    FLAGS.train_batch_size = 16
     FLAGS.test_batch_size = 1
     FLAGS.validation_batch_size = 1
     FLAGS.print_misclassified_test_images = False
