@@ -1,4 +1,3 @@
-<p>Before going to the next step, please have 3 distinct snack packs in your proximity. This could be anything from potato chips, pretzels, or any snacks that you happen to have that is in a small package. </p>
 
 For example: <br>
 

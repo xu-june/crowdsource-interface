@@ -67,7 +67,7 @@ The training process takes about 2 minutes. Please answer the question below whi
                     <div class="form-check">
                       <input class="form-check-input" required="true" type="radio" name="q2" id="vc" value="4">
                       <label class="form-check-label" for="vc">
-                        <p class='radio_font'>Very uncertain</p>
+                        <p class='radio_font'>Very certain</p>
                       </label>
                     </div>
                 </td>

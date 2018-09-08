@@ -1,4 +1,3 @@
-<p>Before going to the next step, please have 3 distinct cereals in your proximity. This could be any cereal as long as it's in a box. </p>
 
 For example: <br>
 

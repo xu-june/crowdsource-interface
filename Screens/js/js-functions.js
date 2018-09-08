@@ -177,14 +177,14 @@ function captureImage() {
         update_interface();
 	  },
 	  error: function () { 
+		console.log('fail'); 
+        
 		videoElement.play();
 		clickable = true;
 		showFail();
-		
-		console.log('fail'); 
       }
 	}).done(function(o) {
-	  console.log('done'); 
+	  //console.log('done'); 
 	});
 }
 
@@ -211,6 +211,7 @@ function showResult(upload_cnt) {
     var width = 0;
     var id = setInterval(frame, 1000)
     var cnt = 3;
+    $('#prediction').show();
     function frame() {
         if (cnt <= 1) {
             clearInterval(id);
@@ -219,7 +220,7 @@ function showResult(upload_cnt) {
             clearTest(upload_cnt);
         } else {
             cnt--;
-            elem.innerHTML = "<b>"+label+"</b> <br><br> The next object will be shown in "+cnt+" seconds";
+            elem.innerHTML = "<b>"+label+"</b>";
         }
     }
 }
@@ -250,20 +251,27 @@ function clearTest(upload_cnt){
 }
 
 function update_interface() {
+    console.log("update_interface " + phase);
     if (phase.startsWith("test")) {
     	clickable = true;
         var upload_cnt = upload_cnt_obj1+upload_cnt_obj2+upload_cnt_obj3;
         
-        $('#taskArea').show();
+        canvas.style.display = "none";
+        document.getElementById("count_container").align = "left";
+        $('#msgArea').empty();
         $('#msgArea').hide();
+        $('#taskArea').show();
+        
+        
         var elem = document.getElementById("label"); 
-        elem.innerHTML = "<b>"+label+"</b> <br><br> The next object will be shown in 3 seconds";
+        elem.innerHTML = "<b>"+label+"</b>";
         
         if (label != ''){
-            //$('#prediction').show();
+            console.log("label " + label);
             //videoElement.pause();            
             showResult(upload_cnt);
         } else {
+            console.log("no label ");
             $("#objects").text(obj_name);
             $("#count").text(test_img_num*3-upload_cnt);
             videoElement.style.borderColor = obj_colors[obj_index-1];
@@ -273,7 +281,10 @@ function update_interface() {
         clickable = true;
         var upload_cnt = upload_cnt_obj1+upload_cnt_obj2+upload_cnt_obj3;
         
+        canvas.style.display = "block";
+        document.getElementById("count_container").align = "right";
         $('#taskArea').show();
+        $('#msgArea').empty();
         $('#msgArea').hide();
         
         $("#objects").text(obj_name);
@@ -294,6 +305,7 @@ function update_interface() {
         $('#msgArea').load('subset.php');
     } else {
     	console.log(phase+".php load");
+        $('#msgArea').empty();
         $('#msgArea').load(phase+'.php');
         $('#taskArea').hide();
         $('#msgArea').show();
@@ -335,7 +347,7 @@ function goToNext(p){
 	  },
 	  error: function () { console.log('fail'); }
 	}).done(function(o) {
-	  console.log('done'); 
+	  //console.log('done'); 
 	});
 }
 	

@@ -98,8 +98,13 @@
                 ."where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
         execSQL($sql);
         
-        $curr_obj_index = getObjectIndex($next, 0);
-        $objectname = $_SESSION["object_names"][$curr_obj_index-1];
+        $curr_obj_index = 0;
+        $objectname = $_SESSION["object_names"][0];
+        
+        if ($next == 'test0' || $next == 'test1' || $next == 'test2' || $next == 'train1' || $next == 'train2'){
+            $curr_obj_index = getObjectIndex($next, 0);
+            $objectname = $_SESSION["object_names"][$curr_obj_index-1];
+        }
         
         // write action log
         $date = date("Y-m-d H:i:s");
@@ -126,7 +131,7 @@
     
     function submit_feedback1() {
         //delete existing feedback info
-        $sql = "UPDATE feedback set `f1q1`='".str_replace("'", "", $_POST['q1'])."', `f1q2`='".str_replace("'", "", $_POST['q2'])."', `f1q3`='".str_replace("'", "", $_POST['q3'])."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+        $sql = "UPDATE feedback set `f1q1`='".removeSpecialChars($_POST['q1'])."', `f1q2`='".removeSpecialChars($_POST['q2'])."', `f1q3`='".removeSpecialChars($_POST['q3'])."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
 		execSQL($sql);
         
         $sql = "UPDATE variables set `phase`='subset_train1', `upload_cnt_obj1`=0, `upload_cnt_obj2`=0, `upload_cnt_obj3`=0, `subset_cnt_obj`=0, `subset_cnt_num`=0 "
@@ -141,7 +146,7 @@
     
     function submit_feedback2() {
         //delete existing feedback info
-        $sql = "UPDATE feedback set `f2q1`='".str_replace("'", "", $_POST['q1'])."', `f2q2`='".str_replace("'", "", $_POST['q2'])."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+        $sql = "UPDATE feedback set `f2q1`='".removeSpecialChars($_POST['q1'])."', `f2q2`='".removeSpecialChars($_POST['q2'])."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
 		execSQL($sql);
         
         $sql = "UPDATE variables set `phase`='subset_train2', `upload_cnt_obj1`=0, `upload_cnt_obj2`=0, `upload_cnt_obj3`=0, `subset_cnt_obj`=0, `subset_cnt_num`=0 "
@@ -156,7 +161,7 @@
     
     function submit_trq($index) {
         //delete existing feedback info
-        $sql = "UPDATE feedback set `tr".$index."q1`='".str_replace("'", "", $_POST['q1'])."', `tr".$index."q2`='".str_replace("'", "", $_POST['q2'])."', `tr".$index."q3`='".str_replace("'", "", $_POST['q3'])."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
+        $sql = "UPDATE feedback set `tr".$index."q1`='".removeSpecialChars($_POST['q1'])."', `tr".$index."q2`='".removeSpecialChars($_POST['q2'])."', `tr".$index."q3`='".removeSpecialChars($_POST['q3'])."' where `participant_id`=".$_SESSION['pid']." and `trial`=".$_SESSION['trial'].";";
 		execSQL($sql);
         
         echo "before_test".$index."=0=0=0=0=0=na=0=";

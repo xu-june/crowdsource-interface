@@ -20,11 +20,12 @@
 }
 
 input[type=radio]{
-  transform:scale(1.5);
+  transform:scale(1.2);
 }
 
 .radio_font {
 	font-size: 100%;
+    padding-left: 20px;
 }
 
 

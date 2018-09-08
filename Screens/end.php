@@ -5,10 +5,10 @@
     savePageLog($_SESSION['pid'], basename($_SERVER['PHP_SELF']));
 
 	// enter participant info	
-	$pq1 = $_POST["pq1"];
-	$pq2 = $_POST["pq2"];
-	$pq3 = $_POST["pq3"];
-	$pq4 = $_POST["pq4"];
+	$pq1 = removeSpecialChars($_POST["pq1"]);
+	$pq2 = removeSpecialChars($_POST["pq2"]);
+	$pq3 = removeSpecialChars($_POST["pq3"]);
+	$pq4 = removeSpecialChars($_POST["pq4"]);
 	$sql = "UPDATE feedback set `pq1`='".$pq1."', `pq2`='".$pq2."', `pq3`='".$pq3."', `pq4`='".$pq4."' WHERE `participant_id`=".$_SESSION['pid'].";";
 	execSQL($sql);
     

@@ -27,8 +27,11 @@
 		
 			<br>
 			<div id="main">
-			<p> In this study, you will be asked to take photos of everyday products such as soda cans, cereal boxes, and spices to teach your phone to automatically recognize them. The study takes 30-40 minutes.</p>
+			<p> In this study, you will be asked to take photos of everyday products to teach any phone to automatically recognize them. </p>
+            <p>The study takes about 20 minutes.</p>
 		
+            
+            <!--
 			<p>Please proceed to the study <strong>only if</strong> you are seeing this screen in a mobile device with a built-in camera. Otherwise copy this link to your mobile device.</p><br>
 		
 			<div class="alert alert-info">
@@ -47,6 +50,10 @@
 			
 			<div align='center'>
 				<button type="button" id="nextButton" class="btn btn-primary" onclick="document.getElementById('codeForm').submit();">Start</button>
+			</div>
+            -->
+            <div align='center'>
+				<button type="button" id="nextButton" class="btn btn-primary" onclick="window.location.href='background.php';">Start</button>
 			</div>
         	</div>
 

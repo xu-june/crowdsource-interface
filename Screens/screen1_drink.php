@@ -1,4 +1,3 @@
-<p>Before going to the next step, please have 3 distinct canned drinks in your proximity. This could be anything from soda, sparkling water, beer, or any soft drink that you happen to have that is canned. </p>
 
 For example: <br>
 

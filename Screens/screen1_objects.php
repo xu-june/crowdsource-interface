@@ -29,10 +29,10 @@
     }
 
     if (!empty($_POST['bq4'])) {
-        $q4 = $_POST["bq4"];
-        $q5 = $_POST["bq5"];
-        $q6 = $_POST["bq6"];
-        $q7 = $_POST["bq7"];
+        $q4 = removeSpecialChars($_POST["bq4"]);
+        $q5 = removeSpecialChars($_POST["bq5"]);
+        $q6 = removeSpecialChars($_POST["bq6"]);
+        $q7 = removeSpecialChars($_POST["bq7"]);
         $sql = "UPDATE participant_info set `bq4`='".$q4."', `bq5`='".$q5."', `bq6`='".$q6."', `bq7`='".$q7."' WHERE `participant_id`=".$_SESSION['pid'].";";
         execSQL($sql);
     }
@@ -123,7 +123,7 @@
   <?php printMetaInfo(); ?>
   	
   <title>
-    	Data Collection Condition
+    	Condition
     </title>
     <script>
     	function update_category(category){
@@ -141,7 +141,7 @@
 			<h4>Data Collection Condition</h4>
 			
 			<p>
-			Select a category of object that you have three instances of. 
+			Select a category of object that you have three distinct instances of. 
 			
 			<div class="btn-group">
 			  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id='category' style="width:10wv;">

@@ -1,4 +1,3 @@
-<p>Before going to the next step, please have 3 distinct spices in your proximity. This could be any spice as long as it's in a cylindrical container. </p>
 
 For example: <br>
 

@@ -17,6 +17,9 @@
             return 0;
         }
     }    
+    function removeSpecialChars($string) {
+       return preg_replace('/[^A-Za-z0-9 ]/', '', $string); // Removes special chars.
+    }
     function training_start($p) {
 		// trigger the training for now
 		require(dirname(__FILE__).'/../TOR/rest_client.php');

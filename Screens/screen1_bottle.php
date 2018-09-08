@@ -1,4 +1,3 @@
-<p>Before going to the next step, please have 3 distinct bottled drinks in your proximity. This could be anything from a water bottle, soda bottle, or any drink that you happen to have that is in a bottle. </p>
 
 For example: <br>
 

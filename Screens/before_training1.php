@@ -13,10 +13,12 @@
 ?>
 
 <h4>Training Images</h4>
-<p>Let’s see if you can train our object recognizer to identify correctly your objects. You can do this by providing many examples of how it looks.</p>
-<p>Consider that the trained object recognizer may be used in different places at different times.</p>
 
-<p>We will randomly choose one of your objects and ask you to take 30 photos of it. </p>
+			<p>Train our object recognizer to identify robustly your objects anywhere, anytime, for anyone.</p>
+
+            <p>We will randomly choose one of your objects and ask you to take 30 photos of it. </p>
+            
+            <p><strong>You will be paid $2 extra if your examples pass our robustness test.</strong></p>
 
 
 <div align='right'>

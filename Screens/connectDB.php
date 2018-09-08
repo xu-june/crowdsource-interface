@@ -36,6 +36,7 @@
 			//echo "New record created successfully<br>";
 		} else {
 			echo "Error: " . $sql . "<br>" . $GLOBALS['conn']->error;
+            error_log("SQLError: ".$sql);
 		}
 	}
 	

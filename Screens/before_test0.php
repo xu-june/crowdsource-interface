@@ -150,14 +150,8 @@
        
 			<h4>Testing images</h4>
 			
-			<p>We will randomly choose one of your objects and ask you to take a photo of it. </p> 
-			<p>Take a photo of an object (name at the top) by tapping in the camera screen. The recognition result will be shown at the bottom. </p>
-			
-			<p>You will do this 15 times total (5 photos per object). </p>
-			
-			<p> <strong>Hint</strong>: We have already trained an object recognizer but chances are it does not include your objects. 
-			Every time you take a photo it will try to guess what it is based on what it knows. </p>
-			
+			<p>Take a photo of an object (name at the top) by tapping on the camera screen. The existing model will try to predict it.</p>
+								
 			<div align='right'>
 				<!--<button type="button" class="btn btn-default" onclick="window.location.href='test0.php'">Next ></button>-->
                 <button type="button" class="btn btn-primary" onclick="window.location.href='task.php'">Next</button>

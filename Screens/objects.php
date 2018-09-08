@@ -25,7 +25,7 @@
   <head>
   <?php printMetaInfo(); ?>
   <title>
-    	Name your objects!
+    	Name your <?=ucfirst($_SESSION['current_category'])?>!
     </title>
   </head>
   
@@ -66,10 +66,9 @@
                 document.getElementById("objectForm").submit();
             }
 		</script>
-		<h4>Name your objects!</h4>
-		<p>Assign your objects to Object 1, Object 2, and Object 3.</p>
+		<h4>Name your <?=ucfirst($_SESSION['current_category'])?>!</h4>
 
-
+        <br>
 		<form name="form" action="before_test0.php" method="post" id='objectForm'>
 			<table cellspacing="10">
 				<tr>
@@ -78,7 +77,7 @@
 					</td>
 					<td>
 						<div><label for="obj1">Object 1: </label></div>
-						<input type="text" required="true" name="obj1" required="true" class="form-control" id="obj1" placeholder="Name of object 1 (e.g., <?=$examples[0]?>)">
+						<input type="text" required="true" name="obj1" required="true" class="form-control" id="obj1" placeholder="Name (e.g., <?=$examples[0]?>)">
                         <br>
 					</td>
 				</tr>
@@ -90,7 +89,7 @@
 					</td>
 					<td>
 						<div><label for="obj2">Object 2: </label></div>
-						<input type="text" required="true" name="obj2" required="true" class="form-control" id="obj2" placeholder="Name of object 2 (e.g., <?=$examples[1]?>)">
+						<input type="text" required="true" name="obj2" required="true" class="form-control" id="obj2" placeholder="Name (e.g., <?=$examples[1]?>)">
                         <br>
 					</td>
 				</tr>
@@ -102,7 +101,7 @@
 					</td>
 					<td>
 						<div><label for="obj3">Object 3: </label></div>
-						<input type="text" required="true" name="obj3" required="true" class="form-control" id="obj3" placeholder="Name of object 3 (e.g., <?=$examples[2]?>)">
+						<input type="text" required="true" name="obj3" required="true" class="form-control" id="obj3" placeholder="Name (e.g., <?=$examples[2]?>)">
                         <br>
 					</td>
 				</tr>

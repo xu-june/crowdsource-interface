@@ -151,8 +151,8 @@
 
                     <video autoplay="true" onclick="captureImage()" control="true" id="videoElement" width="100%" playsinline muted></video><br>
                     <!--<video onclick="captureImage()" id="videoElement" width="100%" autoplay muted playsinline></video><br>-->
-                    <div id='preview' class="mb-3 ml-3" style="width:20vw;height:20vw;position:absolute;bottom:10px;">
-                        <div align='right'>
+                    <div id='preview' style="position:absolute;bottom:0px;left:0px;">
+                        <div id='count_container' align='right'>
                             <div id='count' class='numCircle'>15</div>
                         </div>
                     
@@ -160,8 +160,8 @@
                     </div>
                     
                     <div id='prediction' style="width:100%;height:1vh;position:absolute;top:5vh;display:none;filter:alpha(opacity=70)" align='center'>
-                        <div class="bg-dark text-white"> Recognition result: </div>
-                        <div class="bg-dark text-white" id='label'>Recognition is going on...</div>
+                        <!--<div class="bg-dark text-white"> Recognition result: </div> -->
+                        <div class="bg-dark text-white pt-2 pb-2" id='label'>Recognition is going on...</div>
                     </div>
                 </div>
                 
@@ -181,8 +181,8 @@
         <div class="overlay" id="start_overlay" onclick="start_overlay_off()">
         	<div class="overlay_contents mt-3 mb-3 mr-3 ml-3">
 				<h2><span id='obj_name1'></span></h2>
-				<p>Take 30 photos of <span id='obj_name2'></span> by tapping in the camera screen. The photos will be used to train the object recognizer.</p>
-				<p>Repeat until you take 30 photos of this object.</p>
+				<p>Take 30 photos of <span id='obj_name2'></span> for robust object recognizer</p>
+                
                 <p>Tap on the screen to start.</p>
         	</div>
         </div>

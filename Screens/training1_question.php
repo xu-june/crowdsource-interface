@@ -19,7 +19,9 @@
 <h4>Questions </h4>        
 The training process takes about 2 minutes. Please answer the question below while you are waiting.
 
-<div id="myProgress" class="mt-3 mb-3">
+<div id='waiting'></div>
+
+<div id="myProgress" class="mt-3 mb-3" style='display:none;'>
   <div id="myBar"></div>
 </div>
 
@@ -33,7 +35,7 @@ The training process takes about 2 minutes. Please answer the question below whi
   <!-- text form -->
   <div class="form-group">
       <fieldset class="form-group">
-          <legend class="col-form-label pt-0"><strong>How certain are you that the object recognizer will recognize your object at any time in any places? </strong></legend>
+          <legend class="col-form-label pt-0"><strong>How certain are you that the object recognizer is robust and will work anywhere, anytime, for anyone? </strong></legend>
           <div>
             <table width="100%">
             <tr>
@@ -67,7 +69,7 @@ The training process takes about 2 minutes. Please answer the question below whi
                     <div class="form-check">
                       <input class="form-check-input" required="true" type="radio" name="q2" id="vc" value="4">
                       <label class="form-check-label" for="vc">
-                        <p class='radio_font'>Very uncertain</p>
+                        <p class='radio_font'>Very certain</p>
                       </label>
                     </div>
                 </td>
@@ -88,6 +90,7 @@ The training process takes about 2 minutes. Please answer the question below whi
 
 <script>
     function progress() {
+        $("#myProgress").show();
         var elem = document.getElementById("myBar"); 
         var width = 0;
         var id = setInterval(frame, 1200);
@@ -104,6 +107,28 @@ The training process takes about 2 minutes. Please answer the question below whi
                 elem.innerHTML = width * 1 + '%';
             }
         }
+    }
+    function check_waiting() {
+        $.ajax({
+          type: "POST",
+          url: "requestHandler.php",
+          data: { 
+             type: 'submit_selection',
+             limit: limit,
+             img_num: img_num,
+             subset_cnt_obj: subset_cnt_obj,
+             subset_cnt_num: subset_cnt_num,
+             subset_for: subset_for,
+             selected: getSelected()
+          },
+          success: function (data) {
+            console.log('success');
+            console.log(data.trim());
+          },
+          error: function () { console.log('fail'); }
+        }).done(function(o) {
+          console.log('done'); 
+        });
     }
     progress();
 </script>
