@@ -110,11 +110,13 @@ def get_model_and_label(uuid, phase):
 
     model = os.path.join(classifier_model_dir, uuid, model_name)
     label = os.path.join(classifier_model_dir, uuid, label_name)
-    print("Notice: looking for ", os.path.abspath(model), os.path.abspath(label))
+    print("Notice: looking for %s and %s" % \
+          (os.path.abspath(model), os.path.abspath(label)))
     if os.path.exists(model) and os.path.exists(label):
       return model, label
     else:
-      print("ERROR: couldn't find the recognizer for", uuid, phase)
+      print("ERROR: couldn't find the recognizer for %s and %s" %\
+            (uuid, phase))
       return classifier_model, classifier_label
     
 
@@ -128,7 +130,11 @@ check recognizer
 def check_recognizer(uuid, phase):
   # get the global recognizer variable
   global TORs, debug, TOR_lock
+  print("Notice: Checking recognizer")
   model, label = get_model_and_label(uuid, phase)
+  print("Notice: for ", uuid, phase)
+  print("Notice: got ", model, label)
+
   try:
     recognizer = TORs[uuid]
     # if turned off, turn it on
@@ -181,13 +187,15 @@ def count_images_with_label(label):
   # create the folder if not existed
   if not os.path.exists(label_dir):
     os.makedirs(label_dir)
-    if debug: print("created ", label_dir)
+    if debug:
+      print("created", label_dir)
 
   # count how many images are there
   num_imgs = len([name for name in os.listdir(label_dir) \
               if is_image(name)])
 
-  if debug: print("total: %d in %s" % (num_imgs, label_dir))
+  if debug:
+    print("total: %d in %s" % (num_imgs, label_dir))
 
   return num_imgs, label_dir
 
@@ -205,7 +213,8 @@ def save_image_with_label(image, label):
   img_name = label + "_" + str(num_imgs) + ".jpg"
   # save the image
   cv2.imwrite(os.path.join(label_dir, img_name), image)
-  if debug: print("%s saved in %s" % (img_name, label_dir))
+  if debug:
+    print("%s saved in %s" % (img_name, label_dir))
 
   # increment num_imgs and return
   return num_imgs + 1
@@ -257,22 +266,25 @@ def retrain_classifier(uuid, phase):
   # new_model, new_label = TORs[uuid].retrain(uuid, phase)
   # reset the training flag and pop itself from the training queue
   q_lock.acquire()
-  on_training = False
+  # on_training = False
   # check the first uuid in the training queue
   # it should be the same as the uuid given here
-  at_first = training_q[0]
+  if len(training_q) <= 0:
+    print("Error: why this list is empty here?")
+    q_lock.release()
+    return
+  at_first = training_q.pop(0)
+  q_lock.release()
   if at_first != (uuid, phase):
-    print("Error: why the popped uuid is not matched with ")
+    print("Error: why the popped uuid is not matched with", uuid, phase)
   else:
-    training_q.pop(0)
-    print("Notice: ", uuid, "removed from the training queue")
+    print("Notice: %s and %s removed from the training queue" % (uuid, phase))
     if len(training_q) > 0:
       # automatically trigger the training again
       next_uuid, next_phase = training_q[0]
-      on_training = True
+      # on_training = True
       t = threading.Thread(target = retrain_classifier, args = (next_uuid, next_phase))
       t.start()
-  q_lock.release()
 
 
 """
@@ -288,7 +300,7 @@ def init():
   global TORs, classifier_model, classifier_label, debug, TOR_lock
 
   r = request
-  print("request:", r)
+  print("request: ", r)
   # get json body - contains "uuid"
   body = r.json
   if not body:
@@ -301,7 +313,7 @@ def init():
     return jsonify(result = "False")
 
   # initialize a recognizer
-  print("NOTICE: Starting a recognizer for ", uuid)
+  print("NOTICE: Starting a recognizer for", uuid)
   TOR_lock.acquire()
   TORs[uuid] = init_recognizer(classifier_model, classifier_label, debug)
   # models[uuid] = classifier_model
@@ -323,7 +335,7 @@ stop a recognzer for a user
 @receiver.route('/stop', methods = ['POST'])
 def stop():
   r = request
-  print("request:", r)
+  print("request: ", r)
   # get json body - contains "uuid"
   body = r.json
   if not body:
@@ -387,6 +399,7 @@ def test_image(uuid, phase, image):
   global TORs
 
   output = {"uuid": uuid}
+  print("Notice: testing ", uuid, phase)
   if image is not None:
     # check if there is a recognizer for the given UUID
     check_recognizer(uuid, phase)
@@ -518,7 +531,11 @@ def check():
   # if this user is in the first element of the queue
   # start the retraining!
   try:
+    q_lock.acquire()
     before_me = training_q.index((uuid, phase))
+    q_lock.release()
+    print("Notice: training queue > ", training_q)
+    print("Notice: %d users before %s and %s" % (before_me, uuid, phase))
     if before_me == 0:
       return jsonify(result = "True", before_me = str(before_me))
     else:
@@ -542,7 +559,7 @@ train classifiers with images received from a client
 # TO TEST: curl -v -X POST -F "uuid=1234" -F "phase=train1" -F "file=@train1.zip" http://0.0.0.0:5000/train
 @receiver.route('/train', methods = ['POST'])
 def train():
-  global on_training, q_lock
+  global on_training, q_lock, training_q
 
   r = request
   print("request:", r)
@@ -563,7 +580,7 @@ def train():
 
   # now unzip the received zip file
   if not unzip_file(uuid, phase, file):
-    print("Error: failed to unzip %s" % (file.filename))
+    print("Error: failed to unzip", file.filename)
     return jsonify(uuid = uuid, result = "False", before_me = "-1")
 
   # spawn a new process for training its classifier
@@ -586,21 +603,22 @@ def train():
 
   # training_q consists of tuples: (uuid, phase)
   # there should be at most one tuple associated with uuid
-  in_training = [each for each in training_q if each[0] == uuid]
+  q_lock.acquire()
+  in_training = [each for each in training_q if each[0] == uuid and each[1] == phase]
   if len(in_training) == 0:
-    q_lock.acquire()
     # first put the uid into the training queue
     training_q.append((uuid, phase))
-    q_lock.release()
+    print("Notice: appended to the training queue,", uuid, phase)
+  q_lock.release()
 
   # if this user is in the first element of the queue
   # start the retraining if first
   try:
     before_me = training_q.index((uuid, phase))
-    if before_me == 0 and not on_training:
-      q_lock.acquire()
-      on_training = True
-      q_lock.release()
+    if before_me == 0:
+      # q_lock.acquire()
+      # on_training = True
+      # q_lock.release()
       # now trigger the training here
       t = threading.Thread(target = retrain_classifier, args = (uuid, phase))
       t.start()
