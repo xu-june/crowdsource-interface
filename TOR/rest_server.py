@@ -516,12 +516,16 @@ def check():
 
   # if this user is in the first element of the queue
   # start the retraining!
-  before_me = training_q.index((uuid, phase))
-  if before_me == 0:
-    return jsonify(result = "True", before_me = str(before_me))
-  else:
+  try:
+    before_me = training_q.index((uuid, phase))
+    if before_me == 0:
+      return jsonify(result = "True", before_me = str(before_me))
+    else:
+      # otherwise, simply return "False" and the number of users in the queue before herself
+      return jsonify(result = "False", before_me = str(before_me))
+  except ValueError:
     # otherwise, simply return "False" and the number of users in the queue before herself
-    return jsonify(result = "False", before_me = str(before_me))
+    return jsonify(result = "False", before_me = "-1")
 
 
 """
