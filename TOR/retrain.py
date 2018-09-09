@@ -1082,8 +1082,8 @@ def retrain_model(uuid, phase):
 def main(_):
   # allocating TF graph to only one GPU
   #https://stackoverflow.com/questions/37893755/tensorflow-set-cuda-visible-devices-within-jupyter
-  os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   # see issue #152
-  os.environ["CUDA_VISIBLE_DEVICES"]="0"
+  # os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   # see issue #152
+  # os.environ["CUDA_VISIBLE_DEVICES"]="0"
   # only using CPUs
   # os.environ["CUDA_VISIBLE_DEVICES"]=""
 
@@ -1263,13 +1263,12 @@ def main(_):
 
 
 if __name__ == '__main__':
-
   # allocating TF graph to only one GPU
   #https://stackoverflow.com/questions/37893755/tensorflow-set-cuda-visible-devices-within-jupyter
   os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   # see issue #152
-  os.environ["CUDA_VISIBLE_DEVICES"]="0"
+  # os.environ["CUDA_VISIBLE_DEVICES"]="0"
   # only using CPUs
-  # os.environ["CUDA_VISIBLE_DEVICES"]=""
+  os.environ["CUDA_VISIBLE_DEVICES"]=""
 
   parser = argparse.ArgumentParser()
   parser.add_argument(

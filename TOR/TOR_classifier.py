@@ -53,7 +53,7 @@ class Classifier:
     #           device_count = {'GPU': 0}
     #         )
     config = tf.ConfigProto()
-    config.gpu_options.allow_growth = True
+    # config.gpu_options.allow_growth = True
 
     # session for recognizer
     self.sess = tf.Session(graph=obj_recog_graph, config = config)
@@ -122,8 +122,10 @@ class Classifier:
     top_k = results.argsort()[-1:][::-1]
     labels = self.load_labels(self.label_file)
 
-    for i in top_k:
-      print(labels[i], results[i])
+    # for i in top_k:
+    #   print(labels[i], results[i])
+    label = labels[top_k[0]]
+    score =  results[top_k[0]]
 
-    return labels[top_k[0]], results[top_k[0]]
+    return label, score
 
