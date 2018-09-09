@@ -33,6 +33,10 @@
     	img_num = 30;
 		limit = 20;
 		$("#subset_header").append("<h4>Subset Selection 20</h4>"+"<p>If you were to choose only 20 out of the 30 training images to make the training faster which ones would they be?</p>");
+        
+        if (subset_cnt_obj == 0 && subset_for == 'train1') {
+            $("#subset_header").append("<p>You can select an image by clicking on it. A green border will appear upon selection. </p>");
+        }
 	} else if (subset_cnt_num == 5) {
 		img_num = 5;
 		limit = 1;
@@ -98,7 +102,6 @@
 
 <div id='subset_header'></div>
 
-<p>You can select an image by clicking on it. A green border will appear upon selection. </p>
 
 <div id='imgView'></div>
 <div id='showCnt'></div>

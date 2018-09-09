@@ -46,9 +46,10 @@
         <h1>Congratulations!</h1>
         <p>You finished all steps in our study. Please enter the following code in our HIT page in Amazon Mechanical Turk to get compensation. </p>
         
-        <div id='code' align='center'> <?=$_SESSION['pcode']?> </div>
+        <div id='code' align='center'><h3> <?=$_SESSION['pcode']?> </h3></div>
          <br>
          
+         <!--
         <p>If you want to do this study again with other objects, touch the button below to go to the introduction page, then enter this code. 
         You are not allowed to use the objects that you already used. You will be paid $5 for the participation with your code. 
         (You already got $10 for your first participation if you completed the study faithfully.)
@@ -62,9 +63,9 @@
             </div>
         </form>
         
-        <!--<button type="button" class="btn btn-primary" onclick="document.getElementById('codeForm').submit();">Repeat this study with other objects</button>-->
         <button type="button" class="btn btn-primary" onclick="window.location='index.php';">Repeat this study with other objects</button>
 
+        -->
 <?php
 	include 'footer.php';
 ?>

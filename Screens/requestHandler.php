@@ -198,5 +198,9 @@
         submit_trq(2);
     } else if ($_POST['type']=='submit_screen_size'){
         submit_screen_size();
+    } else if ($_POST['type']=='request_training'){
+        echo request_training($_POST['phase']);
+    } else if ($_POST['type']=='check_waiting'){
+        echo check_waiting($_POST['phase']);
     }  
 ?>

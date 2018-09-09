@@ -12,6 +12,11 @@
     $date = date("Y-m-d H:i:s");
     $time = round(microtime(true) * 1000);
 
+    if (empty($_POST['age'])) {
+        echo "Error. Start from the previous page.";
+        error_log("Post error: ".basename($_SERVER['PHP_SELF']));
+        exit();
+    }
     // enter participant info	
     $age = $_POST["age"];
     $gender = $_POST["gender"];

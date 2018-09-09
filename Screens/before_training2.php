@@ -14,6 +14,7 @@
 
 <h3>You told us what you would do differently, now show us!</h3>
 <p>On the next screen, take 30 more pictures of the requested object.</p>
+<p><strong>You will be paid $3 extra if this training does better than the previous one in our robustness test.</strong></p>
 
 <div align="right">
     <button type="button" class="btn btn-primary" onclick="goToNext('train2');">Next</button>

@@ -19,8 +19,7 @@
 
         <?php printProgressBar(38); ?>
         
-        <h4>Questions </h4><br>
-        <p>Please answer the questions about how you took photos for training and testing.</p>
+        <h4>Questions </h4>
         
         <form  action="end.php" method="post">
           <!-- text form -->
@@ -43,7 +42,7 @@
           
           <!-- text form -->
           <div class="form-group">
-            <label for="q4"><strong>Did you have anything else in mind while taking pictures?</strong></label>
+            <label for="q4"><strong>Did you have anything else in mind while taking pictures to ensure that the object recognizer is more robust?</strong></label>
             <textarea class="form-control" required="true" id="pq4" name='pq4' rows="3"></textarea>
           </div>
           

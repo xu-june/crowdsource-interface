@@ -207,6 +207,7 @@ function showFail() {
 }
 
 function showResult(upload_cnt) {
+    clickable = false;
     var elem = document.getElementById("label"); 
     var width = 0;
     var id = setInterval(frame, 1000)
@@ -272,6 +273,7 @@ function update_interface() {
             showResult(upload_cnt);
         } else {
             console.log("no label ");
+            videoElement.play();
             $("#objects").text(obj_name);
             $("#count").text(test_img_num*3-upload_cnt);
             videoElement.style.borderColor = obj_colors[obj_index-1];
@@ -393,7 +395,7 @@ function submit_selection() {
 	  },
 	  error: function () { console.log('fail'); }
 	}).done(function(o) {
-	  console.log('done'); 
+	  //console.log('done'); 
 	});
 }
 
@@ -431,7 +433,7 @@ function submit_feedback1() {
 	  },
 	  error: function () { console.log('fail'); }
 	}).done(function(o) {
-	  console.log('done'); 
+	  //console.log('done'); 
 	});
 }
 
@@ -478,18 +480,18 @@ function submit_trq(index) {
         $("#submit_button").click();
         return;
     }
-    
+
     $.ajax({
-	  type: "POST",
-	  url: "requestHandler.php",
-	  data: { 
-		 type: 'submit_trq'+index,
+      type: "POST",
+      url: "requestHandler.php",
+      data: { 
+         type: 'submit_trq'+index,
          q1: $("#q1").val(),
          q2: $(".form-check-input:checked").val(),
          q3: $("#q3").val()
-	  },
+      },
       
-	  success: function (data) {
+      success: function (data) {
         console.log(data.trim());
         
         var info = data.trim().split("=");
@@ -503,14 +505,109 @@ function submit_trq(index) {
         obj_index = parseInt(info[7]);
         label = info[8];
         update_interface();
-	  },
-	  error: function () { console.log('fail'); }
-	}).done(function(o) {
-	  console.log('done'); 
-	});
+      },
+      error: function () { console.log('fail'); }
+    }).done(function(o) {
+      console.log('done'); 
+    });
+}
+
+function progress() {
+    $("#myProgress").show();
+    var elem = document.getElementById("myBar"); 
+    var width = 0;
+    var id = setInterval(frame, 600);
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+            $("#next_button").show();
+            $('html, body').animate({
+                scrollTop: $("#next_button").offset().top
+            }, 500);
+        } else {
+            width++; 
+            elem.style.width = width + '%'; 
+            elem.innerHTML = width * 1 + '%';
+        }
+    }
+}
+function check_waiting(p) {
+    count += 1;
+    $.ajax({
+      type: "POST",
+      url: "requestHandler.php",
+      data: { 
+         type: 'check_waiting',
+         phase: 't'+trial+'_'+p
+      },
+      success: function (data) {
+        console.log('success-check: '+ data.trim());
+        
+        if (parseInt(data) > 0) {
+            var msg = "Wait for another participant to finish training. <br>("+data.trim()+" participants before you";
+            var i=0;
+            for (i=0; i<count%5; i++){
+                msg += ".";
+            }
+            msg += ")";
+            $("#waiting").empty();
+            $("#waiting").append(msg);
+            setTimeout(function () {
+              check_waiting(p);
+            }, 2000);
+        } else if (parseInt(data) == 0){
+            $("#waiting").empty();
+            progress();
+        } else {
+            $("#waiting").empty();
+            $("#waiting").append("Error! Refresh the page to restart the training.");
+        }
+      },
+      error: function () { 
+        $("#waiting").empty();
+        $("#waiting").append("[Error] Refresh the page to restart the training.");
+        console.log('fail'); }
+    }).done(function(o) {
+      //console.log('done'); 
+    });
+}
+function request_training(p) {
+    $.ajax({
+      type: "POST",
+      url: "requestHandler.php",
+      data: { 
+         type: 'request_training',
+         phase: p
+      },
+      success: function (data) {
+        console.log('success-request: ' + data.trim());
+        
+        if (parseInt(data) > 0) {
+            $("#waiting").empty();
+            $("#waiting").append("Wait for another participant to finish training. <br>("+data.trim()+" participants before you)");
+            setTimeout(function () {
+              check_waiting(p);
+            }, 2000);
+        } else  if (parseInt(data) == 0){
+            $("#waiting").empty();
+            progress();
+        } else {
+            $("#waiting").empty();
+            $("#waiting").append("Error! Refresh the page to restart the training.");
+        }
+      },
+      error: function () { 
+        $("#waiting").empty();
+        $("#waiting").append("Error.. Refresh the page to restart the training.");
+        console.log('fail'); 
+      }
+    }).done(function(o) {
+      //console.log('done'); 
+    });
 }
 
 var phase = '';
+var trial = 0;
 var upload_cnt_obj1 = 0;
 var upload_cnt_obj2 = 0;
 var upload_cnt_obj3 = 0;
@@ -523,6 +620,7 @@ var subset_for = 'na';
 var limit = -1;
 var selected = [];
 var selected_str = 'na';
+var count = 0;
 
 var clickable = true;
 var offScreenCanvas = null;
@@ -560,128 +658,4 @@ function show_prev_image() {
 	context.fillRect(0,0,w,h);
 	context.drawImage(offScreenCanvas,0,0,w,h);
 }
-        
-function get_random_object_test(test_img_num) {
-	$objects = $("#objects");
-	if (upload_cnt >= test_img_num*3) {
-		$objects.text("Go to next step");
-		end_overlay_on();
-		return;
-	}
-	
-	$("#count").text(test_img_num*3-upload_cnt);
-	$objects.text(obj_names[obj_index[upload_cnt]-1]);
-	videoElement.style.borderColor = document.getElementById("objects").style.backgroundColor = bgColors[obj_index[upload_cnt]-1];
-}
 
-function captureImage_test(test_img_num, phase) {
-	if (!clickable) return;
-	
-	clickable = false;
-	obj_counts[obj_index[upload_cnt]-1]++;
-	upload_cnt++;
-	get_random_object_test(test_img_num);
-	show_prev_image(upload_cnt);
-	$output = $("#output");
-	$output.empty();
-	
-	var img = document.createElement("img");
-	img.src = offScreenCanvas.toDataURL();
-	
-	$.ajax({
-	  type: "POST",
-	  url: "upload.php",
-	  data: { 
-		 imgBase64: img.src,
-		 phase: phase,
-		 obj_count: obj_counts[obj_index[upload_cnt-1]-1],
-		 objectname: obj_names[obj_index[upload_cnt-1]-1],
-		 ratio: ratio
-	  },
-	  success: function (data) {
-		console.log('success'+data);
-
-		$output = $("#output");
-		$output.prepend(data);
-		
-		
-		if (upload_cnt >= test_img_num*3) {
-			//$("#nextButton").show();
-			//document.getElementById("nextButton").scrollIntoView();
-			return;
-		} else {
-			//document.getElementById("output").scrollIntoView();
-			document.getElementById('interface').scrollTop = 10;
-			document.getElementById("interface").scrollIntoView(true);
-			clickable = true;
-		}
-		
-	  },
-	  error: function () { console.log('fail'); }
-	}).done(function(o) {
-	  console.log('done'); 
-	});
-}
-
-
-function get_random_object_train(training_img_num) {
-	$objects = $("#objects");
-	if (upload_cnt >= training_img_num*3) {
-		clickable = false;
-		end_overlay_on();
-	} else {
-		start_overlay_on();
-	}
-	
-	var step = Math.floor(upload_cnt/training_img_num);
-	var obj_name = obj_names[obj_index[step]-1];
-	
-	$objects.text(obj_name);
-	$("#obj_name1").text(obj_name);
-	$("#obj_name2").text(obj_name);
-	$("#count").text(training_img_num-upload_cnt % training_img_num);
-	videoElement.style.borderColor = document.getElementById("objects").style.backgroundColor = bgColors[step];
-}
-
-
-function captureImage_train(training_img_num, phase) {
-	if (!clickable) return;
-	
-	clickable = false;
-	upload_cnt++;
-	var obj_cnt = upload_cnt % training_img_num;
-	show_prev_image();
-	if (upload_cnt % training_img_num != 0) {
-		$("#count").text(training_img_num-upload_cnt % training_img_num);
-	} else {
-		$("#count").text('0');
-		get_random_object_train(training_img_num);
-		obj_cnt = training_img_num;
-	}
-	
-	var step = Math.floor((upload_cnt-1)/training_img_num);
-	var obj_name = obj_names[obj_index[step]-1];
-	
-	console.log(upload_cnt + ", " + step + ", " + obj_index[step]);
-	
-	var img = document.createElement("img");
-	img.src = offScreenCanvas.toDataURL();
-	
-	$.ajax({
-	  type: "POST",
-	  url: "upload.php",
-	  data: { 
-		 imgBase64: img.src,
-		 phase: phase,
-		 objectname: obj_name,
-		 obj_count: obj_cnt
-	  },
-	  success: function (data) {
-		console.log('success'+data);
-		clickable = true;
-	  },
-	  error: function () { console.log('fail'); }
-	}).done(function(o) {
-	  console.log('done'); 
-	});
-}

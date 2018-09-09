@@ -13,14 +13,9 @@
 
 <?php printProgressBar(11); ?>
 
-<h4>Now, can your object recognizer tell which is which?</h4>
+<h4>Test</h4>
 
-<p>Continue to find out! </p>
-
-<p>Test the trained object recognizer again. </p> 
-<p>Take a photo of an object (name at the top) by tapping in the camera screen. The recognition result will be shown at the bottom. </p>
-
-<p>You will do this 15 times total (5 photos per object). </p>
+<p>Test the trained object recognizer again to see how robust it is. </p>
 
 <div align='right'>
     <!--<button type="button" class="btn btn-default" onclick="window.location.href='test0.php'">Next ></button>-->

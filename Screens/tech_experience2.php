@@ -4,11 +4,16 @@
 	include 'header.php';
 	savePageLog($_SESSION['pid'], basename($_SERVER['PHP_SELF']));
 
-	$q1 = $_POST["bq1"];
-	$q2 = $_POST["bq2"];
-	$q3 = $_POST["bq3"];
-	$sql = "UPDATE participant_info set `bq1`='".$q1."', `bq2`='".$q2."', `bq3`='".$q3."' WHERE `participant_id`=".$_SESSION['pid'].";";
-	execSQL($sql);
+    if (!empty($_POST['bq1'])) {
+        $q1 = $_POST["bq1"];
+        $q2 = $_POST["bq2"];
+        $q3 = $_POST["bq3"];
+        $sql = "UPDATE participant_info set `bq1`='".$q1."', `bq2`='".$q2."', `bq3`='".$q3."' WHERE `participant_id`=".$_SESSION['pid'].";";
+        execSQL($sql);
+    } else {
+        echo "Error. Start from the previous page.";
+        error_log("Post error: ".basename($_SERVER['PHP_SELF']));
+    }
 ?> 
 
 <!doctype html>

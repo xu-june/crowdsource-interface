@@ -4,7 +4,9 @@
     include 'header.php';
 	savePageLog($_SESSION['pid'], basename($_SERVER['PHP_SELF']));
     
+    /*
     training_start('train2');
+    */
     
     $date = date("Y-m-d H:i:s");
     $time = round(microtime(true) * 1000);
@@ -16,12 +18,16 @@
     printProgressBar(25); 
 ?>
 
-<h4>Questions </h4><br>        
-The training process takes about 2 minutes. Please answer the question below while you are waiting.
+<h4> State of Training </h4>  
+<div id='waiting' align='center' class='mt-3 mb-3'>Wait for another participant to finish training.. <br>(0 participants before you)</div>
 
-<div id="myProgress" class="mt-3 mb-3">
+<div id="myProgress" class="mt-3 mb-3" style='display:none;'>
   <div id="myBar"></div>
 </div>
+
+
+<h4>Questions </h4><br>        
+The training process takes about 1 minute. Please answer the question below while you are waiting.
 
 <form id='feedForm' action="" method="post">
   <!-- text form -->
@@ -38,7 +44,7 @@ The training process takes about 2 minutes. Please answer the question below whi
             <table width="100%">
             <tr>
                 <td>
-                    <div class="form-check mb-2">
+                    <div class="form-check mb-1">
                       <input class="form-check-input" required="true" type="radio" name="q2" id="vu" value="1" >
                       <label class="form-check-label" for="vu">
                         <p class='radio_font'>Very uncertain</p>
@@ -46,7 +52,7 @@ The training process takes about 2 minutes. Please answer the question below whi
                     </div>
                 </td>
                 <td>
-                    <div class="form-check mb-2">
+                    <div class="form-check mb-1">
                       <input class="form-check-input" required="true" type="radio" name="q2" id="u" value="2">
                       <label class="form-check-label" for="u">
                             <p class='radio_font'>Uncetain</p>
@@ -56,7 +62,7 @@ The training process takes about 2 minutes. Please answer the question below whi
             </tr>
             <tr>
                 <td>
-                    <div class="form-check mb-2">
+                    <div class="form-check">
                       <input class="form-check-input" required="true" type="radio" name="q2" id="c" value="3">
                       <label class="form-check-label" for="c">
                         <p class='radio_font'>Certain</p>
@@ -87,25 +93,7 @@ The training process takes about 2 minutes. Please answer the question below whi
 </form>
 
 <script>
-    function progress() {
-        var elem = document.getElementById("myBar"); 
-        var width = 0;
-        var id = setInterval(frame, 1200);
-        function frame() {
-            if (width >= 100) {
-                clearInterval(id);
-                $("#next_button").show();
-                $('html, body').animate({
-                    scrollTop: $("#next_button").offset().top
-                }, 500);
-            } else {
-                width++; 
-                elem.style.width = width + '%'; 
-                elem.innerHTML = width * 1 + '%';
-            }
-        }
-    }
-    progress();
+    request_training('train2');
 </script>
 
 

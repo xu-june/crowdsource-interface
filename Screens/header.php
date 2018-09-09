@@ -29,7 +29,28 @@
 		// TODO: we need to trigger a training only once
 		init_vars();
 		prepare_upload($puuid, $trial, $p);
-    }    
+    }
+    function request_training($p) {
+		// trigger the training for now
+		require(dirname(__FILE__).'/../TOR/rest_client.php');
+		// send the training images to the server
+		$puuid = 'p' . $_SESSION['pid'];
+		$trial = 't' . $_SESSION['trial'];
+        
+		init_vars();
+        $zip_file = compress_images($puuid, $trial, $p);
+        return upload_and_train($puuid, $trial, $p, $zip_file);
+    }
+    function check_waiting($p) {
+		// trigger the training for now
+		require(dirname(__FILE__).'/../TOR/rest_client.php');
+		// send the training images to the server
+		$puuid = 'p' . $_SESSION['pid'];
+		$trial = 't' . $_SESSION['trial'];
+        
+		init_vars();
+        return check_for_training($puuid, $p);
+    }       
     function replaceSpecial($str){
         $res = $str;
         $res = str_replace("=","-", $res);

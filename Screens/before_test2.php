@@ -16,9 +16,6 @@
 <h4>Test the system again.</h4>
 
 <p>The object recognizer is trained again. Test the trained object recognizer. </p> 
-<p>Take a photo of an object (name at the top) by tapping in the camera screen. The recognition result will be shown at the bottom. </p>
-
-<p>You will do this 15 times total (5 photos per object). </p>
 
 <div align='right'>
     <!--<button type="button" class="btn btn-default" onclick="window.location.href='test0.php'">Next ></button>-->

@@ -60,7 +60,7 @@
         }
     } else {
         $obj_index = 0;
-        $obj_name = $_SESSION["object_names"][$obj_index-1];
+        $obj_name = $_SESSION["object_names"][0];
     }
     
     $_SESSION['phase'] = $phase;
@@ -90,6 +90,7 @@
         subset_for = '<?=$subset_for?>';
         label = '';
         selected_str = '<?=$selected_str?>';
+        trial = <?=$_SESSION['trial']?>;
         
         var i=0;
         for(i=0; i<30; i++){

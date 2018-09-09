@@ -13,31 +13,31 @@
 <?php printProgressBar(13); ?>
 
 <form name="feedback" action="" method="post" id="feedbackForm">
-    <h4>Compare the result to your expectations!</h4>
+    <h4>Questions</h4>
     
     <!-- radio button set -->
       <fieldset class="form-group">
           <legend class="col-form-label pt-0"><strong>The performance of the object recognizer was as good as I expected. </strong></legend>
           <div>
-            <div class="form-check mb-2">
+            <div class="form-check mb-1">
               <input class="form-check-input" required="true" type="radio" name="q1" id="q1_1" value="1" >
               <label class="form-check-label" for="q1_1">
                 <p class='radio_font'>Strongly disagree</p>
               </label>
             </div>
-            <div class="form-check mb-2">
+            <div class="form-check mb-1">
               <input class="form-check-input" required="true" type="radio" name="q1" id="q1_2" value="2">
               <label class="form-check-label" for="q1_2">
                 <p class='radio_font'>Disagree</p>
               </label>
             </div>
-            <div class="form-check mb-2">
+            <div class="form-check mb-1">
               <input class="form-check-input" required="true" type="radio" name="q1" id="q1_3" value="3">
               <label class="form-check-label" for="q1_3">
                 <p class='radio_font'>Neutral</p>
               </label>
             </div>
-            <div class="form-check mb-2">
+            <div class="form-check mb-1">
               <input class="form-check-input" required="true" type="radio" name="q1" id="q1_4" value="4">
               <label class="form-check-label" for="q1_4">
                 <p class='radio_font'>Agree</p>
@@ -55,7 +55,7 @@
     <textarea name="q2" required="true" class="form-control" id="q2" rows="3" placeholder="Enter feedback here"></textarea>
     <br>
 
-    <p><strong>If you were to retrain the system, what would you do differently? Think in terms of photo style, angle, lighting, etc.</strong></p>
+    <p><strong>If you were to retrain the system to make it more robust, what would you do differently? </strong></p>
     <textarea name="q3" required="true" id="q3" class="form-control" rows="3" placeholder="Enter feedback here"></textarea>
     <br>
 
