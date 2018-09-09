@@ -94,22 +94,23 @@ def resume_recognizer(uuid, classifier_model, classifier_label):
 
 def get_model_and_label(uuid, phase):
   global classifier_model_dir, classifier_model, classifier_label
-  if phase == "test0":
+  if "test0" in phase:
     return classifier_model, classifier_label
   else:
-    if phase == "test1":
+    if "test1" in phase:
       # as of now, only the first trial (t1) is considered
       model_name = "t1_train1_graph.pb"
-      label_name = "t1_train1_label.pb"
-    elif phase == "test2":
+      label_name = "t1_train1_labels.txt"
+    elif "test2" in phase:
       model_name = "t1_train2_graph.pb"
-      label_name = "t1_train2_label.pb"
+      label_name = "t1_train2_labels.txt"
     else:
       print("ERROR: no recognized phase")
       return classifier_model, classifier_label
 
     model = os.path.join(classifier_model_dir, uuid, model_name)
     label = os.path.join(classifier_model_dir, uuid, label_name)
+    print("Notice: looking for ", os.path.abspath(model), os.path.abspath(label))
     if os.path.exists(model) and os.path.exists(label):
       return model, label
     else:
@@ -126,12 +127,12 @@ check recognizer
 """
 def check_recognizer(uuid, phase):
   # get the global recognizer variable
-  global TORs,classifier_model, classifier_label, debug, TOR_lock
+  global TORs, debug, TOR_lock
+  model, label = get_model_and_label(uuid, phase)
   try:
     recognizer = TORs[uuid]
     # if turned off, turn it on
     if recognizer is None:
-      model, label = get_model_and_label(uuid, phase)
       TOR_lock.acquire()
       TORs[uuid] = init_recognizer(model, label, debug)
       TOR_lock.release()
@@ -142,7 +143,7 @@ def check_recognizer(uuid, phase):
   except KeyError:
     # initialize it if not
     TOR_lock.acquire()
-    TORs[uuid] = init_recognizer(classifier_model, classifier_label, debug)
+    TORs[uuid] = init_recognizer(model, label, debug)
     # models[uuid] = classifier_model
     # labels[uuid] = classifier_label
     TOR_lock.release()

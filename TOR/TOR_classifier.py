@@ -122,8 +122,8 @@ class Classifier:
     top_k = results.argsort()[-1:][::-1]
     labels = self.load_labels(self.label_file)
 
-    for i in top_k:
-      print(labels[i], results[i])
+    # for i in top_k:
+    #   print(labels[i], results[i])
 
     return labels[top_k[0]], results[top_k[0]]
 
