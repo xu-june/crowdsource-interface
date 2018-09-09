@@ -101,6 +101,7 @@ function stop_recognizer($uuid) {
     @output : N/A
  */
 function check_for_training($uuid, $phase) {
+    
   global $rest_server, $debug;
   // the target url
   $target_url = $rest_server . "check";
@@ -129,13 +130,15 @@ function check_for_training($uuid, $phase) {
     echo "\nresponse: " . $response;
   }
 
+  error_log("train check: ". $uuid ." ".$phase." ".$response);
   curl_close($request);
   
   $json = json_decode($response, true);
   // $ret = $json['result'];
-  $num_waiting = $json['before_me']
+  $num_waiting = $json['before_me'];
 
-  return $num_waiting
+  //error_log("check: ".$num_waiting);
+  return $num_waiting;
 }
 
 
@@ -267,6 +270,7 @@ function upload_zip($uuid, $zip_file) {
     @output : N/A
  */
 function upload_and_train($uuid, $trial, $phase, $zip_file) {
+    
   global $rest_server, $debug;
   // the target url
   $target_url = $rest_server;
@@ -303,6 +307,7 @@ function upload_and_train($uuid, $trial, $phase, $zip_file) {
   if ($debug) {
     echo "\nresponse: " . $response;
   }
+  error_log("train request: ". $uuid ." ".$trial." ". $phase." ".$response);
   // error_log($output, 3, "/var/www/php.log");
   // error_log("sent the request", 3, "/var/www/php.log");
 
@@ -311,9 +316,9 @@ function upload_and_train($uuid, $trial, $phase, $zip_file) {
 
   $json = json_decode($response, true);
   // $ret = $json['result'];
-  $num_waiting = $json['before_me']
+  $num_waiting = $json['before_me'];
 
-  return $num_waiting
+  return $num_waiting;
 }
 
 
