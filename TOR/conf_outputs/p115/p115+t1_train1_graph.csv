@@ -1,0 +1,12 @@
+test all
+test0_pepsi_1,test0_pepsi_2,test0_pepsi_5,test0_pepsi_4,test0_pepsi_3,test0_fanta_1,test0_fanta_2,test0_fanta_5,test0_fanta_4,test0_fanta_3,test0_bovonto_1,test0_bovonto_2,test0_bovonto_5,test0_bovonto_4,test0_bovonto_3
+pepsi,pepsi,pepsi,bovonto,pepsi,pepsi,pepsi,bovonto,pepsi,pepsi,pepsi,pepsi,bovonto,bovonto,bovonto
+0.9986407,0.6888012,0.7638935,0.6243449,0.9981029,0.94334906,0.9522585,0.87109196,0.84950215,0.8370359,0.8370359,0.999703,0.91629654,0.9370503,0.80133647
+test0
+test0_pepsi_1,test0_pepsi_2,test0_pepsi_5,test0_pepsi_4,test0_pepsi_3,test0_fanta_1,test0_fanta_2,test0_fanta_5,test0_fanta_4,test0_fanta_3,test0_bovonto_1,test0_bovonto_2,test0_bovonto_5,test0_bovonto_4,test0_bovonto_3
+pepsi,pepsi,pepsi,bovonto,pepsi,pepsi,pepsi,bovonto,pepsi,pepsi,pepsi,pepsi,bovonto,bovonto,bovonto
+0.9986407,0.6888012,0.7638935,0.6243449,0.9981029,0.94334906,0.9522585,0.87109196,0.84950215,0.8370359,0.8370359,0.999703,0.91629654,0.9370503,0.80133647
+test
+
+
+

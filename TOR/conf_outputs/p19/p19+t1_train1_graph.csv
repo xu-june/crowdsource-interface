@@ -1,0 +1,12 @@
+test all
+test0_juice_1,test0_juice_2,test0_juice_5,test0_juice_4,test0_juice_3,test0_coke_1,test0_coke_2,test0_coke_5,test0_coke_4,test0_coke_3,test0_sprite_1,test0_sprite_2,test0_sprite_5,test0_sprite_4,test0_sprite_3,test1_juice_1,test1_juice_2,test1_juice_5,test1_juice_4,test1_juice_3,test1_coke_1,test1_coke_2,test1_coke_5,test1_coke_4,test1_coke_3,test1_sprite_1,test1_sprite_2,test1_sprite_5,test1_sprite_4,test1_sprite_3,test2_juice_1,test2_juice_2,test2_juice_5,test2_juice_4,test2_juice_3,test2_coke_1,test2_coke_2,test2_coke_5,test2_coke_4,test2_coke_3,test2_sprite_1,test2_sprite_2,test2_sprite_5,test2_sprite_4,test2_sprite_3
+juice,juice,juice,juice,juice,coke,coke,coke,coke,sprite,sprite,sprite,sprite,sprite,sprite,juice,juice,juice,juice,juice,sprite,coke,coke,coke,coke,sprite,sprite,sprite,sprite,sprite,juice,juice,juice,juice,juice,coke,coke,coke,coke,coke,sprite,sprite,sprite,sprite,sprite
+0.94602853,0.96201134,0.9703589,0.9829837,0.96661466,0.6387147,0.90096647,0.63330483,0.52782035,0.55451167,0.955433,0.9384078,0.969131,0.8781638,0.8467964,0.9931995,0.98669285,0.96436566,0.9759016,0.976444,0.5459048,0.6897419,0.7273029,0.75556624,0.81924736,0.8098438,0.8704793,0.74875623,0.88790154,0.88194114,0.90320337,0.9679263,0.9728247,0.99021006,0.9355234,0.85948735,0.8058247,0.96174407,0.92400736,0.91884315,0.91046584,0.87614936,0.9703419,0.91762894,0.87477267
+test0
+test0_juice_1,test0_juice_2,test0_juice_5,test0_juice_4,test0_juice_3,test0_coke_1,test0_coke_2,test0_coke_5,test0_coke_4,test0_coke_3,test0_sprite_1,test0_sprite_2,test0_sprite_5,test0_sprite_4,test0_sprite_3
+juice,juice,juice,juice,juice,coke,coke,coke,coke,sprite,sprite,sprite,sprite,sprite,sprite
+0.94602853,0.96201134,0.9703589,0.9829837,0.96661466,0.6387147,0.90096647,0.63330483,0.52782035,0.55451167,0.955433,0.9384078,0.969131,0.8781638,0.8467964
+test
+test1_juice_1,test1_juice_2,test1_juice_5,test1_juice_4,test1_juice_3,test1_coke_1,test1_coke_2,test1_coke_5,test1_coke_4,test1_coke_3,test1_sprite_1,test1_sprite_2,test1_sprite_5,test1_sprite_4,test1_sprite_3
+juice,juice,juice,juice,juice,sprite,coke,coke,coke,coke,sprite,sprite,sprite,sprite,sprite
+0.9931995,0.98669285,0.96436566,0.9759016,0.976444,0.5459048,0.6897419,0.7273029,0.75556624,0.81924736,0.8098438,0.8704793,0.74875623,0.88790154,0.88194114

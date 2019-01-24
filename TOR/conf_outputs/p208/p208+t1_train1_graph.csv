@@ -1,0 +1,12 @@
+test all
+test0_nutmeg_1,test0_nutmeg_2,test0_nutmeg_5,test0_nutmeg_4,test0_nutmeg_3,test0_ginger_1,test0_ginger_2,test0_ginger_5,test0_ginger_4,test0_ginger_3,test0_cloves_1,test0_cloves_2,test0_cloves_5,test0_cloves_4,test0_cloves_3,test1_nutmeg_1,test1_nutmeg_2,test1_nutmeg_5,test1_nutmeg_4,test1_nutmeg_3,test1_ginger_1,test1_ginger_2,test1_ginger_5,test1_ginger_4,test1_ginger_3,test1_cloves_1,test1_cloves_2,test1_cloves_5,test1_cloves_4,test1_cloves_3,test2_nutmeg_1,test2_nutmeg_2,test2_nutmeg_5,test2_nutmeg_4,test2_nutmeg_3,test2_ginger_1,test2_ginger_2,test2_ginger_5,test2_ginger_4,test2_ginger_3,test2_cloves_1,test2_cloves_2,test2_cloves_5,test2_cloves_4,test2_cloves_3
+nutmeg,nutmeg,nutmeg,nutmeg,nutmeg,ginger,ginger,ginger,nutmeg,nutmeg,nutmeg,nutmeg,ginger,nutmeg,nutmeg,nutmeg,nutmeg,nutmeg,cloves,nutmeg,ginger,ginger,ginger,ginger,ginger,nutmeg,nutmeg,nutmeg,nutmeg,nutmeg,nutmeg,nutmeg,nutmeg,nutmeg,nutmeg,cloves,ginger,nutmeg,nutmeg,nutmeg,nutmeg,ginger,nutmeg,ginger,nutmeg
+0.77165985,0.7971395,0.9568919,0.6727552,0.92468333,0.62651235,0.48175317,0.7477823,0.6089863,0.46354315,0.5089687,0.676664,0.45153284,0.7221171,0.4471647,0.51472604,0.63742197,0.7067556,0.62628424,0.7721808,0.66524076,0.7072817,0.6892909,0.6198286,0.8042654,0.75688845,0.45402944,0.5854193,0.76531863,0.44927934,0.8500265,0.8115099,0.9115027,0.9276855,0.8032032,0.4962408,0.47835857,0.6021297,0.49016917,0.4323169,0.40839177,0.43592492,0.7250807,0.40507913,0.5109921
+test0
+test0_nutmeg_1,test0_nutmeg_2,test0_nutmeg_5,test0_nutmeg_4,test0_nutmeg_3,test0_ginger_1,test0_ginger_2,test0_ginger_5,test0_ginger_4,test0_ginger_3,test0_cloves_1,test0_cloves_2,test0_cloves_5,test0_cloves_4,test0_cloves_3
+nutmeg,nutmeg,nutmeg,nutmeg,nutmeg,ginger,ginger,ginger,nutmeg,nutmeg,nutmeg,nutmeg,ginger,nutmeg,nutmeg
+0.77165985,0.7971395,0.9568919,0.6727552,0.92468333,0.62651235,0.48175317,0.7477823,0.6089863,0.46354315,0.5089687,0.676664,0.45153284,0.7221171,0.4471647
+test
+test1_nutmeg_1,test1_nutmeg_2,test1_nutmeg_5,test1_nutmeg_4,test1_nutmeg_3,test1_ginger_1,test1_ginger_2,test1_ginger_5,test1_ginger_4,test1_ginger_3,test1_cloves_1,test1_cloves_2,test1_cloves_5,test1_cloves_4,test1_cloves_3
+nutmeg,nutmeg,nutmeg,cloves,nutmeg,ginger,ginger,ginger,ginger,ginger,nutmeg,nutmeg,nutmeg,nutmeg,nutmeg
+0.51472604,0.63742197,0.7067556,0.62628424,0.7721808,0.66524076,0.7072817,0.6892909,0.6198286,0.8042654,0.75688845,0.45402944,0.5854193,0.76531863,0.44927934

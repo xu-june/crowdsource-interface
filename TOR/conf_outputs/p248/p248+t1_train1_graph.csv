@@ -1,0 +1,12 @@
+test all
+test0_coke_1,test0_coke_2,test0_coke_5,test0_coke_4,test0_coke_3,test0_sprite_1,test0_sprite_2,test0_sprite_5,test0_sprite_4,test0_sprite_3,test0_heineken_1,test0_heineken_2,test0_heineken_5,test0_heineken_4,test0_heineken_3,test1_coke_1,test1_coke_2,test1_coke_5,test1_coke_4,test1_coke_3,test1_sprite_1,test1_sprite_2,test1_sprite_5,test1_sprite_4,test1_sprite_3,test1_heineken_1,test1_heineken_2,test1_heineken_5,test1_heineken_4,test1_heineken_3,test2_coke_1,test2_coke_2,test2_coke_5,test2_coke_4,test2_coke_3,test2_sprite_1,test2_sprite_2,test2_sprite_5,test2_sprite_4,test2_sprite_3,test2_heineken_1,test2_heineken_2,test2_heineken_5,test2_heineken_4,test2_heineken_3
+sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,heineken,heineken,heineken,heineken,heineken,sprite,sprite,heineken,sprite,sprite,sprite,sprite,sprite,sprite,sprite,heineken,heineken,heineken,heineken,heineken,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,heineken,heineken,heineken,heineken,heineken
+0.7802571,0.80073327,0.5646475,0.48884752,0.5881325,0.90820134,0.937622,0.9129317,0.92537576,0.844169,0.99215394,0.98510104,0.99740976,0.990564,0.97781014,0.58811504,0.5603002,0.46170846,0.76823896,0.64434475,0.72371674,0.75577116,0.7751792,0.7738421,0.736552,0.99599105,0.9952673,0.99483216,0.98693347,0.996662,0.80220824,0.86443573,0.7242461,0.91245407,0.6059599,0.95279497,0.517278,0.6019413,0.7613581,0.91007566,0.9818677,0.9923579,0.98572856,0.98363,0.99320096
+test0
+test0_coke_1,test0_coke_2,test0_coke_5,test0_coke_4,test0_coke_3,test0_sprite_1,test0_sprite_2,test0_sprite_5,test0_sprite_4,test0_sprite_3,test0_heineken_1,test0_heineken_2,test0_heineken_5,test0_heineken_4,test0_heineken_3
+sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,heineken,heineken,heineken,heineken,heineken
+0.7802571,0.80073327,0.5646475,0.48884752,0.5881325,0.90820134,0.937622,0.9129317,0.92537576,0.844169,0.99215394,0.98510104,0.99740976,0.990564,0.97781014
+test
+test1_coke_1,test1_coke_2,test1_coke_5,test1_coke_4,test1_coke_3,test1_sprite_1,test1_sprite_2,test1_sprite_5,test1_sprite_4,test1_sprite_3,test1_heineken_1,test1_heineken_2,test1_heineken_5,test1_heineken_4,test1_heineken_3
+sprite,sprite,heineken,sprite,sprite,sprite,sprite,sprite,sprite,sprite,heineken,heineken,heineken,heineken,heineken
+0.58811504,0.5603002,0.46170846,0.76823896,0.64434475,0.72371674,0.75577116,0.7751792,0.7738421,0.736552,0.99599105,0.9952673,0.99483216,0.98693347,0.996662

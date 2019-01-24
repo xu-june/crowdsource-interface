@@ -1,0 +1,12 @@
+test all
+test0_sprite_1,test0_sprite_2,test0_sprite_5,test0_sprite_4,test0_sprite_3,test0_coca xxmf cola_1,test0_coca xxmf cola_2,test0_coca xxmf cola_5,test0_coca xxmf cola_4,test0_coca xxmf cola_3,test0_water_1,test0_water_2,test0_water_5,test0_water_4,test0_water_3,test1_sprite_1,test1_sprite_2,test1_sprite_5,test1_sprite_4,test1_sprite_3,test1_coca xxmf cola_1,test1_coca xxmf cola_2,test1_coca xxmf cola_5,test1_coca xxmf cola_4,test1_coca xxmf cola_3,test1_water_1,test1_water_2,test1_water_5,test1_water_4,test1_water_3,test2_sprite_1,test2_sprite_2,test2_sprite_5,test2_sprite_4,test2_sprite_3,test2_coca xxmf cola_1,test2_coca xxmf cola_2,test2_coca xxmf cola_5,test2_coca xxmf cola_4,test2_coca xxmf cola_3,test2_water_1,test2_water_2,test2_water_5,test2_water_4,test2_water_3
+water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water,water
+0.5296886,0.73271096,0.75937855,0.8377647,0.761477,0.9836056,0.7676585,0.9253374,0.9523707,0.91401935,0.7890926,0.89747787,0.96109384,0.86144745,0.840584,0.67049694,0.8855474,0.54433084,0.50377864,0.68844676,0.6843076,0.8497829,0.958392,0.9208534,0.9466354,0.85755706,0.8870142,0.89984035,0.93805665,0.8130337,0.5793299,0.70036364,0.49808788,0.49729076,0.60334325,0.91629577,0.9167162,0.8350513,0.77856916,0.864353,0.86594427,0.88970184,0.87678933,0.6227726,0.70928574
+test0
+test0_sprite_1,test0_sprite_2,test0_sprite_5,test0_sprite_4,test0_sprite_3,test0_coca xxmf cola_1,test0_coca xxmf cola_2,test0_coca xxmf cola_5,test0_coca xxmf cola_4,test0_coca xxmf cola_3,test0_water_1,test0_water_2,test0_water_5,test0_water_4,test0_water_3
+water,water,water,water,water,water,water,water,water,water,water,water,water,water,water
+0.5296886,0.73271096,0.75937855,0.8377647,0.761477,0.9836056,0.7676585,0.9253374,0.9523707,0.91401935,0.7890926,0.89747787,0.96109384,0.86144745,0.840584
+test
+test1_sprite_1,test1_sprite_2,test1_sprite_5,test1_sprite_4,test1_sprite_3,test1_coca xxmf cola_1,test1_coca xxmf cola_2,test1_coca xxmf cola_5,test1_coca xxmf cola_4,test1_coca xxmf cola_3,test1_water_1,test1_water_2,test1_water_5,test1_water_4,test1_water_3
+water,water,water,water,water,water,water,water,water,water,water,water,water,water,water
+0.67049694,0.8855474,0.54433084,0.50377864,0.68844676,0.6843076,0.8497829,0.958392,0.9208534,0.9466354,0.85755706,0.8870142,0.89984035,0.93805665,0.8130337

@@ -1,0 +1,12 @@
+test all
+test0_doritos_1,test0_doritos_2,test0_doritos_5,test0_doritos_4,test0_doritos_3,test0_utz_1,test0_utz_2,test0_utz_5,test0_utz_4,test0_utz_3,test0_ruffles_1,test0_ruffles_2,test0_ruffles_5,test0_ruffles_4,test0_ruffles_3,test1_doritos_1,test1_doritos_2,test1_doritos_5,test1_doritos_4,test1_doritos_3,test1_utz_1,test1_utz_2,test1_utz_5,test1_utz_4,test1_utz_3,test1_ruffles_1,test1_ruffles_2,test1_ruffles_5,test1_ruffles_4,test1_ruffles_3,test2_doritos_1,test2_doritos_2,test2_doritos_5,test2_doritos_4,test2_doritos_3,test2_utz_1,test2_utz_2,test2_utz_5,test2_utz_4,test2_utz_3,test2_ruffles_1,test2_ruffles_2,test2_ruffles_5,test2_ruffles_4,test2_ruffles_3
+ruffles,doritos,doritos,doritos,doritos,utz,ruffles,utz,utz,utz,ruffles,ruffles,ruffles,ruffles,ruffles,doritos,doritos,doritos,doritos,doritos,utz,utz,utz,utz,utz,ruffles,ruffles,ruffles,ruffles,ruffles,doritos,doritos,doritos,doritos,doritos,utz,utz,utz,utz,utz,ruffles,ruffles,ruffles,ruffles,ruffles
+0.5897717,0.5785574,0.4085204,0.62969834,0.55348283,0.58839905,0.79649943,0.9095358,0.7201951,0.7127762,0.86736226,0.87431735,0.9748814,0.88087726,0.8866715,0.4854333,0.68258476,0.6814123,0.50246465,0.7905055,0.9003903,0.85767746,0.9195631,0.90183264,0.8464219,0.9872405,0.9924655,0.9707261,0.952817,0.99490356,0.7061281,0.6052596,0.6473075,0.9139534,0.60734993,0.81786865,0.854598,0.93410283,0.8629323,0.8434395,0.7550344,0.8702413,0.8504519,0.84931284,0.8629118
+test0
+test0_doritos_1,test0_doritos_2,test0_doritos_5,test0_doritos_4,test0_doritos_3,test0_utz_1,test0_utz_2,test0_utz_5,test0_utz_4,test0_utz_3,test0_ruffles_1,test0_ruffles_2,test0_ruffles_5,test0_ruffles_4,test0_ruffles_3
+ruffles,doritos,doritos,doritos,doritos,utz,ruffles,utz,utz,utz,ruffles,ruffles,ruffles,ruffles,ruffles
+0.5897717,0.5785574,0.4085204,0.62969834,0.55348283,0.58839905,0.79649943,0.9095358,0.7201951,0.7127762,0.86736226,0.87431735,0.9748814,0.88087726,0.8866715
+test
+test1_doritos_1,test1_doritos_2,test1_doritos_5,test1_doritos_4,test1_doritos_3,test1_utz_1,test1_utz_2,test1_utz_5,test1_utz_4,test1_utz_3,test1_ruffles_1,test1_ruffles_2,test1_ruffles_5,test1_ruffles_4,test1_ruffles_3
+doritos,doritos,doritos,doritos,doritos,utz,utz,utz,utz,utz,ruffles,ruffles,ruffles,ruffles,ruffles
+0.4854333,0.68258476,0.6814123,0.50246465,0.7905055,0.9003903,0.85767746,0.9195631,0.90183264,0.8464219,0.9872405,0.9924655,0.9707261,0.952817,0.99490356

@@ -1,0 +1,12 @@
+test all
+test0_juice_1,test0_juice_2,test0_juice_5,test0_juice_4,test0_juice_3,test0_gatorade_1,test0_gatorade_2,test0_gatorade_5,test0_gatorade_4,test0_gatorade_3,test0_yogurt_1,test0_yogurt_2,test0_yogurt_5,test0_yogurt_4,test0_yogurt_3,test1_juice_1,test1_juice_2,test1_juice_5,test1_juice_4,test1_juice_3,test1_gatorade_1,test1_gatorade_2,test1_gatorade_5,test1_gatorade_4,test1_gatorade_3,test1_yogurt_1,test1_yogurt_2,test1_yogurt_5,test1_yogurt_4,test1_yogurt_3,test2_juice_1,test2_juice_2,test2_juice_5,test2_juice_4,test2_juice_3,test2_gatorade_1,test2_gatorade_2,test2_gatorade_5,test2_gatorade_4,test2_gatorade_3,test2_yogurt_1,test2_yogurt_2,test2_yogurt_5,test2_yogurt_4,test2_yogurt_3
+juice,juice,juice,juice,juice,gatorade,gatorade,gatorade,gatorade,gatorade,yogurt,yogurt,yogurt,yogurt,yogurt,yogurt,juice,juice,gatorade,juice,yogurt,gatorade,gatorade,gatorade,gatorade,yogurt,yogurt,yogurt,juice,yogurt,juice,juice,juice,juice,juice,gatorade,gatorade,gatorade,gatorade,gatorade,yogurt,yogurt,yogurt,yogurt,yogurt
+0.9948454,0.9931659,0.9809945,0.98447835,0.9932985,0.99568164,0.9940461,0.99960643,0.9137321,0.9943843,0.9871438,0.973017,0.9930773,0.99497837,0.9584089,0.97994643,0.9838478,0.99523735,0.5080459,0.9706274,0.94878453,0.99267393,0.9882883,0.9850759,0.96635777,0.9932132,0.8719137,0.6749832,0.97893655,0.5482618,0.9927577,0.90878046,0.9156263,0.897849,0.8035042,0.98505056,0.9731433,0.9998404,0.9943486,0.998295,0.9969495,0.6958466,0.97073,0.9671089,0.99029
+test0
+test0_juice_1,test0_juice_2,test0_juice_5,test0_juice_4,test0_juice_3,test0_gatorade_1,test0_gatorade_2,test0_gatorade_5,test0_gatorade_4,test0_gatorade_3,test0_yogurt_1,test0_yogurt_2,test0_yogurt_5,test0_yogurt_4,test0_yogurt_3
+juice,juice,juice,juice,juice,gatorade,gatorade,gatorade,gatorade,gatorade,yogurt,yogurt,yogurt,yogurt,yogurt
+0.9948454,0.9931659,0.9809945,0.98447835,0.9932985,0.99568164,0.9940461,0.99960643,0.9137321,0.9943843,0.9871438,0.973017,0.9930773,0.99497837,0.9584089
+test
+test1_juice_1,test1_juice_2,test1_juice_5,test1_juice_4,test1_juice_3,test1_gatorade_1,test1_gatorade_2,test1_gatorade_5,test1_gatorade_4,test1_gatorade_3,test1_yogurt_1,test1_yogurt_2,test1_yogurt_5,test1_yogurt_4,test1_yogurt_3
+yogurt,juice,juice,gatorade,juice,yogurt,gatorade,gatorade,gatorade,gatorade,yogurt,yogurt,yogurt,juice,yogurt
+0.97994643,0.9838478,0.99523735,0.5080459,0.9706274,0.94878453,0.99267393,0.9882883,0.9850759,0.96635777,0.9932132,0.8719137,0.6749832,0.97893655,0.5482618

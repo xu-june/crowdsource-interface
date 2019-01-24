@@ -1,0 +1,12 @@
+test all
+test0_combos_1,test0_combos_2,test0_combos_5,test0_combos_4,test0_combos_3,test0_swish_1,test0_swish_2,test0_swish_5,test0_swish_4,test0_swish_3,test0_fritos_1,test0_fritos_2,test0_fritos_5,test0_fritos_4,test0_fritos_3,test1_combos_1,test1_combos_2,test1_combos_5,test1_combos_4,test1_combos_3,test1_swish_1,test1_swish_2,test1_swish_5,test1_swish_4,test1_swish_3,test1_fritos_1,test1_fritos_2,test1_fritos_5,test1_fritos_4,test1_fritos_3
+combos,combos,combos,combos,combos,swish,swish,swish,swish,swish,fritos,fritos,fritos,fritos,fritos,combos,combos,combos,combos,combos,swish,swish,swish,swish,swish,fritos,fritos,fritos,fritos,fritos
+0.9880542,0.9517273,0.9491934,0.94739527,0.97325313,0.96772075,0.98089397,0.9876666,0.91283447,0.98466164,0.97373563,0.93405354,0.98338413,0.9838201,0.97858226,0.5107234,0.9389053,0.96121323,0.9539205,0.9538968,0.98574096,0.98806274,0.98337156,0.9289961,0.98886555,0.9331886,0.9591614,0.93151236,0.9473588,0.90456825
+test0
+test0_combos_1,test0_combos_2,test0_combos_5,test0_combos_4,test0_combos_3,test0_swish_1,test0_swish_2,test0_swish_5,test0_swish_4,test0_swish_3,test0_fritos_1,test0_fritos_2,test0_fritos_5,test0_fritos_4,test0_fritos_3
+combos,combos,combos,combos,combos,swish,swish,swish,swish,swish,fritos,fritos,fritos,fritos,fritos
+0.9880542,0.9517273,0.9491934,0.94739527,0.97325313,0.96772075,0.98089397,0.9876666,0.91283447,0.98466164,0.97373563,0.93405354,0.98338413,0.9838201,0.97858226
+test
+test1_combos_1,test1_combos_2,test1_combos_5,test1_combos_4,test1_combos_3,test1_swish_1,test1_swish_2,test1_swish_5,test1_swish_4,test1_swish_3,test1_fritos_1,test1_fritos_2,test1_fritos_5,test1_fritos_4,test1_fritos_3
+combos,combos,combos,combos,combos,swish,swish,swish,swish,swish,fritos,fritos,fritos,fritos,fritos
+0.5107234,0.9389053,0.96121323,0.9539205,0.9538968,0.98574096,0.98806274,0.98337156,0.9289961,0.98886555,0.9331886,0.9591614,0.93151236,0.9473588,0.90456825

@@ -1,0 +1,12 @@
+test all
+test0_sake_1,test0_sake_2,test0_sake_5,test0_sake_4,test0_sake_3,test0_peanuts_1,test0_peanuts_2,test0_peanuts_5,test0_peanuts_4,test0_peanuts_3,test0_vodka_1,test0_vodka_2,test0_vodka_5,test0_vodka_4,test0_vodka_3,test1_sake_1,test1_sake_2,test1_sake_5,test1_sake_4,test1_sake_3,test1_peanuts_1,test1_peanuts_2,test1_peanuts_5,test1_peanuts_4,test1_peanuts_3,test1_vodka_1,test1_vodka_2,test1_vodka_5,test1_vodka_4,test1_vodka_3,test2_sake_1,test2_sake_2,test2_sake_5,test2_sake_4,test2_sake_3,test2_peanuts_1,test2_peanuts_2,test2_peanuts_5,test2_peanuts_4,test2_peanuts_3,test2_vodka_1,test2_vodka_2,test2_vodka_5,test2_vodka_4,test2_vodka_3
+sake,sake,sake,sake,sake,peanuts,peanuts,peanuts,peanuts,peanuts,vodka,vodka,vodka,vodka,vodka,vodka,sake,sake,sake,sake,peanuts,peanuts,peanuts,peanuts,peanuts,vodka,vodka,vodka,vodka,vodka,sake,sake,sake,sake,sake,peanuts,peanuts,peanuts,peanuts,peanuts,vodka,vodka,vodka,vodka,vodka
+0.94390815,0.9182999,0.85163695,0.9706852,0.9541275,0.9762266,0.9836052,0.9256079,0.9056498,0.97438043,0.9918351,0.99507844,0.98519695,0.9790541,0.9921123,0.9941983,0.97436696,0.94360393,0.67943096,0.84744626,0.99384356,0.979938,0.74333745,0.8379391,0.81602395,0.99725395,0.9851842,0.9837257,0.9830808,0.98840374,0.78163695,0.8169469,0.9176908,0.679467,0.8982588,0.9951611,0.9928336,0.9969875,0.99279505,0.9814951,0.7381392,0.9504558,0.7918244,0.6647238,0.9544739
+test0
+test0_sake_1,test0_sake_2,test0_sake_5,test0_sake_4,test0_sake_3,test0_peanuts_1,test0_peanuts_2,test0_peanuts_5,test0_peanuts_4,test0_peanuts_3,test0_vodka_1,test0_vodka_2,test0_vodka_5,test0_vodka_4,test0_vodka_3
+sake,sake,sake,sake,sake,peanuts,peanuts,peanuts,peanuts,peanuts,vodka,vodka,vodka,vodka,vodka
+0.94390815,0.9182999,0.85163695,0.9706852,0.9541275,0.9762266,0.9836052,0.9256079,0.9056498,0.97438043,0.9918351,0.99507844,0.98519695,0.9790541,0.9921123
+test
+test1_sake_1,test1_sake_2,test1_sake_5,test1_sake_4,test1_sake_3,test1_peanuts_1,test1_peanuts_2,test1_peanuts_5,test1_peanuts_4,test1_peanuts_3,test1_vodka_1,test1_vodka_2,test1_vodka_5,test1_vodka_4,test1_vodka_3
+vodka,sake,sake,sake,sake,peanuts,peanuts,peanuts,peanuts,peanuts,vodka,vodka,vodka,vodka,vodka
+0.9941983,0.97436696,0.94360393,0.67943096,0.84744626,0.99384356,0.979938,0.74333745,0.8379391,0.81602395,0.99725395,0.9851842,0.9837257,0.9830808,0.98840374

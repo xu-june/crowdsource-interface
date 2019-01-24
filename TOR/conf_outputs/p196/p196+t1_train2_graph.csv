@@ -1,0 +1,12 @@
+test all
+test0_cocacola_1,test0_cocacola_2,test0_cocacola_5,test0_cocacola_4,test0_cocacola_3,test0_pepsi_1,test0_pepsi_2,test0_pepsi_5,test0_pepsi_4,test0_pepsi_3,test0_sprite_1,test0_sprite_2,test0_sprite_5,test0_sprite_4,test0_sprite_3,test1_cocacola_1,test1_cocacola_2,test1_cocacola_5,test1_cocacola_4,test1_cocacola_3,test1_pepsi_1,test1_pepsi_2,test1_pepsi_5,test1_pepsi_4,test1_pepsi_3,test1_sprite_1,test1_sprite_2,test1_sprite_5,test1_sprite_4,test1_sprite_3,test2_cocacola_1,test2_cocacola_2,test2_cocacola_5,test2_cocacola_4,test2_cocacola_3,test2_pepsi_1,test2_pepsi_2,test2_pepsi_5,test2_pepsi_4,test2_pepsi_3,test2_sprite_1,test2_sprite_2,test2_sprite_5,test2_sprite_4,test2_sprite_3
+sprite,sprite,cocacola,cocacola,sprite,sprite,cocacola,cocacola,cocacola,cocacola,cocacola,cocacola,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,cocacola,cocacola,sprite,cocacola,sprite,sprite,cocacola,cocacola,cocacola,sprite,cocacola,sprite,sprite,sprite,sprite
+0.5329708,0.6488676,0.93378425,0.63325083,0.5954593,0.7071966,0.769384,0.7726814,0.570326,0.81947017,0.455722,0.42956904,0.569301,0.93605703,0.91615844,0.67315906,0.9846867,0.9942701,0.9964405,0.98932695,0.5497716,0.96600825,0.93465436,0.96176606,0.9903921,0.8627187,0.8598761,0.8486383,0.9864782,0.9879871,0.6639266,0.668852,0.8470416,0.6203986,0.95790404,0.9983512,0.4581692,0.7107924,0.7018638,0.8784465,0.58356595,0.9971637,0.919998,0.9943368,0.9955646
+test0
+test0_cocacola_1,test0_cocacola_2,test0_cocacola_5,test0_cocacola_4,test0_cocacola_3,test0_pepsi_1,test0_pepsi_2,test0_pepsi_5,test0_pepsi_4,test0_pepsi_3,test0_sprite_1,test0_sprite_2,test0_sprite_5,test0_sprite_4,test0_sprite_3
+sprite,sprite,cocacola,cocacola,sprite,sprite,cocacola,cocacola,cocacola,cocacola,cocacola,cocacola,sprite,sprite,sprite
+0.5329708,0.6488676,0.93378425,0.63325083,0.5954593,0.7071966,0.769384,0.7726814,0.570326,0.81947017,0.455722,0.42956904,0.569301,0.93605703,0.91615844
+test
+test1_cocacola_1,test1_cocacola_2,test1_cocacola_5,test1_cocacola_4,test1_cocacola_3,test1_pepsi_1,test1_pepsi_2,test1_pepsi_5,test1_pepsi_4,test1_pepsi_3,test1_sprite_1,test1_sprite_2,test1_sprite_5,test1_sprite_4,test1_sprite_3
+sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite,sprite
+0.67315906,0.9846867,0.9942701,0.9964405,0.98932695,0.5497716,0.96600825,0.93465436,0.96176606,0.9903921,0.8627187,0.8598761,0.8486383,0.9864782,0.9879871

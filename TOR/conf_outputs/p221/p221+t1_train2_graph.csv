@@ -1,0 +1,12 @@
+test all
+test0_7up_1,test0_7up_2,test0_7up_5,test0_7up_4,test0_7up_3,test0_frooti_1,test0_frooti_2,test0_frooti_5,test0_frooti_4,test0_frooti_3,test0_mirinda_1,test0_mirinda_2,test0_mirinda_5,test0_mirinda_4,test0_mirinda_3,test1_7up_1,test1_7up_2,test1_7up_5,test1_7up_4,test1_7up_3,test1_frooti_1,test1_frooti_2,test1_frooti_5,test1_frooti_4,test1_frooti_3,test1_mirinda_1,test1_mirinda_2,test1_mirinda_5,test1_mirinda_4,test1_mirinda_3,test2_7up_1,test2_7up_2,test2_7up_5,test2_7up_4,test2_7up_3,test2_frooti_1,test2_frooti_2,test2_frooti_5,test2_frooti_4,test2_frooti_3,test2_mirinda_1,test2_mirinda_2,test2_mirinda_5,test2_mirinda_4,test2_mirinda_3
+7up,7up,7up,7up,7up,mirinda,frooti,mirinda,frooti,mirinda,mirinda,mirinda,mirinda,mirinda,mirinda,mirinda,7up,7up,7up,7up,frooti,frooti,frooti,frooti,frooti,mirinda,mirinda,mirinda,mirinda,mirinda,7up,7up,7up,7up,7up,frooti,frooti,frooti,frooti,frooti,mirinda,mirinda,mirinda,mirinda,mirinda
+0.95375216,0.9812537,0.9695422,0.97953904,0.9942537,0.50105333,0.56155133,0.74589247,0.7820038,0.58617675,0.89959776,0.6348935,0.95286995,0.88530564,0.9382081,0.5008658,0.9366528,0.9904174,0.8208388,0.9496011,0.9258132,0.97513926,0.9496814,0.64870256,0.9926974,0.92373526,0.8905032,0.8654012,0.9456694,0.8098469,0.97085136,0.89272124,0.9468042,0.92724156,0.93623596,0.8811264,0.96423686,0.94780886,0.9669142,0.920702,0.9631393,0.9671475,0.9113973,0.86771315,0.9386568
+test0
+test0_7up_1,test0_7up_2,test0_7up_5,test0_7up_4,test0_7up_3,test0_frooti_1,test0_frooti_2,test0_frooti_5,test0_frooti_4,test0_frooti_3,test0_mirinda_1,test0_mirinda_2,test0_mirinda_5,test0_mirinda_4,test0_mirinda_3
+7up,7up,7up,7up,7up,mirinda,frooti,mirinda,frooti,mirinda,mirinda,mirinda,mirinda,mirinda,mirinda
+0.95375216,0.9812537,0.9695422,0.97953904,0.9942537,0.50105333,0.56155133,0.74589247,0.7820038,0.58617675,0.89959776,0.6348935,0.95286995,0.88530564,0.9382081
+test
+test1_7up_1,test1_7up_2,test1_7up_5,test1_7up_4,test1_7up_3,test1_frooti_1,test1_frooti_2,test1_frooti_5,test1_frooti_4,test1_frooti_3,test1_mirinda_1,test1_mirinda_2,test1_mirinda_5,test1_mirinda_4,test1_mirinda_3
+mirinda,7up,7up,7up,7up,frooti,frooti,frooti,frooti,frooti,mirinda,mirinda,mirinda,mirinda,mirinda
+0.5008658,0.9366528,0.9904174,0.8208388,0.9496011,0.9258132,0.97513926,0.9496814,0.64870256,0.9926974,0.92373526,0.8905032,0.8654012,0.9456694,0.8098469

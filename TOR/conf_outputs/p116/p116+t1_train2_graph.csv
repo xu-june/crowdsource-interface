@@ -1,0 +1,12 @@
+test all
+test0_cinnamon_1,test0_cinnamon_2,test0_cinnamon_5,test0_cinnamon_4,test0_cinnamon_3,test0_oregano_1,test0_oregano_2,test0_oregano_5,test0_oregano_4,test0_oregano_3,test0_sage_1,test0_sage_2,test0_sage_5,test0_sage_4,test0_sage_3,test1_cinnamon_1,test1_cinnamon_2,test1_cinnamon_5,test1_cinnamon_4,test1_cinnamon_3,test1_oregano_1,test1_oregano_2,test1_oregano_5,test1_oregano_4,test1_oregano_3,test1_sage_1,test1_sage_2,test1_sage_5,test1_sage_4,test1_sage_3,test2_cinnamon_1,test2_cinnamon_2,test2_cinnamon_5,test2_cinnamon_4,test2_cinnamon_3,test2_oregano_1,test2_oregano_2,test2_oregano_5,test2_oregano_4,test2_oregano_3,test2_sage_1,test2_sage_2,test2_sage_5,test2_sage_4,test2_sage_3
+oregano,oregano,oregano,oregano,oregano,oregano,oregano,oregano,oregano,oregano,sage,sage,sage,sage,sage,oregano,oregano,oregano,oregano,sage,oregano,oregano,sage,oregano,oregano,sage,sage,sage,sage,sage,oregano,oregano,oregano,oregano,oregano,oregano,oregano,oregano,oregano,oregano,sage,oregano,sage,sage,sage
+0.8271638,0.69736654,0.66628414,0.77294075,0.8061889,0.75323,0.83953756,0.8089209,0.5293665,0.7181773,0.58746004,0.5271721,0.8446767,0.54290944,0.51682687,0.5374754,0.5548287,0.6584486,0.684352,0.47110003,0.6356416,0.60948867,0.50176185,0.6436503,0.68704206,0.56976914,0.84155935,0.69648445,0.7277341,0.86341655,0.6126134,0.6454201,0.4686436,0.5462798,0.52713925,0.49744582,0.8195491,0.6663853,0.8087041,0.67933404,0.5782146,0.4900671,0.66628766,0.69107586,0.5565191
+test0
+test0_cinnamon_1,test0_cinnamon_2,test0_cinnamon_5,test0_cinnamon_4,test0_cinnamon_3,test0_oregano_1,test0_oregano_2,test0_oregano_5,test0_oregano_4,test0_oregano_3,test0_sage_1,test0_sage_2,test0_sage_5,test0_sage_4,test0_sage_3
+oregano,oregano,oregano,oregano,oregano,oregano,oregano,oregano,oregano,oregano,sage,sage,sage,sage,sage
+0.8271638,0.69736654,0.66628414,0.77294075,0.8061889,0.75323,0.83953756,0.8089209,0.5293665,0.7181773,0.58746004,0.5271721,0.8446767,0.54290944,0.51682687
+test
+test1_cinnamon_1,test1_cinnamon_2,test1_cinnamon_5,test1_cinnamon_4,test1_cinnamon_3,test1_oregano_1,test1_oregano_2,test1_oregano_5,test1_oregano_4,test1_oregano_3,test1_sage_1,test1_sage_2,test1_sage_5,test1_sage_4,test1_sage_3
+oregano,oregano,oregano,oregano,sage,oregano,oregano,sage,oregano,oregano,sage,sage,sage,sage,sage
+0.5374754,0.5548287,0.6584486,0.684352,0.47110003,0.6356416,0.60948867,0.50176185,0.6436503,0.68704206,0.56976914,0.84155935,0.69648445,0.7277341,0.86341655

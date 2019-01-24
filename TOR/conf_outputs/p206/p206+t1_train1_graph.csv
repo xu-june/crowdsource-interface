@@ -1,0 +1,12 @@
+test all
+test0_nestle_1,test0_nestle_2,test0_nestle_5,test0_nestle_4,test0_nestle_3,test0_snapple_1,test0_snapple_2,test0_snapple_5,test0_snapple_4,test0_snapple_3,test0_dasani_1,test0_dasani_2,test0_dasani_5,test0_dasani_4,test0_dasani_3,test1_nestle_1,test1_nestle_2,test1_nestle_5,test1_nestle_4,test1_nestle_3,test1_snapple_1,test1_snapple_2,test1_snapple_5,test1_snapple_4,test1_snapple_3,test1_dasani_1,test1_dasani_2,test1_dasani_5,test1_dasani_4,test1_dasani_3,test2_nestle_1,test2_nestle_2,test2_nestle_5,test2_nestle_4,test2_nestle_3,test2_snapple_1,test2_snapple_2,test2_snapple_5,test2_snapple_4,test2_snapple_3,test2_dasani_1,test2_dasani_2,test2_dasani_5,test2_dasani_4,test2_dasani_3
+snapple,dasani,dasani,nestle,dasani,snapple,snapple,snapple,snapple,snapple,dasani,dasani,dasani,dasani,dasani,nestle,dasani,dasani,dasani,dasani,snapple,snapple,snapple,snapple,snapple,dasani,dasani,snapple,dasani,dasani,dasani,dasani,dasani,snapple,dasani,snapple,snapple,snapple,snapple,snapple,dasani,dasani,dasani,dasani,nestle
+0.93722343,0.5084786,0.49815238,0.49601457,0.5232657,0.92311764,0.941034,0.9832008,0.93891644,0.95726645,0.75701076,0.66936845,0.693608,0.94184697,0.8627133,0.7961353,0.6807279,0.6560396,0.83951354,0.57547706,0.9585483,0.7838146,0.9230012,0.92986834,0.7430716,0.8302932,0.80912846,0.535675,0.8610354,0.90194035,0.5104599,0.741174,0.6410693,0.52516484,0.91408545,0.8622708,0.8423246,0.86481386,0.9138477,0.8945084,0.8168998,0.81664455,0.97400326,0.9669297,0.50562567
+test0
+test0_nestle_1,test0_nestle_2,test0_nestle_5,test0_nestle_4,test0_nestle_3,test0_snapple_1,test0_snapple_2,test0_snapple_5,test0_snapple_4,test0_snapple_3,test0_dasani_1,test0_dasani_2,test0_dasani_5,test0_dasani_4,test0_dasani_3
+snapple,dasani,dasani,nestle,dasani,snapple,snapple,snapple,snapple,snapple,dasani,dasani,dasani,dasani,dasani
+0.93722343,0.5084786,0.49815238,0.49601457,0.5232657,0.92311764,0.941034,0.9832008,0.93891644,0.95726645,0.75701076,0.66936845,0.693608,0.94184697,0.8627133
+test
+test1_nestle_1,test1_nestle_2,test1_nestle_5,test1_nestle_4,test1_nestle_3,test1_snapple_1,test1_snapple_2,test1_snapple_5,test1_snapple_4,test1_snapple_3,test1_dasani_1,test1_dasani_2,test1_dasani_5,test1_dasani_4,test1_dasani_3
+nestle,dasani,dasani,dasani,dasani,snapple,snapple,snapple,snapple,snapple,dasani,dasani,snapple,dasani,dasani
+0.7961353,0.6807279,0.6560396,0.83951354,0.57547706,0.9585483,0.7838146,0.9230012,0.92986834,0.7430716,0.8302932,0.80912846,0.535675,0.8610354,0.90194035

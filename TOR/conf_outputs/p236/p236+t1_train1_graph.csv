@@ -1,0 +1,12 @@
+test all
+test0_pepper_1,test0_pepper_2,test0_pepper_5,test0_pepper_4,test0_pepper_3,test0_paprika_1,test0_paprika_2,test0_paprika_5,test0_paprika_4,test0_paprika_3,test0_salt_1,test0_salt_2,test0_salt_5,test0_salt_4,test0_salt_3,test1_pepper_1,test1_pepper_2,test1_pepper_5,test1_pepper_4,test1_pepper_3,test1_paprika_1,test1_paprika_2,test1_paprika_5,test1_paprika_4,test1_paprika_3,test1_salt_1,test1_salt_2,test1_salt_5,test1_salt_4,test1_salt_3,test2_pepper_1,test2_pepper_2,test2_pepper_5,test2_pepper_4,test2_pepper_3,test2_paprika_1,test2_paprika_2,test2_paprika_5,test2_paprika_4,test2_paprika_3,test2_salt_1,test2_salt_2,test2_salt_5,test2_salt_4,test2_salt_3
+pepper,pepper,pepper,pepper,pepper,pepper,salt,salt,salt,salt,salt,salt,salt,salt,salt,pepper,pepper,pepper,pepper,pepper,salt,salt,pepper,salt,salt,salt,salt,salt,salt,salt,pepper,pepper,pepper,pepper,pepper,salt,paprika,pepper,salt,pepper,salt,salt,salt,salt,salt
+0.9904739,0.99394184,0.99454063,0.99317944,0.9978397,0.6560619,0.7041383,0.8356944,0.54282796,0.47056478,0.9808102,0.9906074,0.97957015,0.9648869,0.8238716,0.9911733,0.98194814,0.9836375,0.99063545,0.9840619,0.6303002,0.62980276,0.53654563,0.59850717,0.44381052,0.9805736,0.98407817,0.9827958,0.9944727,0.9971999,0.98861897,0.99371415,0.9904819,0.99590576,0.99287945,0.54472387,0.5045568,0.40063474,0.46993408,0.36812767,0.9912538,0.9895421,0.9952996,0.98980546,0.9867105
+test0
+test0_pepper_1,test0_pepper_2,test0_pepper_5,test0_pepper_4,test0_pepper_3,test0_paprika_1,test0_paprika_2,test0_paprika_5,test0_paprika_4,test0_paprika_3,test0_salt_1,test0_salt_2,test0_salt_5,test0_salt_4,test0_salt_3
+pepper,pepper,pepper,pepper,pepper,pepper,salt,salt,salt,salt,salt,salt,salt,salt,salt
+0.9904739,0.99394184,0.99454063,0.99317944,0.9978397,0.6560619,0.7041383,0.8356944,0.54282796,0.47056478,0.9808102,0.9906074,0.97957015,0.9648869,0.8238716
+test
+test1_pepper_1,test1_pepper_2,test1_pepper_5,test1_pepper_4,test1_pepper_3,test1_paprika_1,test1_paprika_2,test1_paprika_5,test1_paprika_4,test1_paprika_3,test1_salt_1,test1_salt_2,test1_salt_5,test1_salt_4,test1_salt_3
+pepper,pepper,pepper,pepper,pepper,salt,salt,pepper,salt,salt,salt,salt,salt,salt,salt
+0.9911733,0.98194814,0.9836375,0.99063545,0.9840619,0.6303002,0.62980276,0.53654563,0.59850717,0.44381052,0.9805736,0.98407817,0.9827958,0.9944727,0.9971999

@@ -1,0 +1,12 @@
+test all
+test0_perrier_1,test0_perrier_2,test0_perrier_5,test0_perrier_4,test0_perrier_3,test0_nestle_1,test0_nestle_2,test0_nestle_5,test0_nestle_4,test0_nestle_3,test0_aloe xxmf vera_1,test0_aloe xxmf vera_2,test0_aloe xxmf vera_5,test0_aloe xxmf vera_4,test0_aloe xxmf vera_3,test1_perrier_1,test1_perrier_2,test1_perrier_5,test1_perrier_4,test1_perrier_3,test1_nestle_1,test1_nestle_2,test1_nestle_5,test1_nestle_4,test1_nestle_3,test1_aloe xxmf vera_1,test1_aloe xxmf vera_2,test1_aloe xxmf vera_5,test1_aloe xxmf vera_4,test1_aloe xxmf vera_3
+perrier,perrier,perrier,perrier,perrier,nestle,nestle,nestle,nestle,nestle,aloe xxmf vera,aloe xxmf vera,aloe xxmf vera,aloe xxmf vera,aloe xxmf vera,perrier,perrier,perrier,perrier,perrier,nestle,nestle,nestle,nestle,nestle,aloe xxmf vera,aloe xxmf vera,aloe xxmf vera,aloe xxmf vera,aloe xxmf vera
+0.9290438,0.90375286,0.834787,0.9759866,0.96596575,0.985015,0.9875085,0.72692114,0.9841818,0.9815656,0.985276,0.9901929,0.99532926,0.99608755,0.9950309,0.87827975,0.8780531,0.8693206,0.84483063,0.9630128,0.9961731,0.94933,0.9290889,0.93245566,0.9620588,0.9572423,0.7789046,0.9081334,0.8663614,0.89869684
+test0
+test0_perrier_1,test0_perrier_2,test0_perrier_5,test0_perrier_4,test0_perrier_3,test0_nestle_1,test0_nestle_2,test0_nestle_5,test0_nestle_4,test0_nestle_3,test0_aloe xxmf vera_1,test0_aloe xxmf vera_2,test0_aloe xxmf vera_5,test0_aloe xxmf vera_4,test0_aloe xxmf vera_3
+perrier,perrier,perrier,perrier,perrier,nestle,nestle,nestle,nestle,nestle,aloe xxmf vera,aloe xxmf vera,aloe xxmf vera,aloe xxmf vera,aloe xxmf vera
+0.9290438,0.90375286,0.834787,0.9759866,0.96596575,0.985015,0.9875085,0.72692114,0.9841818,0.9815656,0.985276,0.9901929,0.99532926,0.99608755,0.9950309
+test
+test1_perrier_1,test1_perrier_2,test1_perrier_5,test1_perrier_4,test1_perrier_3,test1_nestle_1,test1_nestle_2,test1_nestle_5,test1_nestle_4,test1_nestle_3,test1_aloe xxmf vera_1,test1_aloe xxmf vera_2,test1_aloe xxmf vera_5,test1_aloe xxmf vera_4,test1_aloe xxmf vera_3
+perrier,perrier,perrier,perrier,perrier,nestle,nestle,nestle,nestle,nestle,aloe xxmf vera,aloe xxmf vera,aloe xxmf vera,aloe xxmf vera,aloe xxmf vera
+0.87827975,0.8780531,0.8693206,0.84483063,0.9630128,0.9961731,0.94933,0.9290889,0.93245566,0.9620588,0.9572423,0.7789046,0.9081334,0.8663614,0.89869684

@@ -1,0 +1,12 @@
+test all
+test0_orangeade_1,test0_orangeade_2,test0_orangeade_5,test0_orangeade_4,test0_orangeade_3,test0_ginger xxmf ale_1,test0_ginger xxmf ale_2,test0_ginger xxmf ale_5,test0_ginger xxmf ale_4,test0_ginger xxmf ale_3,test0_lemonade_1,test0_lemonade_2,test0_lemonade_5,test0_lemonade_4,test0_lemonade_3,test1_orangeade_1,test1_orangeade_2,test1_orangeade_5,test1_orangeade_4,test1_orangeade_3,test1_ginger xxmf ale_1,test1_ginger xxmf ale_2,test1_ginger xxmf ale_5,test1_ginger xxmf ale_4,test1_ginger xxmf ale_3,test1_lemonade_1,test1_lemonade_2,test1_lemonade_5,test1_lemonade_4,test1_lemonade_3
+ginger xxmf ale,orangeade,orangeade,orangeade,lemonade,ginger xxmf ale,ginger xxmf ale,ginger xxmf ale,ginger xxmf ale,ginger xxmf ale,lemonade,lemonade,lemonade,lemonade,lemonade,orangeade,orangeade,orangeade,lemonade,orangeade,ginger xxmf ale,ginger xxmf ale,ginger xxmf ale,ginger xxmf ale,ginger xxmf ale,lemonade,lemonade,lemonade,lemonade,lemonade
+0.82305825,0.54602784,0.46694192,0.67535007,0.8671712,0.9320538,0.84267443,0.85380226,0.79439443,0.7508,0.9373669,0.9803797,0.9401084,0.9577598,0.94659686,0.82422894,0.8232007,0.6009487,0.5982828,0.5109516,0.98075324,0.9777564,0.9343149,0.97548306,0.9649495,0.92522895,0.9458501,0.95002246,0.96886605,0.96926135
+test0
+test0_orangeade_1,test0_orangeade_2,test0_orangeade_5,test0_orangeade_4,test0_orangeade_3,test0_ginger xxmf ale_1,test0_ginger xxmf ale_2,test0_ginger xxmf ale_5,test0_ginger xxmf ale_4,test0_ginger xxmf ale_3,test0_lemonade_1,test0_lemonade_2,test0_lemonade_5,test0_lemonade_4,test0_lemonade_3
+ginger xxmf ale,orangeade,orangeade,orangeade,lemonade,ginger xxmf ale,ginger xxmf ale,ginger xxmf ale,ginger xxmf ale,ginger xxmf ale,lemonade,lemonade,lemonade,lemonade,lemonade
+0.82305825,0.54602784,0.46694192,0.67535007,0.8671712,0.9320538,0.84267443,0.85380226,0.79439443,0.7508,0.9373669,0.9803797,0.9401084,0.9577598,0.94659686
+test
+test1_orangeade_1,test1_orangeade_2,test1_orangeade_5,test1_orangeade_4,test1_orangeade_3,test1_ginger xxmf ale_1,test1_ginger xxmf ale_2,test1_ginger xxmf ale_5,test1_ginger xxmf ale_4,test1_ginger xxmf ale_3,test1_lemonade_1,test1_lemonade_2,test1_lemonade_5,test1_lemonade_4,test1_lemonade_3
+orangeade,orangeade,orangeade,lemonade,orangeade,ginger xxmf ale,ginger xxmf ale,ginger xxmf ale,ginger xxmf ale,ginger xxmf ale,lemonade,lemonade,lemonade,lemonade,lemonade
+0.82422894,0.8232007,0.6009487,0.5982828,0.5109516,0.98075324,0.9777564,0.9343149,0.97548306,0.9649495,0.92522895,0.9458501,0.95002246,0.96886605,0.96926135

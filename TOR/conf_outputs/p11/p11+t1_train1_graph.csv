@@ -1,0 +1,12 @@
+test all
+test0_cumin_1,test0_cumin_2,test0_cumin_5,test0_cumin_4,test0_cumin_3,test0_ginger_1,test0_ginger_2,test0_ginger_5,test0_ginger_4,test0_ginger_3,test0_cloves_1,test0_cloves_2,test0_cloves_5,test0_cloves_4,test0_cloves_3,test1_cumin_1,test1_cumin_2,test1_cumin_5,test1_cumin_4,test1_cumin_3,test1_ginger_1,test1_ginger_2,test1_ginger_5,test1_ginger_4,test1_ginger_3,test1_cloves_1,test1_cloves_2,test1_cloves_5,test1_cloves_4,test1_cloves_3,test2_cumin_1,test2_cumin_2,test2_cumin_5,test2_cumin_4,test2_cumin_3,test2_ginger_1,test2_ginger_2,test2_ginger_5,test2_ginger_4,test2_ginger_3,test2_cloves_1,test2_cloves_2,test2_cloves_5,test2_cloves_4,test2_cloves_3
+cumin,cumin,cumin,cumin,cumin,ginger,ginger,cumin,cumin,cumin,cumin,cumin,cloves,cloves,cumin,cumin,cumin,cumin,cumin,cumin,cloves,cumin,ginger,cumin,ginger,cumin,cumin,cumin,cumin,cumin,cumin,cumin,cumin,cumin,cumin,cumin,cumin,ginger,ginger,cloves,cloves,cloves,cloves,cloves,cumin
+0.7596016,0.9254345,0.64146584,0.63093734,0.62405664,0.6386146,0.51538056,0.46732306,0.5755938,0.6679113,0.6947901,0.5926912,0.518565,0.5934592,0.55605,0.8679994,0.8306785,0.8768923,0.55943507,0.36258653,0.43394148,0.65760714,0.45096043,0.36564645,0.41958892,0.5858993,0.6518455,0.51514405,0.71041054,0.4113627,0.46943572,0.73870677,0.46326837,0.5775683,0.49235496,0.60693663,0.58114433,0.4361436,0.51632625,0.5060428,0.56611615,0.6335339,0.5383283,0.45482555,0.4565765
+test0
+test0_cumin_1,test0_cumin_2,test0_cumin_5,test0_cumin_4,test0_cumin_3,test0_ginger_1,test0_ginger_2,test0_ginger_5,test0_ginger_4,test0_ginger_3,test0_cloves_1,test0_cloves_2,test0_cloves_5,test0_cloves_4,test0_cloves_3
+cumin,cumin,cumin,cumin,cumin,ginger,ginger,cumin,cumin,cumin,cumin,cumin,cloves,cloves,cumin
+0.7596016,0.9254345,0.64146584,0.63093734,0.62405664,0.6386146,0.51538056,0.46732306,0.5755938,0.6679113,0.6947901,0.5926912,0.518565,0.5934592,0.55605
+test
+test1_cumin_1,test1_cumin_2,test1_cumin_5,test1_cumin_4,test1_cumin_3,test1_ginger_1,test1_ginger_2,test1_ginger_5,test1_ginger_4,test1_ginger_3,test1_cloves_1,test1_cloves_2,test1_cloves_5,test1_cloves_4,test1_cloves_3
+cumin,cumin,cumin,cumin,cumin,cloves,cumin,ginger,cumin,ginger,cumin,cumin,cumin,cumin,cumin
+0.8679994,0.8306785,0.8768923,0.55943507,0.36258653,0.43394148,0.65760714,0.45096043,0.36564645,0.41958892,0.5858993,0.6518455,0.51514405,0.71041054,0.4113627

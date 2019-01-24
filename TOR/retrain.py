@@ -1078,7 +1078,6 @@ def retrain_model(uuid, phase):
     return "", ""
 
 
-
 def main(_):
   # allocating TF graph to only one GPU
   #https://stackoverflow.com/questions/37893755/tensorflow-set-cuda-visible-devices-within-jupyter

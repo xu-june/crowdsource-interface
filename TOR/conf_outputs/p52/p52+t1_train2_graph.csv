@@ -1,0 +1,12 @@
+test all
+test0_lays_1,test0_lays_2,test0_lays_5,test0_lays_4,test0_lays_3,test0_pretzels_1,test0_pretzels_2,test0_pretzels_5,test0_pretzels_4,test0_pretzels_3,test0_fritos_1,test0_fritos_2,test0_fritos_5,test0_fritos_4,test0_fritos_3,test1_lays_1,test1_lays_2,test1_lays_5,test1_lays_4,test1_lays_3,test1_pretzels_1,test1_pretzels_2,test1_pretzels_5,test1_pretzels_4,test1_pretzels_3,test1_fritos_1,test1_fritos_2,test1_fritos_5,test1_fritos_4,test1_fritos_3,test2_lays_1,test2_lays_2,test2_lays_5,test2_lays_4,test2_lays_3,test2_pretzels_1,test2_pretzels_2,test2_pretzels_5,test2_pretzels_4,test2_pretzels_3,test2_fritos_1,test2_fritos_2,test2_fritos_5,test2_fritos_4,test2_fritos_3
+pretzels,lays,pretzels,pretzels,pretzels,pretzels,lays,pretzels,pretzels,pretzels,fritos,fritos,fritos,fritos,fritos,fritos,lays,lays,lays,lays,pretzels,pretzels,pretzels,pretzels,pretzels,fritos,fritos,lays,lays,fritos,lays,lays,lays,lays,lays,lays,lays,pretzels,pretzels,pretzels,fritos,fritos,fritos,fritos,lays
+0.47577533,0.6336282,0.69374084,0.73555666,0.8528584,0.9403649,0.67342764,0.97222227,0.9488603,0.83780867,0.8700409,0.9823762,0.94912225,0.98227465,0.8545856,0.7455993,0.9108804,0.9573731,0.97002923,0.9706071,0.9704536,0.90106064,0.908659,0.8512402,0.82631105,0.8784019,0.97527415,0.7629841,0.49097413,0.6857846,0.9409931,0.99310595,0.9689724,0.9684248,0.55227745,0.97252727,0.9988618,0.98888946,0.99545765,0.86246544,0.63435537,0.52893305,0.7746462,0.979507,0.5940449
+test0
+test0_lays_1,test0_lays_2,test0_lays_5,test0_lays_4,test0_lays_3,test0_pretzels_1,test0_pretzels_2,test0_pretzels_5,test0_pretzels_4,test0_pretzels_3,test0_fritos_1,test0_fritos_2,test0_fritos_5,test0_fritos_4,test0_fritos_3
+pretzels,lays,pretzels,pretzels,pretzels,pretzels,lays,pretzels,pretzels,pretzels,fritos,fritos,fritos,fritos,fritos
+0.47577533,0.6336282,0.69374084,0.73555666,0.8528584,0.9403649,0.67342764,0.97222227,0.9488603,0.83780867,0.8700409,0.9823762,0.94912225,0.98227465,0.8545856
+test
+test1_lays_1,test1_lays_2,test1_lays_5,test1_lays_4,test1_lays_3,test1_pretzels_1,test1_pretzels_2,test1_pretzels_5,test1_pretzels_4,test1_pretzels_3,test1_fritos_1,test1_fritos_2,test1_fritos_5,test1_fritos_4,test1_fritos_3
+fritos,lays,lays,lays,lays,pretzels,pretzels,pretzels,pretzels,pretzels,fritos,fritos,lays,lays,fritos
+0.7455993,0.9108804,0.9573731,0.97002923,0.9706071,0.9704536,0.90106064,0.908659,0.8512402,0.82631105,0.8784019,0.97527415,0.7629841,0.49097413,0.6857846

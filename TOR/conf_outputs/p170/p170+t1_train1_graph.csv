@@ -1,0 +1,12 @@
+test all
+test0_reese s xxmf puffs_1,test0_reese s xxmf puffs_2,test0_reese s xxmf puffs_5,test0_reese s xxmf puffs_4,test0_reese s xxmf puffs_3,test0_pops_1,test0_pops_2,test0_pops_5,test0_pops_4,test0_pops_3,test0_cheerios_1,test0_cheerios_2,test0_cheerios_5,test0_cheerios_4,test0_cheerios_3,test1_reese s xxmf puffs_1,test1_reese s xxmf puffs_2,test1_reese s xxmf puffs_5,test1_reese s xxmf puffs_4,test1_reese s xxmf puffs_3,test1_pops_1,test1_pops_2,test1_pops_5,test1_pops_4,test1_pops_3,test1_cheerios_1,test1_cheerios_2,test1_cheerios_5,test1_cheerios_4,test1_cheerios_3
+reese s xxmf puffs,reese s xxmf puffs,reese s xxmf puffs,reese s xxmf puffs,reese s xxmf puffs,pops,pops,pops,pops,pops,cheerios,cheerios,cheerios,cheerios,cheerios,reese s xxmf puffs,reese s xxmf puffs,reese s xxmf puffs,reese s xxmf puffs,reese s xxmf puffs,pops,pops,pops,pops,pops,cheerios,cheerios,cheerios,cheerios,cheerios
+0.9671258,0.98506147,0.9761587,0.9706589,0.9750403,0.9973248,0.99061394,0.9970272,0.9976926,0.99536264,0.9446016,0.9792597,0.95616734,0.9766486,0.95969516,0.9846037,0.96950185,0.96378285,0.98202145,0.9750182,0.995621,0.9949772,0.99668103,0.9951633,0.99265844,0.9741698,0.92386794,0.9660538,0.9648607,0.92901677
+test0
+test0_reese s xxmf puffs_1,test0_reese s xxmf puffs_2,test0_reese s xxmf puffs_5,test0_reese s xxmf puffs_4,test0_reese s xxmf puffs_3,test0_pops_1,test0_pops_2,test0_pops_5,test0_pops_4,test0_pops_3,test0_cheerios_1,test0_cheerios_2,test0_cheerios_5,test0_cheerios_4,test0_cheerios_3
+reese s xxmf puffs,reese s xxmf puffs,reese s xxmf puffs,reese s xxmf puffs,reese s xxmf puffs,pops,pops,pops,pops,pops,cheerios,cheerios,cheerios,cheerios,cheerios
+0.9671258,0.98506147,0.9761587,0.9706589,0.9750403,0.9973248,0.99061394,0.9970272,0.9976926,0.99536264,0.9446016,0.9792597,0.95616734,0.9766486,0.95969516
+test
+test1_reese s xxmf puffs_1,test1_reese s xxmf puffs_2,test1_reese s xxmf puffs_5,test1_reese s xxmf puffs_4,test1_reese s xxmf puffs_3,test1_pops_1,test1_pops_2,test1_pops_5,test1_pops_4,test1_pops_3,test1_cheerios_1,test1_cheerios_2,test1_cheerios_5,test1_cheerios_4,test1_cheerios_3
+reese s xxmf puffs,reese s xxmf puffs,reese s xxmf puffs,reese s xxmf puffs,reese s xxmf puffs,pops,pops,pops,pops,pops,cheerios,cheerios,cheerios,cheerios,cheerios
+0.9846037,0.96950185,0.96378285,0.98202145,0.9750182,0.995621,0.9949772,0.99668103,0.9951633,0.99265844,0.9741698,0.92386794,0.9660538,0.9648607,0.92901677

@@ -1,0 +1,12 @@
+test all
+test0_tea_1,test0_tea_2,test0_tea_5,test0_tea_4,test0_tea_3,test0_yogurt_1,test0_yogurt_2,test0_yogurt_5,test0_yogurt_4,test0_yogurt_3,test0_alcohol_1,test0_alcohol_2,test0_alcohol_5,test0_alcohol_4,test0_alcohol_3,test1_tea_1,test1_tea_2,test1_tea_5,test1_tea_4,test1_tea_3,test1_yogurt_1,test1_yogurt_2,test1_yogurt_5,test1_yogurt_4,test1_yogurt_3,test1_alcohol_1,test1_alcohol_2,test1_alcohol_5,test1_alcohol_4,test1_alcohol_3,test2_tea_1,test2_tea_2,test2_tea_5,test2_tea_4,test2_tea_3,test2_yogurt_1,test2_yogurt_2,test2_yogurt_5,test2_yogurt_4,test2_yogurt_3,test2_alcohol_1,test2_alcohol_2,test2_alcohol_5,test2_alcohol_4,test2_alcohol_3
+tea,tea,tea,tea,tea,tea,tea,alcohol,alcohol,tea,alcohol,alcohol,alcohol,alcohol,alcohol,tea,tea,tea,tea,tea,tea,alcohol,alcohol,tea,tea,alcohol,alcohol,alcohol,alcohol,alcohol,tea,tea,tea,tea,tea,tea,yogurt,alcohol,tea,tea,alcohol,alcohol,alcohol,alcohol,alcohol
+0.9890491,0.9832282,0.9885188,0.9893171,0.9873284,0.59348905,0.47945094,0.5393568,0.39703515,0.6132167,0.9613037,0.98443824,0.9833093,0.97971046,0.9827492,0.99172944,0.9901174,0.9922631,0.99345,0.99438643,0.78343314,0.6041412,0.5304883,0.60304797,0.49678153,0.99472946,0.9962792,0.98004377,0.9948249,0.99550915,0.9791398,0.9736806,0.95586324,0.98524255,0.98039436,0.40883845,0.5111275,0.7427988,0.7320158,0.65187126,0.990408,0.9730252,0.98529714,0.99340135,0.9688711
+test0
+test0_tea_1,test0_tea_2,test0_tea_5,test0_tea_4,test0_tea_3,test0_yogurt_1,test0_yogurt_2,test0_yogurt_5,test0_yogurt_4,test0_yogurt_3,test0_alcohol_1,test0_alcohol_2,test0_alcohol_5,test0_alcohol_4,test0_alcohol_3
+tea,tea,tea,tea,tea,tea,tea,alcohol,alcohol,tea,alcohol,alcohol,alcohol,alcohol,alcohol
+0.9890491,0.9832282,0.9885188,0.9893171,0.9873284,0.59348905,0.47945094,0.5393568,0.39703515,0.6132167,0.9613037,0.98443824,0.9833093,0.97971046,0.9827492
+test
+test1_tea_1,test1_tea_2,test1_tea_5,test1_tea_4,test1_tea_3,test1_yogurt_1,test1_yogurt_2,test1_yogurt_5,test1_yogurt_4,test1_yogurt_3,test1_alcohol_1,test1_alcohol_2,test1_alcohol_5,test1_alcohol_4,test1_alcohol_3
+tea,tea,tea,tea,tea,tea,alcohol,alcohol,tea,tea,alcohol,alcohol,alcohol,alcohol,alcohol
+0.99172944,0.9901174,0.9922631,0.99345,0.99438643,0.78343314,0.6041412,0.5304883,0.60304797,0.49678153,0.99472946,0.9962792,0.98004377,0.9948249,0.99550915

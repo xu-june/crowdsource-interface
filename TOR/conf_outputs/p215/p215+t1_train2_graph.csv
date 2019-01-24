@@ -1,0 +1,12 @@
+test all
+test0_chex_1,test0_chex_2,test0_chex_5,test0_chex_4,test0_chex_3,test0_cheerios_1,test0_cheerios_2,test0_cheerios_5,test0_cheerios_4,test0_cheerios_3,test0_oatmeal_1,test0_oatmeal_2,test0_oatmeal_5,test0_oatmeal_4,test0_oatmeal_3,test1_chex_1,test1_chex_2,test1_chex_5,test1_chex_4,test1_chex_3,test1_cheerios_1,test1_cheerios_2,test1_cheerios_5,test1_cheerios_4,test1_cheerios_3,test1_oatmeal_1,test1_oatmeal_2,test1_oatmeal_5,test1_oatmeal_4,test1_oatmeal_3,test2_chex_1,test2_chex_2,test2_chex_5,test2_chex_4,test2_chex_3,test2_cheerios_1,test2_cheerios_2,test2_cheerios_5,test2_cheerios_4,test2_cheerios_3,test2_oatmeal_1,test2_oatmeal_2,test2_oatmeal_5,test2_oatmeal_4,test2_oatmeal_3
+oatmeal,chex,chex,chex,chex,cheerios,cheerios,cheerios,cheerios,chex,oatmeal,oatmeal,oatmeal,oatmeal,oatmeal,chex,chex,chex,chex,chex,oatmeal,chex,chex,chex,chex,oatmeal,oatmeal,oatmeal,oatmeal,chex,chex,chex,chex,chex,chex,cheerios,chex,chex,chex,chex,oatmeal,oatmeal,oatmeal,oatmeal,chex
+0.7150075,0.9858396,0.9912316,0.9897657,0.9745704,0.7344084,0.68030334,0.5347695,0.5142569,0.9044701,0.93842536,0.9983712,0.9748653,0.99203473,0.9347013,0.9511181,0.9723794,0.98771334,0.88125795,0.9911088,0.5774973,0.8769448,0.85501945,0.6564215,0.97869873,0.92553985,0.8597156,0.9630263,0.99859184,0.8983063,0.93740577,0.9961671,0.9614497,0.8735209,0.96316683,0.63967633,0.79736125,0.8644595,0.6885808,0.61328846,0.9860464,0.87019074,0.9759813,0.97866863,0.76006854
+test0
+test0_chex_1,test0_chex_2,test0_chex_5,test0_chex_4,test0_chex_3,test0_cheerios_1,test0_cheerios_2,test0_cheerios_5,test0_cheerios_4,test0_cheerios_3,test0_oatmeal_1,test0_oatmeal_2,test0_oatmeal_5,test0_oatmeal_4,test0_oatmeal_3
+oatmeal,chex,chex,chex,chex,cheerios,cheerios,cheerios,cheerios,chex,oatmeal,oatmeal,oatmeal,oatmeal,oatmeal
+0.7150075,0.9858396,0.9912316,0.9897657,0.9745704,0.7344084,0.68030334,0.5347695,0.5142569,0.9044701,0.93842536,0.9983712,0.9748653,0.99203473,0.9347013
+test
+test1_chex_1,test1_chex_2,test1_chex_5,test1_chex_4,test1_chex_3,test1_cheerios_1,test1_cheerios_2,test1_cheerios_5,test1_cheerios_4,test1_cheerios_3,test1_oatmeal_1,test1_oatmeal_2,test1_oatmeal_5,test1_oatmeal_4,test1_oatmeal_3
+chex,chex,chex,chex,chex,oatmeal,chex,chex,chex,chex,oatmeal,oatmeal,oatmeal,oatmeal,chex
+0.9511181,0.9723794,0.98771334,0.88125795,0.9911088,0.5774973,0.8769448,0.85501945,0.6564215,0.97869873,0.92553985,0.8597156,0.9630263,0.99859184,0.8983063

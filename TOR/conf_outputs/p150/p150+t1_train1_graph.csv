@@ -1,0 +1,12 @@
+test all
+test0_tea_1,test0_tea_2,test0_tea_5,test0_tea_4,test0_tea_3,test0_sprite_1,test0_sprite_2,test0_sprite_5,test0_sprite_4,test0_sprite_3,test0_mtn xxmf dew_1,test0_mtn xxmf dew_2,test0_mtn xxmf dew_5,test0_mtn xxmf dew_4,test0_mtn xxmf dew_3,test1_tea_1,test1_tea_2,test1_tea_5,test1_tea_4,test1_tea_3,test1_sprite_1,test1_sprite_2,test1_sprite_5,test1_sprite_4,test1_sprite_3,test1_mtn xxmf dew_1,test1_mtn xxmf dew_2,test1_mtn xxmf dew_5,test1_mtn xxmf dew_4,test1_mtn xxmf dew_3
+mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,sprite,sprite,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew
+0.9587516,0.9863236,0.9772858,0.97544676,0.98212826,0.92858875,0.48535213,0.97074115,0.9766642,0.99181986,0.78010935,0.95052826,0.98201627,0.97986346,0.98905385,0.84692967,0.90067077,0.95879567,0.9178848,0.9489719,0.8674583,0.9264687,0.936064,0.9478787,0.88059735,0.8905013,0.897594,0.9680775,0.8855745,0.8918535
+test0
+test0_tea_1,test0_tea_2,test0_tea_5,test0_tea_4,test0_tea_3,test0_sprite_1,test0_sprite_2,test0_sprite_5,test0_sprite_4,test0_sprite_3,test0_mtn xxmf dew_1,test0_mtn xxmf dew_2,test0_mtn xxmf dew_5,test0_mtn xxmf dew_4,test0_mtn xxmf dew_3
+mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,sprite,sprite,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew
+0.9587516,0.9863236,0.9772858,0.97544676,0.98212826,0.92858875,0.48535213,0.97074115,0.9766642,0.99181986,0.78010935,0.95052826,0.98201627,0.97986346,0.98905385
+test
+test1_tea_1,test1_tea_2,test1_tea_5,test1_tea_4,test1_tea_3,test1_sprite_1,test1_sprite_2,test1_sprite_5,test1_sprite_4,test1_sprite_3,test1_mtn xxmf dew_1,test1_mtn xxmf dew_2,test1_mtn xxmf dew_5,test1_mtn xxmf dew_4,test1_mtn xxmf dew_3
+mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew,mtn xxmf dew
+0.84692967,0.90067077,0.95879567,0.9178848,0.9489719,0.8674583,0.9264687,0.936064,0.9478787,0.88059735,0.8905013,0.897594,0.9680775,0.8855745,0.8918535

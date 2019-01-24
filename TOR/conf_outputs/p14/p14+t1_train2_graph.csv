@@ -1,0 +1,12 @@
+test all
+test0_cumin_1,test0_cumin_2,test0_cumin_5,test0_cumin_4,test0_cumin_3,test0_paprika_1,test0_paprika_2,test0_paprika_5,test0_paprika_4,test0_paprika_3,test0_nutmeg_1,test0_nutmeg_2,test0_nutmeg_5,test0_nutmeg_4,test0_nutmeg_3,test1_cumin_1,test1_cumin_2,test1_cumin_5,test1_cumin_4,test1_cumin_3,test1_paprika_1,test1_paprika_2,test1_paprika_5,test1_paprika_4,test1_paprika_3,test1_nutmeg_1,test1_nutmeg_2,test1_nutmeg_5,test1_nutmeg_4,test1_nutmeg_3,test2_cumin_1,test2_cumin_2,test2_cumin_5,test2_cumin_4,test2_cumin_3,test2_paprika_1,test2_paprika_2,test2_paprika_5,test2_paprika_4,test2_paprika_3,test2_nutmeg_1,test2_nutmeg_2,test2_nutmeg_5,test2_nutmeg_4,test2_nutmeg_3
+paprika,paprika,nutmeg,paprika,paprika,paprika,paprika,paprika,paprika,nutmeg,nutmeg,nutmeg,nutmeg,nutmeg,nutmeg,nutmeg,paprika,nutmeg,paprika,paprika,paprika,paprika,paprika,paprika,paprika,nutmeg,nutmeg,nutmeg,nutmeg,nutmeg,paprika,nutmeg,paprika,paprika,paprika,paprika,paprika,paprika,paprika,paprika,nutmeg,nutmeg,nutmeg,nutmeg,nutmeg
+0.8698045,0.5367672,0.70379686,0.74626446,0.47095135,0.8090997,0.6213766,0.92043704,0.9396114,0.56917685,0.9242166,0.8910637,0.89287424,0.91162765,0.9553762,0.50162774,0.8879246,0.59607875,0.9183385,0.8645666,0.9503025,0.89844966,0.9520593,0.99705005,0.9753137,0.9361684,0.9765205,0.932857,0.96318597,0.89247215,0.9752421,0.65907043,0.90917176,0.9228744,0.49888882,0.9863288,0.92163545,0.91018033,0.9333028,0.9619382,0.9030899,0.85087687,0.963554,0.9491264,0.9625531
+test0
+test0_cumin_1,test0_cumin_2,test0_cumin_5,test0_cumin_4,test0_cumin_3,test0_paprika_1,test0_paprika_2,test0_paprika_5,test0_paprika_4,test0_paprika_3,test0_nutmeg_1,test0_nutmeg_2,test0_nutmeg_5,test0_nutmeg_4,test0_nutmeg_3
+paprika,paprika,nutmeg,paprika,paprika,paprika,paprika,paprika,paprika,nutmeg,nutmeg,nutmeg,nutmeg,nutmeg,nutmeg
+0.8698045,0.5367672,0.70379686,0.74626446,0.47095135,0.8090997,0.6213766,0.92043704,0.9396114,0.56917685,0.9242166,0.8910637,0.89287424,0.91162765,0.9553762
+test
+test1_cumin_1,test1_cumin_2,test1_cumin_5,test1_cumin_4,test1_cumin_3,test1_paprika_1,test1_paprika_2,test1_paprika_5,test1_paprika_4,test1_paprika_3,test1_nutmeg_1,test1_nutmeg_2,test1_nutmeg_5,test1_nutmeg_4,test1_nutmeg_3
+nutmeg,paprika,nutmeg,paprika,paprika,paprika,paprika,paprika,paprika,paprika,nutmeg,nutmeg,nutmeg,nutmeg,nutmeg
+0.50162774,0.8879246,0.59607875,0.9183385,0.8645666,0.9503025,0.89844966,0.9520593,0.99705005,0.9753137,0.9361684,0.9765205,0.932857,0.96318597,0.89247215
